@@ -1,0 +1,10 @@
+^E:\DUT UNIVERSITY\SECONDYEAR\FIRSTSEMESTER\PBL2\SCIENTIFICARTICLEMANAGEMENT\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SE:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/ScientificArticleManagement" "-BE:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/ScientificArticleManagement/build" --check-stamp-file "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/ScientificArticleManagement/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

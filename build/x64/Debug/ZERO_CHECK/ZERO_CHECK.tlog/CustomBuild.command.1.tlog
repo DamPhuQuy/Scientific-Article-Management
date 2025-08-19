@@ -1,0 +1,10 @@
+^E:\DUT UNIVERSITY\SECONDYEAR\FIRSTSEMESTER\PBL2\SCIENTIFICARTICLEMANAGEMENT\BUILD\CMAKEFILES\969869971638BA24C4C73B684171121D\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SE:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/ScientificArticleManagement" "-BE:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/ScientificArticleManagement/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/ScientificArticleManagement/build/ScientificArticleManagement.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
