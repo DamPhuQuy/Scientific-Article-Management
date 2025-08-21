@@ -7,11 +7,19 @@ ArticleRepository::ArticleRepository(const unordered_map<int, Article> &articles
     this->articles = articles; 
 }
 
-ArticleRepository::ArticleRepository(const ArticleRepository &other) {
-    this->articles = other.articles; 
+ArticleRepository::ArticleRepository(const ArticleRepository &current) {
+    this->articles = current.articles; 
 }
 
 ArticleRepository::~ArticleRepository() {}
+
+void ArticleRepository::setArticlesMap(const unordered_map<int, Article> &articles) {
+    this->articles = articles; 
+}
+
+unordered_map<int, Article> ArticleRepository::getArticlesMap() const {
+    return this->articles; 
+}
 
 void ArticleRepository::addArticle(const Article &article) {
     this->articles.insert({article.getArticleID(), article}); 
