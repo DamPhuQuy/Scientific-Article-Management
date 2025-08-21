@@ -1,7 +1,7 @@
 #include <string> 
 #include <vector> 
 #include <unordered_map>
-#include "Article.h"
+#include "lib/models/Article.h"
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "Journal.h"
+#include "lib/models/Journal.h"
 
 Journal::Journal() {}
 
