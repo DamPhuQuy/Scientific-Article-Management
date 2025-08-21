@@ -2,7 +2,6 @@
 
 #include <string> 
 #include <vector>
-#include "Article.h"
 
 using namespace std;
 
@@ -14,10 +13,10 @@ private:
     string dob; 
     string country; 
     int authorGender; 
-    vector<Article> articles; 
+    vector<int> articlesID; 
 public: 
     Author(); 
-    Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<Article> articles = {}); 
+    Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<int> articlesID = {}); 
     Author(const Author &a); 
     ~Author(); 
 
@@ -38,7 +37,4 @@ public:
 
     void setAuthorGender(int authorGender); 
     int getAuthorGender(); 
-
-    void addArticle(const Article &article);
-    vector<Article> getArticles() const;
 };

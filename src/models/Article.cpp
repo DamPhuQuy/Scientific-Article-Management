@@ -50,3 +50,32 @@ Journal Article::getJournal() {
     return this->journal;
 }
 
+void Article::submit() {
+    if (this->status == ArticleStatus::DRAFT) {
+        this->status = ArticleStatus::SUBMITTED;
+    }
+}
+
+void Article::startReview() {
+    if (this->status == ArticleStatus::SUBMITTED) {
+        this->status = ArticleStatus::UNDER_REVIEW; 
+    }
+}
+
+void Article::requestRevisions() {
+    if (this->status == ArticleStatus::UNDER_REVIEW) {
+        this->status = ArticleStatus::REVISIONS;
+    }
+}
+
+void Article::accept() {
+    if (this->status == ArticleStatus::REVISIONS) {
+        this->status = ArticleStatus::ACCEPTED; 
+    }
+}
+
+void Article::reject() {
+    if (this->status == ArticleStatus::UNDER_REVIEW || this->status == ArticleStatus::REVISIONS) {
+        this->status = ArticleStatus::REJECTED; 
+    }
+}

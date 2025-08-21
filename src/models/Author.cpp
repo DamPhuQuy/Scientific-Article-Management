@@ -1,15 +1,17 @@
 #include "Author.h" 
 
+using namespace std; 
+
 Author::Author() {} 
 
-Author::Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<Article> articles) {
+Author::Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<int> articlesID) {
     this->authorID = authorID;
     this->authorName = authorName;
     this->authorEmail = authorEmail;
     this->dob = dob;
     this->country = country;
     this->authorGender = authorGender;
-    this->articles = articles; 
+    this->articlesID = articlesID; 
 }
 
 Author::Author(const Author &a) {
@@ -19,7 +21,7 @@ Author::Author(const Author &a) {
     this->dob = a.dob;
     this->country = a.country;
     this->authorGender = a.authorGender;
-    this->articles = a.articles;
+    this->articlesID = a.articlesID;
 }
 
 Author::~Author() {}
@@ -70,14 +72,6 @@ void Author::setAuthorGender(int authorGender) {
 
 int Author::getAuthorGender() {
     return this->authorGender;
-}
-
-void Author::addArticle(const Article &article) {
-    articles.push_back(article);
-}
-
-vector<Article> Author::getArticles() const {
-    return articles;
 }
 
 

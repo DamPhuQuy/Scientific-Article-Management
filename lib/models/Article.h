@@ -6,12 +6,23 @@
 
 using namespace std;
 
+enum class ArticleStatus {
+	DRAFT,       
+    SUBMITTED, 
+    UNDER_REVIEW, 
+    REVISIONS,  
+    ACCEPTED, 
+    REJECTED,  
+    PUBLISHED 
+};
+
 class Article {
 private: 
 	int articleID;
 	string articleName;
-	Author author; 
-	Journal journal; 
+	int authorID; 
+	int journalID; 
+	ArticleStatus status; 
 public: 
 	Article(); 
 	Article(int articleID, string articleName, Author author, Journal journal); 
@@ -29,4 +40,12 @@ public:
 
 	void setJournal(Journal journal); 
 	Journal getJournal(); 
+
+	void submit(); 
+	void startReview(); 
+	void requestRevisions();
+	void accept();
+	void reject(); 
+	void publish(); 
+	ArticleStatus getStatus() const;
 }; 

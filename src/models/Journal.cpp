@@ -2,13 +2,20 @@
 
 Journal::Journal() {}
 
-Journal::Journal(int journalID, string journalName, journalTypes types, int publishNumber, string publishYear, string publisher) {
+Journal::Journal(int journalID, 
+                string journalName, 
+                journalTypes types, 
+                int publishNumber, 
+                string publishYear, 
+                string publisher, 
+                vector<int> articlesID) {
     this->journalID = journalID;
     this->journalName = journalName;
     this->types = types;
     this->publishNumber = publishNumber;
     this->publishYear = publishYear;
     this->publisher = publisher;
+    this->articlesID = articlesID;
 }
 
 Journal::Journal(const Journal &j) {
@@ -18,7 +25,7 @@ Journal::Journal(const Journal &j) {
     this->publishNumber = j.publishNumber;
     this->publishYear = j.publishYear;
     this->publisher = j.publisher;
-    this->articles = j.articles;
+    this->articlesID = j.articlesID;
 }
 
 Journal::~Journal() {}
@@ -70,12 +77,3 @@ void Journal::setPublisher(string publisher) {
 string Journal::getPublisher() {
     return this->publisher;
 }
-
-void Journal::addArticle(const Article &article) {
-    articles.push_back(article);
-}
-
-vector<Article> Journal::getArticles() const {
-    return articles;
-}
-

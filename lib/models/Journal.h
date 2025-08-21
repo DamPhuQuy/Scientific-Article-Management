@@ -2,7 +2,6 @@
 
 #include <string> 
 #include <vector> 
-#include "Article.h" 
 
 using namespace std; 
 
@@ -22,11 +21,17 @@ private:
 	int publishNumber;  
 	string publishYear; 
 	string publisher; 
-	vector<Article> articles; 
+	vector<int> articlesID; 
 public: 
 	Journal(); 
-	Journal(int journalID, string journalName, journalTypes types, int publishNumber, string publishYear, string publisher); 
-	Journal(const Journal &j); 
+	Journal(int journalID, 
+			string journalName, 
+			journalTypes types, 
+			int publishNumber, 
+			string publishYear, 
+			string publisher,
+			vector<int> articlesID = {});
+	Journal(const Journal &j); 	
 	~Journal(); 
 
 	void setJournalID(int journalID); 
@@ -46,7 +51,4 @@ public:
 
 	void setPublisher(string publisher); 
 	string getPublisher(); 
-
-	void addArticle(const Article &article); 
-	vector<Article> getArticles() const;
 };
