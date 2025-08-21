@@ -2,30 +2,23 @@
 
 Journal::Journal() {}
 
-Journal::Journal(int journalID, 
-                 string journalName,
-                 journalTypes types, 
-                 int publishID, 
-                 string publishName,
-                 string publishYear,
-                 string publisher) {
+Journal::Journal(int journalID, string journalName, journalTypes types, int publishNumber, string publishYear, string publisher) {
     this->journalID = journalID;
     this->journalName = journalName;
     this->types = types;
-    this->publishID = publishID;
-    this->publishName = publishName;
+    this->publishNumber = publishNumber;
     this->publishYear = publishYear;
     this->publisher = publisher;
 }
 
-Journal::Journal(const Journal& j) {
+Journal::Journal(const Journal &j) {
     this->journalID = j.journalID;
     this->journalName = j.journalName;
     this->types = j.types;
-    this->publishID = j.publishID;
-    this->publishName = j.publishName;
+    this->publishNumber = j.publishNumber;
     this->publishYear = j.publishYear;
     this->publisher = j.publisher;
+    this->articles = j.articles;
 }
 
 Journal::~Journal() {}
@@ -46,28 +39,20 @@ string Journal::getJournalName() {
     return this->journalName;
 }
 
-void Journal::setJournalTypes(journalTypes types) {
+void Journal::setTypes(journalTypes types) {
     this->types = types;
 }
 
-journalTypes Journal::getJournalTypes() {
+journalTypes Journal::getTypes() {
     return this->types;
 }
 
-void Journal::setPublishID(int publishID) {
-    this->publishID = publishID;
+void Journal::setPublishNumber(int publishNumber) {
+    this->publishNumber = publishNumber;
 }
 
-int Journal::getPublishID() {
-    return this->publishID;
-}
-
-void Journal::setPublishName(string publishName) {
-    this->publishName = publishName;
-}
-
-string Journal::getPublishName() {
-    return this->publishName;
+int Journal::getPublishNumber() {
+    return this->publishNumber;
 }
 
 void Journal::setPublishYear(string publishYear) {
@@ -86,4 +71,11 @@ string Journal::getPublisher() {
     return this->publisher;
 }
 
+void Journal::addArticle(const Article &article) {
+    articles.push_back(article);
+}
+
+vector<Article> Journal::getArticles() const {
+    return articles;
+}
 

@@ -1,6 +1,8 @@
 #pragma once 
 
 #include <string> 
+#include <vector> 
+#include "Article.h" 
 
 using namespace std; 
 
@@ -17,40 +19,34 @@ private:
 	int journalID; 
 	string journalName; 
 	journalTypes types; 
-	int publishID; 
-	string publishName; 
+	int publishNumber;  
 	string publishYear; 
 	string publisher; 
+	vector<Article> articles; 
 public: 
 	Journal(); 
-	Journal(int journalID, 
-			string journalName,
-			journalTypes types, 
-			int publishID, 
-			string publishName,
-			string publishYear,
-			string publisher); 
-	Journal(const Journal& j); 
+	Journal(int journalID, string journalName, journalTypes types, int publishNumber, string publishYear, string publisher); 
+	Journal(const Journal &j); 
 	~Journal(); 
 
-	void setJournalID(int journalID);
+	void setJournalID(int journalID); 
 	int getJournalID(); 
 
 	void setJournalName(string journalName); 
 	string getJournalName(); 
 
-	void setJournalTypes(journalTypes types); 
-	journalTypes getJournalTypes(); 
+	void setTypes(journalTypes types); 
+	journalTypes getTypes(); 
 
-	void setPublishID(int publishID); 
-	int getPublishID(); 
-
-	void setPublishName(string publishName); 
-	string getPublishName(); 
+	void setPublishNumber(int publishNumber); 
+	int getPublishNumber(); 
 
 	void setPublishYear(string publishYear); 
 	string getPublishYear(); 
 
 	void setPublisher(string publisher); 
-	string getPublisher();
+	string getPublisher(); 
+
+	void addArticle(const Article &article); 
+	vector<Article> getArticles() const;
 };

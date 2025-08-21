@@ -2,20 +2,14 @@
 
 Author::Author() {} 
 
-Author::Author(int authorID, 
-               string authorName, 
-               string authorEmail, 
-               string dob, 
-               string country, 
-               int authorGender, 
-               int articleCount) {
+Author::Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<Article> articles) {
     this->authorID = authorID;
     this->authorName = authorName;
     this->authorEmail = authorEmail;
     this->dob = dob;
     this->country = country;
     this->authorGender = authorGender;
-    this->articleCount = articleCount;
+    this->articles = articles; 
 }
 
 Author::Author(const Author &a) {
@@ -25,7 +19,7 @@ Author::Author(const Author &a) {
     this->dob = a.dob;
     this->country = a.country;
     this->authorGender = a.authorGender;
-    this->articleCount = a.articleCount;
+    this->articles = a.articles;
 }
 
 Author::~Author() {}
@@ -78,12 +72,12 @@ int Author::getAuthorGender() {
     return this->authorGender;
 }
 
-void Author::setArticleCount(int articleCount) {
-    this->articleCount = articleCount;
+void Author::addArticle(const Article &article) {
+    articles.push_back(article);
 }
 
-int Author::getArticleCount() {
-    return this->articleCount;
+vector<Article> Author::getArticles() const {
+    return articles;
 }
 
 

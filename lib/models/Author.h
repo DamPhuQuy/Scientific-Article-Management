@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string> 
+#include <vector>
+#include "Article.h"
 
 using namespace std;
 
@@ -12,10 +14,10 @@ private:
     string dob; 
     string country; 
     int authorGender; 
-    int articleCount; 
+    vector<Article> articles; 
 public: 
     Author(); 
-    Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, int articleCount); 
+    Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<Article> articles = {}); 
     Author(const Author &a); 
     ~Author(); 
 
@@ -37,6 +39,6 @@ public:
     void setAuthorGender(int authorGender); 
     int getAuthorGender(); 
 
-    void setArticleCount(int articleCount); 
-    int getArticleCount(); 
+    void addArticle(const Article &article);
+    vector<Article> getArticles() const;
 };
