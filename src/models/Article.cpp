@@ -2,18 +2,12 @@
 
 Article::Article() {}
 
-Article::Article(int articleID, string articleName, Author author, Journal journal) {
-    this->articleID = articleID;
+Article::Article(int articleID, string articleName, int authorID, int journalID, ArticleStatus status) {
+    this->articleID = articleID; 
     this->articleName = articleName;
-    this->author = author;
-    this->journal = journal;
-}
-
-Article::Article(const Article &a) {
-    this->articleID = a.articleID;
-    this->articleName = a.articleName;
-    this->author = a.author;
-    this->journal = a.journal;
+    this->authorID = authorID;
+    this->journalID = journalID;
+    this->status = status;
 }
 
 Article::~Article() {}
@@ -22,7 +16,7 @@ void Article::setArticleID(int articleID) {
     this->articleID = articleID;
 }
 
-int Article::getArticleID() {
+int Article::getArticleID() const {
     return this->articleID;
 }
 
@@ -30,24 +24,24 @@ void Article::setArticleName(string articleName) {
     this->articleName = articleName;
 }
 
-string Article::getArticleName() {
+string Article::getArticleName() const {
     return this->articleName;
 }
 
-void Article::setAuthor(Author author) {
-    this->author = author;
+void Article::setAuthorID(int authorID) {
+    this->authorID = authorID;
 }
 
-Author Article::getAuthor() {
-    return this->author;
+int Article::getAuthorID() const {
+    return this->authorID;
 }
 
-void Article::setJournal(Journal journal) {
-    this->journal = journal;
+void Article::setJournalID(int journalID) {
+    this->journalID = journalID;
 }
 
-Journal Article::getJournal() {
-    return this->journal;
+int Article::getJournalID() const {
+    return this->journalID;
 }
 
 void Article::submit() {
@@ -78,4 +72,14 @@ void Article::reject() {
     if (this->status == ArticleStatus::UNDER_REVIEW || this->status == ArticleStatus::REVISIONS) {
         this->status = ArticleStatus::REJECTED; 
     }
+}
+
+void Article::publish() {
+    if (this->status == ArticleStatus::ACCEPTED) {
+        this->status = ArticleStatus::PUBLISHED; 
+    }
+}
+
+ArticleStatus Article::getStatus() const {
+    return this->status;
 }

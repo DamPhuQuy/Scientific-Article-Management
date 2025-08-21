@@ -5,7 +5,7 @@
 
 using namespace std; 
 
-enum journalTypes {
+enum class journalTypes {
 	SCI,
 	SCIE, 
 	ISI, 

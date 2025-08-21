@@ -25,22 +25,22 @@ private:
 	ArticleStatus status; 
 public: 
 	Article(); 
-	Article(int articleID, string articleName, Author author, Journal journal); 
+	Article(int articleID, string articleName, int authorID, int journalID, ArticleStatus status = ArticleStatus::DRAFT);
 	Article(const Article &a); 
 	~Article(); 
 
 	void setArticleID(int articleID); 
-	int getArticleID(); 
+	int getArticleID() const; 
 
 	void setArticleName(string articleName); 
-	string getArticleName(); 
+	string getArticleName() const; 
 
-	void setAuthor(Author author); 
-	Author getAuthor(); 
+	void setAuthorID(int authorID); 
+	int getAuthorID() const; 
 
-	void setJournal(Journal journal); 
-	Journal getJournal(); 
-
+	void setJournalID(int journalID); 
+	int getJournalID() const; 
+	
 	void submit(); 
 	void startReview(); 
 	void requestRevisions();
