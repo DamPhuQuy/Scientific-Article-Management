@@ -1,4 +1,5 @@
 #include "ArticleRepository.h"
+#include <iostream> 
 
 ArticleRepository::ArticleRepository() {}
 
@@ -21,8 +22,22 @@ void ArticleRepository::removeArticle(int articleID) {
 }
 
 Article ArticleRepository::getArticle(int articleID) const {
-    auto it = this->articles.find(articleId); 
-    
-    
+    auto it = this->articles.find(articleID); 
+
+    if (it == articles.end()) {
+        cout << "Not found\n";
+        return Article();  
+    } else {
+        return it->second; 
+    }
 }
 
+vector<Article> ArticleRepository::getAllArticles() const {
+    vector<Article> temp; 
+
+    for (auto it = articles.begin(); it != articles.end(); it++) {
+        temp.push_back(it->second); 
+    }
+
+    return temp; 
+}
