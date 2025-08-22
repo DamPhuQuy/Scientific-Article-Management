@@ -3,6 +3,7 @@
 #include <string> 
 #include "models/Journal.h"
 #include "models/Author.h"
+#include "utilities/InputHelper.h" 
 
 using namespace std;
 

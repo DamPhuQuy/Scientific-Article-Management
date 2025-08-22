@@ -32,7 +32,7 @@ Author AuthorRepository::getAuthor(int authorID) const {
     auto it = authors.find(authorID); 
         
     if (it == authors.end()) {
-        cout << "Not found\n"; 
+        cout << "ERROR: " << authorID << " not found!\n"; 
         return Author(); 
     } else {
         return it->second; 
@@ -47,4 +47,8 @@ vector<Author> AuthorRepository::getAllAuthors() const {
     }
 
     return temp; 
+}
+
+void AuthorRepository::input() override {
+    
 }

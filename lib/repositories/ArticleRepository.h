@@ -4,10 +4,12 @@
 #include <vector> 
 #include <unordered_map>
 #include "models/Article.h"
+#include "utilities/IDManager.h"
+#include "utilities/InputHelper.h" 
 
 using namespace std;
 
-class ArticleRepository {
+class ArticleRepository : public InputHelper {
 private: 
     unordered_map<int, Article> articles; 
 public: 
@@ -23,5 +25,7 @@ public:
     void removeArticle(int articleID); 
 
     Article getArticle(int articleID) const; 
-    vector<Article> getAllArticles() const;   
+    vector<Article> getAllArticles() const;
+
+    void input() override; 
 };

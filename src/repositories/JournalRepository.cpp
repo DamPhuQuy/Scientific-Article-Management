@@ -23,8 +23,8 @@ unordered_map<int, Journal> JournalRepository::getJournalsMap() const {
 Journal JournalRepository::getJournal(int journalID) {
 	auto it = journals.find(journalID); 
 
-	if (it != journals.end()) {
-		cout << "Not found\n"; 
+	if (it == journals.end()) {
+		cout << "ERROR: " << journalID << " not found!\n"; 
 		return Journal(); 
 	} else {
 		return it->second;
@@ -39,4 +39,8 @@ vector<Journal> JournalRepository::getAllJournals() const {
 	}
 
 	return temp; 
+}
+
+void JournalRepository::input() override {
+	
 }

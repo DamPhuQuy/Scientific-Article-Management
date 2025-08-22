@@ -11,6 +11,8 @@ int main(void) {
     JournalRepository j_repo(DataManipulation::init<Journal>());
 
     cout << a_repo.getArticle(1).getArticleName() << endl;
-    cout << au_repo.getAuthor(1).getAuthorName() << endl;
-    cout << j_repo.getJournal(1).getJournalName() << endl;
+    int au_id = a_repo.getArticle(1).getAuthorID();
+    int j_id = a_repo.getArticle(1).getJournalID();
+    cout << au_repo.getAuthor(au_id).getAuthorName() << endl;
+    cout << j_repo.getJournal(j_id).getJournalName() << endl;
 }

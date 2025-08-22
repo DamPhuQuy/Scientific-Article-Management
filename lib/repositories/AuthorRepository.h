@@ -3,8 +3,11 @@
 #include <unordered_map>
 #include <iostream> 
 #include "models/Author.h"
+#include "utilities/InputHelper.h" 
 
-class AuthorRepository {
+using namespace std; 
+
+class AuthorRepository : public InputHelper {
 private: 
     unordered_map<int, Author> authors; 
 public: 
@@ -21,4 +24,6 @@ public:
 
     Author getAuthor(int authorID) const; 
     vector<Author> getAllAuthors() const; 
+
+    void input() override; 
 };

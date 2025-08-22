@@ -22,7 +22,15 @@ unordered_map<int, Article> ArticleRepository::getArticlesMap() const {
 }
 
 void ArticleRepository::addArticle(const Article &article) {
-    this->articles.insert({article.getArticleID(), article}); 
+    int a_id = article.getArticleID(); 
+
+    auto it = articles.find(a_id); 
+    if (it == aritcle.end()) {
+        cout << "The id is duplicated\n"; 
+        return; 
+    }
+
+    articles.insert({a_id, article}); 
 }
 
 void ArticleRepository::removeArticle(int articleID) {
@@ -48,4 +56,13 @@ vector<Article> ArticleRepository::getAllArticles() const {
     }
 
     return temp; 
+}
+
+void ArticleRepository::input() {
+    int articleID = IDManager::generateNextID(this->articles);
+
+    string articleName; 
+    getline(cin, articleName); 
+
+    
 }

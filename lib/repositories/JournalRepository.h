@@ -3,10 +3,11 @@
 #include <unordered_map>
 #include <iostream> 
 #include "models/Journal.h"
+#include "utilities/InputHelper.h" 
 
 using namespace std;
 
-class JournalRepository {
+class JournalRepository : public InputHelper {
 private:
 	unordered_map<int, Journal> journals;
 public:
@@ -20,4 +21,6 @@ public:
 
 	Journal getJournal(int journalID); 
 	vector<Journal> getAllJournals() const; 
+
+	void input() override;
 };
