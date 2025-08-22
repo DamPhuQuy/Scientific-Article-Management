@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 #include <iostream> 
-#include "lib/models/Journal.h"
+#include "models/Journal.h"
 
 using namespace std;
 

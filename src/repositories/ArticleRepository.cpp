@@ -1,4 +1,4 @@
-#include "lib/repositories/ArticleRepository.h"
+#include "repositories/ArticleRepository.h"
 #include <iostream> 
 
 ArticleRepository::ArticleRepository() {}

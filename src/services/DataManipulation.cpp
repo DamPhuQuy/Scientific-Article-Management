@@ -1,24 +1,26 @@
-#include "lib/services/DataManipulation.h"
+#include "services/DataManipulation.h"
 
 namespace fs = std::filesystem;
+bool DataManipulation::fileCheck(const fs::path &filePath, std::ifstream &in) {
+    if (!fs::exists(filePath)) {
+        std::cout << "ERROR: File not found: " << fs::absolute(filePath) << "\n";
+        return false;
+    }
 
-bool DataManipulation::fileCheck(const fs::path &filePath, ifstream &in) { 
-	if (!fs::exists(filePath)) {
-		cout << "ERROR: Cannot file " << filePath << "\n"; 
-		return false; 
-	}
-	if (filePath.extension() != ".csv") {
-		return false; 
-	}
+    if (filePath.extension() != ".csv") {
+        std::cout << "ERROR: Invalid file extension (expected .csv): " << filePath << "\n";
+        return false;
+    }
 
-	in.open(filePath, ios::in); 
-	if (!in.is_open()) {
-		cout << "ERROR: Cannot open " << filePath << "\n"; 
-		return false; 
-	} 
+    in.open(filePath, std::ios::in);
+    if (!in.is_open()) {
+        std::cout << "ERROR: Cannot open file: " << fs::absolute(filePath) << "\n";
+        return false;
+    }
 
-	return true; 
+    return true;
 }
+
 
 ArticleStatus DataManipulation::parseStatus(const string &s) {
 	if (s == "DRAFT") 
@@ -115,7 +117,7 @@ unordered_map<int, Author> DataManipulation::init<Author>() {
 	getline(in, line); 
 
 	while (getline(in, line)) { 
-		stringstream ss; 
+		stringstream ss(line); 
 		string token; 
 
 		int authorID, authorGender; 
@@ -137,10 +139,10 @@ unordered_map<int, Author> DataManipulation::init<Author>() {
 		authorGender = stoi(token);
 
 		getline(ss, token, ','); 
-		for (int i = 1; i < token.length() - 1; i++) { 
-			if (isdigit(token.at(i))) {
-				articlesID.push_back(stoi(to_string(token.at(i)))); 
-			}
+		for (size_t i = 1; i < token.size() - 1; i++) {
+		    if (isdigit(token[i])) {
+		        articlesID.push_back(token[i] - '0'); 
+		    }
 		}
 
 		Author author(authorID, authorName, authorEmail, dob, country, authorGender, articlesID); 
@@ -156,6 +158,7 @@ unordered_map<int, Journal> DataManipulation::init<Journal>() {
 	unordered_map<int, Journal> data;  
 
 	fs::path filePath = Constants::JOURNAL;
+
 	ifstream in; 
 
 	if (!fileCheck(filePath, in)) {
@@ -166,7 +169,7 @@ unordered_map<int, Journal> DataManipulation::init<Journal>() {
 	getline(in, line); 
 
 	while (getline(in, line)) {
-		stringstream ss; 
+		stringstream ss(line); 
 		string token; 
 
 		int journalID, publishNumber; 
@@ -190,10 +193,10 @@ unordered_map<int, Journal> DataManipulation::init<Journal>() {
 		getline(ss, publisher, ','); 
 
 		getline(ss, token, ',');
-		for (int i = 1; i < token.length() - 1; i++) {
-			if (isdigit(token.at(i))) {
-				articlesID.push_back(stoi(to_string(token.at(i)))); 
-			}
+		for (size_t i = 1; i < token.size() - 1; i++) {
+		    if (isdigit(token[i])) {
+		        articlesID.push_back(token[i] - '0');
+		    }
 		}
 
 		Journal journal(journalID, journalName, types, publishNumber, publishYear, publisher, articlesID); 

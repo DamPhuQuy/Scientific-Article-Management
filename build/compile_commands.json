@@ -1,0 +1,50 @@
+[
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\main.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\main.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/main.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/main.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\models\\Article.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\models\\Article.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/models/Article.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/models/Article.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\models\\Author.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\models\\Author.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/models/Author.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/models/Author.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\models\\Journal.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\models\\Journal.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/models/Journal.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/models/Journal.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\repositories\\ArticleRepository.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\repositories\\ArticleRepository.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/repositories/ArticleRepository.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/repositories/ArticleRepository.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\repositories\\AuthorRepository.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\repositories\\AuthorRepository.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/repositories/AuthorRepository.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/repositories/AuthorRepository.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\repositories\\JournalRepository.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\repositories\\JournalRepository.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/repositories/JournalRepository.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/repositories/JournalRepository.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\services\\DataManipulation.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\services\\DataManipulation.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/services/DataManipulation.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj"
+}
+]

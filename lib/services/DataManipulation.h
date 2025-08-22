@@ -9,9 +9,9 @@
 #include <cctype> 
 
 #include "utilities/Constants.h"
-#include "lib/models/Article.h"
-#include "lib/models/Author.h"
-#include "lib/models/Journal.h"
+#include "models/Article.h"
+#include "models/Author.h"
+#include "models/Journal.h"
 
 using namespace std;
 

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string> 
-#include "Journal.h"
-#include "Author.h"
+#include "models/Journal.h"
+#include "models/Author.h"
 
 using namespace std;
 

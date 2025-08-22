@@ -1,4 +1,4 @@
-#include "lib/repositories/AuthorRepository.h"
+#include "repositories/AuthorRepository.h"
 
 AuthorRepository::AuthorRepository() {}  
 

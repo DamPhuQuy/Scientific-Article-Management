@@ -3,7 +3,7 @@
 #include <string> 
 #include <vector> 
 #include <unordered_map>
-#include "lib/models/Article.h"
+#include "models/Article.h"
 
 using namespace std;
 

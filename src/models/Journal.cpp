@@ -1,4 +1,4 @@
-#include "lib/models/Journal.h"
+#include "models/Journal.h"
 
 Journal::Journal() {}
 

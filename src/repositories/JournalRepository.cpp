@@ -1,4 +1,4 @@
-#include "lib/repositories/JournalRepository.h"
+#include "repositories/JournalRepository.h"
 
 JournalRepository::JournalRepository() {}
 

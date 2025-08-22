@@ -1,4 +1,4 @@
-#include "lib/models/Article.h"
+#include "models/Article.h"
 
 Article::Article() {}
 
@@ -8,6 +8,14 @@ Article::Article(int articleID, string articleName, int authorID, int journalID,
     this->authorID = authorID;
     this->journalID = journalID;
     this->status = status;
+}
+
+Article::Article(const Article &a) {
+    this->articleID = a.articleID;
+    this->articleName = a.articleName;
+    this->authorID = a.authorID;
+    this->journalID = a.journalID;
+    this->status = a.status;
 }
 
 Article::~Article() {}
