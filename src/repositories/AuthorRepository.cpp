@@ -21,14 +21,14 @@ unordered_map<int, Author> AuthorRepository::getAuthorsMap() const {
 }
 
 void AuthorRepository::addAuthor(const Author &author) {
-    this->authors.insert({author.getAuthorID, author}); 
+    this->authors.insert({author.getAuthorID(), author}); 
 }
 
 void AuthorRepository::removeAuthor(int authorID) {
     this->authors.erase(authorID); 
 }
 
-Author AuthorRepository::getAuthor(int authorID) {
+Author AuthorRepository::getAuthor(int authorID) const {
     auto it = authors.find(authorID); 
         
     if (it == authors.end()) {

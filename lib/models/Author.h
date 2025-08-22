@@ -21,20 +21,20 @@ public:
     ~Author(); 
 
     void setAuthorID(int authorID); 
-    int getAuthorID(); 
+    int getAuthorID() const; 
 
     void setAuthorName(string authorName); 
-    string getAuthorName(); 
+    string getAuthorName() const; 
 
     void setAuthorEmail(string authorEmail); 
-    string getAuthorEmail(); 
+    string getAuthorEmail() const; 
 
     void setDob(string dob); 
-    string getDob(); 
+    string getDob() const; 
 
     void setCountry(string country); 
-    string getCountry(); 
+    string getCountry() const; 
 
     void setAuthorGender(int authorGender); 
-    int getAuthorGender(); 
+    int getAuthorGender() const; 
 };

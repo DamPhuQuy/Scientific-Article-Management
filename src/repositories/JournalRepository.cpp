@@ -23,7 +23,7 @@ unordered_map<int, Journal> JournalRepository::getJournalsMap() const {
 Journal JournalRepository::getJournal(int journalID) {
 	auto it = journals.find(journalID); 
 
-	if (it != jounrals.end()) {
+	if (it != journals.end()) {
 		cout << "Not found\n"; 
 		return Journal(); 
 	} else {

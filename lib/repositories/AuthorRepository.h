@@ -1,3 +1,5 @@
+#pragma once
+
 #include <unordered_map>
 #include <iostream> 
 #include "lib/models/Author.h"
@@ -17,6 +19,6 @@ public:
     void addAuthor(const Author &author); 
     void removeAuthor(int authorID);
 
-    Author getAuthor(int authorID); 
+    Author getAuthor(int authorID) const; 
     vector<Author> getAllAuthors() const; 
 };

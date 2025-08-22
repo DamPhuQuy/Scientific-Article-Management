@@ -30,7 +30,7 @@ void Author::setAuthorID(int authorID) {
     this->authorID = authorID;
 }
 
-int Author::getAuthorID() {
+int Author::getAuthorID() const {
     return this->authorID;
 }
 
@@ -38,7 +38,7 @@ void Author::setAuthorName(string authorName) {
     this->authorName = authorName;
 }
 
-string Author::getAuthorName() {
+string Author::getAuthorName() const {
     return this->authorName;
 }
 
@@ -46,7 +46,7 @@ void Author::setAuthorEmail(string authorEmail) {
     this->authorEmail = authorEmail;
 }
 
-string Author::getAuthorEmail() {
+string Author::getAuthorEmail() const {
     return this->authorEmail;
 }
 
@@ -54,7 +54,7 @@ void Author::setDob(string dob) {
     this->dob = dob;
 }
 
-string Author::getDob() {
+string Author::getDob() const {
     return this->dob;
 }
 
@@ -62,7 +62,7 @@ void Author::setCountry(string country) {
     this->country = country;
 }
 
-string Author::getCountry() {
+string Author::getCountry() const {
     return this->country;
 }
 
@@ -70,7 +70,7 @@ void Author::setAuthorGender(int authorGender) {
     this->authorGender = authorGender;
 }
 
-int Author::getAuthorGender() {
+int Author::getAuthorGender() const {
     return this->authorGender;
 }
 

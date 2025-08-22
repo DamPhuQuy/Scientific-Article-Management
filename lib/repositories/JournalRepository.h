@@ -1,4 +1,7 @@
+#pragma once 
+
 #include <unordered_map>
+#include <iostream> 
 #include "lib/models/Journal.h"
 
 using namespace std;
@@ -12,7 +15,7 @@ public:
 	JournalRepository(const JournalRepository &current);
 	~JournalRepository();
 
-	void setJournalsMap(const unordered_mapd<int, Journal> &journals);
+	void setJournalsMap(const unordered_map<int, Journal> &journals);
 	unordered_map<int, Journal> getJournalsMap() const;
 
 	Journal getJournal(int journalID); 

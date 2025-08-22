@@ -14,12 +14,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # List all sources
 set(SOURCES
     main.cpp 
-    models/Article.cpp
-    models/Article.h 
-    models/Author.cpp
-    models/Author.h
-    models/Journal.cpp
-    models/Journal.h)
+    src/models/Article.cpp
+    lib/models/Article.h 
+    src/models/Author.cpp
+    lib/models/Author.h
+    src/models/Journal.cpp
+    lib/models/Journal.h
+    src/repositories/ArticleRepository.cpp
+    lib/repositories/ArticleRepository.h
+    src/repositories/AuthorRepository.cpp
+    lib/repositories/AuthorRepository.h
+    src/repositories/JournalRepository.cpp
+    lib/repositories/JournalRepository.h
+    src/services/DataManipulation.cpp
+    lib/services/DataManipulation.h
+    lib/utilities/Constants.h)
 )
 
 # Create executable
