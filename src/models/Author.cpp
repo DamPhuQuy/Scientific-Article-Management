@@ -74,6 +74,8 @@ int Author::getAuthorGender() const {
     return this->authorGender;
 }
 
-
+vector<int> Author::getArticlesID() const{
+    return this->articlesID;
+}
 
 

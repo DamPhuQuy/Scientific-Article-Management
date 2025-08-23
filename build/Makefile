@@ -320,6 +320,30 @@ src/services/DataManipulation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunArticleManagement.dir\build.make CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.s
 .PHONY : src/services/DataManipulation.cpp.s
 
+src/utilities/InputHelper.obj: src/utilities/InputHelper.cpp.obj
+.PHONY : src/utilities/InputHelper.obj
+
+# target to build an object file
+src/utilities/InputHelper.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunArticleManagement.dir\build.make CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj
+.PHONY : src/utilities/InputHelper.cpp.obj
+
+src/utilities/InputHelper.i: src/utilities/InputHelper.cpp.i
+.PHONY : src/utilities/InputHelper.i
+
+# target to preprocess a source file
+src/utilities/InputHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunArticleManagement.dir\build.make CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.i
+.PHONY : src/utilities/InputHelper.cpp.i
+
+src/utilities/InputHelper.s: src/utilities/InputHelper.cpp.s
+.PHONY : src/utilities/InputHelper.s
+
+# target to generate assembly for a file
+src/utilities/InputHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\RunArticleManagement.dir\build.make CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.s
+.PHONY : src/utilities/InputHelper.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -353,6 +377,9 @@ help:
 	@echo ... src/services/DataManipulation.obj
 	@echo ... src/services/DataManipulation.i
 	@echo ... src/services/DataManipulation.s
+	@echo ... src/utilities/InputHelper.obj
+	@echo ... src/utilities/InputHelper.i
+	@echo ... src/utilities/InputHelper.s
 .PHONY : help
 
 

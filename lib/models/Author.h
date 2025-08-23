@@ -37,4 +37,6 @@ public:
 
     void setAuthorGender(int authorGender); 
     int getAuthorGender() const; 
+
+    vector<int> getArticlesID() const; 
 };

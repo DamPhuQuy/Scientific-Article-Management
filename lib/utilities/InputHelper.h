@@ -21,4 +21,6 @@ class InputHelper {
 public:
 	template <typename T> 
 	static int chooseFromMap(const unordered_map<int, T> &data, const string &label);
+
+	
 }; 

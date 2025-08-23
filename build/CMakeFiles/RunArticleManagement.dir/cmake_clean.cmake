@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/RunArticleManagement.dir/src/repositories/JournalRepository.cpp.obj.d"
   "CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj"
   "CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj.d"
+  "CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj"
+  "CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj.d"
   "RunArticleManagement.exe"
   "RunArticleManagement.exe.manifest"
   "RunArticleManagement.pdb"

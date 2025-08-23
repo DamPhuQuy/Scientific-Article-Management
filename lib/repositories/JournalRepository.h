@@ -4,6 +4,7 @@
 #include <iostream> 
 #include "models/Journal.h"
 #include "utilities/InputHelper.h" 
+#include "services/DataManipulation.h"
 
 using namespace std;
 
@@ -22,6 +23,6 @@ public:
 	Journal getJournal(int journalID); 
 	vector<Journal> getAllJournals() const; 
 
-	void input() override;
+	Journal input(const int &journalID, const int &newArticleID); 
 };
 

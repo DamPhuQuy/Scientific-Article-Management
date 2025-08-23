@@ -34,7 +34,7 @@ void Journal::setJournalID(int journalID) {
     this->journalID = journalID;
 }
 
-int Journal::getJournalID() {
+int Journal::getJournalID() const {
     return this->journalID;
 }
 
@@ -42,7 +42,7 @@ void Journal::setJournalName(string journalName) {
     this->journalName = journalName;
 }
 
-string Journal::getJournalName() {
+string Journal::getJournalName() const {
     return this->journalName;
 }
 
@@ -50,7 +50,7 @@ void Journal::setTypes(journalTypes types) {
     this->types = types;
 }
 
-journalTypes Journal::getTypes() {
+journalTypes Journal::getTypes() const {
     return this->types;
 }
 
@@ -58,7 +58,7 @@ void Journal::setPublishNumber(int publishNumber) {
     this->publishNumber = publishNumber;
 }
 
-int Journal::getPublishNumber() {
+int Journal::getPublishNumber() const {
     return this->publishNumber;
 }
 
@@ -66,7 +66,7 @@ void Journal::setPublishYear(string publishYear) {
     this->publishYear = publishYear;
 }
 
-string Journal::getPublishYear() {
+string Journal::getPublishYear()const {
     return this->publishYear;
 }
 
@@ -74,6 +74,10 @@ void Journal::setPublisher(string publisher) {
     this->publisher = publisher;
 }
 
-string Journal::getPublisher() {
+string Journal::getPublisher() const {
     return this->publisher;
+}
+
+vector<int> Journal::getArticlesID() const {
+    return this->articlesID; 
 }

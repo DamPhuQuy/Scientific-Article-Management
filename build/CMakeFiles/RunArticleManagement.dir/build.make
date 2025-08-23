@@ -191,6 +191,21 @@ CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.s"
 	C:\PROGRA~1\mingw\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\src\services\DataManipulation.cpp" -o CMakeFiles\RunArticleManagement.dir\src\services\DataManipulation.cpp.s
 
+CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj: CMakeFiles/RunArticleManagement.dir/flags.make
+CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj: CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp
+CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj: E:/DUT\ UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/utilities/InputHelper.cpp
+CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj: CMakeFiles/RunArticleManagement.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj"
+	C:\PROGRA~1\mingw\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj -MF CMakeFiles\RunArticleManagement.dir\src\utilities\InputHelper.cpp.obj.d -o CMakeFiles\RunArticleManagement.dir\src\utilities\InputHelper.cpp.obj -c "E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\src\utilities\InputHelper.cpp"
+
+CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.i"
+	C:\PROGRA~1\mingw\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\src\utilities\InputHelper.cpp" > CMakeFiles\RunArticleManagement.dir\src\utilities\InputHelper.cpp.i
+
+CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.s"
+	C:\PROGRA~1\mingw\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\src\utilities\InputHelper.cpp" -o CMakeFiles\RunArticleManagement.dir\src\utilities\InputHelper.cpp.s
+
 # Object files for target RunArticleManagement
 RunArticleManagement_OBJECTS = \
 "CMakeFiles/RunArticleManagement.dir/src/main.cpp.obj" \
@@ -200,7 +215,8 @@ RunArticleManagement_OBJECTS = \
 "CMakeFiles/RunArticleManagement.dir/src/repositories/ArticleRepository.cpp.obj" \
 "CMakeFiles/RunArticleManagement.dir/src/repositories/AuthorRepository.cpp.obj" \
 "CMakeFiles/RunArticleManagement.dir/src/repositories/JournalRepository.cpp.obj" \
-"CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj"
+"CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj" \
+"CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj"
 
 # External object files for target RunArticleManagement
 RunArticleManagement_EXTERNAL_OBJECTS =
@@ -213,11 +229,12 @@ RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/src/repositories/A
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/src/repositories/AuthorRepository.cpp.obj
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/src/repositories/JournalRepository.cpp.obj
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj
+RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/build.make
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/linkLibs.rsp
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/objects1.rsp
 RunArticleManagement.exe: CMakeFiles/RunArticleManagement.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable RunArticleManagement.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="E:\DUT UNIVERSITY\secondYear\firstSemester\PBL2\Scientific-Article-Management\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable RunArticleManagement.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\RunArticleManagement.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

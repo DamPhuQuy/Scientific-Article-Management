@@ -26,6 +26,5 @@ public:
     Author getAuthor(int authorID) const; 
     vector<Author> getAllAuthors() const; 
 
-    template <typename T, typename U> 
-    static T input(DataWrapper &data, const U &id);
+    Author input(const int &authorID, const int &newArticleID); 
 }; 

@@ -1,15 +1,23 @@
 #include "utilities/InputHelper.h"
 
-template<> 
-int InputHelper::chooseFromMap<Author>(const unordered_map<int, Author> &data, const string &label) {
+template<typename T> 
+int InputHelper::chooseFromMap(const unordered_map<int, T> &data, const string &label) {
     int choose; 
 
     cout << "List of " + label << ": \n";
     for (auto it = data.begin(); it != data.end(); it++) {
-        cout << label + "ID: " 
-             << it->first
-             << " - Name: "
-             << it->second.getAuthorName(); 
+        if (label == "Author")
+            cout << label + "ID: " 
+                << it->first
+                << " - Author Name: "
+                << it->second.getAuthorName()
+                << "\n"; 
+        else if (label == "Journal") 
+            cout << label + "ID: " 
+                 << it->first
+                 << " - Journal Name: "
+                 << it->second.getJournalName()
+                 << "\n";
     }
     cout << "Choose or create new (0)"; 
     cin >> choose; cin.ignore(); 

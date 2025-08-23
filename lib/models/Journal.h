@@ -35,20 +35,22 @@ public:
 	~Journal(); 
 
 	void setJournalID(int journalID); 
-	int getJournalID(); 
+	int getJournalID() const; 
 
 	void setJournalName(string journalName); 
-	string getJournalName(); 
+	string getJournalName() const; 
 
 	void setTypes(journalTypes types); 
-	journalTypes getTypes(); 
+	journalTypes getTypes() const; 
 
 	void setPublishNumber(int publishNumber); 
-	int getPublishNumber(); 
+	int getPublishNumber() const; 
 
 	void setPublishYear(string publishYear); 
-	string getPublishYear(); 
+	string getPublishYear() const; 
 
 	void setPublisher(string publisher); 
-	string getPublisher(); 
+	string getPublisher() const; 
+
+	vector<int> getArticlesID() const; 
 };

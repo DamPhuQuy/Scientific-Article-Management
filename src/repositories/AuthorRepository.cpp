@@ -29,7 +29,7 @@ void AuthorRepository::removeAuthor(int authorID) {
 }
 
 Author AuthorRepository::getAuthor(int authorID) const {
-    auto it = authors.find(authorID); 
+    auto it = this->authors.find(authorID); 
         
     if (it == authors.end()) {
         cout << "ERROR: " << authorID << " not found!\n"; 
@@ -49,38 +49,40 @@ vector<Author> AuthorRepository::getAllAuthors() const {
     return temp; 
 }
 
-/* Override */
-template<>
-Author AuthorRepository::input<Author, int>(DataWrapper &data, const int &id) { 
-    cout << "Choose available Author ID or create a new one (enter 0): ";
-    int authorID; cin >> authorID; 
-    if (authorID == 0) {
-        authorID = IDManager::generateNextID<Author>(*data.authors); // real instance
+Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
+    auto it = this->authors.find(authorID); 
 
-        string authorName, authorEmail, dob, country; 
-        int authorGender = 0;
+    if (it != authors.end()) {
+        Author author = it->second; 
 
-        cout << "Enter author name: "; 
-        getline(cin, authorName); 
-        
-        cout << "Enter authorEmail: "; 
-        getline(cin, authorEmail); 
+        author.getArticlesID().push_back(newArticleID); 
 
-        cout << "Enter DOB (format: dd/mm/yyyy): "; 
-        getline(cin, dob); 
+        return author; 
+    }
+    else {
+        string authorName;
+        string authorEmail;
+        string dob;
+        string country;
+        int authorGender = 0; 
+        vector<int> articlesID; 
 
-        cout << "Enter country: "; 
-        getline(cin, country); 
+        cout << "Enter author name: "; getline(cin, authorName); 
+
+        cout << "Enter author email: "; getline(cin, authorEmail); 
+
+        cout << "Enter DOB (format dd/mm/yyyy): "; getline(cin, dob); 
+
+        cout << "Enter author country: "; getline(cin, country); 
 
         cout << "Enter gender (M/F): "; 
-        string gender; getline(cin, gender); 
-        if (gender != "M") authorGender = 1;  
+        string temp; getline(cin, temp); 
+        if (temp != "M") authorGender = 1; 
 
-        vector<int> articles; 
+        articlesID.push_back(newArticleID); 
 
-        Author newAuthor(authorID, authorName, authorEmail, dob, country, authorGender, articles);
-        return newAuthor; 
-    } else {
-        return Author(); 
+        Author author(authorID, authorName, authorEmail, dob, country, authorGender, articlesID); 
+
+        return author; 
     }
 }

@@ -46,5 +46,11 @@
   "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\services\\DataManipulation.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\services\\DataManipulation.cpp\"",
   "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/services/DataManipulation.cpp",
   "output": "CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj"
+},
+{
+  "directory": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build",
+  "command": "C:\\PROGRA~1\\mingw\\ucrt64\\bin\\g++.exe  @CMakeFiles/RunArticleManagement.dir/includes_CXX.rsp -g -std=gnu++20 -o CMakeFiles\\RunArticleManagement.dir\\src\\utilities\\InputHelper.cpp.obj -c \"E:\\DUT UNIVERSITY\\secondYear\\firstSemester\\PBL2\\Scientific-Article-Management\\src\\utilities\\InputHelper.cpp\"",
+  "file": "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/utilities/InputHelper.cpp",
+  "output": "CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj"
 }
 ]
