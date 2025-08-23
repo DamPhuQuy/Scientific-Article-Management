@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class JournalRepository : public InputHelper {
+class JournalRepository {
 private:
 	unordered_map<int, Journal> journals;
 public:
@@ -24,3 +24,4 @@ public:
 
 	void input() override;
 };
+

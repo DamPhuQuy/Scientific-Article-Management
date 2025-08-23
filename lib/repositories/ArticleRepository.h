@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class ArticleRepository : public InputHelper {
+class ArticleRepository {
 private: 
     unordered_map<int, Article> articles; 
 public: 

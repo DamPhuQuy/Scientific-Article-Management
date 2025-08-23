@@ -4,10 +4,11 @@
 #include <iostream> 
 #include "models/Author.h"
 #include "utilities/InputHelper.h" 
+#include "utilities/IDManager.h"
 
 using namespace std; 
 
-class AuthorRepository : public InputHelper {
+class AuthorRepository {
 private: 
     unordered_map<int, Author> authors; 
 public: 
@@ -25,5 +26,6 @@ public:
     Author getAuthor(int authorID) const; 
     vector<Author> getAllAuthors() const; 
 
-    void input() override; 
-};
+    template <typename T, typename U> 
+    static T input(DataWrapper &data, const U &id);
+}; 

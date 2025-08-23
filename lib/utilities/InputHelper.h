@@ -1,6 +1,11 @@
+#include <iostream> 
+#include <string>
+#include <unordered_map>
 #include "models/Article.h"
 #include "models/Author.h" 
 #include "models/Journal.h"
+
+using namespace std; 
 
 class DataWrapper {
 public: 
@@ -13,6 +18,7 @@ public:
 // abstract class 
 
 class InputHelper {
+public:
 	template <typename T> 
-	static T input(DataWrapper &data); 
+	static int chooseFromMap(const unordered_map<int, T> &data, const string &label);
 }; 

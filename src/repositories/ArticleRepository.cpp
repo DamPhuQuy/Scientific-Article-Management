@@ -59,8 +59,8 @@ vector<Article> ArticleRepository::getAllArticles() const {
 }
 
 /* @Override */
-template<>
-Article ArticleRepository::input<Article>(DataWrapper &data) {
+
+void ArticleRepository::input<Article>(DataWrapper &data) {
     int newID = IDManager::generateNextID(*data.articles);
 
     string name;
@@ -78,11 +78,9 @@ Article ArticleRepository::input<Article>(DataWrapper &data) {
              << "\n"; 
     }
 
-    cout << "Choose available Author ID or create a new one (enter 0): ";
-    int authorID; cin >> authorID; 
-    if (authorID == 0) {
-        authorID = IDManager::generateNextID<Author>(*data.authors); // real instance
-
+    cout << "Choose available authors or create a new one (enter 0): "; 
+    int authorID; cin >> authorID; cin.ignore(); 
+    if (authorID > 0) {
         
     }
     

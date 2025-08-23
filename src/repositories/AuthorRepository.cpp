@@ -49,6 +49,38 @@ vector<Author> AuthorRepository::getAllAuthors() const {
     return temp; 
 }
 
-void AuthorRepository::input() override {
-    
+/* Override */
+template<>
+Author AuthorRepository::input<Author, int>(DataWrapper &data, const int &id) { 
+    cout << "Choose available Author ID or create a new one (enter 0): ";
+    int authorID; cin >> authorID; 
+    if (authorID == 0) {
+        authorID = IDManager::generateNextID<Author>(*data.authors); // real instance
+
+        string authorName, authorEmail, dob, country; 
+        int authorGender = 0;
+
+        cout << "Enter author name: "; 
+        getline(cin, authorName); 
+        
+        cout << "Enter authorEmail: "; 
+        getline(cin, authorEmail); 
+
+        cout << "Enter DOB (format: dd/mm/yyyy): "; 
+        getline(cin, dob); 
+
+        cout << "Enter country: "; 
+        getline(cin, country); 
+
+        cout << "Enter gender (M/F): "; 
+        string gender; getline(cin, gender); 
+        if (gender != "M") authorGender = 1;  
+
+        vector<int> articles; 
+
+        Author newAuthor(authorID, authorName, authorEmail, dob, country, authorGender, articles);
+        return newAuthor; 
+    } else {
+        return Author(); 
+    }
 }
