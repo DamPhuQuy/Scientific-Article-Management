@@ -18,11 +18,12 @@ using namespace std;
 class DataManipulation {
 private:
     static bool fileCheck(const fs::path &filePath, ifstream &in);
-    static ArticleStatus parseStatus(const string &s); 
-    static journalTypes parseJournalType(const string &s); 
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;
+
+    static ArticleStatus parseStatus(const string &s); 
+    static journalTypes parseJournalType(const string &s); 
 
     template<typename T>
     static unordered_map<int, T> init(); 

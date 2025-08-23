@@ -21,7 +21,6 @@ bool DataManipulation::fileCheck(const fs::path &filePath, std::ifstream &in) {
     return true;
 }
 
-
 ArticleStatus DataManipulation::parseStatus(const string &s) {
 	if (s == "DRAFT") 
 		return ArticleStatus::DRAFT; 

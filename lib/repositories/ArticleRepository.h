@@ -6,6 +6,8 @@
 #include "models/Article.h"
 #include "utilities/IDManager.h"
 #include "utilities/InputHelper.h" 
+#include "services/DataManipulation.h"
+#include "utilities/Constants.h"
 
 using namespace std;
 
@@ -27,5 +29,7 @@ public:
     Article getArticle(int articleID) const; 
     vector<Article> getAllArticles() const;
 
-    void input() override; 
+    /* Override */
+    template<typename T>
+    static T input(DataWrapper &data); 
 };

@@ -8,13 +8,13 @@
 using namespace std;
 
 enum class ArticleStatus {
-	DRAFT,       
-    SUBMITTED, 
-    UNDER_REVIEW, 
-    REVISIONS,  
-    ACCEPTED, 
-    REJECTED,  
-    PUBLISHED 
+	DRAFT,
+	SUBMITTED,
+	UNDER_REVIEW,
+	REVISIONS,
+	ACCEPTED,
+	REJECTED,
+	PUBLISHED
 };
 
 class Article {
