@@ -10,14 +10,16 @@ int main(void) {
     unordered_map<int, Author> authorMap = DataManipulation::init<Author>(); 
     unordered_map<int, Journal> journalMap = DataManipulation::init<Journal>(); 
 
-    ArticleRepository a_repo(articleMap); 
-    AuthorRepository au_repo(authorMap); 
-    JournalRepository j_repo(journalMap);
+    DataManipulation fetch; 
+    articleMap = fetch.init<Article>();  
+    authorMap = fetch.init<Author>(); 
+    journalMap = fetch.init<Journal>(); 
 
-    auto repo = make_shared<unordered_map<int, Article>>;
-    auto au_repo = make_shared<unordered_map<int, Author>> authors;  
-    
-    DataWrapper data; 
-    
+    DataWrapper dw(&articleMap, &authorMap, &journalMap); 
 
+    ArticleRepository a_repo(&dw.getArticles()); 
+    AuthorRepository au_repo(&dw.getAuthors()); 
+    JournalRepository j_repo(&dw.getJournals()); 
+
+    
 }

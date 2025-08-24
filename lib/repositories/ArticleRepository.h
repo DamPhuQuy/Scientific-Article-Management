@@ -32,4 +32,6 @@ public:
     vector<Article> getAllArticles() const;
 
     Article input(DataWrapper &data); 
+
+    void showDescriptionByID(DataWrapper &dw, const int &articleID); 
 };

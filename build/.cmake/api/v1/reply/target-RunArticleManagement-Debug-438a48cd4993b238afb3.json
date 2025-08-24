@@ -179,7 +179,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/utilities/InputHelper.cpp",
+			"path" : "src/utilities/IOHelper.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

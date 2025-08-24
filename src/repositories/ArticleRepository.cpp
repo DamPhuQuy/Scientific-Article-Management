@@ -113,3 +113,19 @@ Article ArticleRepository::input(DataWrapper &data) {
 
     return article; 
 }
+
+void ArticleRepository::showDescriptionByID(DataWrapper &dw, const int &articleID) {
+    auto it = articles->find(articleID); 
+    if (it == articles->end()) {
+        cout << "ERROR: " << articleID << " not found!\n";
+        return; 
+    }
+    else {
+        Article article = it->second; 
+        cout << "Article ID: " << articleID << "\n" 
+             << "Tilte: " << article.getArticleName() << "\n"
+             << "Author Name: " << 
+    }
+
+    ////
+}

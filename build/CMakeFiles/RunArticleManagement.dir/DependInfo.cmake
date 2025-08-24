@@ -16,7 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/repositories/AuthorRepository.cpp" "CMakeFiles/RunArticleManagement.dir/src/repositories/AuthorRepository.cpp.obj" "gcc" "CMakeFiles/RunArticleManagement.dir/src/repositories/AuthorRepository.cpp.obj.d"
   "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/repositories/JournalRepository.cpp" "CMakeFiles/RunArticleManagement.dir/src/repositories/JournalRepository.cpp.obj" "gcc" "CMakeFiles/RunArticleManagement.dir/src/repositories/JournalRepository.cpp.obj.d"
   "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/services/DataManipulation.cpp" "CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj" "gcc" "CMakeFiles/RunArticleManagement.dir/src/services/DataManipulation.cpp.obj.d"
-  "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/utilities/InputHelper.cpp" "CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj" "gcc" "CMakeFiles/RunArticleManagement.dir/src/utilities/InputHelper.cpp.obj.d"
+  "E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/src/utilities/IOHelper.cpp" "CMakeFiles/RunArticleManagement.dir/src/utilities/IOHelper.cpp.obj" "gcc" "CMakeFiles/RunArticleManagement.dir/src/utilities/IOHelper.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
