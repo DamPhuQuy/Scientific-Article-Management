@@ -2,36 +2,36 @@
 
 AuthorRepository::AuthorRepository() {}  
 
-AuthorRepository::AuthorRepository(const unordered_map<int, Author> &authors) {
+AuthorRepository::AuthorRepository(unordered_map<int, Author> *authors) {
     this->authors = authors; 
 }
 
 AuthorRepository::AuthorRepository(const AuthorRepository &current) {
-    this->authors = current.getAuthorsMap(); 
+    this->authors = current.authors; 
 }
 
 AuthorRepository::~AuthorRepository() {}
 
-void AuthorRepository::setAuthorsMap(const unordered_map<int, Author> &authors) {
+void AuthorRepository::setAuthorsMap(unordered_map<int, Author> *authors) {
     this->authors = authors; 
-}  
+}
 
 unordered_map<int, Author> AuthorRepository::getAuthorsMap() const {
-    return this->authors;
+    return *(this->authors);
 }
 
 void AuthorRepository::addAuthor(const Author &author) {
-    this->authors.insert({author.getAuthorID(), author}); 
+    this->authors->insert({author.getAuthorID(), author}); 
 }
 
 void AuthorRepository::removeAuthor(int authorID) {
-    this->authors.erase(authorID); 
+    this->authors->erase(authorID); 
 }
 
 Author AuthorRepository::getAuthor(int authorID) const {
-    auto it = this->authors.find(authorID); 
+    auto it = this->authors->find(authorID); 
         
-    if (it == authors.end()) {
+    if (it == authors->end()) {
         cout << "ERROR: " << authorID << " not found!\n"; 
         return Author(); 
     } else {
@@ -42,7 +42,7 @@ Author AuthorRepository::getAuthor(int authorID) const {
 vector<Author> AuthorRepository::getAllAuthors() const {
     vector<Author> temp; 
 
-    for (auto it = authors.begin(); it != authors.end(); it++) {
+    for (auto it = authors->begin(); it != authors->end(); it++) {
         temp.push_back(it->second);
     }
 
@@ -50,9 +50,9 @@ vector<Author> AuthorRepository::getAllAuthors() const {
 }
 
 Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
-    auto it = this->authors.find(authorID); 
+    auto it = this->authors->find(authorID); 
 
-    if (it != authors.end()) {
+    if (it != authors->end()) {
         Author author = it->second; 
 
         author.getArticlesID().push_back(newArticleID); 

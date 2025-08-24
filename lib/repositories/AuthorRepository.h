@@ -3,21 +3,21 @@
 #include <unordered_map>
 #include <iostream> 
 #include "models/Author.h"
-#include "utilities/InputHelper.h" 
+#include "utilities/IOHelper.h" 
 #include "utilities/IDManager.h"
 
 using namespace std; 
 
 class AuthorRepository {
 private: 
-    unordered_map<int, Author> authors; 
+    unordered_map<int, Author> *authors; 
 public: 
     AuthorRepository(); 
-    AuthorRepository(const unordered_map<int, Author>& authors); 
+    AuthorRepository(unordered_map<int, Author>* authors); 
     AuthorRepository(const AuthorRepository &current); 
     ~AuthorRepository(); 
 
-    void setAuthorsMap(const unordered_map<int, Author> &authors); 
+    void setAuthorsMap(unordered_map<int, Author> *authors); 
     unordered_map<int, Author> getAuthorsMap() const; 
 
     void addAuthor(const Author &author); 

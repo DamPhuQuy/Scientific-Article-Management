@@ -2,28 +2,28 @@
 
 JournalRepository::JournalRepository() {}
 
-JournalRepository::JournalRepository(const unordered_map<int, Journal> &journals) {
+JournalRepository::JournalRepository(unordered_map<int, Journal> *journals) {
 	this->journals = journals; 
 }
 
 JournalRepository::JournalRepository(const JournalRepository &current) {
-	this->journals = journals; 
+	this->journals = current.journals; 
 }
 
 JournalRepository::~JournalRepository() {} 
 
-void JournalRepository::setJournalsMap(const unordered_map<int, Journal> &journals) {
+void JournalRepository::setJournalsMap(unordered_map<int, Journal> *journals) {
 	this->journals = journals; 
 }
 
 unordered_map<int, Journal> JournalRepository::getJournalsMap() const {
-	return this->journals; 
+	return *(this->journals); 
 }
 
 Journal JournalRepository::getJournal(int journalID) {
-	auto it = journals.find(journalID); 
+	auto it = journals->find(journalID); 
 
-	if (it == journals.end()) {
+	if (it == journals->end()) {
 		cout << "ERROR: " << journalID << " not found!\n"; 
 		return Journal(); 
 	} else {
@@ -34,7 +34,7 @@ Journal JournalRepository::getJournal(int journalID) {
 vector<Journal> JournalRepository::getAllJournals() const {
 	vector<Journal> temp; 
 
-	for (auto it = journals.begin(); it != journals.end(); it++) {
+	for (auto it = journals->begin(); it != journals->end(); it++) {
 		temp.push_back(it->second); 
 	}
 
@@ -42,9 +42,9 @@ vector<Journal> JournalRepository::getAllJournals() const {
 }
 
 Journal JournalRepository::input(const int &journalID, const int &newArticleID) {
-	auto it = this->journals.find(journalID); 
+	auto it = this->journals->find(journalID); 
 
-	if (it != journals.end()) {
+	if (it != journals->end()) {
 		Journal journal = it->second; 
 
 		journal.getArticlesID().push_back(newArticleID); 

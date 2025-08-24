@@ -3,7 +3,7 @@
 
 ArticleRepository::ArticleRepository() {}
 
-ArticleRepository::ArticleRepository(const unordered_map<int, Article> &articles) {
+ArticleRepository::ArticleRepository(unordered_map<int, Article> *articles) {
     this->articles = articles; 
 }
 
@@ -14,33 +14,33 @@ ArticleRepository::ArticleRepository(const ArticleRepository &current) {
 ArticleRepository::~ArticleRepository() {}
 
 void ArticleRepository::setArticlesMap(const unordered_map<int, Article> &articles) {
-    this->articles = articles; 
+    *(this->articles) = articles; 
 }
 
-unordered_map<int, Article> ArticleRepository::getArticlesMap() const {
-    return this->articles; 
+unordered_map<int, Article>& ArticleRepository::getArticlesMap() const {
+    return *articles; 
 }
 
 void ArticleRepository::addArticle(const Article &article) {
     int a_id = article.getArticleID(); 
 
-    auto it = articles.find(a_id); 
-    if (it == articles.end()) {
+    auto it = articles->find(a_id); 
+    if (it != articles->end()) {
         cout << "The id is duplicated\n"; 
         return; 
     }
 
-    articles.insert({a_id, article}); 
+    articles->insert({a_id, article}); 
 }
 
 void ArticleRepository::removeArticle(int articleID) {
-    this->articles.erase(articleID); 
+    this->articles->erase(articleID); 
 }
 
 Article ArticleRepository::getArticle(int articleID) const {
-    auto it = this->articles.find(articleID); 
+    auto it = this->articles->find(articleID); 
 
-    if (it == articles.end()) {
+    if (it == articles->end()) {
         cout << "Not found\n";
         return Article();  
     } else {
@@ -51,17 +51,15 @@ Article ArticleRepository::getArticle(int articleID) const {
 vector<Article> ArticleRepository::getAllArticles() const {
     vector<Article> temp; 
 
-    for (auto it = articles.begin(); it != articles.end(); it++) {
+    for (auto it = articles->begin(); it != articles->end(); it++) {
         temp.push_back(it->second); 
     }
 
     return temp; 
 }
 
-/* @Override */
-
-void ArticleRepository::input<Article>(DataWrapper &data) {
-    int newID = IDManager::generateNextID(*data.articles);
+Article ArticleRepository::input(DataWrapper &data) {
+    int newID = IDManager::generateNextID(data.getArticles()); 
 
     string name;
     cout << "Enter the article title: "; 
@@ -69,37 +67,25 @@ void ArticleRepository::input<Article>(DataWrapper &data) {
     getline(cin, name);
 
     // author
-    cout << "List of authors: \n"; 
-    for (auto it = data.authors->begin(); it != data.authors->end(); it++) {
-        cout << "Author ID: " 
-             << it->first
-             << " - Author Name: "
-             << it->second.getAuthorName()
-             << "\n"; 
-    }
 
-    cout << "Choose available authors or create a new one (enter 0): "; 
-    int authorID; cin >> authorID; cin.ignore(); 
-    if (authorID > 0) {
-        
+    int authorID = IOHelper::chooseFromMap<Author>(data.getAuthors(), "Author"); 
+                                
+    Author author;
+    if (authorID == 0) {
+        authorID = IDManager::generateNextID(data.getAuthors()); 
+        AuthorRepository au_repo(&data.getAuthors());
+        author = au_repo.input(authorID, newID); 
     }
     
     // journal
-    cout << "List of journals: \n";
-    for (auto it = data.journals->begin(); it != data.journals->end(); it++) {
-        cout << "Journal ID: "
-             << it->first 
-             << " - Journal Name: "
-             << it->second.getJournalName()
-             << "\n"; 
-    }
+    
+    int journalID = IOHelper::chooseFromMap<Journal>(data.getJournals(), "Journal"); 
 
-    cout << "Choose available Journal ID or create a new one (enter 0): ";
-    int journalID; cin >> journalID;
+    Journal journal; 
     if (journalID == 0) {
-       journalID = IDManager::generateNextID<Journal>(*data.journals); 
-
-
+       journalID = IDManager::generateNextID<Journal>(data.getJournals()); 
+       JournalRepository j_repo(&data.getJournals()); 
+       journal = j_repo.input(journalID, newID); 
     }
 
     // status
@@ -122,4 +108,8 @@ void ArticleRepository::input<Article>(DataWrapper &data) {
     int statusChoice; cin >> statusChoice;
     ArticleStatus status; 
     status = DataManipulation::parseStatus(statusMapping.at(statusChoice));
+
+    Article article(newID, name, authorID, journalID, status); 
+
+    return article; 
 }

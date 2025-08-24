@@ -1,7 +1,7 @@
-#include "utilities/InputHelper.h"
+#include "utilities/IOHelper.h"
 
 template<typename T> 
-int InputHelper::chooseFromMap(const unordered_map<int, T> &data, const string &label) {
+int IOHelper::chooseFromMap(const unordered_map<int, T> &data, const string &label) {
     int choose; 
 
     cout << "List of " + label << ": \n";

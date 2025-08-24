@@ -6,13 +6,18 @@
 using namespace std;
 
 int main(void) {    
-    ArticleRepository a_repo(DataManipulation::init<Article>());
-    AuthorRepository au_repo(DataManipulation::init<Author>());
-    JournalRepository j_repo(DataManipulation::init<Journal>());
+    unordered_map<int, Article> articleMap = DataManipulation::init<Article>(); 
+    unordered_map<int, Author> authorMap = DataManipulation::init<Author>(); 
+    unordered_map<int, Journal> journalMap = DataManipulation::init<Journal>(); 
 
-    cout << a_repo.getArticle(1).getArticleName() << endl;
-    int au_id = a_repo.getArticle(1).getAuthorID();
-    int j_id = a_repo.getArticle(1).getJournalID();
-    cout << au_repo.getAuthor(au_id).getAuthorName() << endl;
-    cout << j_repo.getJournal(j_id).getJournalName() << endl;
+    ArticleRepository a_repo(articleMap); 
+    AuthorRepository au_repo(authorMap); 
+    JournalRepository j_repo(journalMap);
+
+    auto repo = make_shared<unordered_map<int, Article>>;
+    auto au_repo = make_shared<unordered_map<int, Author>> authors;  
+    
+    DataWrapper data; 
+    
+
 }
