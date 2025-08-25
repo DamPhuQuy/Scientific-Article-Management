@@ -27,4 +27,6 @@ public:
     vector<Author> getAllAuthors() const; 
 
     Author input(const int &authorID, const int &newArticleID); 
+
+    void showAuthorDescriptionByID(DataWrapper &dw, const int &authorID); 
 }; 

@@ -23,6 +23,8 @@ public:
 	Journal getJournal(int journalID); 
 	vector<Journal> getAllJournals() const; 
 
-	Journal input(const int &journalID, const int &newArticleID); 
+	Journal input(const int &journalID, const int &newArticleID);
+	
+	void showJournalDescriptionByID(DataWrapper &dw, const int &journalID); 
 };
 

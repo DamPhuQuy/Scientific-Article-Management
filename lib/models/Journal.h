@@ -2,6 +2,7 @@
 
 #include <string> 
 #include <vector> 
+#include <iostream>
 
 using namespace std; 
 
@@ -50,7 +51,9 @@ public:
 	string getPublishYear() const; 
 
 	void setPublisher(string publisher); 
-	string getPublisher() const; 
+	string getPublisher() const;
+	
+	string toString(journalTypes type) const; 
 
 	vector<int> getArticlesID() const; 
 };

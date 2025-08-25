@@ -78,6 +78,23 @@ string Journal::getPublisher() const {
     return this->publisher;
 }
 
+string Journal::toString(journalTypes type) const {
+    if (type == journalTypes::SCI)
+        return "SCI"; 
+    else if (type == journalTypes::SCIE) 
+        return "SCIE"; 
+    else if (type == journalTypes::SCOPUS) 
+        return "SCOPUS"; 
+    else if (type == journalTypes::ISI)
+        return "ISI"; 
+    else if (type == journalTypes::OTHER)
+        return "OTHER"; 
+    else {
+        cout << "Invalid journal type!\n"; 
+        return ""; 
+    }
+}
+
 vector<int> Journal::getArticlesID() const {
     return this->articlesID; 
 }

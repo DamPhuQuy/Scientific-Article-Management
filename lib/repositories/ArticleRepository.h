@@ -33,5 +33,5 @@ public:
 
     Article input(DataWrapper &data); 
 
-    void showDescriptionByID(DataWrapper &dw, const int &articleID); 
+    void showArticleDescriptionByID(DataWrapper &dw, const int &articleID); 
 };

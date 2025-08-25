@@ -86,3 +86,28 @@ Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
         return author; 
     }
 }
+
+void AuthorRepository::showAuthorDescriptionByID(DataWrapper &dw, const int &authorID) {
+    auto it = authors->find(authorID); 
+
+    if (it == authors->end()) {
+        cout << "ERROR: " << authorID << " not found!"; 
+        return; 
+    } 
+    else {
+        Author author = it->second; 
+
+        cout << "Author ID: " << authorID << "\n"; 
+        cout << "Name of author: " << author.getAuthorName() << "\n"; 
+        cout << "Email of author: " << author.getAuthorEmail() << "\n"; 
+        cout << "Day of birth of author: " << author.getDob() << "\n"; 
+        cout << "Country of author: " << author.getCountry() << "\n"; 
+        cout << "Gender: " << ((author.getAuthorGender() == 0) ? "Male" : "Female") << "\n";
+
+        vector<int> articlesID = author.getArticlesID(); 
+        cout << "Articles that " << author.getAuthorName() << " takes part in: \n"; 
+        for (const int &element : articlesID) {
+            cout << "Article ID: " << element << " - Name: " << dw.getArticles().at(element).getArticleName(); 
+        }
+    }
+}

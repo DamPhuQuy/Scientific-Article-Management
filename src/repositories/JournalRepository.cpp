@@ -97,3 +97,26 @@ Journal JournalRepository::input(const int &journalID, const int &newArticleID) 
 		return journal;
 	}
 }
+
+void JournalRepository::showJournalDescriptionByID(DataWrapper &dw, const int &journalID) {
+	auto it = journals->find(journalID);
+
+	if (it == journals->end()) {
+		cout << "ERROR: " << journalID << " not found!\n"; 
+		return; 
+	}
+	else {
+		Journal journal = it->second; 
+		cout << "Journal ID: " << journalID << "\n"; 
+		cout << "Journal name: " << journal.getJournalName() << "\n"; 
+		cout << "Journal type: " << journal.toString(journal.getTypes()) << "\n"; 
+		cout << "Publish Number: " << journal.getPublishNumber() << "\n"; 
+		cout << "Publisher: " << journal.getPublisher() << "\n"; 
+		
+		vector<int> articlesID = journal.getArticlesID(); 
+		cout << "Articles that " << journal.getJournalName() << " takes part in: \n"; 
+		for (const int &element : articlesID) {
+		    cout << "Article ID: " << element << " - Name: " << dw.getArticles().at(element).getArticleName(); 
+		}
+	}
+}
