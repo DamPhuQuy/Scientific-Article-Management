@@ -212,12 +212,6 @@ unordered_map<int, Journal> DataManipulation::init<Journal>() {
 		getline(ss, token, ',');
 		articlesID = parseVectorInt(token);
 
-		cout << "DEBUG: "; 
-		for (const int &e : articlesID) {
-			cout << e << " "; 
-		}
-		cout << "\n"; 
-
 		Journal journal(journalID, journalName, types, publishNumber, publishYear, publisher, articlesID); 
 
 		data.insert({journalID, journal});

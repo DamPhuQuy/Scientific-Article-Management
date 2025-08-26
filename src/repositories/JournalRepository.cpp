@@ -117,7 +117,7 @@ void JournalRepository::showJournalDescriptionByID(DataWrapper &dw, const int &j
 		cout << "Articles that " << journal.getJournalName() << " takes part in: \n"; 
 		for (const int &element : articlesID) {
 		    cout << "Article ID: " << element 
-			<< " - Name: " << dw.getArticles().at(element).getArticleName() << "\n"; 
+				 << " - Name: " << dw.getArticles().at(element).getArticleName() << "\n"; 
 		}
 	}
 }
