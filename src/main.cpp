@@ -10,16 +10,22 @@ int main(void) {
     unordered_map<int, Author> authorMap = DataManipulation::init<Author>(); 
     unordered_map<int, Journal> journalMap = DataManipulation::init<Journal>(); 
 
-    DataManipulation fetch; 
-    articleMap = fetch.init<Article>();  
-    authorMap = fetch.init<Author>(); 
-    journalMap = fetch.init<Journal>(); 
-
     DataWrapper dw(&articleMap, &authorMap, &journalMap); 
 
     ArticleRepository a_repo(&dw.getArticles()); 
     AuthorRepository au_repo(&dw.getAuthors()); 
     JournalRepository j_repo(&dw.getJournals()); 
 
+    a_repo.showArticleDescriptionByID(dw, 1);
+    Article article = dw.getArticles().at(1); 
     
+    int authorID = article.getAuthorID(); 
+    int journalID = article.getJournalID(); 
+
+    cout << "--------------------------------------\n"; 
+    au_repo.showAuthorDescriptionByID(dw, authorID); 
+    cout << "--------------------------------------\n";
+    j_repo.showJournalDescriptionByID(dw, journalID); 
+
+    return 0; 
 }

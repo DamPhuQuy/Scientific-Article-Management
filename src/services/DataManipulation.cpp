@@ -55,6 +55,29 @@ journalTypes DataManipulation::parseJournalType(const string &s) {
 		throw invalid_argument("Unknown type: " + s);
 }
 
+vector<int> DataManipulation::parseVectorInt(const string& s) {
+	// format that is parsed: [x; xx; xxx; ...]
+
+	vector<int> result; 
+	string temp = ""; 
+	for (int i = 0; i < s.length(); i++) {
+		char c = s.at(i); 
+		if (c == '[' || c == ' ') 
+			continue; 
+		else if (isdigit(c)) 
+			temp += c; 
+		else if (c == ';' || c == ']') {
+			if (!temp.empty()) {
+				int element = stoi(temp); 
+				result.push_back(element); 
+				temp = ""; 
+			} 
+		}
+	}
+
+	return result;
+}
+
 // Specialization
 
 template<> 
@@ -138,17 +161,12 @@ unordered_map<int, Author> DataManipulation::init<Author>() {
 		authorGender = stoi(token);
 
 		getline(ss, token, ','); 
-		for (size_t i = 1; i < token.size() - 1; i++) {
-		    if (isdigit(token[i])) {
-		        articlesID.push_back(token[i] - '0'); 
-		    }
-		}
+		articlesID = parseVectorInt(token); 
 
 		Author author(authorID, authorName, authorEmail, dob, country, authorGender, articlesID); 
 
 		data.insert({authorID, author}); 	
 	}
-
 	return data; 
 }
 
@@ -192,11 +210,13 @@ unordered_map<int, Journal> DataManipulation::init<Journal>() {
 		getline(ss, publisher, ','); 
 
 		getline(ss, token, ',');
-		for (size_t i = 1; i < token.size() - 1; i++) {
-		    if (isdigit(token[i])) {
-		        articlesID.push_back(token[i] - '0');
-		    }
+		articlesID = parseVectorInt(token);
+
+		cout << "DEBUG: "; 
+		for (const int &e : articlesID) {
+			cout << e << " "; 
 		}
+		cout << "\n"; 
 
 		Journal journal(journalID, journalName, types, publishNumber, publishYear, publisher, articlesID); 
 

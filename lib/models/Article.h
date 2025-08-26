@@ -49,4 +49,5 @@ public:
 	void reject(); 
 	void publish(); 
 	ArticleStatus getStatus() const;
+	string parseString();
 }; 

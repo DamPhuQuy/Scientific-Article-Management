@@ -18,6 +18,7 @@ using namespace std;
 class DataManipulation {
 private:
     static bool fileCheck(const fs::path &filePath, ifstream &in);
+    static vector<int> parseVectorInt(const string &s); 
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;

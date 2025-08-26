@@ -129,9 +129,10 @@ void ArticleRepository::showArticleDescriptionByID(DataWrapper &dw, const int &a
         Author author = dw.getAuthors().at(authorID); 
         Journal journal = dw.getJournals().at(journalID); 
 
-        cout << "Article ID: " << articleID; 
-        cout << "Article Name: " << article.getArticleName(); 
-        cout << "Author Name: " << dw.getAuthors().at(authorID).getAuthorName();
-        cout << "Journal: " << dw.getJournals().at(journalID).getJournalName(); 
+        cout << "Article ID: " << articleID << "\n"; 
+        cout << "Article Name: " << article.getArticleName() << "\n"; 
+        cout << "Author Name: " << author.getAuthorName() << "\n";
+        cout << "Journal: " << journal.getJournalName() << "\n"; 
+        cout << "Article status: " << article.parseString() << "\n"; 
     }
 }

@@ -91,3 +91,17 @@ void Article::publish() {
 ArticleStatus Article::getStatus() const {
     return this->status;
 }
+
+string Article::parseString() {
+    ArticleStatus status = this->status;
+    switch (status) {
+        case ArticleStatus::DRAFT: return "DRAFT";
+        case ArticleStatus::SUBMITTED: return "SUBMITTED";
+        case ArticleStatus::UNDER_REVIEW: return "UNDER_REVIEW";
+        case ArticleStatus::REVISIONS: return "REVISIONS";
+        case ArticleStatus::ACCEPTED: return "ACCEPTED";
+        case ArticleStatus::REJECTED: return "REJECTED";
+        case ArticleStatus::PUBLISHED: return "PUBLISHED";
+        default: return "UNKNOWN";
+    }
+}

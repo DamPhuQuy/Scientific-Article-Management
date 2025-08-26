@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream> 
 #include <string>
 #include <unordered_map>
@@ -6,6 +8,10 @@
 #include "models/Journal.h"
 
 using namespace std; 
+
+class Article; 
+class Author;
+class Journal; 
 
 class DataWrapper {
 private:

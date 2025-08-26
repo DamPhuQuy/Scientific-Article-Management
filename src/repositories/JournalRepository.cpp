@@ -90,7 +90,7 @@ Journal JournalRepository::input(const int &journalID, const int &newArticleID) 
 		cout << "Enter publisher: "; 
 		getline(cin, publisher); 
 
-		articlesID.push_back(newArticleID); 
+		articlesID.push_back(newArticleID); // add articleID to sync
 	
 		Journal journal(journalID, journalName, type, publishNumber, publishYear, publisher, articlesID); 
 
@@ -116,7 +116,8 @@ void JournalRepository::showJournalDescriptionByID(DataWrapper &dw, const int &j
 		vector<int> articlesID = journal.getArticlesID(); 
 		cout << "Articles that " << journal.getJournalName() << " takes part in: \n"; 
 		for (const int &element : articlesID) {
-		    cout << "Article ID: " << element << " - Name: " << dw.getArticles().at(element).getArticleName(); 
+		    cout << "Article ID: " << element 
+			<< " - Name: " << dw.getArticles().at(element).getArticleName() << "\n"; 
 		}
 	}
 }

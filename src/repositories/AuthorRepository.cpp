@@ -79,7 +79,7 @@ Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
         string temp; getline(cin, temp); 
         if (temp != "M") authorGender = 1; 
 
-        articlesID.push_back(newArticleID); 
+        articlesID.push_back(newArticleID); // add articleID to sync
 
         Author author(authorID, authorName, authorEmail, dob, country, authorGender, articlesID); 
 
@@ -106,8 +106,12 @@ void AuthorRepository::showAuthorDescriptionByID(DataWrapper &dw, const int &aut
 
         vector<int> articlesID = author.getArticlesID(); 
         cout << "Articles that " << author.getAuthorName() << " takes part in: \n"; 
-        for (const int &element : articlesID) {
-            cout << "Article ID: " << element << " - Name: " << dw.getArticles().at(element).getArticleName(); 
+        for (int i = 0; i < articlesID.size(); i++) {
+            cout << articlesID.at(i);  
+            if (i != articlesID.size() - 1) {
+                cout << ", "; 
+            }
         }
+        cout << "\n"; 
     }
 }

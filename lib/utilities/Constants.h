@@ -2,8 +2,10 @@
 
 #include <filesystem>  
 #include <string> 
+#include "models/Article.h" 
 
 namespace fs = std::filesystem;
+using namespace std;
 
 class Constants {
 private: 
@@ -17,17 +19,4 @@ public:
     inline static const fs::path ARTICLE = getModelsPath("articles.csv"); 
     inline static const fs::path AUTHOR  = getModelsPath("authors.csv"); 
     inline static const fs::path JOURNAL = getModelsPath("journals.csv"); 
-
-	inline string toString(ArticleStatus status) {
-	    switch (status) {
-	        case ArticleStatus::DRAFT: return "DRAFT";
-	        case ArticleStatus::SUBMITTED: return "SUBMITTED";
-	        case ArticleStatus::UNDER_REVIEW: return "UNDER_REVIEW";
-	        case ArticleStatus::REVISIONS: return "REVISIONS";
-	        case ArticleStatus::ACCEPTED: return "ACCEPTED";
-	        case ArticleStatus::REJECTED: return "REJECTED";
-	        case ArticleStatus::PUBLISHED: return "PUBLISHED";
-	        default: return "UNKNOWN";
-	    }
-	}
 };
