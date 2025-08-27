@@ -2,13 +2,12 @@
 
 Article::Article() {}
 
-Article::Article(int articleID, string articleName, int authorID, int journalID, ArticleStatus status) {
-    this->articleID = articleID; 
-    this->articleName = articleName;
-    this->authorID = authorID;
-    this->journalID = journalID;
-    this->status = status;
-}
+Article::Article(int a_id, 
+                 string a_name,
+                 int au_id,
+                 int j_id,
+                 ArticleStatus st) :
+    articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), status(st) {}
 
 Article::Article(const Article &a) {
     this->articleID = a.articleID;

@@ -2,9 +2,8 @@
 
 JournalRepository::JournalRepository() {}
 
-JournalRepository::JournalRepository(unordered_map<int, Journal> *journals) {
-	this->journals = journals; 
-}
+JournalRepository::JournalRepository(unordered_map<int, Journal> *j) :
+	journals(j) {} 
 
 JournalRepository::JournalRepository(const JournalRepository &current) {
 	this->journals = current.journals; 

@@ -3,9 +3,8 @@
 
 ArticleRepository::ArticleRepository() {}
 
-ArticleRepository::ArticleRepository(unordered_map<int, Article> *articles) {
-    this->articles = articles; 
-}
+ArticleRepository::ArticleRepository(unordered_map<int, Article> *a) :
+    articles(a) {}
 
 ArticleRepository::ArticleRepository(const ArticleRepository &current) {
     this->articles = current.articles; 

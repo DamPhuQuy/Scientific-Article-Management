@@ -13,7 +13,7 @@ private:
     unordered_map<int, Author> *authors; 
 public: 
     AuthorRepository(); 
-    AuthorRepository(unordered_map<int, Author>* authors); 
+    AuthorRepository(unordered_map<int, Author>* au); 
     AuthorRepository(const AuthorRepository &current); 
     ~AuthorRepository(); 
 

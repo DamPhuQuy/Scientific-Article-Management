@@ -13,7 +13,7 @@ private:
 	unordered_map<int, Journal> *journals;
 public:
 	JournalRepository();
-	JournalRepository(unordered_map<int, Journal> *journals);
+	JournalRepository(unordered_map<int, Journal> *j);
 	JournalRepository(const JournalRepository &current);
 	~JournalRepository();
 

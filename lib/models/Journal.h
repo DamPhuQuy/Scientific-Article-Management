@@ -25,13 +25,13 @@ private:
 	vector<int> articlesID; 
 public: 
 	Journal(); 
-	Journal(int journalID, 
-			string journalName, 
-			journalTypes types, 
-			int publishNumber, 
-			string publishYear, 
-			string publisher,
-			vector<int> articlesID = {});
+	Journal(int j_id, 
+        	string j_name,
+        	journalTypes j_type,
+        	int pNum,
+        	string pYear,
+        	string p,
+        	vector<int> ids);
 	Journal(const Journal &j); 	
 	~Journal(); 
 

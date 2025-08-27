@@ -16,7 +16,13 @@ private:
     vector<int> articlesID; 
 public: 
     Author(); 
-    Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<int> articlesID = {}); 
+    Author(int a_id, 
+                   string au_name,
+                   string au_email,
+                   string au_dob,
+                   string au_country,
+                   int au_gender,
+                   vector<int> ids);  
     Author(const Author &a); 
     ~Author(); 
 

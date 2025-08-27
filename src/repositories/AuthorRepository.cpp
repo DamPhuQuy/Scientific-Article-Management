@@ -2,9 +2,8 @@
 
 AuthorRepository::AuthorRepository() {}  
 
-AuthorRepository::AuthorRepository(unordered_map<int, Author> *authors) {
-    this->authors = authors; 
-}
+AuthorRepository::AuthorRepository(unordered_map<int, Author> *au) :
+    authors(au) {} 
 
 AuthorRepository::AuthorRepository(const AuthorRepository &current) {
     this->authors = current.authors; 

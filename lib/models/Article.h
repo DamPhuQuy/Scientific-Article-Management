@@ -26,7 +26,11 @@ private:
 	ArticleStatus status; 
 public: 
 	Article(); 
-	Article(int articleID, string articleName, int authorID, int journalID, ArticleStatus status = ArticleStatus::DRAFT);
+	Article(int a_id, 
+                 	 string a_name,
+                 	 int au_id,
+                 	 int j_id,
+                 	 ArticleStatus st);
 	Article(const Article &a); 
 	~Article(); 
 

@@ -1,22 +1,18 @@
 #include "models/Journal.h"
 
+using namespace std;
+
 Journal::Journal() {}
 
-Journal::Journal(int journalID, 
-                string journalName, 
-                journalTypes types, 
-                int publishNumber, 
-                string publishYear, 
-                string publisher, 
-                vector<int> articlesID) {
-    this->journalID = journalID;
-    this->journalName = journalName;
-    this->types = types;
-    this->publishNumber = publishNumber;
-    this->publishYear = publishYear;
-    this->publisher = publisher;
-    this->articlesID = articlesID;
-}
+Journal::Journal(int j_id, 
+                 string j_name,
+                 journalTypes j_type,
+                 int pNum,
+                 string pYear,
+                 string p,
+                 vector<int> ids) : 
+    journalID(j_id), journalName(j_name), types(j_type), publishNumber(pNum), publishYear(pYear), publisher(p), articlesID(ids) {}
+
 
 Journal::Journal(const Journal &j) {
     this->journalID = j.journalID;

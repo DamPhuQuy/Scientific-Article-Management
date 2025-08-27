@@ -18,7 +18,7 @@ private:
     unordered_map<int, Article> *articles; 
 public: 
     ArticleRepository(); 
-    ArticleRepository(unordered_map<int, Article> *articles);
+    ArticleRepository(unordered_map<int, Article> *a);
     ArticleRepository(const ArticleRepository &current);
     ~ArticleRepository();
 

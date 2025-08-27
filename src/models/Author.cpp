@@ -4,15 +4,14 @@ using namespace std;
 
 Author::Author() {} 
 
-Author::Author(int authorID, string authorName, string authorEmail, string dob, string country, int authorGender, vector<int> articlesID) {
-    this->authorID = authorID;
-    this->authorName = authorName;
-    this->authorEmail = authorEmail;
-    this->dob = dob;
-    this->country = country;
-    this->authorGender = authorGender;
-    this->articlesID = articlesID; 
-}
+Author::Author(int a_id, 
+               string au_name,
+               string au_email,
+               string au_dob,
+               string au_country,
+               int au_gender,
+               vector<int> ids) :
+    authorID(a_id), authorName(au_name), authorEmail(au_email), dob(au_dob), country(au_country), authorGender(au_gender), articlesID(ids) {}
 
 Author::Author(const Author &a) {
     this->authorID = a.authorID;
