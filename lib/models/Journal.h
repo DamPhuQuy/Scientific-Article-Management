@@ -6,43 +6,35 @@
 
 using namespace std; 
 
-enum class journalTypes {
-	SCI,
-	SCIE, 
-	ISI, 
-	SCOPUS, 
-	OTHER
-}; 
-
 class Journal {
 private: 
-	int journalID; 
+	string journalID; 
 	string journalName; 
-	journalTypes types; 
+	Type type; 
 	int publishNumber;  
 	string publishYear; 
 	string publisher; 
-	vector<int> articlesID; 
+	vector<string> articlesID; 
 public: 
 	Journal(); 
-	Journal(int j_id, 
+	Journal(string j_id, 
         	string j_name,
-        	journalTypes j_type,
+        	Type j_type,
         	int pNum,
         	string pYear,
         	string p,
-        	vector<int> ids);
+        	vector<string> ids);
 	Journal(const Journal &j); 	
 	~Journal(); 
 
 	void setJournalID(int journalID); 
-	int getJournalID() const; 
+	string getJournalID() const; 
 
 	void setJournalName(string journalName); 
-	string getJournalName() const; 
+	string getJournalName() const;
 
-	void setTypes(journalTypes types); 
-	journalTypes getTypes() const; 
+	void setType(Type type); 
+	string getType() const; 
 
 	void setPublishNumber(int publishNumber); 
 	int getPublishNumber() const; 
@@ -52,8 +44,6 @@ public:
 
 	void setPublisher(string publisher); 
 	string getPublisher() const;
-	
-	string toString(journalTypes type) const; 
 
-	vector<int> getArticlesID() const; 
+	vector<string> getArticlesID() const; 
 };

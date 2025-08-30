@@ -24,6 +24,3 @@ add_executable(RunArticleManagement ${SOURCES})
 
 # 6. Add include directories
 target_include_directories(RunArticleManagement PRIVATE lib)
-
-# Enable C++20
-target_compile_features(RunArticleManagement PRIVATE cxx_std_20)

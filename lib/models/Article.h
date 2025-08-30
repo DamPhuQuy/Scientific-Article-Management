@@ -17,41 +17,151 @@ enum class ArticleStatus {
 	PUBLISHED
 };
 
+enum class Type {
+	SCI, 
+	SCIE,
+	ISI,
+	SCOPUS,
+	OTHER
+};
+
 class Article {
-private: 
-	int articleID;
+protected:
+	// format id: Type-XXX (XXX: 000 - 999)
+	string articleID;
 	string articleName;
-	int authorID; 
-	int journalID; 
+	string authorID; 
+	string journalID; 
 	ArticleStatus status; 
 public: 
+	// contructor  
+
 	Article(); 
-	Article(int a_id, 
-                 	 string a_name,
-                 	 int au_id,
-                 	 int j_id,
-                 	 ArticleStatus st);
+	Article(string a_id, 
+            string a_name,
+            string au_id,
+            string j_id,
+            ArticleStatus st);
 	Article(const Article &a); 
+
+	// destructor
+
 	~Article(); 
 
+	// getter and setter
+
 	void setArticleID(int articleID); 
-	int getArticleID() const; 
+	string getArticleID() const; 
 
 	void setArticleName(string articleName); 
 	string getArticleName() const; 
 
 	void setAuthorID(int authorID); 
-	int getAuthorID() const; 
+	string getAuthorID() const; 
 
 	void setJournalID(int journalID); 
-	int getJournalID() const; 
+	string getJournalID() const; 
 	
+	// status working flow
+
 	void submit(); 
 	void startReview(); 
 	void requestRevisions();
 	void accept();
 	void reject(); 
 	void publish(); 
-	ArticleStatus getStatus() const;
-	string parseString();
+
+	string parseString() const;
+
+	// abstract method 
+	virtual string getType() const;
+	virtual void showDescription() const; 
+	virtual void display() const; 
+	virtual void generateID(int count); 
+	virtual string nextID(int count); 
 }; 
+
+class SCIArticle : public Article {
+private: 
+	Type type{ Type::SCI };
+public:
+	SCIArticle(string a_id,
+		string a_name,
+		string au_id,
+		string j_id,
+		ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
+
+	string getType() const override;
+	void showDescription() const override;
+	void display() const override;
+	void generateID(int count) override;
+	string nextID(int count) override;
+};
+
+class SCIEArticle : public Article {
+private: 
+	Type type{ Type::SCIE };
+public:
+	SCIEArticle(string a_id,
+		string a_name,
+		string au_id,
+		string j_id,
+		ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
+
+	string getType() const override; 
+	void showDescription() const override;
+	void display() const override; 
+	void generateID(int count) override; 
+	string nextID(int count) override;
+};
+
+class ISIArticle : public Article {
+private: 
+	Type type{ Type::ISI }; 
+public:
+	ISIArticle(string a_id,
+		string a_name,
+		string au_id,
+		string j_id,
+		ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
+
+	string getType() const override;
+	virtual void showDescription() const;
+	void display() const override; 
+	void generateID(int count) override; 
+	string nextID(int count) override;
+};
+
+class SCOPUSArticle : public Article {
+private:
+	Type type{ Type::SCOPUS };
+public:
+	SCOPUSArticle(string a_id,
+		string a_name,
+		string au_id,
+		string j_id,
+		ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
+
+	string getType() const override; 
+	virtual void showDescription() const;
+	void display() const override; 
+	void generateID(int count) override; 
+	string nextID(int count) override;
+};
+
+class OTHERArticle : public Article {
+private: 
+	Type type{ Type::OTHER }; 
+	OTHERArticle(string a_id,
+		string a_name,
+		string au_id,
+		string j_id,
+		ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
+
+	string getType() const override;
+	virtual void showDescription() const;
+	void display() const override; 
+	void generateID(int count) override; 
+	string nextID(int count) override;
+};
+

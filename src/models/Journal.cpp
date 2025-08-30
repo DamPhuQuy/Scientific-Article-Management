@@ -1,23 +1,39 @@
-#include "models/Journal.h"
+﻿#include "models/Journal.h"
+#include "models/Article.h" 
 
 using namespace std;
 
-Journal::Journal() {}
+Journal::Journal() : 
+    journalID(""),
+    journalName(""),
+    type(Type::OTHER),
+    publishNumber(0),
+    publishYear(""),
+    publisher(""),
+    articlesID({}) {
+}
 
-Journal::Journal(int j_id, 
+Journal::Journal(string j_id,
                  string j_name,
-                 journalTypes j_type,
+                 Type j_type,
                  int pNum,
                  string pYear,
                  string p,
-                 vector<int> ids) : 
-    journalID(j_id), journalName(j_name), types(j_type), publishNumber(pNum), publishYear(pYear), publisher(p), articlesID(ids) {}
+                 vector<string> ids) : 
+    journalID(j_id),
+    journalName(j_name),
+    type(j_type),        
+    publishNumber(pNum),
+    publishYear(pYear),
+    publisher(p),
+    articlesID(ids) {
+}
 
 
 Journal::Journal(const Journal &j) {
     this->journalID = j.journalID;
     this->journalName = j.journalName;
-    this->types = j.types;
+    this->type = j.type;
     this->publishNumber = j.publishNumber;
     this->publishYear = j.publishYear;
     this->publisher = j.publisher;
@@ -30,7 +46,7 @@ void Journal::setJournalID(int journalID) {
     this->journalID = journalID;
 }
 
-int Journal::getJournalID() const {
+string Journal::getJournalID() const {
     return this->journalID;
 }
 
@@ -42,12 +58,24 @@ string Journal::getJournalName() const {
     return this->journalName;
 }
 
-void Journal::setTypes(journalTypes types) {
-    this->types = types;
+void Journal::setType(Type type) {
 }
 
-journalTypes Journal::getTypes() const {
-    return this->types;
+string Journal::getType() const {
+    if (type == Type::SCI)
+        return "SCI";
+    else if (type == Type::SCIE)
+        return "SCIE";
+    else if (type == Type::SCOPUS)
+        return "SCOPUS";
+    else if (type == Type::ISI)
+        return "ISI";
+    else if (type == Type::OTHER)
+        return "OTHER";
+    else {
+        cout << "Invalid journal type!\n";
+        return "";
+    }
 }
 
 void Journal::setPublishNumber(int publishNumber) {
@@ -74,23 +102,6 @@ string Journal::getPublisher() const {
     return this->publisher;
 }
 
-string Journal::toString(journalTypes type) const {
-    if (type == journalTypes::SCI)
-        return "SCI"; 
-    else if (type == journalTypes::SCIE) 
-        return "SCIE"; 
-    else if (type == journalTypes::SCOPUS) 
-        return "SCOPUS"; 
-    else if (type == journalTypes::ISI)
-        return "ISI"; 
-    else if (type == journalTypes::OTHER)
-        return "OTHER"; 
-    else {
-        cout << "Invalid journal type!\n"; 
-        return ""; 
-    }
-}
-
-vector<int> Journal::getArticlesID() const {
+vector<string> Journal::getArticlesID() const {
     return this->articlesID; 
 }

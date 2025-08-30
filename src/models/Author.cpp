@@ -2,16 +2,21 @@
 
 using namespace std; 
 
-Author::Author() {} 
+Author::Author() :
+    authorID(""), authorName(""), authorEmail(""), dob(""), country(""), 
+    authorGender(0), articlesID({}) {
+}
 
-Author::Author(int a_id, 
+Author::Author(string a_id, 
                string au_name,
                string au_email,
                string au_dob,
                string au_country,
                int au_gender,
-               vector<int> ids) :
-    authorID(a_id), authorName(au_name), authorEmail(au_email), dob(au_dob), country(au_country), authorGender(au_gender), articlesID(ids) {}
+               vector<string> ids) :
+    authorID(a_id), authorName(au_name), authorEmail(au_email), dob(au_dob), country(au_country), 
+    authorGender(au_gender), articlesID(ids) {
+}
 
 Author::Author(const Author &a) {
     this->authorID = a.authorID;
@@ -29,7 +34,7 @@ void Author::setAuthorID(int authorID) {
     this->authorID = authorID;
 }
 
-int Author::getAuthorID() const {
+string Author::getAuthorID() const {
     return this->authorID;
 }
 
@@ -73,7 +78,7 @@ int Author::getAuthorGender() const {
     return this->authorGender;
 }
 
-vector<int> Author::getArticlesID() const{
+vector<string> Author::getArticlesID() const{
     return this->articlesID;
 }
 

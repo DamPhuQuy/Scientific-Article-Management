@@ -62,7 +62,6 @@ Article ArticleRepository::input(DataWrapper &data) {
 
     string name;
     cout << "Enter the article title: "; 
-    cin.ignore();
     getline(cin, name);
 
     // author

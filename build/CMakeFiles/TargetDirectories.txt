@@ -1,3 +1,0 @@
-E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build/CMakeFiles/RunArticleManagement.dir
-E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build/CMakeFiles/edit_cache.dir
-E:/DUT UNIVERSITY/secondYear/firstSemester/PBL2/Scientific-Article-Management/build/CMakeFiles/rebuild_cache.dir

@@ -59,7 +59,7 @@ vector<int> DataManipulation::parseVectorInt(const string& s) {
 	// format that is parsed: [x; xx; xxx; ...]
 
 	vector<int> result; 
-	string temp = ""; 
+	string temp = "";  
 	for (int i = 0; i < s.length(); i++) {
 		char c = s.at(i); 
 		if (c == '[' || c == ' ') 

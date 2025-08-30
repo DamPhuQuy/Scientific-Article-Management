@@ -7,27 +7,27 @@ using namespace std;
 
 class Author {
 private: 
-    int authorID; 
+    string authorID; 
     string authorName; 
     string authorEmail; 
     string dob; 
     string country; 
     int authorGender; 
-    vector<int> articlesID; 
+    vector<string> articlesID; 
 public: 
     Author(); 
-    Author(int a_id, 
+    Author(string a_id, 
                    string au_name,
                    string au_email,
                    string au_dob,
                    string au_country,
                    int au_gender,
-                   vector<int> ids);  
+                   vector<string> ids);  
     Author(const Author &a); 
     ~Author(); 
 
     void setAuthorID(int authorID); 
-    int getAuthorID() const; 
+    string getAuthorID() const; 
 
     void setAuthorName(string authorName); 
     string getAuthorName() const; 
@@ -44,5 +44,5 @@ public:
     void setAuthorGender(int authorGender); 
     int getAuthorGender() const; 
 
-    vector<int> getArticlesID() const; 
+    vector<string> getArticlesID() const; 
 };

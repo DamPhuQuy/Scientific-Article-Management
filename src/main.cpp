@@ -27,5 +27,10 @@ int main(void) {
     cout << "--------------------------------------\n";
     j_repo.showJournalDescriptionByID(dw, journalID); 
 
+    Article newArticle = a_repo.input(dw);
+    a_repo.addArticle(newArticle); 
+    
+    a_repo.showArticleDescriptionByID(dw, newArticle.getArticleID()); 
+
     return 0; 
 }

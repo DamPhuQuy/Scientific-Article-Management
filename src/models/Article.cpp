@@ -1,13 +1,17 @@
-#include "models/Article.h"
+﻿#include "models/Article.h"
 
-Article::Article() {}
+// Contructor 
 
-Article::Article(int a_id, 
+Article::Article() :
+    articleID(""), articleName(""), authorID(""), journalID(""), status(ArticleStatus::DRAFT) {}
+
+Article::Article(string a_id, 
                  string a_name,
-                 int au_id,
-                 int j_id,
-                 ArticleStatus st) :
-    articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), status(st) {}
+                 string au_id,
+                 string j_id,
+    ArticleStatus st) :
+    articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), status(st) {
+}
 
 Article::Article(const Article &a) {
     this->articleID = a.articleID;
@@ -17,13 +21,17 @@ Article::Article(const Article &a) {
     this->status = a.status;
 }
 
+// Destructor
+
 Article::~Article() {}
+
+// Getter and setter
 
 void Article::setArticleID(int articleID) {
     this->articleID = articleID;
 }
 
-int Article::getArticleID() const {
+string Article::getArticleID() const {
     return this->articleID;
 }
 
@@ -39,7 +47,7 @@ void Article::setAuthorID(int authorID) {
     this->authorID = authorID;
 }
 
-int Article::getAuthorID() const {
+string Article::getAuthorID() const {
     return this->authorID;
 }
 
@@ -47,9 +55,11 @@ void Article::setJournalID(int journalID) {
     this->journalID = journalID;
 }
 
-int Article::getJournalID() const {
+string Article::getJournalID() const {
     return this->journalID;
 }
+
+// status working flow
 
 void Article::submit() {
     if (this->status == ArticleStatus::DRAFT) {
@@ -87,11 +97,7 @@ void Article::publish() {
     }
 }
 
-ArticleStatus Article::getStatus() const {
-    return this->status;
-}
-
-string Article::parseString() {
+string Article::parseString() const {
     ArticleStatus status = this->status;
     switch (status) {
         case ArticleStatus::DRAFT: return "DRAFT";
@@ -103,4 +109,141 @@ string Article::parseString() {
         case ArticleStatus::PUBLISHED: return "PUBLISHED";
         default: return "UNKNOWN";
     }
+}
+
+// abstract method
+
+void Article::display() const {
+    cout << "Article ID: " << getArticleID() << "\n"; 
+    cout << "Article Name: " << getArticleName() << "\n"; 
+    cout << "Article Status: " << parseString() << "\n"; 
+}
+
+// SCI
+string SCIArticle::getType() const {
+    return "SCI";
+}
+
+void SCIArticle::showDescription() const {
+    cout << "SCI (Science Citation Index)\n"; 
+    cout << "Thuoc Web of Science (Clarivate Analytics)."; 
+    cout << "Bao gom nhung tap chi khoa hoc uy tin, lau doi nhat."; 
+    cout << "Co Impact Factor(IF).";
+    cout << "Co phan hang Quartile(Q1-Q4)."; 
+    cout << "Duoc dung de danh gia nghien cuu o muc cao nhat."; 
+}
+
+void SCIArticle::display() const {
+    Article::display(); // super
+    cout << "Article Type: " << getType() << "\n"; 
+}
+
+// SCIE
+string SCIEArticle::getType() const {
+    return "SCIE";
+}
+
+void SCIEArticle::showDescription() const {
+    cout << "Thuoc Web of Science."; 
+    cout << "Mo rong hon SCI, bao gom nhieu tap chi hon."; 
+    cout << "Co Impact Factor."; 
+    cout << "Co Quartile(Q1-Q4)."; 
+    cout << "Thuong gan tuong duong SCI trong nhieu he thong danh gia."; 
+}
+
+void SCIEArticle::display() const {
+    Article::display(); // super 
+    cout << "Article Type: " << getType() << "\n"; 
+}
+
+// ISI
+string ISIArticle::getType() const {
+    return "ISI";
+}
+
+void ISIArticle::showDescription() const {
+    cout << "La ten cu cua he thong Web of Science."; 
+    cout << "Khi noi ISI thuong chi ca SCI va SCIE.";
+    cout << "Khong con la mot index doc lap."; 
+    cout << "Bai bao ISI thuong la cac bai bao cu.";
+}
+
+void ISIArticle::display() const {
+    Article::display(); // super 
+    cout << "Article Type: " << getType() << "\n";
+}
+
+// SCOPUS
+string SCOPUSArticle::getType() const {
+    return "SCOPUS";
+}
+
+void SCOPUSArticle::showDescription() const {
+    cout << "Do Elsevier quan ly."; 
+    cout << "La he thong indexing lon, phu rong nhieu linh vuc."; 
+    cout << "Co chi so rieng: CiteScore, SJR, SNIP."; 
+    cout << "Co Quartile(Q1-Q4) theo linh vuc."; 
+    cout << "Duoc nhieu truong va co quan nghien cuu chap nhan, nhung thuong danh gia thap hon SCI/SCIE."; 
+}
+
+void SCOPUSArticle::display() const {
+    Article::display(); // super
+    cout << "Article Type: " << getType() << "\n"; 
+}
+
+// OTHER
+string OTHERArticle::getType() const {
+    return "OTHER";
+}
+
+void OTHERArticle::showDescription() const {
+    cout << "Cac bai bao / tap chi ngoai SCI, SCIE, ISI, SCOPUS."; 
+    cout << "Co the la tap chi trong nuoc."; 
+    cout << "Thuong khong co Impact Factor / CiteScore."; 
+    cout << "Gia tri khoa hoc co the thap hon (tuy chat luong)."; 
+}
+
+void OTHERArticle::display() const {
+    Article::display(); // super
+    cout << "Article Type: " << getType() << "\n"; 
+}
+
+void SCIArticle::generateID(int count) {
+    articleID = getType() + "-" + to_string(count); 
+}
+
+string SCIArticle::nextID(int count) {
+    return getType() + "-" + to_string(count + 1); 
+}
+
+void SCIEArticle::generateID(int count) {
+    articleID = getType() + "-" + to_string(count);
+}
+
+string SCIEArticle::nextID(int count) {
+    return getType() + "-" + to_string(count + 1); 
+}
+
+void ISIArticle::generateID(int count) {
+    articleID = getType() + "-" + to_string(count);
+}
+
+string ISIArticle::nextID(int count) {
+    return getType() + "-" + to_string(count + 1); 
+}
+
+void SCOPUSArticle::generateID(int count) {
+    articleID = getType() + "-" + to_string(count); 
+}
+
+string SCOPUSArticle::nextID(int count) {
+    return getType() + "-" + to_string(count + 1); 
+}
+
+void OTHERArticle::generateID(int count) {
+    articleID = getType() + "-" + to_string(count); 
+}
+
+string OTHERArticle::nextID(int count) {
+    return getType() + "-" + to_string(count + 1); 
 }
