@@ -1,6 +1,6 @@
 #pragma once
 
-#include <unordered_map>
+#include <map>
 #include <iostream> 
 #include "models/Author.h"
 #include "utilities/IOHelper.h" 
@@ -10,23 +10,21 @@ using namespace std;
 
 class AuthorRepository {
 private: 
-    unordered_map<int, Author> *authors; 
-public: 
-    AuthorRepository(); 
-    AuthorRepository(unordered_map<int, Author>* au); 
-    AuthorRepository(const AuthorRepository &current); 
+    map<string, Author> &authors;
+public:
+    explicit AuthorRepository(map<string, Author>& au);
     ~AuthorRepository(); 
 
-    void setAuthorsMap(unordered_map<int, Author> *authors); 
-    unordered_map<int, Author> getAuthorsMap() const; 
+    void setAuthorsMap(const map<string, Author> &authors) const;
+    [[nodiscard]] map<string, Author> getAuthorsMap() const;
 
-    void addAuthor(const Author &author); 
-    void removeAuthor(int authorID);
+    void addAuthor(const Author &author) const;
+    void removeAuthor(const string &authorID) const;
 
-    Author getAuthor(int authorID) const; 
-    vector<Author> getAllAuthors() const; 
+    [[nodiscard]] Author* getAuthor(const string &authorID) const;
+    [[nodiscard]] vector<Author> getAllAuthors() const;
 
-    Author input(const int &authorID, const int &newArticleID); 
+    [[nodiscard]] Author input(const string &authorID, const string &newArticleID) const;
 
-    void showAuthorDescriptionByID(DataWrapper &dw, const int &authorID); 
+    void showAuthorDescriptionByID(const map<string, Article*> &articles, const string &authorID) const;
 }; 

@@ -1,115 +1,71 @@
 #include "repositories/ArticleRepository.h"
-#include <iostream> 
+#include <iostream>
+#include <ranges>
 
-ArticleRepository::ArticleRepository() {}
-
-ArticleRepository::ArticleRepository(unordered_map<int, Article> *a) :
+// constructor
+ArticleRepository::ArticleRepository(map<string, Article*> &a) :
     articles(a) {}
 
-ArticleRepository::ArticleRepository(const ArticleRepository &current) {
-    this->articles = current.articles; 
+ArticleRepository::~ArticleRepository() = default;
+
+void ArticleRepository::setArticlesMap(const map<string, Article*> &articles) const {
+    this->articles = articles;
 }
 
-ArticleRepository::~ArticleRepository() {}
-
-void ArticleRepository::setArticlesMap(const unordered_map<int, Article> &articles) {
-    *(this->articles) = articles; 
+map<string, Article*>& ArticleRepository::getArticlesMap() const {
+    return this->articles;
 }
 
-unordered_map<int, Article>& ArticleRepository::getArticlesMap() const {
-    return *articles; 
-}
-
-void ArticleRepository::addArticle(const Article &article) {
-    int a_id = article.getArticleID(); 
-
-    auto it = articles->find(a_id); 
-    if (it != articles->end()) {
-        cout << "The id is duplicated\n"; 
-        return; 
-    }
-
-    articles->insert({a_id, article}); 
-}
-
-void ArticleRepository::removeArticle(int articleID) {
-    this->articles->erase(articleID); 
-}
-
-Article ArticleRepository::getArticle(int articleID) const {
-    auto it = this->articles->find(articleID); 
-
-    if (it == articles->end()) {
-        cout << "Not found\n";
-        return Article();  
+void ArticleRepository::addArticle(Article* a) const {
+    if (const string& id = a->getArticleID(); !articles.contains(id)) {
+        articles[id] = a;
+        cout << "The article ID: " << id << " added successfully!\n";
     } else {
-        return it->second; 
+        cout << "This article ID already exists!\n";
     }
 }
 
-vector<Article> ArticleRepository::getAllArticles() const {
-    vector<Article> temp; 
+void ArticleRepository::removeArticle(const string& articleID) const {
+    if (!articles.contains(articleID)) {
+        cout << "This article ID does not exist!\n";
+    }
+    else {
+        articles.erase(articleID);
+        cout << "The article ID: " << articleID << " deleted successfully!\n";
+    }
+}
 
-    for (auto it = articles->begin(); it != articles->end(); it++) {
-        temp.push_back(it->second); 
+Article* ArticleRepository::getArticle(const string &articleID) const {
+    auto it = articles.find(articleID);
+    if (it != articles.end()) return it->second;
+    cout << "This article ID: " << articleID << " does not exist!\n";
+    return nullptr;
+}
+
+vector<Article*> ArticleRepository::getAllArticles() const {
+    vector<Article*> temp;
+
+    for (auto &val: articles | views::values) {
+        temp.push_back(val);
     }
 
     return temp; 
 }
 
-Article ArticleRepository::input(DataWrapper &data) {
-    int newID = IDManager::generateNextID(data.getArticles()); 
-
+Article ArticleRepository::input(const map<string, Author> &authors, const map<string, Journal> &journals) {
     string name;
-    cout << "Enter the article title: "; 
+    cout << "Nhap vao ten bai bao: ";
     getline(cin, name);
 
-    // author
+    string authorID = IOHelper::chooseFromMap<Author>(authors, "Author");
+    if (authorID == "New") {
 
-    int authorID = IOHelper::chooseFromMap<Author>(data.getAuthors(), "Author"); 
-                                
-    Author author;
-    if (authorID == 0) {
-        authorID = IDManager::generateNextID(data.getAuthors()); 
-        AuthorRepository au_repo(&data.getAuthors());
-        author = au_repo.input(authorID, newID); 
-    }
-    
-    // journal
-    
-    int journalID = IOHelper::chooseFromMap<Journal>(data.getJournals(), "Journal"); 
-
-    Journal journal; 
-    if (journalID == 0) {
-       journalID = IDManager::generateNextID<Journal>(data.getJournals()); 
-       JournalRepository j_repo(&data.getJournals()); 
-       journal = j_repo.input(journalID, newID); 
     }
 
-    // status
+    string journalID = IOHelper::chooseFromMap<Journal>(journals, "Journal");
+    if (journalID == "New") {
 
-    unordered_map<int, string> statusMapping = {
-        {0, "DRAFT"},
-        {1, "SUBMITTED"}, 
-        {2, "UNDER_REVIEW"}, 
-        {3, "REVISIONS"},  
-        {4, "ACCEPTED"}, 
-        {5, "REJECTED"},  
-        {6, "PUBLISHED"}
-    };
-
-    cout << "List of article status: \n"; 
-    for (const auto& e : statusMapping) {
-        cout << e.first << " - " << e.second << "\n"; 
     }
-
-    int statusChoice; cin >> statusChoice;
-    ArticleStatus status; 
-    status = DataManipulation::parseStatus(statusMapping.at(statusChoice));
-
-    Article article(newID, name, authorID, journalID, status); 
-
-    return article; 
 }
 
 void ArticleRepository::showArticleDescriptionByID(DataWrapper &dw, const int &articleID) {

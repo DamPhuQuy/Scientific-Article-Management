@@ -6,9 +6,9 @@
 using namespace std;
 
 int main(void) {    
-    unordered_map<int, Article> articleMap = DataManipulation::init<Article>(); 
-    unordered_map<int, Author> authorMap = DataManipulation::init<Author>(); 
-    unordered_map<int, Journal> journalMap = DataManipulation::init<Journal>(); 
+    map<int, Article> articleMap = DataManipulation::init<Article>();
+    map<int, Author> authorMap = DataManipulation::init<Author>();
+    map<int, Journal> journalMap = DataManipulation::init<Journal>();
 
     DataWrapper dw(&articleMap, &authorMap, &journalMap); 
 

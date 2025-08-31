@@ -1,38 +1,52 @@
 #include "utilities/IOHelper.h"
 
 template<>
-int IOHelper::chooseFromMap<Author>(const unordered_map<int, Author> &data, const string &label) {
-    int choose; 
+string IOHelper::chooseFromMap<Author>(const map<string, Author> &data, const string &label) {
+    int choose = -1;
+    vector<string> tokens;
+    tokens.emplace_back("New");
+    do {
+        cout << "List of " + label << ": \n";
+        int index = 0;
+        for (auto it = data.begin(); it != data.end(); ++it) {
+            tokens.emplace_back(it->first);
+            cout << index++ << ". "
+                 << label + "ID: "
+                 << it->first
+                 << " - Author Name: "
+                 << it->second.getAuthorName()
+                 << "\n";
+        }
+        cout << "Choose or create new (0): ";
+        cin >> choose; cin.ignore();
+    } while (choose == -1);
 
-    cout << "List of " + label << ": \n";
-    for (auto it = data.begin(); it != data.end(); it++) {
-            cout << label + "ID: " 
-                << it->first
-                << " - Author Name: "
-                << it->second.getAuthorName()
-                << "\n"; 
-    }
-    cout << "Choose or create new (0): "; 
-    cin >> choose; cin.ignore(); 
-
-    return choose; 
+    return tokens[choose];
 }
 
 template<>
-int IOHelper::chooseFromMap<Journal>(const unordered_map<int, Journal> &data, const string &label) {
-    int choose; 
-    cout << "List of " + label << ": \n"; 
-    for (auto it = data.begin(); it != data.end(); it++) {
-        cout << label + "ID: "
-             << it->first
-             << " - Author Name: "
-             << it->second.getJournalName()
-             << "\n"; 
-    }
-    cout << "Choose of create new (0): ";
-    cin >> choose; cin.ignore();
+string IOHelper::chooseFromMap<Journal>(const map<string, Journal> &data, const string &label) {
+    int choose = -1;
+    vector<string> tokens;
+    tokens.emplace_back("New");
+    do {
+        cout << "List of " + label << ": \n";
+        int index = 0;
+        for (auto it = data.begin(); it != data.end(); ++it) {
+            tokens.emplace_back(it->first);
+            cout << index++ << ". "
+                 << label + "ID: "
+                 << it->first
+                 << " - Author Name: "
+                 << it->second.getJournalName()
+                 << "\n";
+        }
+        cout << "Choose of create new (0): ";
+        cin >> choose; cin.ignore();
 
-    return choose; 
+    } while (choose == -1);
+
+    return tokens[choose];
 }
 
 

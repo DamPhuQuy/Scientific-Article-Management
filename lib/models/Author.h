@@ -45,4 +45,6 @@ public:
     [[nodiscard]] int getAuthorGender() const;
 
     [[nodiscard]] vector<string> getArticlesID() const;
+
+    string
 };

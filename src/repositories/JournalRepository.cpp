@@ -2,7 +2,7 @@
 
 JournalRepository::JournalRepository() {}
 
-JournalRepository::JournalRepository(unordered_map<int, Journal> *j) :
+JournalRepository::JournalRepository(map<int, Journal> *j) :
 	journals(j) {} 
 
 JournalRepository::JournalRepository(const JournalRepository &current) {
@@ -11,11 +11,11 @@ JournalRepository::JournalRepository(const JournalRepository &current) {
 
 JournalRepository::~JournalRepository() {} 
 
-void JournalRepository::setJournalsMap(unordered_map<int, Journal> *journals) {
+void JournalRepository::setJournalsMap(map<int, Journal> *journals) {
 	this->journals = journals; 
 }
 
-unordered_map<int, Journal> JournalRepository::getJournalsMap() const {
+map<int, Journal> JournalRepository::getJournalsMap() const {
 	return *(this->journals); 
 }
 
@@ -62,7 +62,7 @@ Journal JournalRepository::input(const int &journalID, const int &newArticleID) 
 		cout << "Enter journal name: "; getline(cin, journalName); 
 
 		// journal type
-		unordered_map<int, string> journalTypesMapping = {
+		map<int, string> journalTypesMapping = {
 			{0, "SCI"}, 
 			{1, "SCIE"},
 			{2, "ISI"},

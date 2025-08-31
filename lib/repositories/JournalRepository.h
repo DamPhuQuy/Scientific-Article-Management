@@ -1,6 +1,6 @@
 #pragma once 
 
-#include <unordered_map>
+#include <map>
 #include <iostream> 
 #include "models/Journal.h"
 #include "utilities/IOHelper.h" 
@@ -10,15 +10,15 @@ using namespace std;
 
 class JournalRepository {
 private:
-	unordered_map<int, Journal> *journals;
+	map<int, Journal> *journals;
 public:
 	JournalRepository();
-	JournalRepository(unordered_map<int, Journal> *j);
+	JournalRepository(map<int, Journal> *j);
 	JournalRepository(const JournalRepository &current);
 	~JournalRepository();
 
-	void setJournalsMap(unordered_map<int, Journal> *journals);
-	unordered_map<int, Journal> getJournalsMap() const;
+	void setJournalsMap(map<int, Journal> *journals);
+	map<int, Journal> getJournalsMap() const;
 
 	Journal getJournal(int journalID); 
 	vector<Journal> getAllJournals() const; 

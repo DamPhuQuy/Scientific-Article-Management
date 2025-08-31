@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <unordered_map>
+#include <map>
 #include <sstream> 
 #include <vector>
 #include <cctype> 
@@ -27,5 +27,5 @@ public:
     static journalTypes parseJournalType(const string &s); 
 
     template<typename T>
-    static unordered_map<int, T> init(); 
+    static map<int, T> init();
 };

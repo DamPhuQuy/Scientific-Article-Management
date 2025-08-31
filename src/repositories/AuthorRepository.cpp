@@ -1,60 +1,53 @@
 #include "repositories/AuthorRepository.h"
 
-AuthorRepository::AuthorRepository() {}  
+#include <ranges>
 
-AuthorRepository::AuthorRepository(unordered_map<int, Author> *au) :
-    authors(au) {} 
+AuthorRepository::AuthorRepository(map<string, Author> &au) :
+    authors(au) {}
 
-AuthorRepository::AuthorRepository(const AuthorRepository &current) {
-    this->authors = current.authors; 
-}
+AuthorRepository::~AuthorRepository() = default;
 
-AuthorRepository::~AuthorRepository() {}
-
-void AuthorRepository::setAuthorsMap(unordered_map<int, Author> *authors) {
+void AuthorRepository::setAuthorsMap(const map<string, Author> &authors) const {
     this->authors = authors; 
 }
 
-unordered_map<int, Author> AuthorRepository::getAuthorsMap() const {
-    return *(this->authors);
+map<string, Author> AuthorRepository::getAuthorsMap() const {
+    return this->authors;
 }
 
-void AuthorRepository::addAuthor(const Author &author) {
-    this->authors->insert({author.getAuthorID(), author}); 
+void AuthorRepository::addAuthor(const Author &author) const {
+    this->authors.insert({author.getAuthorID(), author});
 }
 
-void AuthorRepository::removeAuthor(int authorID) {
-    this->authors->erase(authorID); 
+void AuthorRepository::removeAuthor(const string &authorID) const {
+    this->authors.erase(authorID);
 }
 
-Author AuthorRepository::getAuthor(int authorID) const {
-    auto it = this->authors->find(authorID); 
-        
-    if (it == authors->end()) {
-        cout << "ERROR: " << authorID << " not found!\n"; 
-        return Author(); 
-    } else {
-        return it->second; 
+Author* AuthorRepository::getAuthor(const string &authorID) const {
+    if (!authors.contains(authorID)) {
+        cout << "This author ID : " << authorID << " does not exist!\n";
+        return nullptr;
+    }
+    else {
+        return &authors.at(authorID);
     }
 }
 
 vector<Author> AuthorRepository::getAllAuthors() const {
     vector<Author> temp; 
 
-    for (auto it = authors->begin(); it != authors->end(); it++) {
-        temp.push_back(it->second);
+    for (auto &val: authors | views::values) {
+        temp.emplace_back(val);
     }
 
     return temp; 
 }
 
-Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
-    auto it = this->authors->find(authorID); 
-
-    if (it != authors->end()) {
+Author AuthorRepository::input(const string &authorID, const string &newArticleID) const {
+    if (auto it = this->authors.find(authorID); it != authors.end()) {
         Author author = it->second; 
 
-        author.getArticlesID().push_back(newArticleID); 
+        author.getArticlesID().emplace_back(newArticleID);
 
         return author; 
     }
@@ -64,7 +57,7 @@ Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
         string dob;
         string country;
         int authorGender = 0; 
-        vector<int> articlesID; 
+        vector<string> articlesID;
 
         cout << "Enter author name: "; getline(cin, authorName); 
 
@@ -78,7 +71,7 @@ Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
         string temp; getline(cin, temp); 
         if (temp != "M") authorGender = 1; 
 
-        articlesID.push_back(newArticleID); // add articleID to sync
+        articlesID.emplace_back(newArticleID); // add articleID to sync
 
         Author author(authorID, authorName, authorEmail, dob, country, authorGender, articlesID); 
 
@@ -86,15 +79,16 @@ Author AuthorRepository::input(const int &authorID, const int &newArticleID) {
     }
 }
 
-void AuthorRepository::showAuthorDescriptionByID(DataWrapper &dw, const int &authorID) {
-    auto it = authors->find(authorID); 
-
-    if (it == authors->end()) {
+void AuthorRepository::showAuthorDescriptionByID(
+    const map<string, Article*> &articles,
+    const string &authorID)
+const {
+    if (const auto it = authors.find(authorID); it == authors.end()) {
         cout << "ERROR: " << authorID << " not found!"; 
         return; 
     } 
     else {
-        Author author = it->second; 
+        const Author author = it->second;
 
         cout << "Author ID: " << authorID << "\n"; 
         cout << "Name of author: " << author.getAuthorName() << "\n"; 
@@ -103,7 +97,7 @@ void AuthorRepository::showAuthorDescriptionByID(DataWrapper &dw, const int &aut
         cout << "Country of author: " << author.getCountry() << "\n"; 
         cout << "Gender: " << ((author.getAuthorGender() == 0) ? "Male" : "Female") << "\n";
 
-        vector<int> articlesID = author.getArticlesID(); 
+        const vector<string> articlesID = author.getArticlesID();
         cout << "Articles that " << author.getAuthorName() << " takes part in: \n"; 
         for (int i = 0; i < articlesID.size(); i++) {
             cout << articlesID.at(i);  

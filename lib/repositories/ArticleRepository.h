@@ -1,37 +1,32 @@
 #pragma once
 
-#include <string> 
-#include <vector> 
-#include <unordered_map>
+#include <vector>
+#include <map>
 #include "models/Article.h"
-#include "utilities/IDManager.h"
-#include "utilities/IOHelper.h" 
-#include "services/DataManipulation.h"
-#include "utilities/Constants.h"
-#include "repositories/AuthorRepository.h"
-#include "repositories/JournalRepository.h"
+#include "utilities/IOHelper.h"
 
 using namespace std;
 
 class ArticleRepository {
-private: 
-    unordered_map<int, Article> *articles; 
-public: 
-    ArticleRepository(); 
-    ArticleRepository(unordered_map<int, Article> *a);
-    ArticleRepository(const ArticleRepository &current);
+private:
+    map<string, Article*> &articles;
+public:
+    // constructor
+    explicit ArticleRepository(map<string, Article*> &a);
     ~ArticleRepository();
 
-    void setArticlesMap(const unordered_map<int, Article> &articles); 
-    unordered_map<int, Article>& getArticlesMap() const; 
+    // getter and setter
+    void setArticlesMap(const map<string, Article*> &articles) const;
+    [[nodiscard]] map<string, Article*>& getArticlesMap() const;
 
-    void addArticle(const Article &article); 
-    void removeArticle(int articleID); 
+    void addArticle(Article *a) const;
 
-    Article getArticle(int articleID) const; 
-    vector<Article> getAllArticles() const;
+    void removeArticle(const string& articleID) const;
 
-    Article input(DataWrapper &data); 
+    [[nodiscard]] Article* getArticle(const string &articleID) const;
+    [[nodiscard]] vector<Article*> getAllArticles() const;
+
+    Article input(const map<string, Author> &authors, const map<string, Journal> &journals);
 
     void showArticleDescriptionByID(DataWrapper &dw, const int &articleID); 
 };
