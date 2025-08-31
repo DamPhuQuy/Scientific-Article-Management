@@ -4,20 +4,22 @@
 #include <vector> 
 #include <iostream>
 
+#include "models/Article.h"
+
 using namespace std; 
 
 class Journal {
 private: 
 	string journalID; 
 	string journalName; 
-	Type type; 
+	Type type{};
 	int publishNumber;  
 	string publishYear; 
 	string publisher; 
 	vector<string> articlesID; 
 public: 
 	Journal(); 
-	Journal(string j_id, 
+	Journal(string j_id,
         	string j_name,
         	Type j_type,
         	int pNum,
@@ -27,23 +29,25 @@ public:
 	Journal(const Journal &j); 	
 	~Journal(); 
 
-	void setJournalID(int journalID); 
+	void setJournalID(const string &journalID);
 	string getJournalID() const; 
 
-	void setJournalName(string journalName); 
+	void setJournalName(const string &journalName);
 	string getJournalName() const;
 
-	void setType(Type type); 
 	string getType() const; 
 
-	void setPublishNumber(int publishNumber); 
+	void setPublishNumber(const int publishNumber);
 	int getPublishNumber() const; 
 
-	void setPublishYear(string publishYear); 
+	void setPublishYear(const string &publishYear);
 	string getPublishYear() const; 
 
-	void setPublisher(string publisher); 
+	void setPublisher(const string &publisher);
 	string getPublisher() const;
 
-	vector<string> getArticlesID() const; 
+	vector<string> getArticlesID() const;
+
+	void generateID(const int &count);
+	string nextID(const int &count) const;
 };

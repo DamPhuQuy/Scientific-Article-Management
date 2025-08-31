@@ -1,10 +1,10 @@
-#include "models/Author.h" 
+#include <utility>
+
+#include "models/Author.h"
 
 using namespace std; 
 
-Author::Author() :
-    authorID(""), authorName(""), authorEmail(""), dob(""), country(""), 
-    authorGender(0), articlesID({}) {
+Author::Author(): authorGender(0) {
 }
 
 Author::Author(string a_id, 
@@ -12,10 +12,10 @@ Author::Author(string a_id,
                string au_email,
                string au_dob,
                string au_country,
-               int au_gender,
+               const int au_gender,
                vector<string> ids) :
-    authorID(a_id), authorName(au_name), authorEmail(au_email), dob(au_dob), country(au_country), 
-    authorGender(au_gender), articlesID(ids) {
+    authorID(std::move(a_id)), authorName(std::move(au_name)), authorEmail(std::move(au_email)), dob(std::move(au_dob)), country(std::move(au_country)),
+    authorGender(au_gender), articlesID(std::move(ids)) {
 }
 
 Author::Author(const Author &a) {
@@ -28,9 +28,9 @@ Author::Author(const Author &a) {
     this->articlesID = a.articlesID;
 }
 
-Author::~Author() {}
+Author::~Author() = default;
 
-void Author::setAuthorID(int authorID) {
+void Author::setAuthorID(const string &authorID) {
     this->authorID = authorID;
 }
 
@@ -38,7 +38,7 @@ string Author::getAuthorID() const {
     return this->authorID;
 }
 
-void Author::setAuthorName(string authorName) {
+void Author::setAuthorName(const string &authorName) {
     this->authorName = authorName;
 }
 
@@ -46,7 +46,7 @@ string Author::getAuthorName() const {
     return this->authorName;
 }
 
-void Author::setAuthorEmail(string authorEmail) {
+void Author::setAuthorEmail(const string &authorEmail) {
     this->authorEmail = authorEmail;
 }
 
@@ -54,7 +54,7 @@ string Author::getAuthorEmail() const {
     return this->authorEmail;
 }
 
-void Author::setDob(string dob) {
+void Author::setDob(const string &dob) {
     this->dob = dob;
 }
 
@@ -62,7 +62,7 @@ string Author::getDob() const {
     return this->dob;
 }
 
-void Author::setCountry(string country) {
+void Author::setCountry(const string &country) {
     this->country = country;
 }
 
@@ -70,7 +70,7 @@ string Author::getCountry() const {
     return this->country;
 }
 
-void Author::setAuthorGender(int authorGender) {
+void Author::setAuthorGender(const int authorGender) {
     this->authorGender = authorGender;
 }
 

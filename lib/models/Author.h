@@ -26,23 +26,23 @@ public:
     Author(const Author &a); 
     ~Author(); 
 
-    void setAuthorID(int authorID); 
-    string getAuthorID() const; 
+    void setAuthorID(const string &authorID);
+    [[nodiscard]] string getAuthorID() const;
 
-    void setAuthorName(string authorName); 
-    string getAuthorName() const; 
+    void setAuthorName(const string &authorName);
+    [[nodiscard]] string getAuthorName() const;
 
-    void setAuthorEmail(string authorEmail); 
-    string getAuthorEmail() const; 
+    void setAuthorEmail(const string &authorEmail);
+    [[nodiscard]] string getAuthorEmail() const;
 
-    void setDob(string dob); 
-    string getDob() const; 
+    void setDob(const string &dob);
+    [[nodiscard]] string getDob() const;
 
-    void setCountry(string country); 
-    string getCountry() const; 
+    void setCountry(const string &country);
+    [[nodiscard]] string getCountry() const;
 
     void setAuthorGender(int authorGender); 
-    int getAuthorGender() const; 
+    [[nodiscard]] int getAuthorGender() const;
 
-    vector<string> getArticlesID() const; 
+    [[nodiscard]] vector<string> getArticlesID() const;
 };

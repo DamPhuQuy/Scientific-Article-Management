@@ -1,16 +1,18 @@
-﻿#include "models/Article.h"
+﻿#include <utility>
 
-// Contructor 
+#include "models/Article.h"
 
-Article::Article() :
-    articleID(""), articleName(""), authorID(""), journalID(""), status(ArticleStatus::DRAFT) {}
+// Constructor
+
+Article::Article(): status() {
+}
 
 Article::Article(string a_id, 
                  string a_name,
                  string au_id,
                  string j_id,
-    ArticleStatus st) :
-    articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), status(st) {
+                 const ArticleStatus st) :
+    articleID(std::move(a_id)), articleName(std::move(a_name)), authorID(std::move(au_id)), journalID(std::move(j_id)), status(st) {
 }
 
 Article::Article(const Article &a) {
@@ -23,11 +25,11 @@ Article::Article(const Article &a) {
 
 // Destructor
 
-Article::~Article() {}
+Article::~Article() = default;
 
 // Getter and setter
 
-void Article::setArticleID(int articleID) {
+void Article::setArticleID(const string &articleID) {
     this->articleID = articleID;
 }
 
@@ -35,7 +37,7 @@ string Article::getArticleID() const {
     return this->articleID;
 }
 
-void Article::setArticleName(string articleName) {
+void Article::setArticleName(const string &articleName) {
     this->articleName = articleName;
 }
 
@@ -43,7 +45,7 @@ string Article::getArticleName() const {
     return this->articleName;
 }
 
-void Article::setAuthorID(int authorID) {
+void Article::setAuthorID(const string &authorID) {
     this->authorID = authorID;
 }
 
@@ -51,7 +53,7 @@ string Article::getAuthorID() const {
     return this->authorID;
 }
 
-void Article::setJournalID(int journalID) {
+void Article::setJournalID(const string &journalID) {
     this->journalID = journalID;
 }
 
@@ -98,7 +100,6 @@ void Article::publish() {
 }
 
 string Article::parseString() const {
-    ArticleStatus status = this->status;
     switch (status) {
         case ArticleStatus::DRAFT: return "DRAFT";
         case ArticleStatus::SUBMITTED: return "SUBMITTED";
@@ -208,42 +209,42 @@ void OTHERArticle::display() const {
     cout << "Article Type: " << getType() << "\n"; 
 }
 
-void SCIArticle::generateID(int count) {
+void SCIArticle::generateID(const int count) {
     articleID = getType() + "-" + to_string(count); 
 }
 
-string SCIArticle::nextID(int count) {
+string SCIArticle::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void SCIEArticle::generateID(int count) {
+void SCIEArticle::generateID(const int count) {
     articleID = getType() + "-" + to_string(count);
 }
 
-string SCIEArticle::nextID(int count) {
+string SCIEArticle::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void ISIArticle::generateID(int count) {
+void ISIArticle::generateID(const int count) {
     articleID = getType() + "-" + to_string(count);
 }
 
-string ISIArticle::nextID(int count) {
+string ISIArticle::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void SCOPUSArticle::generateID(int count) {
+void SCOPUSArticle::generateID(const int count) {
     articleID = getType() + "-" + to_string(count); 
 }
 
-string SCOPUSArticle::nextID(int count) {
+string SCOPUSArticle::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void OTHERArticle::generateID(int count) {
+void OTHERArticle::generateID(const int count) {
     articleID = getType() + "-" + to_string(count); 
 }
 
-string OTHERArticle::nextID(int count) {
+string OTHERArticle::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
