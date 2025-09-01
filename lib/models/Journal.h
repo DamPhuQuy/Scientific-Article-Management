@@ -8,25 +8,25 @@
 
 using namespace std; 
 
+enum class Type; 
+
 class Journal {
 private: 
 	string journalID; 
 	string journalName; 
-	Type type{};
+	Type type;
 	int publishNumber;  
 	string publishYear; 
 	string publisher; 
 	vector<string> articlesID; 
 public: 
-	Journal(); 
 	Journal(string j_id,
         	string j_name,
         	Type j_type,
         	int pNum,
         	string pYear,
         	string p,
-        	vector<string> ids);
-	Journal(const Journal &j); 	
+        	vector<string> ids);	
 	~Journal(); 
 
 	void setJournalID(const string &journalID);

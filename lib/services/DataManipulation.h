@@ -24,7 +24,7 @@ public:
     ~DataManipulation() = default;
 
     static ArticleStatus parseStatus(const string &s); 
-    static journalTypes parseJournalType(const string &s); 
+    static Type parseJournalType(const string &s); 
 
     template<typename T>
     static map<int, T> init();

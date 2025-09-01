@@ -4,15 +4,13 @@
 
 // Constructor
 
-Article::Article(): status() {
-}
-
 Article::Article(string a_id, 
                  string a_name,
                  string au_id,
                  string j_id,
+                 const Type t,
                  const ArticleStatus st) :
-    articleID(std::move(a_id)), articleName(std::move(a_name)), authorID(std::move(au_id)), journalID(std::move(j_id)), status(st) {
+    articleID(std::move(a_id)), articleName(std::move(a_name)), authorID(std::move(au_id)), journalID(std::move(j_id)), type(t),status(st) {
 }
 
 Article::Article(const Article &a) {
@@ -120,10 +118,23 @@ void Article::display() const {
     cout << "Article Status: " << parseString() << "\n"; 
 }
 
-// SCI
-string SCI_Article::getType() const {
-    return "SCI";
+string Article::getType() const {
+    switch(type) {
+        case Type::SCI: return "SCI"; 
+        case Type::SCIE: return "SCIE"; 
+        case Type::ISI: return "ISI"; 
+        case Type::SCOPUS: return "SCOPUS"; 
+        case Type::OTHER: return "OTHER"; 
+        default: return "UNK"; 
+    }
 }
+
+void Article::generateID(const int &count) {
+    articleID = getType() + "-" + to_string(count + 1);
+}
+
+// SCI
+
 
 void SCI_Article::showDescription() const {
     cout << "SCI (Science Citation Index)\n"; 
@@ -140,9 +151,6 @@ void SCI_Article::display() const {
 }
 
 // SCIE
-string SCIE_Article::getType() const {
-    return "SCIE";
-}
 
 void SCIE_Article::showDescription() const {
     cout << "Thuoc Web of Science."; 
@@ -158,9 +166,6 @@ void SCIE_Article::display() const {
 }
 
 // ISI
-string ISI_Article::getType() const {
-    return "ISI";
-}
 
 void ISI_Article::showDescription() const {
     cout << "La ten cu cua he thong Web of Science."; 
@@ -175,9 +180,6 @@ void ISI_Article::display() const {
 }
 
 // SCOPUS
-string SCOPUS_Article::getType() const {
-    return "SCOPUS";
-}
 
 void SCOPUS_Article::showDescription() const {
     cout << "Do Elsevier quan ly."; 
@@ -193,9 +195,6 @@ void SCOPUS_Article::display() const {
 }
 
 // OTHER
-string OTHER_Article::getType() const {
-    return "OTHER";
-}
 
 void OTHER_Article::showDescription() const {
     cout << "Cac bai bao / tap chi ngoai SCI, SCIE, ISI, SCOPUS."; 
@@ -209,42 +208,3 @@ void OTHER_Article::display() const {
     cout << "Article Type: " << getType() << "\n"; 
 }
 
-void SCI_Article::generateID(const int count) {
-    articleID = getType() + "-" + to_string(count); 
-}
-
-string SCI_Article::nextID(const int count) {
-    return getType() + "-" + to_string(count + 1); 
-}
-
-void SCIE_Article::generateID(const int count) {
-    articleID = getType() + "-" + to_string(count);
-}
-
-string SCIE_Article::nextID(const int count) {
-    return getType() + "-" + to_string(count + 1); 
-}
-
-void ISI_Article::generateID(const int count) {
-    articleID = getType() + "-" + to_string(count);
-}
-
-string ISI_Article::nextID(const int count) {
-    return getType() + "-" + to_string(count + 1); 
-}
-
-void SCOPUS_Article::generateID(const int count) {
-    articleID = getType() + "-" + to_string(count); 
-}
-
-string SCOPUS_Article::nextID(const int count) {
-    return getType() + "-" + to_string(count + 1); 
-}
-
-void OTHER_Article::generateID(const int count) {
-    articleID = getType() + "-" + to_string(count); 
-}
-
-string OTHER_Article::nextID(const int count) {
-    return getType() + "-" + to_string(count + 1); 
-}

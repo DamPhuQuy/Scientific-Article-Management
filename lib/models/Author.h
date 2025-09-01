@@ -46,5 +46,6 @@ public:
 
     [[nodiscard]] vector<string> getArticlesID() const;
 
-    string
+    void generateID(int count); 
+    string nextID(int count);
 };

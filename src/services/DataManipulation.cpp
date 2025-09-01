@@ -191,7 +191,7 @@ map<int, Journal> DataManipulation::init<Journal>() {
 
 		int journalID, publishNumber; 
 		string journalName, publishYear, publisher; 
-		journalTypes types; 
+		Type type; 
 		vector<int> articlesID;
 
 		getline(ss, token, ','); 
@@ -200,7 +200,7 @@ map<int, Journal> DataManipulation::init<Journal>() {
 		getline(ss, journalName, ','); 
 
 		getline(ss, token, ','); 
-		types = parseJournalType(token);
+		type = parseJournalType(token);
 
 		getline(ss, token, ','); 
 		publishNumber = stoi(token); 
@@ -212,7 +212,7 @@ map<int, Journal> DataManipulation::init<Journal>() {
 		getline(ss, token, ',');
 		articlesID = parseVectorInt(token);
 
-		Journal journal(journalID, journalName, types, publishNumber, publishYear, publisher, articlesID); 
+		Journal journal(journalID, journalName, type, publishNumber, publishYear, publisher, articlesID);  
 
 		data.insert({journalID, journal});
 	}

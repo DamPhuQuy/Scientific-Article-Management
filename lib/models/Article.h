@@ -32,16 +32,18 @@ protected:
 	string articleName;
 	string authorID; 
 	string journalID; 
+	Type type; 
 	ArticleStatus status; 
 public: 
 	// constructor
 
-	Article(); 
+	Article() = default; 
 	Article(string a_id, 
             string a_name,
             string au_id,
             string j_id,
-            ArticleStatus st);
+			const Type t, 
+            const ArticleStatus st);
 	Article(const Article &a); 
 
 	// destructor
@@ -74,99 +76,76 @@ public:
 	[[nodiscard]] string parseString() const;
 
 	// abstract method 
-	[[nodiscard]] virtual string getType() const;
 	virtual void showDescription() const; 
 	virtual void display() const; 
-	virtual void generateID(int count); 
-	virtual string nextID(int count); 
+
+protected:
+	void generateID(const int &count);  
+	[[nodiscard]] string getType() const;
 }; 
 
 class SCI_Article : public Article {
-private: 
-	Type type{ Type::SCI };
 public:
 	SCI_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
+		const Type t = Type::SCI,
+		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
-	[[nodiscard]] string getType() const override;
 	void showDescription() const override;
 	void display() const override;
-	void generateID(int count) override;
-	string nextID(int count) override;
 };
 
 class SCIE_Article : public Article {
-private: 
-	Type type{ Type::SCIE };
 public:
 	SCIE_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
-
-	[[nodiscard]] string getType() const override;
+		const Type t = Type::SCIE,
+		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override; 
-	void generateID(int count) override; 
-	string nextID(int count) override;
 };
 
 class ISI_Article : public Article {
-private: 
-	Type type{ Type::ISI }; 
 public:
 	ISI_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
-
-	[[nodiscard]] string getType() const override;
+		const Type t = Type::ISI, 
+		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override; 
-	void generateID(int count) override; 
-	string nextID(int count) override;
 };
 
 class SCOPUS_Article : public Article {
-private:
-	Type type{ Type::SCOPUS };
 public:
 	SCOPUS_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
-
-	[[nodiscard]] string getType() const override;
+		const Type t = Type::SCOPUS,
+		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override; 
-	void generateID(int count) override; 
-	string nextID(int count) override;
 };
 
 class OTHER_Article : public Article {
-private: 
-	Type type{ Type::OTHER };
 public:
 	OTHER_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, st) {}
-
-	[[nodiscard]] string getType() const override;
+		const Type t = Type::OTHER,
+		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override; 
-	void generateID(int count) override; 
-	string nextID(int count) override;
 };
 

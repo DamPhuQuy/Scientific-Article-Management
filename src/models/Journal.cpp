@@ -4,9 +4,6 @@
 
 using namespace std;
 
-Journal::Journal(): publishNumber(0) {
-}
-
 Journal::Journal(string j_id,
                  string j_name,
                  const Type j_type,
@@ -23,21 +20,10 @@ Journal::Journal(string j_id,
     articlesID(std::move(ids)) {
 }
 
-
-Journal::Journal(const Journal &j) {
-    this->journalID = j.journalID;
-    this->journalName = j.journalName;
-    this->type = j.type;
-    this->publishNumber = j.publishNumber;
-    this->publishYear = j.publishYear;
-    this->publisher = j.publisher;
-    this->articlesID = j.articlesID;
-}
-
 Journal::~Journal() = default;
 
 void Journal::setJournalID(const string &journalID) {
-    this->journalID = journalID;
+    this->journalID = journalID; 
 }
 
 string Journal::getJournalID() const {

@@ -4,6 +4,7 @@
 #include <map>
 #include "models/Article.h"
 #include "utilities/IOHelper.h"
+#include "repositories/AuthorRepository.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ public:
     [[nodiscard]] Article* getArticle(const string &articleID) const;
     [[nodiscard]] vector<Article*> getAllArticles() const;
 
-    Article input(const map<string, Author> &authors, const map<string, Journal> &journals);
+    Article input(map<string, Author> &authors, map<string, Journal> &journals);
 
-    void showArticleDescriptionByID(DataWrapper &dw, const int &articleID); 
+    void showArticleDescriptionByID(const map<string, Author> &authors, const map<string, Journal> &journals, const string &articleID); 
 };

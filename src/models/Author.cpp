@@ -1,5 +1,4 @@
 #include <utility>
-
 #include "models/Author.h"
 
 using namespace std; 
@@ -82,4 +81,10 @@ vector<string> Author::getArticlesID() const{
     return this->articlesID;
 }
 
+void Author::generateID(int count) {
+    this->authorID = "Au-" + to_string(count); 
+}
 
+string Author::nextID(int count) {
+    return "Au-" + to_string(count + 1);
+}

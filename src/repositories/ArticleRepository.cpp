@@ -52,41 +52,75 @@ vector<Article*> ArticleRepository::getAllArticles() const {
     return temp; 
 }
 
-Article ArticleRepository::input(const map<string, Author> &authors, const map<string, Journal> &journals) {
+Article ArticleRepository::input(map<string, Author> &authors, map<string, Journal> &journals) {
     string name;
     cout << "Nhap vao ten bai bao: ";
     getline(cin, name);
 
+    map<int, Type> TypeMap = {
+	    {0, Type::SCI}, 
+	    {1, Type::SCIE},
+	    {2, Type::ISI},
+	    {3, Type::SCOPUS},
+	    {4, Type::OTHER}
+    }; 
+    cout << "Chon the loai bai bao: "; 
+    int choose; cin >> choose; cin.ignore(); 
+    Type type = TypeMap.at(choose);  
+
+    
+
     string authorID = IOHelper::chooseFromMap<Author>(authors, "Author");
     if (authorID == "New") {
-
+        AuthorRepository au_repo(authors); 
+        au_repo.input(authorID, )
     }
 
     string journalID = IOHelper::chooseFromMap<Journal>(journals, "Journal");
     if (journalID == "New") {
 
     }
+
+    switch (type) {
+        case Type::SCI: 
+            SCI_Article new_SCI_Article(/**/); 
+            break; 
+        case Type::SCIE: 
+            SCIE_Article new_SCIE_Article(/**/); 
+            break;  
+        case Type::ISI: 
+            ISI_Article new_ISI_Article(/**/); 
+            break; 
+        case Type::SCOPUS: 
+            SCOPUS_Article new_SCOPUS_Article(/**/); 
+            break; 
+        case Type::OTHER: 
+            OTHER_Article new_OHTER_Article(/**/);
+            break;
+        default: 
+            cout << "This type is not found!"; break; 
+    }
 }
 
-void ArticleRepository::showArticleDescriptionByID(DataWrapper &dw, const int &articleID) {
-    auto it = articles->find(articleID); 
-    if (it == articles->end()) {
+void ArticleRepository::showArticleDescriptionByID(const map<string, Author> &authors, const map<string, Journal> &journals, const string &articleID) {
+    auto it = articles.find(articleID); 
+    if (it == articles.end()) {
         cout << "ERROR: " << articleID << " not found!\n";
         return; 
     }
     else {
-        Article article = it->second; 
-        int articleID = article.getArticleID();
-        int authorID = article.getAuthorID(); 
-        int journalID = article.getJournalID(); 
+        Article* article = it->second; 
+        string articleID = article->getArticleID();
+        string authorID = article->getAuthorID(); 
+        string journalID = article->getJournalID(); 
 
-        Author author = dw.getAuthors().at(authorID); 
-        Journal journal = dw.getJournals().at(journalID); 
+        Author author = authors.at(authorID); 
+        Journal journal = journals.at(journalID); 
 
         cout << "Article ID: " << articleID << "\n"; 
-        cout << "Article Name: " << article.getArticleName() << "\n"; 
+        cout << "Article Name: " << article->getArticleName() << "\n"; 
         cout << "Author Name: " << author.getAuthorName() << "\n";
         cout << "Journal: " << journal.getJournalName() << "\n"; 
-        cout << "Article status: " << article.parseString() << "\n"; 
+        cout << "Article status: " << article->parseString() << "\n"; 
     }
 }
