@@ -10,21 +10,19 @@ using namespace std;
 
 class JournalRepository {
 private:
-	map<int, Journal> *journals;
+	map<string, Journal> &journals;
 public:
-	JournalRepository();
-	JournalRepository(map<int, Journal> *j);
-	JournalRepository(const JournalRepository &current);
+	JournalRepository(map<string, Journal> &j);
 	~JournalRepository();
 
-	void setJournalsMap(map<int, Journal> *journals);
-	map<int, Journal> getJournalsMap() const;
+	void setJournalsMap(map<string, Journal> &journals);
+	[[nodiscard]] map<string, Journal> getJournalsMap() const;
 
-	Journal getJournal(int journalID); 
-	vector<Journal> getAllJournals() const; 
+	[[nodiscard]] Journal getJournal(const string& journalID); 
+	[[nodiscard]] vector<Journal> getAllJournals() const; 
 
-	Journal input(const int &journalID, const int &newArticleID);
+	[[nodiscard]] Journal input(const string &journalID, const string &newArticleID);
 	
-	void showJournalDescriptionByID(DataWrapper &dw, const int &journalID); 
+	void showJournalDescriptionByID(map<string, Article*> articles, map<string, Author> authors, const string &journalID); 
 };
 

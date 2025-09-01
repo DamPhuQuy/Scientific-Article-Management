@@ -81,11 +81,11 @@ public:
 	virtual string nextID(int count); 
 }; 
 
-class SCIArticle : public Article {
+class SCI_Article : public Article {
 private: 
 	Type type{ Type::SCI };
 public:
-	SCIArticle(const string &a_id,
+	SCI_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
@@ -98,11 +98,11 @@ public:
 	string nextID(int count) override;
 };
 
-class SCIEArticle : public Article {
+class SCIE_Article : public Article {
 private: 
 	Type type{ Type::SCIE };
 public:
-	SCIEArticle(const string &a_id,
+	SCIE_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
@@ -116,11 +116,11 @@ public:
 	string nextID(int count) override;
 };
 
-class ISIArticle : public Article {
+class ISI_Article : public Article {
 private: 
 	Type type{ Type::ISI }; 
 public:
-	ISIArticle(const string &a_id,
+	ISI_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
@@ -134,11 +134,11 @@ public:
 	string nextID(int count) override;
 };
 
-class SCOPUSArticle : public Article {
+class SCOPUS_Article : public Article {
 private:
 	Type type{ Type::SCOPUS };
 public:
-	SCOPUSArticle(const string &a_id,
+	SCOPUS_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,
@@ -152,11 +152,11 @@ public:
 	string nextID(int count) override;
 };
 
-class OTHERArticle : public Article {
+class OTHER_Article : public Article {
 private: 
 	Type type{ Type::OTHER };
 public:
-	OTHERArticle(const string &a_id,
+	OTHER_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
 		const string &j_id,

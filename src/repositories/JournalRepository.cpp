@@ -1,28 +1,22 @@
 #include "repositories/JournalRepository.h"
 
-JournalRepository::JournalRepository() {}
-
-JournalRepository::JournalRepository(map<int, Journal> *j) :
+JournalRepository::JournalRepository(map<string, Journal> &j) :
 	journals(j) {} 
-
-JournalRepository::JournalRepository(const JournalRepository &current) {
-	this->journals = current.journals; 
-}
 
 JournalRepository::~JournalRepository() {} 
 
-void JournalRepository::setJournalsMap(map<int, Journal> *journals) {
+void JournalRepository::setJournalsMap(map<string, Journal> &journals) {
 	this->journals = journals; 
 }
 
-map<int, Journal> JournalRepository::getJournalsMap() const {
-	return *(this->journals); 
+map<string, Journal> JournalRepository::getJournalsMap() const {
+	return this->journals; 
 }
 
-Journal JournalRepository::getJournal(int journalID) {
-	auto it = journals->find(journalID); 
+Journal JournalRepository::getJournal(const string& journalID) {
+	auto it = journals.find(journalID); 
 
-	if (it == journals->end()) {
+	if (it == journals.end()) {
 		cout << "ERROR: " << journalID << " not found!\n"; 
 		return Journal(); 
 	} else {
@@ -33,17 +27,18 @@ Journal JournalRepository::getJournal(int journalID) {
 vector<Journal> JournalRepository::getAllJournals() const {
 	vector<Journal> temp; 
 
-	for (auto it = journals->begin(); it != journals->end(); it++) {
+	for (auto it = journals.begin(); it != journals.end(); it++) {
 		temp.push_back(it->second); 
 	}
 
 	return temp; 
 }
 
-Journal JournalRepository::input(const int &journalID, const int &newArticleID) {
-	auto it = this->journals->find(journalID); 
+Journal JournalRepository::input(const string &journalID, const string &newArticleID) {
+	auto it = this->journals.find(journalID); 
 
-	if (it != journals->end()) {
+	// neu journal da co thi them vao
+	if (it != journals.end()) {
 		Journal journal = it->second; 
 
 		journal.getArticlesID().push_back(newArticleID); 
@@ -52,11 +47,11 @@ Journal JournalRepository::input(const int &journalID, const int &newArticleID) 
 	} 
 	else {
 		string journalName; 
-		journalTypes type; 
+		Type type; 
 		int publishNumber; 
 		string publishYear; 
 		string publisher; 
-		vector<int> articlesID; 
+		vector<string> articlesID; 
 
 		// journal name
 		cout << "Enter journal name: "; getline(cin, journalName); 
@@ -89,7 +84,7 @@ Journal JournalRepository::input(const int &journalID, const int &newArticleID) 
 		cout << "Enter publisher: "; 
 		getline(cin, publisher); 
 
-		articlesID.push_back(newArticleID); // add articleID to sync
+		articlesID.emplace_back(newArticleID); // add articleID to sync
 	
 		Journal journal(journalID, journalName, type, publishNumber, publishYear, publisher, articlesID); 
 
@@ -97,10 +92,10 @@ Journal JournalRepository::input(const int &journalID, const int &newArticleID) 
 	}
 }
 
-void JournalRepository::showJournalDescriptionByID(DataWrapper &dw, const int &journalID) {
-	auto it = journals->find(journalID);
+void JournalRepository::showJournalDescriptionByID(map<string, Article*> articles, map<string, Author> authors, const string &journalID) {
+	auto it = journals.find(journalID);
 
-	if (it == journals->end()) {
+	if (it == journals.end()) {
 		cout << "ERROR: " << journalID << " not found!\n"; 
 		return; 
 	}
@@ -108,15 +103,15 @@ void JournalRepository::showJournalDescriptionByID(DataWrapper &dw, const int &j
 		Journal journal = it->second; 
 		cout << "Journal ID: " << journalID << "\n"; 
 		cout << "Journal name: " << journal.getJournalName() << "\n"; 
-		cout << "Journal type: " << journal.toString(journal.getTypes()) << "\n"; 
+		cout << "Journal type: " << journal.getType() << "\n"; 
 		cout << "Publish Number: " << journal.getPublishNumber() << "\n"; 
 		cout << "Publisher: " << journal.getPublisher() << "\n"; 
 		
-		vector<int> articlesID = journal.getArticlesID(); 
+		vector<string> articlesID = journal.getArticlesID(); 
 		cout << "Articles that " << journal.getJournalName() << " takes part in: \n"; 
-		for (const int &element : articlesID) {
+		for (const string &element : articlesID) {
 		    cout << "Article ID: " << element 
-				 << " - Name: " << dw.getArticles().at(element).getArticleName() << "\n"; 
+				 << " - Name: " << articles.at(element)->getArticleName() << "\n"; 
 		}
 	}
 }

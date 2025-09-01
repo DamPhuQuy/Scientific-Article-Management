@@ -121,11 +121,11 @@ void Article::display() const {
 }
 
 // SCI
-string SCIArticle::getType() const {
+string SCI_Article::getType() const {
     return "SCI";
 }
 
-void SCIArticle::showDescription() const {
+void SCI_Article::showDescription() const {
     cout << "SCI (Science Citation Index)\n"; 
     cout << "Thuoc Web of Science (Clarivate Analytics)."; 
     cout << "Bao gom nhung tap chi khoa hoc uy tin, lau doi nhat."; 
@@ -134,17 +134,17 @@ void SCIArticle::showDescription() const {
     cout << "Duoc dung de danh gia nghien cuu o muc cao nhat."; 
 }
 
-void SCIArticle::display() const {
+void SCI_Article::display() const {
     Article::display(); // super
     cout << "Article Type: " << getType() << "\n"; 
 }
 
 // SCIE
-string SCIEArticle::getType() const {
+string SCIE_Article::getType() const {
     return "SCIE";
 }
 
-void SCIEArticle::showDescription() const {
+void SCIE_Article::showDescription() const {
     cout << "Thuoc Web of Science."; 
     cout << "Mo rong hon SCI, bao gom nhieu tap chi hon."; 
     cout << "Co Impact Factor."; 
@@ -152,34 +152,34 @@ void SCIEArticle::showDescription() const {
     cout << "Thuong gan tuong duong SCI trong nhieu he thong danh gia."; 
 }
 
-void SCIEArticle::display() const {
+void SCIE_Article::display() const {
     Article::display(); // super 
     cout << "Article Type: " << getType() << "\n"; 
 }
 
 // ISI
-string ISIArticle::getType() const {
+string ISI_Article::getType() const {
     return "ISI";
 }
 
-void ISIArticle::showDescription() const {
+void ISI_Article::showDescription() const {
     cout << "La ten cu cua he thong Web of Science."; 
     cout << "Khi noi ISI thuong chi ca SCI va SCIE.";
     cout << "Khong con la mot index doc lap."; 
     cout << "Bai bao ISI thuong la cac bai bao cu.";
 }
 
-void ISIArticle::display() const {
+void ISI_Article::display() const {
     Article::display(); // super 
     cout << "Article Type: " << getType() << "\n";
 }
 
 // SCOPUS
-string SCOPUSArticle::getType() const {
+string SCOPUS_Article::getType() const {
     return "SCOPUS";
 }
 
-void SCOPUSArticle::showDescription() const {
+void SCOPUS_Article::showDescription() const {
     cout << "Do Elsevier quan ly."; 
     cout << "La he thong indexing lon, phu rong nhieu linh vuc."; 
     cout << "Co chi so rieng: CiteScore, SJR, SNIP."; 
@@ -187,64 +187,64 @@ void SCOPUSArticle::showDescription() const {
     cout << "Duoc nhieu truong va co quan nghien cuu chap nhan, nhung thuong danh gia thap hon SCI/SCIE."; 
 }
 
-void SCOPUSArticle::display() const {
+void SCOPUS_Article::display() const {
     Article::display(); // super
     cout << "Article Type: " << getType() << "\n"; 
 }
 
 // OTHER
-string OTHERArticle::getType() const {
+string OTHER_Article::getType() const {
     return "OTHER";
 }
 
-void OTHERArticle::showDescription() const {
+void OTHER_Article::showDescription() const {
     cout << "Cac bai bao / tap chi ngoai SCI, SCIE, ISI, SCOPUS."; 
     cout << "Co the la tap chi trong nuoc."; 
     cout << "Thuong khong co Impact Factor / CiteScore."; 
     cout << "Gia tri khoa hoc co the thap hon (tuy chat luong)."; 
 }
 
-void OTHERArticle::display() const {
+void OTHER_Article::display() const {
     Article::display(); // super
     cout << "Article Type: " << getType() << "\n"; 
 }
 
-void SCIArticle::generateID(const int count) {
+void SCI_Article::generateID(const int count) {
     articleID = getType() + "-" + to_string(count); 
 }
 
-string SCIArticle::nextID(const int count) {
+string SCI_Article::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void SCIEArticle::generateID(const int count) {
+void SCIE_Article::generateID(const int count) {
     articleID = getType() + "-" + to_string(count);
 }
 
-string SCIEArticle::nextID(const int count) {
+string SCIE_Article::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void ISIArticle::generateID(const int count) {
+void ISI_Article::generateID(const int count) {
     articleID = getType() + "-" + to_string(count);
 }
 
-string ISIArticle::nextID(const int count) {
+string ISI_Article::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void SCOPUSArticle::generateID(const int count) {
+void SCOPUS_Article::generateID(const int count) {
     articleID = getType() + "-" + to_string(count); 
 }
 
-string SCOPUSArticle::nextID(const int count) {
+string SCOPUS_Article::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }
 
-void OTHERArticle::generateID(const int count) {
+void OTHER_Article::generateID(const int count) {
     articleID = getType() + "-" + to_string(count); 
 }
 
-string OTHERArticle::nextID(const int count) {
+string OTHER_Article::nextID(const int count) {
     return getType() + "-" + to_string(count + 1); 
 }

@@ -42,3 +42,7 @@
 *.vscode
 *.vs
 *.idea
+
+# folder
+build/
+cmake-build-debug/
