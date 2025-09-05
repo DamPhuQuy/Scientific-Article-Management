@@ -73,19 +73,21 @@ public:
 	void reject(); 
 	void publish(); 
 
-	[[nodiscard]] string parseString() const;
+	[[nodiscard]] string parseStringStatus() const;
+	[[nodiscard]] string parseStringType() const;  
 
 	// abstract method 
 	virtual void showDescription() const; 
 	virtual void display() const; 
 
 protected:
-	void generateID(const int &count);  
 	[[nodiscard]] string getType() const;
+	void generateID(const int &count);  
 }; 
 
 class SCI_Article : public Article {
 public:
+	SCI_Article() = default; 
 	SCI_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
@@ -99,6 +101,7 @@ public:
 
 class SCIE_Article : public Article {
 public:
+	SCIE_Article() = default; 
 	SCIE_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
@@ -112,6 +115,7 @@ public:
 
 class ISI_Article : public Article {
 public:
+	ISI_Article() = default; 
 	ISI_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
@@ -125,6 +129,7 @@ public:
 
 class SCOPUS_Article : public Article {
 public:
+	SCOPUS_Article() = default; 
 	SCOPUS_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,
@@ -138,6 +143,7 @@ public:
 
 class OTHER_Article : public Article {
 public:
+	OTHER_Article() = default; 
 	OTHER_Article(const string &a_id,
 		const string &a_name,
 		const string &au_id,

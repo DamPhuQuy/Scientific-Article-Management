@@ -38,23 +38,6 @@ string Journal::getJournalName() const {
     return this->journalName;
 }
 
-string Journal::getType() const {
-    if (type == Type::SCI)
-        return "SCI";
-    else if (type == Type::SCIE)
-        return "SCIE";
-    else if (type == Type::SCOPUS)
-        return "SCOPUS";
-    else if (type == Type::ISI)
-        return "ISI";
-    else if (type == Type::OTHER)
-        return "OTHER";
-    else {
-        cout << "Invalid journal type!\n";
-        return "";
-    }
-}
-
 void Journal::setPublishNumber(const int publishNumber) {
     this->publishNumber = publishNumber;
 }

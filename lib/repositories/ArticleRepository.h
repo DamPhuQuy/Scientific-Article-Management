@@ -5,6 +5,8 @@
 #include "models/Article.h"
 #include "utilities/IOHelper.h"
 #include "repositories/AuthorRepository.h"
+#include "utilities/ArticleFactory.h"
+#include "services/DataManipulation.h"
 
 using namespace std;
 

@@ -97,7 +97,7 @@ void Article::publish() {
     }
 }
 
-string Article::parseString() const {
+string Article::parseStringStatus() const {
     switch (status) {
         case ArticleStatus::DRAFT: return "DRAFT";
         case ArticleStatus::SUBMITTED: return "SUBMITTED";
@@ -110,12 +110,23 @@ string Article::parseString() const {
     }
 }
 
+string Article::parseStringType() const { 
+    switch (type) {
+        case Type::SCI: return "SCI"; 
+        case Type::SCIE: return "SCIE";
+        case Type::ISI: return "ISI";
+        case Type::SCOPUS: return "SCOPUS"; 
+        case Type::OTHER: return "OTHER"; 
+        default: return "OTHER"; 
+    }
+}
+
 // abstract method
 
 void Article::display() const {
     cout << "Article ID: " << getArticleID() << "\n"; 
     cout << "Article Name: " << getArticleName() << "\n"; 
-    cout << "Article Status: " << parseString() << "\n"; 
+    cout << "Article Status: " << parseStringStatus() << "\n"; 
 }
 
 string Article::getType() const {

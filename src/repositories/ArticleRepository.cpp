@@ -64,42 +64,32 @@ Article ArticleRepository::input(map<string, Author> &authors, map<string, Journ
 	    {3, Type::SCOPUS},
 	    {4, Type::OTHER}
     }; 
-    cout << "Chon the loai bai bao: "; 
-    int choose; cin >> choose; cin.ignore(); 
-    Type type = TypeMap.at(choose);  
 
-    
-
-    string authorID = IOHelper::chooseFromMap<Author>(authors, "Author");
-    if (authorID == "New") {
-        AuthorRepository au_repo(authors); 
-        au_repo.input(authorID, )
+    for (auto it = TypeMap.begin(); it != TypeMap.end(); ++it) {
+        cout << "STT: " << it->first << " - " << DataManipulation::parseType(it->second);    
     }
 
-    string journalID = IOHelper::chooseFromMap<Journal>(journals, "Journal");
+    cout << "Chon the loai bai bao: "; 
+    int choose; cin >> choose; cin.ignore(); 
+    if (TypeMap.find(choose) == TypeMap.end()) {
+        cout << "Loai bai bao khong hop le, chon mac dinh la OTHER\n";
+        choose = 4; 
+    }
+
+    Article* newArticle = ArticleFactory::createEmptyArticle(TypeMap.at(choose)); 
+
+
+    authorID = IOHelper::chooseFromMap<Author>(authors, "Author");
+    if (authorID == "New") {
+        AuthorRepository au_repo(authors); 
+        
+    }
+
+    journalID = IOHelper::chooseFromMap<Journal>(journals, "Journal");
     if (journalID == "New") {
 
     }
-
-    switch (type) {
-        case Type::SCI: 
-            SCI_Article new_SCI_Article(/**/); 
-            break; 
-        case Type::SCIE: 
-            SCIE_Article new_SCIE_Article(/**/); 
-            break;  
-        case Type::ISI: 
-            ISI_Article new_ISI_Article(/**/); 
-            break; 
-        case Type::SCOPUS: 
-            SCOPUS_Article new_SCOPUS_Article(/**/); 
-            break; 
-        case Type::OTHER: 
-            OTHER_Article new_OHTER_Article(/**/);
-            break;
-        default: 
-            cout << "This type is not found!"; break; 
-    }
+    
 }
 
 void ArticleRepository::showArticleDescriptionByID(const map<string, Author> &authors, const map<string, Journal> &journals, const string &articleID) {

@@ -40,21 +40,6 @@ ArticleStatus DataManipulation::parseStatus(const string &s) {
 		throw invalid_argument("Unknown status: " + s); 
 }
 
-journalTypes DataManipulation::parseJournalType(const string &s) {
-	if (s == "SCI") 
-		return journalTypes::SCI; 
-	else if (s == "SCIE") 
-		return journalTypes::SCIE; 
-	else if (s == "ISI") 
-		return journalTypes::ISI; 
-	else if (s == "SCOPUS") 
-		return journalTypes::SCOPUS; 
-	else if (s == "OTHER") 
-		return journalTypes::OTHER; 
-	else 
-		throw invalid_argument("Unknown type: " + s);
-}
-
 vector<int> DataManipulation::parseVectorInt(const string& s) {
 	// format that is parsed: [x; xx; xxx; ...]
 
@@ -76,6 +61,17 @@ vector<int> DataManipulation::parseVectorInt(const string& s) {
 	}
 
 	return result;
+}
+
+string DataManipulation::parseString(Type type) {
+	switch (type) {
+		case Type::SCI: return "SCI"; 
+		case Type::SCIE: return "SCIE";
+		case Type::ISI: return "ISI"; 
+		case Type::SCOPUS: return "SCOPUS"; 
+		case Type::OTHER: return "OTHER"; 
+		default: return "OTHER"; 
+	}
 }
 
 // Specialization
@@ -200,7 +196,7 @@ map<int, Journal> DataManipulation::init<Journal>() {
 		getline(ss, journalName, ','); 
 
 		getline(ss, token, ','); 
-		type = parseJournalType(token);
+		type = parseType(token);
 
 		getline(ss, token, ','); 
 		publishNumber = stoi(token); 

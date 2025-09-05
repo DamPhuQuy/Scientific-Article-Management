@@ -18,7 +18,7 @@ Journal JournalRepository::getJournal(const string& journalID) {
 
 	if (it == journals.end()) {
 		cout << "ERROR: " << journalID << " not found!\n"; 
-		return Journal(); 
+		return Journal();  
 	} else {
 		return it->second;
 	}

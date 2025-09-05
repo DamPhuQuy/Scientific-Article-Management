@@ -20,6 +20,7 @@ private:
 	string publisher; 
 	vector<string> articlesID; 
 public: 
+	Journal() = default; 
 	Journal(string j_id,
         	string j_name,
         	Type j_type,
@@ -34,8 +35,6 @@ public:
 
 	void setJournalName(const string &journalName);
 	string getJournalName() const;
-
-	string getType() const; 
 
 	void setPublishNumber(const int publishNumber);
 	int getPublishNumber() const; 
