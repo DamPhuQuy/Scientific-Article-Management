@@ -71,7 +71,7 @@ Journal JournalRepository::input(const string &journalID, const string &newArtic
 		}
 		cout << "Enter type of journal: "; 
 		int choice; cin >> choice; cin.ignore(); 
-		type = DataManipulation::parseJournalType(journalTypesMapping.at(choice)); 
+		type = DataManipulation::parseStringType(journalTypesMapping.at(choice)); 
 
 		// publish number
 		cout << "Enter publish number: "; cin >> publishNumber; cin.ignore(); 

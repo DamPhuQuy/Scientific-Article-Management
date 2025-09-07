@@ -2,7 +2,8 @@
 
 #include <map>
 #include <iostream> 
-#include "models/Journal.h"
+#include <models/Article.h>
+#include <models/Journal.h>
 #include "utilities/IOHelper.h" 
 #include "services/DataManipulation.h"
 

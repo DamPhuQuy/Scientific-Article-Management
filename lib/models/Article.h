@@ -93,7 +93,7 @@ public:
 		const string &au_id,
 		const string &j_id,
 		const Type t = Type::SCI,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
+		const ArticleStatus st = ArticleStatus::DRAFT) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override;
@@ -135,7 +135,7 @@ public:
 		const string &au_id,
 		const string &j_id,
 		const Type t = Type::SCOPUS,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
+		const ArticleStatus st = ArticleStatus::DRAFT) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override; 
@@ -149,7 +149,7 @@ public:
 		const string &au_id,
 		const string &j_id,
 		const Type t = Type::OTHER,
-		const ArticleStatus st) : Article(a_id, a_name, au_id, j_id, t, st) {}
+		const ArticleStatus st = ArticleStatus::DRAFT) : Article(a_id, a_name, au_id, j_id, t, st) {}
 
 	void showDescription() const override;
 	void display() const override; 

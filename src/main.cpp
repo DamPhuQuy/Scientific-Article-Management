@@ -5,7 +5,14 @@
 
 using namespace std;
 
-int main(void) {    
+int main(void) {
+    map<string, Article*> articles;
+    map<string, Author> authors;
+    map<string, Journal> journals;
 
-    return 0; 
+    ArticleRepository articleRepo(articles);
+    AuthorRepository authorRepo(authors);
+    JournalRepository journalRepo(journals);
+
+    return 0;
 }
