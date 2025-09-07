@@ -2,17 +2,21 @@
 
 #include <vector>
 #include <map>
-#include "models/Article.h"
 #include "utilities/IOHelper.h"
 #include "repositories/AuthorRepository.h"
 #include "utilities/ArticleFactory.h"
 #include "services/DataManipulation.h"
+#include "models/Author.h"
+#include "models/Journal.h"
+#include "models/Article.h"
 
 using namespace std;
 
 class ArticleRepository {
 private:
     map<string, Article*> &articles;
+    vector<shared_ptr<AuthorRepository*>> authorRepos;
+    shared_ptr<JournalRepository*> journalRepos;
 public:
     // constructor
     explicit ArticleRepository(map<string, Article*> &a);

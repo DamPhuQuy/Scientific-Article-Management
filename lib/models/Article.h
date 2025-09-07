@@ -17,14 +17,6 @@ enum class ArticleStatus {
 	PUBLISHED
 };
 
-enum class Type {
-	SCI, 
-	SCIE,
-	ISI,
-	SCOPUS,
-	OTHER
-};
-
 class Article {
 protected:
 	// format id: Type-XXX (XXX: 000 - 999)

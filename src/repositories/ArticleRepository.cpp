@@ -87,7 +87,7 @@ Article ArticleRepository::input(map<string, Author> &authors, map<string, Journ
 
     journalID = IOHelper::chooseFromMap<Journal>(journals, "Journal");
     if (journalID == "New") {
-
+        JournalRepository j_repo(journals);
     }
     
 }

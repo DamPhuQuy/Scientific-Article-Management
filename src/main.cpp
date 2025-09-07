@@ -13,6 +13,5 @@ int main(void) {
     ArticleRepository articleRepo(articles);
     AuthorRepository authorRepo(authors);
     JournalRepository journalRepo(journals);
-
     return 0;
 }

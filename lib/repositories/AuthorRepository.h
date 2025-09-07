@@ -5,12 +5,15 @@
 #include "models/Author.h"
 #include "utilities/IOHelper.h" 
 #include "utilities/IDManager.h"
+#include "models/Article.h"
+#include "models/Journal.h"
 
 using namespace std; 
 
 class AuthorRepository {
 private: 
     map<string, Author> &authors;
+    shared_ptr<ArticleRepository*> articleRepos;
 public:
     explicit AuthorRepository(map<string, Author>& au);
     ~AuthorRepository(); 
