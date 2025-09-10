@@ -2,14 +2,34 @@
 
 #include "models/Article.h"
 
+using namespace std;
+
+const unordered_map<Type, string> Article::TypeNames = {
+    {Type::SCI, "SCI"},
+    {Type::SCIE, "SCIE"},
+    {Type::ISI, "ISI"},
+    {Type::SCOPUS, "SCOPUS"},
+    {Type::OTHER, "OTHER"}
+};
+
+const unordered_map<ArticleStatus, string> Article::StatusNames = {
+    {ArticleStatus::DRAFT, "Draft"},
+    {ArticleStatus::SUBMITTED, "Submitted"},
+    {ArticleStatus::UNDER_REVIEW, "Under Review"},
+    {ArticleStatus::REVISIONS, "Revisions Required"},
+    {ArticleStatus::ACCEPTED, "Accepted"},
+    {ArticleStatus::REJECTED, "Rejected"},
+    {ArticleStatus::PUBLISHED, "Published"}
+};
+
 // Constructor
 
-Article::Article(string a_id, 
-                 string a_name,
-                 string au_id,
-                 string j_id,
-                 const Type t,
-                 const ArticleStatus st) :
+Article::Article(const std::string &a_id,
+            const std::string &a_name,
+            const std::string &au_id,
+            const std::string &j_id,
+            Type t,
+            ArticleStatus st) :
     articleID(std::move(a_id)), articleName(std::move(a_name)), authorID(std::move(au_id)), journalID(std::move(j_id)), type(t),status(st) {
 }
 
@@ -27,36 +47,28 @@ Article::~Article() = default;
 
 // Getter and setter
 
-void Article::setArticleID(const string &articleID) {
-    this->articleID = articleID;
-}
-
 string Article::getArticleID() const {
     return this->articleID;
-}
-
-void Article::setArticleName(const string &articleName) {
-    this->articleName = articleName;
 }
 
 string Article::getArticleName() const {
     return this->articleName;
 }
 
-void Article::setAuthorID(const string &authorID) {
-    this->authorID = authorID;
-}
-
 string Article::getAuthorID() const {
     return this->authorID;
 }
 
-void Article::setJournalID(const string &journalID) {
-    this->journalID = journalID;
-}
-
 string Article::getJournalID() const {
     return this->journalID;
+}
+
+string Article::getTypeName() const {
+    return TypeNames.at(type); 
+}
+
+string Article::getStatusName() const {
+    return StatusNames.at(status); 
 }
 
 // status working flow
@@ -97,125 +109,61 @@ void Article::publish() {
     }
 }
 
-string Article::parseStringStatus() const {
-    switch (status) {
-        case ArticleStatus::DRAFT: return "DRAFT";
-        case ArticleStatus::SUBMITTED: return "SUBMITTED";
-        case ArticleStatus::UNDER_REVIEW: return "UNDER_REVIEW";
-        case ArticleStatus::REVISIONS: return "REVISIONS";
-        case ArticleStatus::ACCEPTED: return "ACCEPTED";
-        case ArticleStatus::REJECTED: return "REJECTED";
-        case ArticleStatus::PUBLISHED: return "PUBLISHED";
-        default: return "UNKNOWN";
-    }
-}
-
-string Article::parseStringType() const { 
-    switch (type) {
-        case Type::SCI: return "SCI"; 
-        case Type::SCIE: return "SCIE";
-        case Type::ISI: return "ISI";
-        case Type::SCOPUS: return "SCOPUS"; 
-        case Type::OTHER: return "OTHER"; 
-        default: return "OTHER"; 
-    }
-}
-
 // abstract method
 
-void Article::display() const {
-    cout << "Article ID: " << getArticleID() << "\n"; 
-    cout << "Article Name: " << getArticleName() << "\n"; 
-    cout << "Article Status: " << parseStringStatus() << "\n"; 
-}
-
-string Article::getType() const {
-    switch(type) {
-        case Type::SCI: return "SCI"; 
-        case Type::SCIE: return "SCIE"; 
-        case Type::ISI: return "ISI"; 
-        case Type::SCOPUS: return "SCOPUS"; 
-        case Type::OTHER: return "OTHER"; 
-        default: return "UNK"; 
-    }
-}
-
 void Article::generateID(const int &count) {
-    articleID = getType() + "-" + to_string(count + 1);
+    string concat = "";
+    if (count >= 0 && count < 9) {
+        concat = "00" + to_string(count + 1);
+    } else if (count >= 9 && count < 99) {
+        concat = "0" + to_string(count + 1);
+    } else {
+        concat = to_string(count + 1); 
+    }
+    articleID = getTypeName() + "-" + concat; 
 }
 
-// SCI
+SCI_Article::SCI_Article(
+    const string &a_id, 
+    const string &a_name, 
+    const string &au_id, 
+    const string &j_id, 
+    ArticleStatus st
+)
+: Article(a_id, a_name, au_id, j_id, Type::SCI, st) {}
 
+SCIE_Article::SCIE_Article(
+    const string &a_id,
+    const string &a_name, 
+    const string &au_id,
+    const string &j_id, 
+    ArticleStatus st
+)
+: Article(a_id, a_name, au_id, j_id, Type::SCIE, st) {} 
 
-void SCI_Article::showDescription() const {
-    cout << "SCI (Science Citation Index)\n"; 
-    cout << "Thuoc Web of Science (Clarivate Analytics)."; 
-    cout << "Bao gom nhung tap chi khoa hoc uy tin, lau doi nhat."; 
-    cout << "Co Impact Factor(IF).";
-    cout << "Co phan hang Quartile(Q1-Q4)."; 
-    cout << "Duoc dung de danh gia nghien cuu o muc cao nhat."; 
-}
+ISI_Article::ISI_Article(
+    const string &a_id, 
+    const string &a_name, 
+    const string &au_id,
+    const string &j_id, 
+    ArticleStatus st
+)
+: Article(a_id, a_name, au_id, j_id, Type::ISI, st) {} 
 
-void SCI_Article::display() const {
-    Article::display(); // super
-    cout << "Article Type: " << getType() << "\n"; 
-}
+SCOPUS_Article::SCOPUS_Article(
+    const string &a_id,
+    const string &a_name, 
+    const string &au_id, 
+    const string &j_id, 
+    ArticleStatus st
+)
+: Article(a_id, a_name, au_id, j_id, Type::SCOPUS, st) {}
 
-// SCIE
-
-void SCIE_Article::showDescription() const {
-    cout << "Thuoc Web of Science."; 
-    cout << "Mo rong hon SCI, bao gom nhieu tap chi hon."; 
-    cout << "Co Impact Factor."; 
-    cout << "Co Quartile(Q1-Q4)."; 
-    cout << "Thuong gan tuong duong SCI trong nhieu he thong danh gia."; 
-}
-
-void SCIE_Article::display() const {
-    Article::display(); // super 
-    cout << "Article Type: " << getType() << "\n"; 
-}
-
-// ISI
-
-void ISI_Article::showDescription() const {
-    cout << "La ten cu cua he thong Web of Science."; 
-    cout << "Khi noi ISI thuong chi ca SCI va SCIE.";
-    cout << "Khong con la mot index doc lap."; 
-    cout << "Bai bao ISI thuong la cac bai bao cu.";
-}
-
-void ISI_Article::display() const {
-    Article::display(); // super 
-    cout << "Article Type: " << getType() << "\n";
-}
-
-// SCOPUS
-
-void SCOPUS_Article::showDescription() const {
-    cout << "Do Elsevier quan ly."; 
-    cout << "La he thong indexing lon, phu rong nhieu linh vuc."; 
-    cout << "Co chi so rieng: CiteScore, SJR, SNIP."; 
-    cout << "Co Quartile(Q1-Q4) theo linh vuc."; 
-    cout << "Duoc nhieu truong va co quan nghien cuu chap nhan, nhung thuong danh gia thap hon SCI/SCIE."; 
-}
-
-void SCOPUS_Article::display() const {
-    Article::display(); // super
-    cout << "Article Type: " << getType() << "\n"; 
-}
-
-// OTHER
-
-void OTHER_Article::showDescription() const {
-    cout << "Cac bai bao / tap chi ngoai SCI, SCIE, ISI, SCOPUS."; 
-    cout << "Co the la tap chi trong nuoc."; 
-    cout << "Thuong khong co Impact Factor / CiteScore."; 
-    cout << "Gia tri khoa hoc co the thap hon (tuy chat luong)."; 
-}
-
-void OTHER_Article::display() const {
-    Article::display(); // super
-    cout << "Article Type: " << getType() << "\n"; 
-}
-
+OTHER_Article::OTHER_Article(
+    const string &a_id, 
+    const string &a_name, 
+    const string &au_id,
+    const string &j_id, 
+    ArticleStatus st
+)
+: Article(a_id, a_name, au_id, j_id, Type::OTHER, st) {} 
