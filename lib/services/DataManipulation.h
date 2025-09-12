@@ -21,11 +21,7 @@ private:
     static vector<int> parseVectorInt(const string &s); 
 public:
     DataManipulation() = default;
-    ~DataManipulation() = default;
-
-    static ArticleStatus parseStatus(const string &s); 
-    static Type parseType(const string &s); 
-    static string parseString(Type type); 
+    ~DataManipulation() = default; 
 
     template<typename T>
     static map<int, T> init();

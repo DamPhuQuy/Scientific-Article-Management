@@ -21,25 +21,6 @@ bool DataManipulation::fileCheck(const fs::path &filePath, std::ifstream &in) {
     return true;
 }
 
-ArticleStatus DataManipulation::parseStatus(const string &s) {
-	if (s == "DRAFT") 
-		return ArticleStatus::DRAFT; 
-	else if (s == "SUBMITTED") 
-		return ArticleStatus::SUBMITTED; 
-	else if (s == "UNDER_REVIEW")
-		return ArticleStatus::UNDER_REVIEW; 
-	else if (s == "REVISIONS")
-		return ArticleStatus::REVISIONS; 
-	else if (s == "ACCEPTED") 
-		return ArticleStatus::ACCEPTED;
-	else if (s == "REJECTED") 
-		return ArticleStatus::REJECTED; 
-	else if (s == "PUBLISHED") 
-		return ArticleStatus::PUBLISHED; 
-	else
-		throw invalid_argument("Unknown status: " + s); 
-}
-
 vector<int> DataManipulation::parseVectorInt(const string& s) {
 	// format that is parsed: [x; xx; xxx; ...]
 
@@ -63,17 +44,6 @@ vector<int> DataManipulation::parseVectorInt(const string& s) {
 	return result;
 }
 
-string DataManipulation::parseString(Type type) {
-	switch (type) {
-		case Type::SCI: return "SCI"; 
-		case Type::SCIE: return "SCIE";
-		case Type::ISI: return "ISI"; 
-		case Type::SCOPUS: return "SCOPUS"; 
-		case Type::OTHER: return "OTHER"; 
-		default: return "OTHER"; 
-	}
-}
-
 // Specialization
 
 template<> 
@@ -94,20 +64,17 @@ map<int, Article> DataManipulation::init<Article>() {
 		stringstream ss(line); 
 		string token; 
 
-		int articleID, authorID, journalID; 
+		string articleID, authorID, journalID; 
 		string articleName;
 		ArticleStatus currStatus;
 
 		getline(ss, token, ','); 
-		articleID = stoi(token); // parse string to int
 
 		getline(ss, articleName, ',');  
 
-		getline(ss, token, ','); 
-		authorID = stoi(token); 
+		getline(ss, token, ',');  
 
-		getline(ss, token, ','); 
-		journalID = stoi(token); 
+		getline(ss, token, ',');  
 
 		getline(ss, token, ','); 
 		currStatus = parseStatus(token);
@@ -138,12 +105,12 @@ map<int, Author> DataManipulation::init<Author>() {
 		stringstream ss(line); 
 		string token; 
 
-		int authorID, authorGender; 
+		string authorID; 
+		int authorGender; 
 		string authorName, authorEmail, dob, country; 
-		vector<int> articlesID; 
+		vector<string> articlesID; 
 
 		getline(ss, token, ','); 
-		authorID = stoi(token); 
 
 		getline(ss, authorName, ','); 
 
@@ -185,10 +152,11 @@ map<int, Journal> DataManipulation::init<Journal>() {
 		stringstream ss(line); 
 		string token; 
 
-		int journalID, publishNumber; 
+		string journalID;
+		int publishNumber; 
 		string journalName, publishYear, publisher; 
 		Type type; 
-		vector<int> articlesID;
+		vector<string> articlesID;
 
 		getline(ss, token, ','); 
 		journalID = stoi(token); 
