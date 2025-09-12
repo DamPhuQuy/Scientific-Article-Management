@@ -2,21 +2,18 @@
 
 #include <map>
 #include <iostream> 
-#include <models/Article.h>
-#include <models/Journal.h>
+#include <repositories/DataWrapper.h>	
 #include "utilities/IOHelper.h" 
 #include "services/DataManipulation.h"
-#include "models/Article.h"
-#include "models/Journal.h"
+
 
 using namespace std;
 
 class JournalRepository {
 private:
-	map<string, Journal> &journals;
-	shared_ptr<ArticleRepository*> articleRepos;
+	DataWrapper &data;
 public:
-	JournalRepository(map<string, Journal> &j);
+	JournalRepository(DataWrapper &data);
 	~JournalRepository();
 
 	void setJournalsMap(map<string, Journal> &journals);

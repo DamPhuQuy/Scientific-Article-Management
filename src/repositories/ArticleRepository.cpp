@@ -4,21 +4,21 @@
 
 // constructor
 ArticleRepository::ArticleRepository(DataWrapper &dataWrapper) :
-    data(dataWrapper) {}
+    data(dataWrapper) {} 
 
 ArticleRepository::~ArticleRepository() = default;
 
 void ArticleRepository::setArticlesMap(const map<string, Article*> &articles) const {
-    this->data.articles = articles;
+    this->articles = articles;
 }
 
 map<string, Article*>& ArticleRepository::getArticlesMap() const {
-    return this->data.articles;
+    return this->articles; 
 }
 
 void ArticleRepository::addArticle(Article* a) const {
-    if (const string& id = a->getArticleID(); !data.articles.contains(id)) {
-        data.articles[id] = a;
+    if (const string& id = a->getArticleID(); !articles.contains(id)) {
+        articles[id] = a;
         cout << "The article ID: " << id << " added successfully!\n";
     } else {
         cout << "This article ID already exists!\n";
@@ -26,18 +26,18 @@ void ArticleRepository::addArticle(Article* a) const {
 }
 
 void ArticleRepository::removeArticle(const string& articleID) const {
-    if (!data.articles.contains(articleID)) {
+    if (!articles.contains(articleID)) {
         cout << "This article ID does not exist!\n";
     }
     else {
-        data.articles.erase(articleID);
-        cout << "The article ID: " << articleID << " deleted successfully!\n";
+        articles.erase(articleID);
+        cout << "The article ID: " << articles.articleID << " deleted successfully!\n";
     }
 }
 
 Article* ArticleRepository::getArticle(const string &articleID) const {
-    auto it = data.articles.find(articleID);
-    if (it != data.articles.end()) return it->second;
+    auto it = articles.find(articleID);
+    if (it != articles.end()) return it->second;
     cout << "This article ID: " << articleID << " does not exist!\n";
     return nullptr;
 }
@@ -45,14 +45,14 @@ Article* ArticleRepository::getArticle(const string &articleID) const {
 vector<data.Article*> ArticleRepository::getAllArticles() const {
     vector<data.Article*> temp;
 
-    for (auto &val: data.articles | views::values) {
+    for (auto &val: articles | views::values) {
         temp.push_back(val);
     }
 
     return temp; 
 }
 
-Article ArticleRepository::input(map<string, Author> &authors, map<string, Journal> &journals) {
+Article ArticleRepository::input(map<string, Author> &data.authors, map<string, Journal> &data.journals) {
     string name;
     cout << "Nhap vao ten bai bao: ";
     getline(cin, name);
@@ -79,30 +79,30 @@ Article ArticleRepository::input(map<string, Author> &authors, map<string, Journ
     Article* newArticle = ArticleFactory::createEmptyArticle(TypeMap.at(choose)); 
 
 
-    authorID = IOHelper::chooseFromMap<Author>(authors, "Author");
+    authorID = IOHelper::chooseFromMap<Author>(data.authors, "Author");
     if (authorID == "New") {
-        AuthorRepository au_repo(authors); 
-        
+        AuthorRepository au_repo(data.authors);
+
     }
 
-    journalID = IOHelper::chooseFromMap<Journal>(journals, "Journal");
+    journalID = IOHelper::chooseFromMap<Journal>(data.journals, "Journal");
     if (journalID == "New") {
-        JournalRepository j_repo(journals);
+        JournalRepository j_repo(data.journals);
     }
     
 }
 
-void ArticleRepository::showArticleDescriptionByID(const map<string, Author> &authors, const map<string, Journal> &journals, const string &articleID) {
-    auto it = data.articles.find(articleID);
-    if (it == data.articles.end()) {
+void ArticleRepository::showArticleDescriptionByID(const map<string, Author> &data.authors, const map<string, Journal> &data.journals, const string &articleID) {
+    auto it = articles.find(articleID);
+    if (it == articles.end()) {
         cout << "ERROR: " << articleID << " not found!\n";
         return; 
     }
     else {
         Article* article = it->second; 
-        string articleID = data.article->getArticleID();
-        string authorID = data.article->getAuthorID(); 
-        string journalID = data.article->getJournalID(); 
+        string articleID = article->getArticleID();
+        string authorID = article->getAuthorID(); 
+        string journalID = article->getJournalID(); 
 
         Author author = authors.at(authorID); 
         Journal journal = journals.at(journalID); 

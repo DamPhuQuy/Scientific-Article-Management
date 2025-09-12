@@ -1,12 +1,12 @@
 #include "repositories/JournalRepository.h"
 
-JournalRepository::JournalRepository(map<string, Journal> &j) :
-	journals(j) {} 
+JournalRepository::JournalRepository(DataWrapper &dataWrapper) :
+	data(dataWrapper) {}
 
 JournalRepository::~JournalRepository() {} 
 
-void JournalRepository::setJournalsMap(map<string, Journal> &journals) {
-	this->journals = journals; 
+void JournalRepository::setJournalsMap(map<string, Journal> &data.journals) {
+	this->data.journals = journals; 
 }
 
 map<string, Journal> JournalRepository::getJournalsMap() const {
