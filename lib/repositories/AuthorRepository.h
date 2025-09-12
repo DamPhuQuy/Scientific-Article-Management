@@ -2,20 +2,18 @@
 
 #include <map>
 #include <iostream> 
-#include "models/Author.h"
+#include <repositories/DataWrapper.h>
 #include "utilities/IOHelper.h" 
 #include "utilities/IDManager.h"
-#include "models/Article.h"
-#include "models/Journal.h"
+
 
 using namespace std; 
 
 class AuthorRepository {
 private: 
-    map<string, Author> &authors;
-    shared_ptr<ArticleRepository*> articleRepos;
+    DataWrapper &data;
 public:
-    explicit AuthorRepository(map<string, Author>& au);
+    explicit AuthorRepository(DataWrapper &dataWrapper);
     ~AuthorRepository(); 
 
     void setAuthorsMap(const map<string, Author> &authors) const;

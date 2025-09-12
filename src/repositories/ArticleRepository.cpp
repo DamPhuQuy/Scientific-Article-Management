@@ -3,22 +3,22 @@
 #include <ranges>
 
 // constructor
-ArticleRepository::ArticleRepository(map<string, Article*> &a) :
-    articles(a) {}
+ArticleRepository::ArticleRepository(DataWrapper &dataWrapper) :
+    data(dataWrapper) {}
 
 ArticleRepository::~ArticleRepository() = default;
 
 void ArticleRepository::setArticlesMap(const map<string, Article*> &articles) const {
-    this->articles = articles;
+    this->data.articles = articles;
 }
 
 map<string, Article*>& ArticleRepository::getArticlesMap() const {
-    return this->articles;
+    return this->data.articles;
 }
 
 void ArticleRepository::addArticle(Article* a) const {
-    if (const string& id = a->getArticleID(); !articles.contains(id)) {
-        articles[id] = a;
+    if (const string& id = a->getArticleID(); !data.articles.contains(id)) {
+        data.articles[id] = a;
         cout << "The article ID: " << id << " added successfully!\n";
     } else {
         cout << "This article ID already exists!\n";
@@ -26,26 +26,26 @@ void ArticleRepository::addArticle(Article* a) const {
 }
 
 void ArticleRepository::removeArticle(const string& articleID) const {
-    if (!articles.contains(articleID)) {
+    if (!data.articles.contains(articleID)) {
         cout << "This article ID does not exist!\n";
     }
     else {
-        articles.erase(articleID);
+        data.articles.erase(articleID);
         cout << "The article ID: " << articleID << " deleted successfully!\n";
     }
 }
 
 Article* ArticleRepository::getArticle(const string &articleID) const {
-    auto it = articles.find(articleID);
-    if (it != articles.end()) return it->second;
+    auto it = data.articles.find(articleID);
+    if (it != data.articles.end()) return it->second;
     cout << "This article ID: " << articleID << " does not exist!\n";
     return nullptr;
 }
 
-vector<Article*> ArticleRepository::getAllArticles() const {
-    vector<Article*> temp;
+vector<data.Article*> ArticleRepository::getAllArticles() const {
+    vector<data.Article*> temp;
 
-    for (auto &val: articles | views::values) {
+    for (auto &val: data.articles | views::values) {
         temp.push_back(val);
     }
 
@@ -93,16 +93,16 @@ Article ArticleRepository::input(map<string, Author> &authors, map<string, Journ
 }
 
 void ArticleRepository::showArticleDescriptionByID(const map<string, Author> &authors, const map<string, Journal> &journals, const string &articleID) {
-    auto it = articles.find(articleID); 
-    if (it == articles.end()) {
+    auto it = data.articles.find(articleID);
+    if (it == data.articles.end()) {
         cout << "ERROR: " << articleID << " not found!\n";
         return; 
     }
     else {
         Article* article = it->second; 
-        string articleID = article->getArticleID();
-        string authorID = article->getAuthorID(); 
-        string journalID = article->getJournalID(); 
+        string articleID = data.article->getArticleID();
+        string authorID = data.article->getAuthorID(); 
+        string journalID = data.article->getJournalID(); 
 
         Author author = authors.at(authorID); 
         Journal journal = journals.at(journalID); 

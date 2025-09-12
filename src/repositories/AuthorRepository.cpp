@@ -2,34 +2,34 @@
 
 #include <ranges> // for views::values
 
-AuthorRepository::AuthorRepository(map<string, Author> &au) :
-    authors(au) {}
+AuthorRepository::AuthorRepository(DataWrapper &dataWrapper) :
+    data(dataWrapper) {}
 
 AuthorRepository::~AuthorRepository() = default;
 
 void AuthorRepository::setAuthorsMap(const map<string, Author> &authors) const {
-    this->authors = authors; 
+    this->data.authors = authors;
 }
 
 map<string, Author> AuthorRepository::getAuthorsMap() const {
-    return this->authors;
+    return this->data.authors;
 }
 
 void AuthorRepository::addAuthor(const Author &author) const {
-    this->authors.insert({author.getAuthorID(), author});
+    this->data.authors.insert({author.getAuthorID(), author});
 }
 
 void AuthorRepository::removeAuthor(const string &authorID) const {
-    this->authors.erase(authorID);
+    this->data.authors.erase(authorID);
 }
 
 Author* AuthorRepository::getAuthor(const string &authorID) const {
-    if (!authors.contains(authorID)) {
+    if (!data.authors.contains(authorID)) {
         cout << "This author ID : " << authorID << " does not exist!\n";
         return nullptr;
     }
     else {
-        return &authors.at(authorID);
+        return &data.authors.at(authorID);
     }
 }
 
@@ -44,7 +44,7 @@ vector<Author> AuthorRepository::getAllAuthors() const {
 }
 
 Author AuthorRepository::input(const string &authorID, const string &newArticleID) const {
-    if (auto it = this->authors.find(authorID); it != authors.end()) {
+    if (auto it = this->data.authors.find(authorID); it != data.authors.end()) {
         Author author = it->second; 
 
         author.getArticlesID().emplace_back(newArticleID);

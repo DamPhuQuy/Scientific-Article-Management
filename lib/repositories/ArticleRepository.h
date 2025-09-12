@@ -3,23 +3,19 @@
 #include <vector>
 #include <map>
 #include "utilities/IOHelper.h"
-#include "repositories/AuthorRepository.h"
+#include "repositories/DataWrapper.h"
 #include "utilities/ArticleFactory.h"
 #include "services/DataManipulation.h"
-#include "models/Author.h"
-#include "models/Journal.h"
-#include "models/Article.h"
+
 
 using namespace std;
 
 class ArticleRepository {
 private:
-    map<string, Article*> &articles;
-    vector<shared_ptr<AuthorRepository*>> authorRepos;
-    shared_ptr<JournalRepository*> journalRepos;
+    DataWrapper &data;
 public:
     // constructor
-    explicit ArticleRepository(map<string, Article*> &a);
+    explicit ArticleRepository(DataWrapper &dataWrapper);
     ~ArticleRepository();
 
     // getter and setter
