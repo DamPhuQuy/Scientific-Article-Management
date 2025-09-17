@@ -1,6 +1,6 @@
 journalID,journalName,type,publishNumber,publishYear,publisher,articlesID
-j_001,Nelson PLC,SCOPUS,64,2011,Acevedo Inc,[6]
-j_002,Cook-Shaw,ISI,42,2006,"Owens - Morales and Moreno",[2]
-j_003,Williams-Flores,SCI,7,2015,Murphy-Morgan,"[1; 10]"
-j_004,"Ramos-Pacheco and Mitchell",SCI,58,2006,"Johnson - Cruz and Vega","[3; 4; 5]"
-j_005,Webster PLC,SCIE,67,2012,Gilbert-Sanchez,"[2; 7; 8; 9]"
+j_001,Nelson PLC,SCOPUS,64,2011,Acevedo Inc,[SCOPUS_006]
+j_002,Cook-Shaw,ISI,42,2006,"Owens - Morales and Moreno",[SCIE_002]
+j_003,Williams-Flores,SCI,7,2015,Murphy-Morgan,"[SCI_001;SCI_010]"
+j_004,"Ramos-Pacheco and Mitchell",SCI,58,2006,"Johnson - Cruz and Vega","[SCI_003;SCI_004;SCI_005]"
+j_005,Webster PLC,SCIE,67,2012,Gilbert-Sanchez,"[SCI_002;SCI_007;SCI_008;SCI_009]"

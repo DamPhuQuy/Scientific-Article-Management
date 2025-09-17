@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 
+using namespace std;
 
 enum class Type {
     SCI,
@@ -24,24 +25,23 @@ enum class ArticleStatus {
 
 class Article {
 protected:
-    // format id: TYPE-XXX (XXX: 000 - 999)
-    std::string articleID;
-    std::string articleName;
-    std::string authorID;
-    std::string journalID;
+    string articleID;
+    string articleName;
+    string authorID;
+    string journalID;
     Type type;
     ArticleStatus status;
 
-    static const std::unordered_map<Type, std::string> TypeNames;
-    static const std::unordered_map<ArticleStatus, std::string> StatusNames;
+    static const unordered_map<Type, string> TypeNames;
+    static const unordered_map<ArticleStatus, string> StatusNames;
 
 public:
     // Constructors
     Article() = default;
-    Article(const std::string &a_id,
-            const std::string &a_name,
-            const std::string &au_id,
-            const std::string &j_id,
+    Article(const string &a_id,
+            const string &a_name,
+            const string &au_id,
+            const string &j_id,
             Type t,
             ArticleStatus st);
 
@@ -68,7 +68,6 @@ public:
     void publish();
 
     // Abstract interface
-    virtual void showDescription() const = 0;
     virtual void display() const = 0;
 
 protected:
@@ -78,19 +77,11 @@ protected:
 class SCI_Article : public Article {
 	SCI_Article(
 		const string &a_id,
-    	const string &a_name, 
+    	const string &a_name,
     	const string &au_id,
-    	const string &j_id, 
+    	const string &j_id,
     	ArticleStatus st = ArticleStatus::DRAFT
-	); 
-
-	void showDescription() const override {
-
-	}
-
-	void display() const override {
-
-	}
+	);
 };
 
 class SCIE_Article : public Article {
@@ -100,15 +91,7 @@ class SCIE_Article : public Article {
     	const string &au_id,
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
-	); 
-
-	void showDescription() const override {
-
-	}
-
-	void display() const override {
-
-	}
+	);
 };
 
 class ISI_Article : public Article {
@@ -118,15 +101,7 @@ class ISI_Article : public Article {
     	const string &au_id,
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
-	); 
-
-	void showDescription() const override {
-
-	}
-
-	void display() const override {
-
-	}
+	);
 };
 
 class SCOPUS_Article : public Article {
@@ -136,15 +111,7 @@ class SCOPUS_Article : public Article {
     	const string &au_id,
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
-	); 
-
-	void showDescription() const override {
-
-	}
-
-	void display() const override {
-
-	}
+	);
 };
 
 class OTHER_Article : public Article {
@@ -154,14 +121,6 @@ class OTHER_Article : public Article {
     	const string &au_id,
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
-	); 
-
-	void showDescription() const override {
-
-	}
-
-	void display() const override {
-
-	}
+	);
 };
 

@@ -1,11 +1,11 @@
 articleID,articleName,authorID,journalID,type,status
-1,Firm various military nature find.,2,3,SCI,PUBLISHED
-2,Sort like better ready western teach.,5,2,SCIE,SUBMITTED
-3,Sing goal television.,2,4,SCI,SUBMITTED
-4,Chance protect development.,2,4,SCI,UNDER_REVIEW
-5,World race sing test matter but.,4,4,SCI,DRAFT
-6,Main community smile left believe watch.,3,1,SCOPUS,UNDER_REVIEW
-7,Seem continue carry.,1,5,SCI,UNDER_REVIEW
-8,Past authority small design whom.,1,5,SCIE,SUBMITTED
-9,Tonight reality start.,3,5,SCIE,ACCEPTED
-10,Amount chance to federal.,1,3,SCI,SUBMITTED
+SCI_001,Firm various military nature find.,au_002,j_003,SCI,PUBLISHED
+SCIE_002,Sort like better ready western teach.,au_005,j_002,SCIE,SUBMITTED
+SCI_003,Sing goal television.,au_002,j_004,SCI,SUBMITTED
+SCI_004,Chance protect development.,au_002,j_004,SCI,UNDER_REVIEW
+SCI_005,World race sing test matter but.,au_004,j_004,SCI,DRAFT
+SCOPUS_006,Main community smile left believe watch.,au_003,j_001,SCOPUS,UNDER_REVIEW
+SCI_007,Seem continue carry.,au_001,j_005,SCI,UNDER_REVIEW
+SCIE_008,Past authority small design whom.,au_001,j_005,SCIE,SUBMITTED
+SCIE_009,Tonight reality start.,au_003,j_005,SCIE,ACCEPTED
+SCI_010,Amount chance to federal.,au_001,j_003,SCI,SUBMITTED

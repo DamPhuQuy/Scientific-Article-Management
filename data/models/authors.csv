@@ -1,6 +1,6 @@
 authorID,authorName,authorEmail,dob,country,authorGender,articlesID
-au_001,Elizabeth Rivas,bharris@yahoo.com,1987-04-26,Eritrea,0,"[7; 8; 10]"
-au_002,Stephen Smith,arellanojonathan@ramirez.biz,1993-01-06,France,1,"[1; 3; 4]"
-au_003,Erin Hernandez,matthew87@gmail.com,1996-12-09,Kiribati,1,"[6; 9]"
-au_004,Amy Stewart,ayerszachary@martinez.net,1991-03-28,Solomon Islands,0,[5]
-au_005,Timothy Paul,jimenezemily@hotmail.com,1977-12-30,Taiwan,0,[2]
+au_001,Elizabeth Rivas,bharris@yahoo.com,1987-04-26,Eritrea,0,"[SCI_007;SCIE_008;SCI_010]"
+au_002,Stephen Smith,arellanojonathan@ramirez.biz,1993-01-06,France,1,"[SCI_001;SCI_003;SCI_004]"
+au_003,Erin Hernandez,matthew87@gmail.com,1996-12-09,Kiribati,1,"[SCOPUS_006;SCIE_009]"
+au_004,Amy Stewart,ayerszachary@martinez.net,1991-03-28,Solomon Islands,0,[SCI_005]
+au_005,Timothy Paul,jimenezemily@hotmail.com,1977-12-30,Taiwan,0,[SCIE_002]

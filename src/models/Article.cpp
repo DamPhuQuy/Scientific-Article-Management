@@ -1,6 +1,4 @@
-﻿#include <utility>
-
-#include "models/Article.h"
+﻿#include "models/Article.h"
 
 using namespace std;
 
@@ -24,26 +22,13 @@ const unordered_map<ArticleStatus, string> Article::StatusNames = {
 
 // Constructor
 
-Article::Article(const std::string &a_id,
-            const std::string &a_name,
-            const std::string &au_id,
-            const std::string &j_id,
-            Type t,
-            ArticleStatus st) :
-    articleID(std::move(a_id)), articleName(std::move(a_name)), authorID(std::move(au_id)), journalID(std::move(j_id)), type(t),status(st) {
-}
-
-Article::Article(const Article &a) {
-    this->articleID = a.articleID;
-    this->articleName = a.articleName;
-    this->authorID = a.authorID;
-    this->journalID = a.journalID;
-    this->status = a.status;
-}
-
-// Destructor
-
-Article::~Article() = default;
+Article::Article(const string &a_id,
+            const string &a_name,
+            const string &au_id,
+            const string &j_id,
+            const Type t,
+            const ArticleStatus st) :
+    articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), type(t), status(st) {}
 
 // Getter and setter
 
@@ -110,6 +95,15 @@ void Article::publish() {
 }
 
 // abstract method
+
+void Article::display() const {
+    cout << "Article ID: " << this->articleID << endl;
+    cout << "Article Title: " << this->articleName << endl;
+    cout << "Author ID: " << this->authorID << endl;
+    cout << "Journal ID: " << this->journalID << endl;
+    cout << "Type: " << Article::getTypeName() << endl;
+    cout << "Status: " << Article::getStatusName() << endl;
+}
 
 void Article::generateID(const int &count) {
     string concat = "";
