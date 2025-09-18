@@ -199,5 +199,5 @@ OTHER_Article::OTHER_Article(
 OTHER_Article::OTHER_Article(const Article &other) : Article(other) {}
 
 Article *OTHER_Article::clone() const {
-    return new OTHER_Article(*this);
+    return new OTHER_Article(*this) ;
 }

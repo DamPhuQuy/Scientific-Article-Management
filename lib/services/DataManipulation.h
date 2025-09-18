@@ -1,28 +1,31 @@
 #pragma once
 
 #include <string>
-#include <fstream>
-#include <iostream>
 #include <map>
-#include <sstream> 
 #include <vector>
-#include <cctype> 
 
 #include "utilities/Constants.h"
-#include "models/Article.h"
-#include "models/Author.h"
-#include "models/Journal.h"
 
 using namespace std;
 
 class DataManipulation {
 private:
     static bool fileCheck(const fs::path &filePath, ifstream &in);
-    static vector<int> parseVectorInt(const string &s); 
+    static vector<string> parseString(const string &s);
 public:
     DataManipulation() = default;
-    ~DataManipulation() = default; 
+    ~DataManipulation() = default;
 
+    static Type convertStringToType(const string &temp);
+    static ArticleStatus convertStringToStatus(const string &s);
+
+    static Article* createArticle(const Type type,
+                                  const string& articleID,
+                                  const string& articleName,
+                                  const string& authorID,
+                                  const string& journalID,
+                                  const ArticleStatus status);
     template<typename T>
-    static map<int, T> init();
+    map<string, T> init();
 };
+

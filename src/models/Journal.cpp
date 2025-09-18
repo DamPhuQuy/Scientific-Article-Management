@@ -4,20 +4,9 @@
 
 using namespace std;
 
-Journal::Journal(string j_id,
-                 string j_name,
-                 const Type j_type,
-                 const int pNum,
-                 string pYear,
-                 string p,
-                 vector<string> ids) : 
-    journalID(std::move(j_id)),
-    journalName(std::move(j_name)),
-    type(j_type),        
-    publishNumber(pNum),
-    publishYear(std::move(pYear)),
-    publisher(std::move(p)),
-    articlesID(std::move(ids)) {
+
+Journal::Journal(const string &j_id, const string &j_name, const Type j_type, const int pNum, const int pYear, const string &p, const vector<string> &ids) :
+    journalID(j_id), journalName(j_name), type(j_type), publishNumber(pNum), publishYear(pYear), publisher(p), articlesID(ids){
 }
 
 Journal::~Journal() = default;

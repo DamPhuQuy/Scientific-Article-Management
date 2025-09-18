@@ -1,7 +1,77 @@
 #include "services/DataManipulation.h"
+#include "models/Article.h"
+#include "models/Author.h"
+#include "models/Journal.h"
 
+#include <iostream>
+#include <fstream>
+#include <regex>
+
+using namespace std;
 namespace fs = std::filesystem;
-bool DataManipulation::fileCheck(const fs::path &filePath, std::ifstream &in) {
+
+Type DataManipulation::convertStringToType(const string &temp) {
+    Type type;
+
+    if (temp == "SCI") {
+        type = Type::SCI;
+    } else if (temp == "SCIE") {
+        type = Type::SCIE;
+    } else if (temp == "ISI") {
+        type = Type::ISI;
+    } else if (temp == "SCOPUS") {
+        type = Type::SCOPUS;
+    } else if (temp == "OTHER") {
+        type = Type::OTHER;
+    } else {
+        type = Type::OTHER;
+    }
+
+    return type;
+}
+
+ArticleStatus DataManipulation::convertStringToStatus(const string &s) {
+    ArticleStatus status;
+
+    if (s == "DRAFT") {
+        status = ArticleStatus::DRAFT;
+    } else if (s == "SUBMITTED") {
+        status = ArticleStatus::SUBMITTED;
+    } else if (s == "UNDER_REVIEW") {
+        status = ArticleStatus::UNDER_REVIEW;
+    } else if (s == "REVISIONS") {
+        status = ArticleStatus::REVISIONS;
+    } else if (s == "ACCEPTED") {
+        status = ArticleStatus::ACCEPTED;
+    } else if (s == "REJECTED") {
+        status = ArticleStatus::REJECTED;
+    } else if (s == "PUBLISHED") {
+        status = ArticleStatus::PUBLISHED;
+    } else {
+        status = ArticleStatus::DRAFT;
+    }
+
+    return status;
+}
+
+Article* DataManipulation::createArticle(
+    const Type type,
+    const string &articleID,
+    const string &articleName,
+    const string &authorID,
+    const string &journalID,
+    const ArticleStatus status) {
+
+    switch (type) {
+        case Type::SCI:      return new SCI_Article(articleID, articleName, authorID, journalID, status);
+        case Type::SCIE:     return new SCIE_Article(articleID, articleName, authorID, journalID, status);
+        case Type::ISI:      return new ISI_Article(articleID, articleName, authorID, journalID, status);
+        case Type::SCOPUS:   return new SCOPUS_Article(articleID, articleName, authorID, journalID, status);
+        default:             return new OTHER_Article(articleID, articleName, authorID, journalID, status);
+    }
+}
+
+bool DataManipulation::fileCheck(const fs::path &filePath, ifstream &in) {
     if (!fs::exists(filePath)) {
         std::cout << "ERROR: File not found: " << fs::absolute(filePath) << "\n";
         return false;
@@ -21,166 +91,133 @@ bool DataManipulation::fileCheck(const fs::path &filePath, std::ifstream &in) {
     return true;
 }
 
-vector<int> DataManipulation::parseVectorInt(const string& s) {
-	// format that is parsed: [x; xx; xxx; ...]
+vector<string> DataManipulation::parseString(const string &s) {
+	vector<string> result;
 
-	vector<int> result; 
-	string temp = "";  
-	for (int i = 0; i < s.length(); i++) {
-		char c = s.at(i); 
-		if (c == '[' || c == ' ') 
-			continue; 
-		else if (isdigit(c)) 
-			temp += c; 
-		else if (c == ';' || c == ']') {
-			if (!temp.empty()) {
-				int element = stoi(temp); 
-				result.push_back(element); 
-				temp = ""; 
-			} 
-		}
-	}
+    const regex pattern(R"([A-Z]+_\d+)"); // Pattern p = Pattern.compile()
+    const auto begin = sregex_iterator(s.begin(), s.end(), pattern);
+    const auto end = sregex_iterator();
+
+    for (auto it = begin; it != end; ++it) {
+        result.push_back((*it)[0].str());
+    }
 
 	return result;
 }
 
 // Specialization
 
-template<> 
-map<int, Article> DataManipulation::init<Article>() {
-	map<int, Article> data;
-
-	fs::path filePath = Constants::ARTICLE; 
-	ifstream in; 
-
-	if (!fileCheck(filePath, in)) {
-		return data;
-	} 
-
-	string line = ""; 
-	getline(in, line);
-
-	while (getline(in, line)) {
-		stringstream ss(line); 
-		string token; 
-
-		string articleID, authorID, journalID; 
-		string articleName;
-		ArticleStatus currStatus;
-
-		getline(ss, token, ','); 
-
-		getline(ss, articleName, ',');  
-
-		getline(ss, token, ',');  
-
-		getline(ss, token, ',');  
-
-		getline(ss, token, ','); 
-		currStatus = parseStatus(token);
-
-		Article article(articleID, articleName, authorID, journalID, currStatus); 
-
-		data.insert({articleID, article}); 
-	}
-
-	return data; 
-}	
-
 template<>
-map<int, Author> DataManipulation::init<Author>() {
-	map<int, Author> data;
+map<string, Article*> DataManipulation::init<Article*>() {
+    map<string, Article*> data;
 
-	fs::path filePath = Constants::AUTHOR; 
-	ifstream in; 
+    fs::path filePath = Constants::ARTICLE;
+    ifstream in;
 
-	if (!fileCheck(filePath, in)) {
-		return data; 
-	}
+    if (!DataManipulation::fileCheck(filePath, in)) {
+        return data;
+    }
 
-	string line = ""; 
-	getline(in, line); 
+    string line;
+    getline(in, line); // pass the first line
 
-	while (getline(in, line)) { 
-		stringstream ss(line); 
-		string token; 
+    while (getline(in, line)) {
+        regex pattern(R"(^([A-Z]+_\d+),([^,]+),(AU_\d+),(J_\d+),([A-Z]+),([A-Z_]+)$)");
+        auto begin = sregex_iterator(line.begin(), line.end(), pattern);
+        auto end = sregex_iterator();
 
-		string authorID; 
-		int authorGender; 
-		string authorName, authorEmail, dob, country; 
-		vector<string> articlesID; 
+        for (auto it = begin; it != end; ++it) {
+            string articleID = (*it)[1].str();
+            string articleName = (*it)[2].str();
+            string authorID = (*it)[3].str();
+            string journalID = (*it)[4].str();
+            string temp = (*it)[5].str();
 
-		getline(ss, token, ','); 
+            Type type = convertStringToType(temp);
 
-		getline(ss, authorName, ','); 
+            string s = (*it)[6].str();
 
-		getline(ss, authorEmail, ','); 
+            ArticleStatus status = convertStringToStatus(s);
 
-		getline(ss, dob, ','); 
+            Article* newArticle = createArticle(type, articleID, articleName, authorID, journalID, status);
 
-		getline(ss, country, ','); 
-
-		getline(ss, token, ','); 
-		authorGender = stoi(token);
-
-		getline(ss, token, ','); 
-		articlesID = parseVectorInt(token); 
-
-		Author author(authorID, authorName, authorEmail, dob, country, authorGender, articlesID); 
-
-		data.insert({authorID, author}); 	
-	}
-	return data; 
+            data[articleID] = newArticle;
+        }
+    }
+    return data;
 }
 
 template<>
-map<int, Journal> DataManipulation::init<Journal>() {
-	map<int, Journal> data;
+map<string, Author> DataManipulation::init<Author>() {
+    map<string, Author> data;
 
-	fs::path filePath = Constants::JOURNAL;
+    fs::path filePath = Constants::AUTHOR;
+    ifstream in;
+    if (!DataManipulation::fileCheck(filePath, in)) {
+        return data;
+    }
 
-	ifstream in; 
+    string line;
+    getline(in, line);
 
-	if (!fileCheck(filePath, in)) {
-		return data; 
-	}
+    while (getline(in, line)) {
+        regex pattern(R"(^(AU_\d+),([^,]+),(\w+@\w+.com),(\d{4}-\d{2}-\d{2}),([^,]+),(\d{1}),(.)$)");
+        auto begin = sregex_iterator(line.begin(), line.end(), pattern);
+        auto end = sregex_iterator();
 
-	string line = ""; 
-	getline(in, line); 
+        for (auto it = begin; it != end; ++it) {
+            string authorID = (*it)[1].str();
+            string authorName = (*it)[2].str();
+            string authorEmail = (*it)[3].str();
+            string dob = (*it)[4].str();
+            string country = (*it)[5].str();
+            int authorGender = stoi((*it)[6].str());
+            string temp = (*it)[7].str();
 
-	while (getline(in, line)) {
-		stringstream ss(line); 
-		string token; 
+            vector<string> articlesIDs = parseString(temp);
 
-		string journalID;
-		int publishNumber; 
-		string journalName, publishYear, publisher; 
-		Type type; 
-		vector<string> articlesID;
+            Author newAuthor(authorID, authorName, authorEmail, dob, country, authorGender, articlesIDs);
 
-		getline(ss, token, ','); 
-		journalID = stoi(token); 
+            data[authorID] = newAuthor;
+        }
+    }
 
-		getline(ss, journalName, ','); 
-
-		getline(ss, token, ','); 
-		type = parseType(token);
-
-		getline(ss, token, ','); 
-		publishNumber = stoi(token); 
-
-		getline(ss, publishYear, ','); 
-
-		getline(ss, publisher, ','); 
-
-		getline(ss, token, ',');
-		articlesID = parseVectorInt(token);
-
-		Journal journal(journalID, journalName, type, publishNumber, publishYear, publisher, articlesID);  
-
-		data.insert({journalID, journal});
-	}
-
-	return data; 
+    return data;
 }
 
+template<>
+map<string, Journal> DataManipulation::init<Journal>() {
+    map<string, Journal> data;
+
+    fs::path filePath = Constants::JOURNAL;
+    ifstream in;
+
+    if (!fileCheck(filePath, in)) {
+        return data;
+    }
+
+    string line;
+    getline(in, line);
+    while (getline(in, line)) {
+        regex pattern(R"(^(J_\d+),([^,]+),([A-Z]+),(\d+),(\d+),([^,]+),(.)$)");
+        auto begin = sregex_iterator(line.begin(), line.end(), pattern);
+        auto end = sregex_iterator();
+        for (auto it = begin; it != end; ++it) {
+            string journalID = (*it)[1].str();
+            string journalName = (*it)[2].str();
+            Type type = convertStringToType((*it)[3].str());
+            int publisherNumber = stoi((*it)[4].str());
+            int year = stoi((*it)[5].str());
+            string publisher = (*it)[6].str();
+
+            string temp = (*it)[7].str();
+            vector<string> articlesIDs = parseString(temp);
+
+            Journal newJournal(journalID, journalName, type, publisherNumber, year, publisher, articlesIDs);
+
+            data[journalID] = newJournal;
+        }
+    }
+
+    return data;
+}

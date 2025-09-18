@@ -75,6 +75,7 @@ protected:
 };
 
 class SCI_Article : public Article {
+public:
 	SCI_Article(
 		const string &a_id,
     	const string &a_name,
@@ -89,6 +90,7 @@ class SCI_Article : public Article {
 };
 
 class SCIE_Article : public Article {
+public:
 	SCIE_Article(
 		const string &a_id,
     	const string &a_name, 
@@ -102,6 +104,7 @@ class SCIE_Article : public Article {
 };
 
 class ISI_Article : public Article {
+public:
 	ISI_Article(
 		const string &a_id,
     	const string &a_name, 
@@ -115,6 +118,7 @@ class ISI_Article : public Article {
 };
 
 class SCOPUS_Article : public Article {
+public:
 	SCOPUS_Article(
 		const string &a_id,
     	const string &a_name, 
@@ -129,6 +133,7 @@ class SCOPUS_Article : public Article {
 };
 
 class OTHER_Article : public Article {
+public:
 	OTHER_Article(
 		const string &a_id,
     	const string &a_name, 

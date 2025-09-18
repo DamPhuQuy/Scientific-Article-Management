@@ -1,11 +1,11 @@
 articleID,articleName,authorID,journalID,type,status
-SCI_001,Firm various military nature find.,au_002,j_003,SCI,PUBLISHED
-SCIE_002,Sort like better ready western teach.,au_005,j_002,SCIE,SUBMITTED
-SCI_003,Sing goal television.,au_002,j_004,SCI,SUBMITTED
-SCI_004,Chance protect development.,au_002,j_004,SCI,UNDER_REVIEW
-SCI_005,World race sing test matter but.,au_004,j_004,SCI,DRAFT
-SCOPUS_006,Main community smile left believe watch.,au_003,j_001,SCOPUS,UNDER_REVIEW
-SCI_007,Seem continue carry.,au_001,j_005,SCI,UNDER_REVIEW
-SCIE_008,Past authority small design whom.,au_001,j_005,SCIE,SUBMITTED
-SCIE_009,Tonight reality start.,au_003,j_005,SCIE,ACCEPTED
-SCI_010,Amount chance to federal.,au_001,j_003,SCI,SUBMITTED
+SCI_001,Firm various military nature find.,AU_002,J_003,SCI,PUBLISHED
+SCIE_002,Sort like better ready western teach.,AU_005,J_002,SCIE,SUBMITTED
+SCI_003,Sing goal television.,AU_002,J_004,SCI,SUBMITTED
+SCI_004,Chance protect development.,AU_002,J_004,SCI,UNDER_REVIEW
+SCI_005,World race sing test matter but.,AU_004,J_004,SCI,DRAFT
+SCOPUS_006,Main community smile left believe watch.,AU_003,J_001,SCOPUS,UNDER_REVIEW
+SCI_007,Seem continue carry.,AU_001,J_005,SCI,UNDER_REVIEW
+SCIE_008,Past authority small design whom.,AU_001,J_005,SCIE,SUBMITTED
+SCIE_009,Tonight reality start.,AU_003,J_005,SCIE,ACCEPTED
+SCI_010,Amount chance to federal.,AU_001,J_003,SCI,SUBMITTED
