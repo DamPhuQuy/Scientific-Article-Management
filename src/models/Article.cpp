@@ -1,4 +1,5 @@
 ﻿#include "models/Article.h"
+#include <iostream>
 
 using namespace std;
 
@@ -29,6 +30,15 @@ Article::Article(const string &a_id,
             const Type t,
             const ArticleStatus st) :
     articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), type(t), status(st) {}
+
+Article::Article(const Article &other) {
+    this->articleID = other.articleID;
+    this->articleName = other.articleName;
+    this->authorID = other.authorID;
+    this->journalID = other.journalID;
+    this->type = other.type;
+    this->status = other.status;
+}
 
 // Getter and setter
 
@@ -118,46 +128,76 @@ void Article::generateID(const int &count) {
 }
 
 SCI_Article::SCI_Article(
-    const string &a_id, 
-    const string &a_name, 
-    const string &au_id, 
-    const string &j_id, 
+    const string &a_id,
+    const string &a_name,
+    const string &au_id,
+    const string &j_id,
     ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::SCI, st) {}
 
+SCI_Article::SCI_Article(const Article &other) : Article(other) {}
+
+Article *SCI_Article::clone() const {
+    return new SCI_Article(*this);
+}
+
 SCIE_Article::SCIE_Article(
     const string &a_id,
-    const string &a_name, 
+    const string &a_name,
     const string &au_id,
-    const string &j_id, 
+    const string &j_id,
     ArticleStatus st
 )
-: Article(a_id, a_name, au_id, j_id, Type::SCIE, st) {} 
+: Article(a_id, a_name, au_id, j_id, Type::SCIE, st) {}
+
+SCIE_Article::SCIE_Article(const Article &other) : Article(other) {}
+
+Article* SCIE_Article::clone() const {
+    return new SCIE_Article(*this);
+}
 
 ISI_Article::ISI_Article(
-    const string &a_id, 
-    const string &a_name, 
+    const string &a_id,
+    const string &a_name,
     const string &au_id,
-    const string &j_id, 
+    const string &j_id,
     ArticleStatus st
 )
-: Article(a_id, a_name, au_id, j_id, Type::ISI, st) {} 
+: Article(a_id, a_name, au_id, j_id, Type::ISI, st) {}
+
+ISI_Article::ISI_Article(const Article &other) : Article(other) {}
+
+Article *ISI_Article::clone() const {
+    return new ISI_Article(*this);
+}
 
 SCOPUS_Article::SCOPUS_Article(
     const string &a_id,
-    const string &a_name, 
-    const string &au_id, 
-    const string &j_id, 
+    const string &a_name,
+    const string &au_id,
+    const string &j_id,
     ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::SCOPUS, st) {}
 
+SCOPUS_Article::SCOPUS_Article(const Article &other) : Article(other) {}
+
+Article *SCOPUS_Article::clone() const {
+    return new SCOPUS_Article(*this);
+}
+
 OTHER_Article::OTHER_Article(
-    const string &a_id, 
-    const string &a_name, 
+    const string &a_id,
+    const string &a_name,
     const string &au_id,
-    const string &j_id, 
+    const string &j_id,
     ArticleStatus st
 )
-: Article(a_id, a_name, au_id, j_id, Type::OTHER, st) {} 
+: Article(a_id, a_name, au_id, j_id, Type::OTHER, st) {}
+
+OTHER_Article::OTHER_Article(const Article &other) : Article(other) {}
+
+Article *OTHER_Article::clone() const {
+    return new OTHER_Article(*this);
+}

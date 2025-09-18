@@ -37,14 +37,13 @@ protected:
 
 public:
     // Constructors
-    Article() = default;
     Article(const string &a_id,
             const string &a_name,
             const string &au_id,
             const string &j_id,
-            Type t,
-            ArticleStatus st);
-
+            Type t = Type::OTHER,
+            ArticleStatus st = ArticleStatus::DRAFT);
+	Article(const Article &other);
     virtual ~Article() = default; // virtual destructor
 
     // Getters
@@ -68,7 +67,8 @@ public:
     void publish();
 
     // Abstract interface
-    virtual void display() const = 0;
+    void display() const;
+	[[nodiscard]] virtual Article* clone() const = 0;
 
 protected:
     void generateID(const int &count);
@@ -82,6 +82,10 @@ class SCI_Article : public Article {
     	const string &j_id,
     	ArticleStatus st = ArticleStatus::DRAFT
 	);
+
+	explicit SCI_Article(const Article& other);
+
+	[[nodiscard]] Article *clone() const override;
 };
 
 class SCIE_Article : public Article {
@@ -92,6 +96,9 @@ class SCIE_Article : public Article {
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
 	);
+	explicit SCIE_Article(const Article& other);
+
+	[[nodiscard]] Article *clone() const override;
 };
 
 class ISI_Article : public Article {
@@ -102,6 +109,9 @@ class ISI_Article : public Article {
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
 	);
+	explicit ISI_Article(const Article& other);
+
+	[[nodiscard]] Article *clone() const override;
 };
 
 class SCOPUS_Article : public Article {
@@ -112,6 +122,10 @@ class SCOPUS_Article : public Article {
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
 	);
+
+	explicit SCOPUS_Article(const Article& other);
+
+	[[nodiscard]] Article* clone() const override;
 };
 
 class OTHER_Article : public Article {
@@ -122,5 +136,8 @@ class OTHER_Article : public Article {
     	const string &j_id, 
     	ArticleStatus st = ArticleStatus::DRAFT
 	);
+
+	explicit OTHER_Article(const Article& other);
+	[[nodiscard]] Article* clone() const override;
 };
 

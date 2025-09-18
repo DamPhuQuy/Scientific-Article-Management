@@ -1,25 +1,33 @@
 #pragma once
 
+#include "models/Article.h"
+#include <map>
+#include <vector>
+#include <memory>
+
+using namespace std;
+
 class ArticleRepository {
 private:
-    vector<Article> articles;
+    map<string, Article*> articlesMap;
 public:
     ArticleRepository() = default;
-    ~ArticleRepository() = default;
+    explicit ArticleRepository(const map<string, Article*> &aMap);
+
+    ~ArticleRepository();
 
     void addArticle(const Article& article);
-    Article getArticleById(const string& id) const;
-    vector<Article> getAllArticles() const;
+    [[nodiscard]] Article* getArticleById(const string& id) const;
+    [[nodiscard]] vector<Article*> getAllArticles() const;
 
     void updateArticle(const Article& article);
-    void deleteArticle(const string& id); 
+    void deleteArticle(const string& id);
 
-    vector<Article> findByTitle(const string& keyword) const;
+    [[nodiscard]] vector<const Article *> findByTitle(const string &keyword) const;
 
-    vector<Article> findByAuthorId(const string& authorId) const;
+    [[nodiscard]] vector<const Article*> findByAuthorId(const string& authorID) const;
 
-    vector<Article> findByJournalId(const string& journalId) const;
+    [[nodiscard]] vector<const Article*> findByJournalId(const string& journalID) const;
 
-    vector<Article> findByDateRange(Date from, Date to) const;
-
+    // [[nodiscard]] vector<Article> findByDateRange(Date from, Date to) const;
 };
