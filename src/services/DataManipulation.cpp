@@ -161,7 +161,7 @@ map<string, Author> DataManipulation::init<Author>() {
     getline(in, line);
 
     while (getline(in, line)) {
-        regex pattern(R"(^(AU_\d+),([^,]+),(\w+@\w+.com),(\d{4}-\d{2}-\d{2}),([^,]+),(\d{1}),(.)$)");
+        regex pattern(R"(^(AU_\d+),([^,]+),([\w\.\-]+@[\w\.\-]+),(\d{4}-\d{2}-\d{2}),([^,]+),(\d{1}),(\[.+\])$)");
         auto begin = sregex_iterator(line.begin(), line.end(), pattern);
         auto end = sregex_iterator();
 
@@ -199,7 +199,7 @@ map<string, Journal> DataManipulation::init<Journal>() {
     string line;
     getline(in, line);
     while (getline(in, line)) {
-        regex pattern(R"(^(J_\d+),([^,]+),([A-Z]+),(\d+),(\d+),([^,]+),(.)$)");
+        regex pattern(R"(^(J_\d+),([^,]+),([A-Z]+),(\d+),(\d+),([^,]+),(\[.+\])$)");
         auto begin = sregex_iterator(line.begin(), line.end(), pattern);
         auto end = sregex_iterator();
         for (auto it = begin; it != end; ++it) {
