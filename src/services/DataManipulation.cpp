@@ -21,8 +21,6 @@ Type DataManipulation::convertStringToType(const string &temp) {
         type = Type::ISI;
     } else if (temp == "SCOPUS") {
         type = Type::SCOPUS;
-    } else if (temp == "OTHER") {
-        type = Type::OTHER;
     } else {
         type = Type::OTHER;
     }
@@ -33,9 +31,7 @@ Type DataManipulation::convertStringToType(const string &temp) {
 ArticleStatus DataManipulation::convertStringToStatus(const string &s) {
     ArticleStatus status;
 
-    if (s == "DRAFT") {
-        status = ArticleStatus::DRAFT;
-    } else if (s == "SUBMITTED") {
+    if (s == "SUBMITTED") {
         status = ArticleStatus::SUBMITTED;
     } else if (s == "UNDER_REVIEW") {
         status = ArticleStatus::UNDER_REVIEW;
@@ -108,8 +104,8 @@ vector<string> DataManipulation::parseString(const string &s) {
 // Specialization
 
 template<>
-map<string, Article*> DataManipulation::init<Article*>() {
-    map<string, Article*> data;
+unordered_map<string, Article*> DataManipulation::init<Article*>() {
+    unordered_map<string, Article*> data;
 
     fs::path filePath = Constants::ARTICLE;
     ifstream in;
@@ -148,8 +144,8 @@ map<string, Article*> DataManipulation::init<Article*>() {
 }
 
 template<>
-map<string, Author> DataManipulation::init<Author>() {
-    map<string, Author> data;
+unordered_map<string, Author> DataManipulation::init<Author>() {
+    unordered_map<string, Author> data;
 
     fs::path filePath = Constants::AUTHOR;
     ifstream in;
@@ -186,8 +182,8 @@ map<string, Author> DataManipulation::init<Author>() {
 }
 
 template<>
-map<string, Journal> DataManipulation::init<Journal>() {
-    map<string, Journal> data;
+unordered_map<string, Journal> DataManipulation::init<Journal>() {
+    unordered_map<string, Journal> data;
 
     fs::path filePath = Constants::JOURNAL;
     ifstream in;

@@ -32,10 +32,10 @@ protected:
     Type type;
     ArticleStatus status;
 
-    static const unordered_map<Type, string> TypeNames;
-    static const unordered_map<ArticleStatus, string> StatusNames;
 
 public:
+    static const unordered_map<Type, string> TypeNames;
+    static const unordered_map<ArticleStatus, string> StatusNames;
     // Constructors
     Article(const string &a_id,
             const string &a_name,

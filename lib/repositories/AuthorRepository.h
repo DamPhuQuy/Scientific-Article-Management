@@ -1,10 +1,16 @@
 #pragma once
 
+#include <unordered_map>
+#include <string>
+#include "models/Author.h"
+
+using namespace std;
+
 class AuthorRepository {
 private:
-    vector<Author> authors;
+    unordered_map<string, Author> authors;
 public:
-    AuthorRepository() = default;
+    explicit AuthorRepository(const unordered_map<string, Author> &authors);
     ~AuthorRepository() = default;
 
     void addAuthor(const Author& author);
@@ -15,7 +21,4 @@ public:
     void deleteAuthor(const string& id); 
 
     vector<Author> findByName(const string& keyword) const;
-
-    vector<Author> findByEmail(const string& email) const;
-
 };

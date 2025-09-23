@@ -4,7 +4,9 @@
 #include <algorithm>
 #include <regex>
 
-ArticleRepository::ArticleRepository(const map<string, Article *> &aMap): articlesMap(aMap) {}
+ArticleRepository::ArticleRepository(const map<string, Article *> &aMap): articlesMap(aMap) {
+    ArticleRepository::count = aMap.size();
+}
 
 ArticleRepository::~ArticleRepository() {
     ranges::for_each(articlesMap, [](auto& pair) -> void {

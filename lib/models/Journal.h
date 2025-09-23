@@ -3,7 +3,6 @@
 #include <string> 
 #include <vector> 
 #include <iostream>
-
 #include "models/Article.h"
 
 using namespace std; 
@@ -14,39 +13,40 @@ class Journal {
 private: 
 	string journalID; 
 	string journalName; 
-	Type type;
-	int publishNumber;  
-	int publishYear;
+	Type type = Type::OTHER;
+	int publishNumber{};
+	int publishYear{};
 	string publisher; 
 	vector<string> articlesID; 
 public: 
-	Journal() = default; 
-	Journal(const string &j_id,
-        	const string &j_name,
+	Journal() = default;
+	Journal(string j_id,
+        	string j_name,
         	Type j_type,
         	int pNum,
         	int pYear,
-        	const string &p,
+        	string p,
         	const vector<string> &ids);
 	~Journal(); 
 
-	void setJournalID(const string &journalID);
-	string getJournalID() const; 
+	void setJournalID(const string &j_id);
+	[[nodiscard]] string getJournalID() const;
 
-	void setJournalName(const string &journalName);
-	string getJournalName() const;
+	void setJournalName(const string &j_name);
+	[[nodiscard]] string getJournalName() const;
 
-	void setPublishNumber(const int publishNumber);
-	int getPublishNumber() const; 
+	void setPublishNumber(int pNum);
+	[[nodiscard]] int getPublishNumber() const;
 
-	void setPublishYear(const string &publishYear);
-	int getPublishYear() const;
+	void setPublishYear(const int &pYear);
+	[[nodiscard]] int getPublishYear() const;
 
-	void setPublisher(const string &publisher);
-	string getPublisher() const;
+	static string getJournalType(const Type type) {
+		return Article::TypeNames.at(type);
+	}
 
-	vector<string> getArticlesID() const;
+	void setPublisher(const string &p);
+	[[nodiscard]] string getPublisher() const;
 
-	void generateID(const int &count);
-	string nextID(const int &count) const;
+	[[nodiscard]] vector<string> getArticlesID() const;
 };

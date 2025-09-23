@@ -1,10 +1,14 @@
 #pragma once
 
+#include <unordered_map>
+#include "models/Journal.h"
+
 class JournalRepository {
 private:
-    vector<Journal> journals;
+    unordered_map<string, Journal> journals;
 public:
     JournalRepository() = default;
+    explicit JournalRepository(const unordered_map<string, Journal>&);
     ~JournalRepository() = default;
 
     void addJournal(const Journal& journal);
@@ -16,6 +20,6 @@ public:
 
     vector<Journal> findByName(const string& keyword) const;
 
-    vector<Journal> findByISSN(const string& issn) const;
-
+    vector<Journal> findByType(const string& type) const;
+    vector<Journal> findByYear(const int& year) const;
 };

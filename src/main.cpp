@@ -1,6 +1,6 @@
 #include "repositories/ArticleRepository.h"
 #include "repositories/AuthorRepository.h"
-#include "../lib/repositories/JournalRepository.h"
+#include "repositories/JournalRepository.h"
 #include "services/DataManipulation.h"
 
 using namespace std;

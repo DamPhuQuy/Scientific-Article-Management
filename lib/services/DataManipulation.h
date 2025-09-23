@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 #include "utilities/Constants.h"
@@ -26,6 +26,6 @@ public:
                                   const string& journalID,
                                   const ArticleStatus status);
     template<typename T>
-    map<string, T> init();
+    unordered_map<string, T> init();
 };
 
