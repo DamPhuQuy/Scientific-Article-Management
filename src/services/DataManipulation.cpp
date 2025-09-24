@@ -105,8 +105,8 @@ vector<string> DataManipulation::parseString(const string &s) {
 // Specialization
 
 template<>
-unordered_map<string, Article*> DataManipulation::init<Article*>() {
-    unordered_map<string, Article*> data;
+map<string, Article*> DataManipulation::init<Article*>() {
+    map<string, Article*> data;
 
     fs::path filePath = Constants::ARTICLE;
     ifstream in;
@@ -145,8 +145,8 @@ unordered_map<string, Article*> DataManipulation::init<Article*>() {
 }
 
 template<>
-unordered_map<string, Author> DataManipulation::init<Author>() {
-    unordered_map<string, Author> data;
+map<string, Author> DataManipulation::init<Author>() {
+    map<string, Author> data;
 
     fs::path filePath = Constants::AUTHOR;
     ifstream in;
@@ -183,8 +183,8 @@ unordered_map<string, Author> DataManipulation::init<Author>() {
 }
 
 template<>
-unordered_map<string, Journal> DataManipulation::init<Journal>() {
-    unordered_map<string, Journal> data;
+map<string, Journal> DataManipulation::init<Journal>() {
+    map<string, Journal> data;
 
     fs::path filePath = Constants::JOURNAL;
     ifstream in;

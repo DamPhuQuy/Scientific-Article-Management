@@ -1,17 +1,19 @@
-#include "repositories/ArticleRepository.h"
-#include "repositories/AuthorRepository.h"
-#include "repositories/JournalRepository.h"
+#include "repositories/RepositoryManager.h"
 #include "services/DataManipulation.h"
 
 using namespace std;
 
-int main() {
-    map<string, Article*> articles;
-    map<string, Author> authors;
-    map<string, Journal> journals;
+void start() {
+    DataManipulation data_m;
+    RepositoryManager repo(
+        data_m.init<Article*>(),
+        data_m.init<Author>(),
+        data_m.init<Journal>()
+    );
+    cout << "okay right now";
+}
 
-    ArticleRepository articleRepo(articles);
-    AuthorRepository authorRepo(authors);
-    JournalRepository journalRepo(journals);
+int main() {
+    start();
     return 0;
 }
