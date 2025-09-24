@@ -16,12 +16,10 @@ add_executable(Run
         src/models/Article.cpp
         src/models/Author.cpp
         src/models/Journal.cpp
-        src/repositories/ArticleRepository.cpp
-        src/repositories/JournalRepository.cpp
-        src/repositories/AuthorRepository.cpp
-        src/repositories/EventListener.cpp
         src/services/DataManipulation.cpp
-        src/utilities/IOHelper.cpp
+        src/repositories/RepositoryManager.cpp
+        lib/repositories/RepositoryManager.h
+        lib/utilities/Constants.h
 )
 
 # Include directories (headers)
