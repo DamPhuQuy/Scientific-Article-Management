@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main(void) {
+int main() {
     map<string, Article*> articles;
     map<string, Author> authors;
     map<string, Journal> journals;

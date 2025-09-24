@@ -22,8 +22,6 @@ add_executable(Run
         src/repositories/EventListener.cpp
         src/services/DataManipulation.cpp
         src/utilities/IOHelper.cpp
-        src/repositories/RepositoryManager.cpp
-        lib/repositories/RepositoryManager.h
 )
 
 # Include directories (headers)

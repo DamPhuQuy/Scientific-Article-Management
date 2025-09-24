@@ -32,7 +32,6 @@ protected:
     Type type;
     ArticleStatus status;
 
-
 public:
     static const unordered_map<Type, string> TypeNames;
     static const unordered_map<ArticleStatus, string> StatusNames;
@@ -69,9 +68,6 @@ public:
     // Abstract interface
     void display() const;
 	[[nodiscard]] virtual Article* clone() const = 0;
-
-protected:
-    void generateID(const int &count);
 };
 
 class SCI_Article : public Article {

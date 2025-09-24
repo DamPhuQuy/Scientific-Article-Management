@@ -115,24 +115,12 @@ void Article::display() const {
     cout << "Status: " << Article::getStatusName() << endl;
 }
 
-void Article::generateID(const int &count) {
-    string concat = "";
-    if (count >= 0 && count < 9) {
-        concat = "00" + to_string(count + 1);
-    } else if (count >= 9 && count < 99) {
-        concat = "0" + to_string(count + 1);
-    } else {
-        concat = to_string(count + 1); 
-    }
-    articleID = getTypeName() + "-" + concat; 
-}
-
 SCI_Article::SCI_Article(
     const string &a_id,
     const string &a_name,
     const string &au_id,
     const string &j_id,
-    ArticleStatus st
+    const ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::SCI, st) {}
 
@@ -147,7 +135,7 @@ SCIE_Article::SCIE_Article(
     const string &a_name,
     const string &au_id,
     const string &j_id,
-    ArticleStatus st
+    const ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::SCIE, st) {}
 
@@ -162,7 +150,7 @@ ISI_Article::ISI_Article(
     const string &a_name,
     const string &au_id,
     const string &j_id,
-    ArticleStatus st
+    const ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::ISI, st) {}
 
@@ -177,7 +165,7 @@ SCOPUS_Article::SCOPUS_Article(
     const string &a_name,
     const string &au_id,
     const string &j_id,
-    ArticleStatus st
+    const ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::SCOPUS, st) {}
 
@@ -192,7 +180,7 @@ OTHER_Article::OTHER_Article(
     const string &a_name,
     const string &au_id,
     const string &j_id,
-    ArticleStatus st
+    const ArticleStatus st
 )
 : Article(a_id, a_name, au_id, j_id, Type::OTHER, st) {}
 
