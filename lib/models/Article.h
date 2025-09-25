@@ -31,7 +31,7 @@ protected:
     string journalID;
     Type type;
     ArticleStatus status;
-
+	static int count;
 public:
     static const unordered_map<Type, string> TypeNames;
     static const unordered_map<ArticleStatus, string> StatusNames;
@@ -68,6 +68,7 @@ public:
     // Abstract interface
     void display() const;
 	[[nodiscard]] virtual Article* clone() const = 0;
+	[[nodiscard]] virtual Article* input() const = 0;
 };
 
 class SCI_Article : public Article {
@@ -83,6 +84,7 @@ public:
 	explicit SCI_Article(const Article& other);
 
 	[[nodiscard]] Article *clone() const override;
+	[[nodiscard]] Article* input() const override;
 };
 
 class SCIE_Article : public Article {
@@ -97,6 +99,7 @@ public:
 	explicit SCIE_Article(const Article& other);
 
 	[[nodiscard]] Article *clone() const override;
+	[[nodiscard]] Article* input() const override;
 };
 
 class ISI_Article : public Article {
@@ -111,6 +114,7 @@ public:
 	explicit ISI_Article(const Article& other);
 
 	[[nodiscard]] Article *clone() const override;
+	[[nodiscard]] Article* input() const override;
 };
 
 class SCOPUS_Article : public Article {
@@ -126,6 +130,7 @@ public:
 	explicit SCOPUS_Article(const Article& other);
 
 	[[nodiscard]] Article* clone() const override;
+	[[nodiscard]] Article* input() const override;
 };
 
 class OTHER_Article : public Article {
@@ -140,5 +145,6 @@ public:
 
 	explicit OTHER_Article(const Article& other);
 	[[nodiscard]] Article* clone() const override;
+	[[nodiscard]] Article* input() const override;
 };
 

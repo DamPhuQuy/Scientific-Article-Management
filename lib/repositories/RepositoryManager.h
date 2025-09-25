@@ -47,5 +47,12 @@ public:
     [[nodiscard]] vector<Journal> findByName(const string& keyword) const;
     [[nodiscard]] vector<Journal> findByType(const string& type) const;
     [[nodiscard]] vector<Journal> findByYear(const int& year) const;
+
+    // General
+    template<typename T>
+    unsigned int size();
+
+    template<typename T>
+    string generateID(const T& t);
 };
 

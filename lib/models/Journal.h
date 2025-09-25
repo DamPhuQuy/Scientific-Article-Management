@@ -49,4 +49,5 @@ public:
 	[[nodiscard]] string getPublisher() const;
 
 	[[nodiscard]] vector<string> getArticlesID() const;
+	string getTypeName() const;
 };

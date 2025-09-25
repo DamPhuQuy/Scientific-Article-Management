@@ -250,3 +250,37 @@ vector<Journal> RepositoryManager::findByYear(const int& year) const {
 
     return res;
 }
+
+// General
+template<>
+unsigned int RepositoryManager::size<Article>() {
+    return this->articles.size();
+}
+
+template<>
+unsigned int RepositoryManager::size<Author>() {
+    return this->authors.size();
+}
+
+template<>
+unsigned int RepositoryManager::size<Journal>() {
+    return this->journals.size();
+}
+
+template<typename T>
+string RepositoryManager::generateID(const T& t) {
+    const unsigned int number = RepositoryManager::size<T>() + 1;
+
+    string res = t.getTypeName() + "_";
+
+    if (number > 0 && number < 10) {
+        res += "00" + to_string(number);
+    } else if (number > 9 && number < 100) {
+        res += "0" + to_string(number);
+    } else {
+        res += to_string(number);
+    }
+
+    return res;
+}
+

@@ -10,7 +10,6 @@ void start() {
         data_m.init<Author>(),
         data_m.init<Journal>()
     );
-    cout << "okay right now";
 }
 
 int main() {

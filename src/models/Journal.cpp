@@ -54,3 +54,7 @@ string Journal::getPublisher() const {
 vector<string> Journal::getArticlesID() const {
     return this->articlesID; 
 }
+
+string Journal::getTypeName() const {
+    return "J";
+}

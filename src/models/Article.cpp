@@ -115,6 +115,10 @@ void Article::display() const {
     cout << "Status: " << Article::getStatusName() << endl;
 }
 
+void Article::input() const {
+
+}
+
 SCI_Article::SCI_Article(
     const string &a_id,
     const string &a_name,
@@ -125,6 +129,11 @@ SCI_Article::SCI_Article(
 : Article(a_id, a_name, au_id, j_id, Type::SCI, st) {}
 
 SCI_Article::SCI_Article(const Article &other) : Article(other) {}
+
+Article *SCI_Article::input() const {
+
+}
+
 
 Article *SCI_Article::clone() const {
     return new SCI_Article(*this);

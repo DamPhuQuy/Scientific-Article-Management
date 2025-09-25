@@ -80,3 +80,7 @@ int Author::getAuthorGender() const {
 vector<string> Author::getArticlesID() const{
     return this->articlesID;
 }
+
+string Author::getTypeName() {
+    return "Au";
+}
