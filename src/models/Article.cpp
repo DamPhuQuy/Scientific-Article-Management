@@ -69,8 +69,21 @@ string Article::getStatusName() const {
 // status working flow
 
 void Article::submit() {
-    if (this->status == ArticleStatus::DRAFT) {
-        this->status = ArticleStatus::SUBMITTED;
+    int choice; 
+    cout << "ban co muon submit khong (1: co, 0: khong): ";
+    cin >> choice;
+    if (choice == 0) {
+        return; 
+    }
+    else if(choice != 1) {
+        cout << "Lua chon khong hop le!" << endl; 
+        return; 
+    }
+    else{
+        if (this->status == ArticleStatus::DRAFT) {
+            this->status = ArticleStatus::SUBMITTED;
+        }
+        cout<<"Da submit thanh cong!"<<endl; 
     }
 }
 
@@ -90,18 +103,21 @@ void Article::accept() {
     if (this->status == ArticleStatus::REVISIONS) {
         this->status = ArticleStatus::ACCEPTED; 
     }
+    cout<<"Bai bao cua ban da duoc accept !"<<endl;
 }
 
 void Article::reject() {
     if (this->status == ArticleStatus::UNDER_REVIEW || this->status == ArticleStatus::REVISIONS) {
         this->status = ArticleStatus::REJECTED; 
     }
+    cout<<"Bai bao cua ban da bi reject !"<<endl;
 }
 
 void Article::publish() {
     if (this->status == ArticleStatus::ACCEPTED) {
         this->status = ArticleStatus::PUBLISHED; 
     }
+    cout<<"Bai bao da duoc publish !"<<endl;
 }
 
 // abstract method
