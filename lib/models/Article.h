@@ -1,16 +1,16 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <unordered_map>
 
 using namespace std;
 
 enum class Type {
-    SCI = 1,
-    SCIE = 2,
-    ISI = 3,
-    SCOPUS = 4,
-    OTHER = 5
+    SCIE = 1, 
+	SCOPUS = 2,
+	CONFERENCE = 3, 
+    OTHER = 4 
 };
 
 enum class ArticleStatus {
@@ -25,21 +25,27 @@ enum class ArticleStatus {
 
 class Article {
 protected:
-    string articleID;
-    string articleName;
-    string authorID;
-    string journalID;
-    Type type;
+	string article_id;
+    string abstract;
+	vector<string> authors;
+	int n_citation;
+	vector<string> references;
+	string title;
+	string venue;
+	int year;
+	Type type;
     ArticleStatus status;
 	static int count;
 public:
-    static const unordered_map<Type, string> TypeNames;
-    static const unordered_map<ArticleStatus, string> StatusNames;
     // Constructors
-    Article(const string &a_id,
-            const string &a_name,
-            const string &au_id,
-            const string &j_id,
+    Article(string abstract = "",
+		    vector<string> authors = {},
+		    int n_citation = 0,
+		    vector<string> references = {},
+		    string title = "",
+		    string venue = "",
+		    int year = 0,
+    		string a_id = "",
             Type t = Type::OTHER,
             ArticleStatus st = ArticleStatus::DRAFT);
 	Article(const Article &other);
@@ -47,15 +53,15 @@ public:
 
     // Getters
     [[nodiscard]] string getArticleID() const;
-    [[nodiscard]] string getArticleName() const;
-    [[nodiscard]] string getAuthorID() const;
-    [[nodiscard]] string getJournalID() const;
-    [[nodiscard]] Type getType() const { return type; }
-    [[nodiscard]] ArticleStatus getStatus() const { return status; }
-
-    // Helpers
-    [[nodiscard]] string getTypeName() const;
-    [[nodiscard]] string getStatusName() const;
+    [[nodiscard]] string getArticleTitle() const;
+    [[nodiscard]] vector<string> getAuthors() const;
+    [[nodiscard]] string getVenueName() const;
+	[[nodiscard]] string getAbstract() const; 
+	[[nodiscard]] int getCitation() const; 
+	[[nodiscard]] vector<string> getReferences() const; 
+	[[nodiscard]] int getYear() const;
+	[[nodiscard]] string typeToString() const;
+	[[nodiscard]] string statusToString() const;
 
     // Workflow
     void submit();
@@ -71,47 +77,21 @@ public:
 	[[nodiscard]] virtual Article* input() const = 0;
 };
 
-class SCI_Article : public Article {
-public:
-	SCI_Article(
-		const string &a_id,
-    	const string &a_name,
-    	const string &au_id,
-    	const string &j_id,
-    	ArticleStatus st = ArticleStatus::DRAFT
-	);
-
-	explicit SCI_Article(const Article& other);
-
-	[[nodiscard]] Article *clone() const override;
-	[[nodiscard]] Article* input() const override;
-};
-
 class SCIE_Article : public Article {
 public:
 	SCIE_Article(
-		const string &a_id,
-    	const string &a_name, 
-    	const string &au_id,
-    	const string &j_id, 
-    	ArticleStatus st = ArticleStatus::DRAFT
+		string abstract = "",
+		vector<string> authors = {},
+		int n_citation = 0,
+		vector<string> references = {},
+		string title = "",
+		string venue = "",
+		int year = 0,
+    	string a_id = "",
+        Type t = Type::OTHER,
+        ArticleStatus st = ArticleStatus::DRAFT
 	);
 	explicit SCIE_Article(const Article& other);
-
-	[[nodiscard]] Article *clone() const override;
-	[[nodiscard]] Article* input() const override;
-};
-
-class ISI_Article : public Article {
-public:
-	ISI_Article(
-		const string &a_id,
-    	const string &a_name, 
-    	const string &au_id,
-    	const string &j_id, 
-    	ArticleStatus st = ArticleStatus::DRAFT
-	);
-	explicit ISI_Article(const Article& other);
 
 	[[nodiscard]] Article *clone() const override;
 	[[nodiscard]] Article* input() const override;
@@ -120,11 +100,16 @@ public:
 class SCOPUS_Article : public Article {
 public:
 	SCOPUS_Article(
-		const string &a_id,
-    	const string &a_name, 
-    	const string &au_id,
-    	const string &j_id, 
-    	ArticleStatus st = ArticleStatus::DRAFT
+		string abstract = "",
+		vector<string> authors = {},
+		int n_citation = 0,
+		vector<string> references = {},
+		string title = "",
+		string venue = "",
+		int year = 0,
+    	string a_id = "",
+        Type t = Type::OTHER,
+        ArticleStatus st = ArticleStatus::DRAFT
 	);
 
 	explicit SCOPUS_Article(const Article& other);
@@ -133,14 +118,39 @@ public:
 	[[nodiscard]] Article* input() const override;
 };
 
+class CONFERENCE_Article : public Article {
+public: 
+	CONFERENCE_Article(
+		string abstract = "",
+		vector<string> authors = {},
+		int n_citation = 0,
+		vector<string> references = {},
+		string title = "",
+		string venue = "",
+		int year = 0,
+    	string a_id = "",
+        Type t = Type::OTHER,
+        ArticleStatus st = ArticleStatus::DRAFT
+	);
+
+	explicit CONFERENCE_Article(const Article& other); 
+	[[nodiscard]] Article* clone() const override; 
+	[[nodiscard]] Article* input() const override; 
+};
+
 class OTHER_Article : public Article {
 public:
 	OTHER_Article(
-		const string &a_id,
-    	const string &a_name, 
-    	const string &au_id,
-    	const string &j_id, 
-    	ArticleStatus st = ArticleStatus::DRAFT
+		string abstract = "",
+		vector<string> authors = {},
+		int n_citation = 0,
+		vector<string> references = {},
+		string title = "",
+		string venue = "",
+		int year = 0,
+    	string a_id = "",
+        Type t = Type::OTHER,
+        ArticleStatus st = ArticleStatus::DRAFT
 	);
 
 	explicit OTHER_Article(const Article& other);

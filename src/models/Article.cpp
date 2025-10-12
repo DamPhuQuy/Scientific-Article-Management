@@ -1,69 +1,101 @@
 ﻿#include "models/Article.h"
 #include <iostream>
+#include "Article.h"
 
 using namespace std;
 
-const unordered_map<Type, string> Article::TypeNames = {
-    {Type::SCI, "SCI"},
-    {Type::SCIE, "SCIE"},
-    {Type::ISI, "ISI"},
-    {Type::SCOPUS, "SCOPUS"},
-    {Type::OTHER, "OTHER"}
-};
-
-const unordered_map<ArticleStatus, string> Article::StatusNames = {
-    {ArticleStatus::DRAFT, "Draft"},
-    {ArticleStatus::SUBMITTED, "Submitted"},
-    {ArticleStatus::UNDER_REVIEW, "Under Review"},
-    {ArticleStatus::REVISIONS, "Revisions Required"},
-    {ArticleStatus::ACCEPTED, "Accepted"},
-    {ArticleStatus::REJECTED, "Rejected"},
-    {ArticleStatus::PUBLISHED, "Published"}
-};
-
-// Constructor
-
-Article::Article(const string &a_id,
-            const string &a_name,
-            const string &au_id,
-            const string &j_id,
-            const Type t,
-            const ArticleStatus st) :
-    articleID(a_id), articleName(a_name), authorID(au_id), journalID(j_id), type(t), status(st) {}
-
-Article::Article(const Article &other) {
-    this->articleID = other.articleID;
-    this->articleName = other.articleName;
-    this->authorID = other.authorID;
-    this->journalID = other.journalID;
-    this->type = other.type;
-    this->status = other.status;
+string Article::typeToString() const {
+    switch (this->type) {
+        case Type::SCIE:       return "SCIE";
+        case Type::SCOPUS:     return "SCOPUS";
+        case Type::CONFERENCE: return "CONFERENCE";
+        default:               return "OTHER";
+    }
 }
 
-// Getter and setter
-
-string Article::getArticleID() const {
-    return this->articleID;
+string Article::statusToString() const {
+    switch(this->status) {
+        case ArticleStatus::SUBMITTED:     return "SUBMITTED";
+        case ArticleStatus::UNDER_REVIEW:  return "UNDER_REVIEW";
+        case ArticleStatus::REVISIONS:     return "REVISIONS";
+        case ArticleStatus::ACCEPTED:      return "ACCEPTED";
+        case ArticleStatus::REJECTED:      return "REJECTED";
+        case ArticleStatus::PUBLISHED:     return "PUBLISHED";
+        default:                           return "DRAFT";
+    }
 }
 
-string Article::getArticleName() const {
-    return this->articleName;
+Article::Article(string abstract,
+                vector<string> authors,
+                int n_citation,
+                vector<string> references,
+                string title, string venue,
+                int year,
+                string a_id,
+                Type t,
+                ArticleStatus st)
+    : abstract(abstract),
+      authors(authors),
+      n_citation(n_citation),
+      references(references),
+      title(title),
+      venue(venue),
+      year(year),
+      article_id(a_id),
+      type(t),
+      status(st) {
 }
 
-string Article::getAuthorID() const {
-    return this->authorID;
+Article::Article(const Article &other)
+    : abstract(other.abstract),
+      authors(other.authors),
+      n_citation(other.n_citation),
+      references(other.references),
+      title(other.title),
+      venue(other.venue),
+      year(other.year),
+      article_id(other.article_id),
+      type(other.type),
+      status(other.status) {
 }
 
-string Article::getJournalID() const {
-    return this->journalID;
+[[nodiscard]] string Article::getArticleID() const {
+    return article_id;
 }
 
-string Article::getTypeName() const {
-    return TypeNames.at(type); 
+[[nodiscard]] string Article::getArticleTitle() const {
+    return title;
 }
 
-string Article::getStatusName() const {
-    return StatusNames.at(status); 
+[[nodiscard]] vector<string> Article::getAuthors() const {
+    if (authors.empty()) {
+        return {};
+    }
+
+    return authors;
+}
+
+[[nodiscard]] vector<string> Article::getReferences() const {
+    return references;
+}
+
+[[nodiscard]] int Article::getYear() const
+{
+    return year;
+}
+
+[[nodiscard]] string Article::getVenueName() const {
+    return venue;
+}
+
+string Article::getAbstract() const
+{
+    return abstract;
+}
+
+int Article::getCitation() const
+{
+    return n_citation;
 }
 
 // status working flow
@@ -123,46 +155,33 @@ void Article::publish() {
 // abstract method
 
 void Article::display() const {
-    cout << "Article ID: " << this->articleID << endl;
-    cout << "Article Title: " << this->articleName << endl;
-    cout << "Author ID: " << this->authorID << endl;
-    cout << "Journal ID: " << this->journalID << endl;
-    cout << "Type: " << Article::getTypeName() << endl;
-    cout << "Status: " << Article::getStatusName() << endl;
-}
-
-void Article::input() const {
-
-}
-
-SCI_Article::SCI_Article(
-    const string &a_id,
-    const string &a_name,
-    const string &au_id,
-    const string &j_id,
-    const ArticleStatus st
-)
-: Article(a_id, a_name, au_id, j_id, Type::SCI, st) {}
-
-SCI_Article::SCI_Article(const Article &other) : Article(other) {}
-
-Article *SCI_Article::input() const {
-
-}
-
-
-Article *SCI_Article::clone() const {
-    return new SCI_Article(*this);
+    //
 }
 
 SCIE_Article::SCIE_Article(
-    const string &a_id,
-    const string &a_name,
-    const string &au_id,
-    const string &j_id,
-    const ArticleStatus st
+    string abstract,
+	vector<string> authors,
+	int n_citation,
+	vector<string> references,
+	string title,
+	string venue,
+	int year = 0,
+    string a_id,
+    Type t,
+    ArticleStatus st
 )
-: Article(a_id, a_name, au_id, j_id, Type::SCIE, st) {}
+: Article(
+    abstract, 
+    authors, 
+    n_citation, 
+    references, 
+    title, 
+    venue, 
+    year, 
+    a_id, 
+    t, 
+    st
+) {}
 
 SCIE_Article::SCIE_Article(const Article &other) : Article(other) {}
 
@@ -170,29 +189,30 @@ Article* SCIE_Article::clone() const {
     return new SCIE_Article(*this);
 }
 
-ISI_Article::ISI_Article(
-    const string &a_id,
-    const string &a_name,
-    const string &au_id,
-    const string &j_id,
-    const ArticleStatus st
-)
-: Article(a_id, a_name, au_id, j_id, Type::ISI, st) {}
-
-ISI_Article::ISI_Article(const Article &other) : Article(other) {}
-
-Article *ISI_Article::clone() const {
-    return new ISI_Article(*this);
-}
-
 SCOPUS_Article::SCOPUS_Article(
-    const string &a_id,
-    const string &a_name,
-    const string &au_id,
-    const string &j_id,
-    const ArticleStatus st
+    string abstract,
+	vector<string> authors,
+	int n_citation,
+	vector<string> references,
+	string title,
+	string venue,
+	int year = 0,
+    string a_id,
+    Type t,
+    ArticleStatus st
 )
-: Article(a_id, a_name, au_id, j_id, Type::SCOPUS, st) {}
+: Article(
+    abstract, 
+    authors, 
+    n_citation, 
+    references, 
+    title, 
+    venue, 
+    year, 
+    a_id, 
+    t, 
+    st
+) {}
 
 SCOPUS_Article::SCOPUS_Article(const Article &other) : Article(other) {}
 
@@ -200,17 +220,64 @@ Article *SCOPUS_Article::clone() const {
     return new SCOPUS_Article(*this);
 }
 
-OTHER_Article::OTHER_Article(
-    const string &a_id,
-    const string &a_name,
-    const string &au_id,
-    const string &j_id,
-    const ArticleStatus st
+CONFERENCE_Article::CONFERENCE_Article(
+    string abstract,
+	vector<string> authors,
+	int n_citation,
+	vector<string> references,
+	string title,
+	string venue,
+	int year = 0,
+    string a_id,
+    Type t,
+    ArticleStatus st
 )
-: Article(a_id, a_name, au_id, j_id, Type::OTHER, st) {}
+: Article(
+    abstract, 
+    authors, 
+    n_citation, 
+    references, 
+    title, 
+    venue, 
+    year, 
+    a_id, 
+    t, 
+    st
+) {}
+
+CONFERENCE_Article::CONFERENCE_Article(const Article &other) : Article(other) {}
+
+Article *CONFERENCE_Article::clone() const
+{
+    return new CONFERENCE_Article(*this);
+}
 
 OTHER_Article::OTHER_Article(const Article &other) : Article(other) {}
 
 Article *OTHER_Article::clone() const {
     return new OTHER_Article(*this) ;
 }
+
+OTHER_Article::OTHER_Article(
+    string abstract, 
+    vector<string> authors, 
+    int n_citation, 
+    vector<string> references, 
+    string title, 
+    string venue, 
+    int year, 
+    string a_id, 
+    Type t, 
+    ArticleStatus st)
+: Article(
+    abstract, 
+    authors, 
+    n_citation, 
+    references, 
+    title, 
+    venue, 
+    year, 
+    a_id, 
+    t, 
+    st
+) {}
