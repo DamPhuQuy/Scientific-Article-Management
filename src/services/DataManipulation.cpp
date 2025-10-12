@@ -14,13 +14,13 @@ namespace fs = std::filesystem;
 Type DataManipulation::convertStringToType(const string &temp) {
     Type type;
 
-    if (temp == "SCI") {
+    if (temp == "1") {
         type = Type::SCI;
-    } else if (temp == "SCIE") {
+    } else if (temp == "2") {
         type = Type::SCIE;
-    } else if (temp == "ISI") {
+    } else if (temp == "3") {
         type = Type::ISI;
-    } else if (temp == "SCOPUS") {
+    } else if (temp == "4") {
         type = Type::SCOPUS;
     } else {
         type = Type::OTHER;
@@ -32,17 +32,17 @@ Type DataManipulation::convertStringToType(const string &temp) {
 ArticleStatus DataManipulation::convertStringToStatus(const string &s) {
     ArticleStatus status;
 
-    if (s == "SUBMITTED") {
+    if (s == "11") {
         status = ArticleStatus::SUBMITTED;
-    } else if (s == "UNDER_REVIEW") {
+    } else if (s == "12") {
         status = ArticleStatus::UNDER_REVIEW;
-    } else if (s == "REVISIONS") {
+    } else if (s == "13") {
         status = ArticleStatus::REVISIONS;
-    } else if (s == "ACCEPTED") {
+    } else if (s == "14") {
         status = ArticleStatus::ACCEPTED;
-    } else if (s == "REJECTED") {
+    } else if (s == "16") {
         status = ArticleStatus::REJECTED;
-    } else if (s == "PUBLISHED") {
+    } else if (s == "17") {
         status = ArticleStatus::PUBLISHED;
     } else {
         status = ArticleStatus::DRAFT;

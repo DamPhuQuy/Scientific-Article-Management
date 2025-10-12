@@ -6,21 +6,21 @@
 using namespace std;
 
 enum class Type {
-    SCI,
-    SCIE,
-    ISI,
-    SCOPUS,
-    OTHER
+    SCI = 1,
+    SCIE = 2,
+    ISI = 3,
+    SCOPUS = 4,
+    OTHER = 5
 };
 
 enum class ArticleStatus {
-    DRAFT,
-    SUBMITTED,
-    UNDER_REVIEW,
-    REVISIONS,
-    ACCEPTED,
-    REJECTED,
-    PUBLISHED
+    DRAFT = 11,
+    SUBMITTED = 12,
+    UNDER_REVIEW = 13,
+    REVISIONS = 14,
+    ACCEPTED = 15,
+    REJECTED = 16,
+    PUBLISHED = 17
 };
 
 class Article {
