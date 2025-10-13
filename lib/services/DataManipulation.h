@@ -21,6 +21,7 @@ public:
     		                      string a_id = "",
                                   Type t = Type::OTHER,
                                   ArticleStatus st = ArticleStatus::DRAFT);
+
     template<typename T>
     map<string, T> init();
 };
