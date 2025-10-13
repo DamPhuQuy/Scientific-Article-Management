@@ -1,7 +1,6 @@
 #include "services/DataManipulation.h"
 #include "models/Article.h"
 #include "models/Author.h"
-#include "models/Journal.h"
 
 #include <iostream>
 #include <fstream>
