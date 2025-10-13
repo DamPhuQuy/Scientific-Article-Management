@@ -1,9 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
-#include "models/Article.h"
-#include "models/Journal.h"
-#include "models/Author.h"
+#include "models/articles/Article.h"
 
 using namespace std;
 

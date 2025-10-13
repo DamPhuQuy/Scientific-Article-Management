@@ -1,14 +1,14 @@
 #pragma once
 
-#include "models/Article.h"
+#include "models/articles/Article.h"
 #include <string> 
-#include <vector>
+#include <vector> 
 
 using namespace std; 
 
-class SCOPUS_Article : public Article {
+class OTHER_Article : public Article {
 public:
-	SCOPUS_Article(
+	OTHER_Article(
 		string abstract = "",
 		vector<string> authors = {},
 		int n_citation = 0,
@@ -21,8 +21,7 @@ public:
         ArticleStatus st = ArticleStatus::DRAFT
 	);
 
-	explicit SCOPUS_Article(const Article& other);
-
+	explicit OTHER_Article(const Article& other);
 	[[nodiscard]] Article* clone() const override;
 	[[nodiscard]] Article* input() const override;
 };

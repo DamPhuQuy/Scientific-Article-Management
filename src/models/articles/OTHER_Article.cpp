@@ -1,4 +1,4 @@
-#include "models/OTHER_Article.h"
+#include "models/articles/OTHER_Article.h"
 
 using namespace std; 
 

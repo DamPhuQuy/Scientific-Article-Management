@@ -1,8 +1,8 @@
-#include "models/SCIE_Article.h"
+#include "models/articles/SCOPUS_Article.h"
 
 using namespace std; 
 
-SCIE_Article::SCIE_Article(
+SCOPUS_Article::SCOPUS_Article(
     string abstract,
 	vector<string> authors,
 	int n_citation,
@@ -27,8 +27,8 @@ SCIE_Article::SCIE_Article(
     st
 ) {}
 
-SCIE_Article::SCIE_Article(const Article &other) : Article(other) {}
+SCOPUS_Article::SCOPUS_Article(const Article &other) : Article(other) {}
 
-Article* SCIE_Article::clone() const {
-    return new SCIE_Article(*this);
+Article *SCOPUS_Article::clone() const {
+    return new SCOPUS_Article(*this);
 }
