@@ -4,8 +4,8 @@
 
 using namespace std;
 
-string Article::typeToString() const {
-    switch (this->type) {
+string Article::typeToString(Type type) {
+    switch (type) {
         case Type::SCIE:       return "SCIE";
         case Type::SCOPUS:     return "SCOPUS";
         case Type::CONFERENCE: return "CONFERENCE";
@@ -13,8 +13,8 @@ string Article::typeToString() const {
     }
 }
 
-string Article::statusToString() const {
-    switch(this->status) {
+string Article::statusToString(ArticleStatus status) {
+    switch(status) {
         case ArticleStatus::SUBMITTED:     return "SUBMITTED";
         case ArticleStatus::UNDER_REVIEW:  return "UNDER_REVIEW";
         case ArticleStatus::REVISIONS:     return "REVISIONS";

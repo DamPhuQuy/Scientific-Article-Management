@@ -4,9 +4,7 @@ using namespace std;
 
 SCOPUS_Article::SCOPUS_Article(
     string abstract,
-	vector<string> authors,
 	int n_citation,
-	vector<string> references,
 	string title,
 	string venue,
 	int year = 0,
@@ -15,10 +13,8 @@ SCOPUS_Article::SCOPUS_Article(
     ArticleStatus st
 )
 : Article(
-    abstract, 
-    authors, 
+    abstract,  
     n_citation, 
-    references, 
     title, 
     venue, 
     year, 

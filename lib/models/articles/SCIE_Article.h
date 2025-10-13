@@ -10,9 +10,7 @@ class SCIE_Article : public Article {
 public:
 	SCIE_Article(
 		string abstract = "",
-		vector<string> authors = {},
 		int n_citation = 0,
-		vector<string> references = {},
 		string title = "",
 		string venue = "",
 		int year = 0,

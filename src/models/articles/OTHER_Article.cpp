@@ -4,9 +4,7 @@ using namespace std;
 
 OTHER_Article::OTHER_Article(
     string abstract, 
-    vector<string> authors, 
     int n_citation, 
-    vector<string> references, 
     string title, 
     string venue, 
     int year, 
@@ -15,9 +13,7 @@ OTHER_Article::OTHER_Article(
     ArticleStatus st)
 : Article(
     abstract, 
-    authors, 
     n_citation, 
-    references, 
     title, 
     venue, 
     year, 

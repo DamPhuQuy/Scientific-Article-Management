@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// Type for article
 enum class Type {
     SCIE = 1, 
 	SCOPUS = 2,
@@ -13,7 +14,8 @@ enum class Type {
     OTHER = 4 
 };
 
-enum class ArticleStatus {
+// Show the current status
+enum class ArticleStatus { 
     DRAFT = 11,
     SUBMITTED = 12,
     UNDER_REVIEW = 13,
@@ -54,8 +56,8 @@ public:
 	[[nodiscard]] string getAbstract() const; 
 	[[nodiscard]] int getCitation() const;  
 	[[nodiscard]] int getYear() const;
-	[[nodiscard]] string typeToString() const;
-	[[nodiscard]] string statusToString() const;
+	[[nodiscard]] static string typeToString(Type type);
+	[[nodiscard]] static string statusToString(ArticleStatus status);
 
     // Workflow
     void submit();

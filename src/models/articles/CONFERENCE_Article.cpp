@@ -4,9 +4,7 @@ using namespace std;
 
 CONFERENCE_Article::CONFERENCE_Article(
     string abstract,
-	vector<string> authors,
 	int n_citation,
-	vector<string> references,
 	string title,
 	string venue,
 	int year = 0,
@@ -16,9 +14,7 @@ CONFERENCE_Article::CONFERENCE_Article(
 )
 : Article(
     abstract, 
-    authors, 
     n_citation, 
-    references, 
     title, 
     venue, 
     year, 

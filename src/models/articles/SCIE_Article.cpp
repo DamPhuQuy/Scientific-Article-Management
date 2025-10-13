@@ -4,9 +4,7 @@ using namespace std;
 
 SCIE_Article::SCIE_Article(
     string abstract,
-	vector<string> authors,
 	int n_citation,
-	vector<string> references,
 	string title,
 	string venue,
 	int year = 0,
@@ -16,9 +14,7 @@ SCIE_Article::SCIE_Article(
 )
 : Article(
     abstract, 
-    authors, 
     n_citation, 
-    references, 
     title, 
     venue, 
     year, 
