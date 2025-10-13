@@ -26,18 +26,14 @@ string Article::statusToString() const {
 }
 
 Article::Article(string abstract,
-                vector<string> authors,
                 int n_citation,
-                vector<string> references,
                 string title, string venue,
                 int year,
                 string a_id,
                 Type t,
                 ArticleStatus st)
     : abstract(abstract),
-      authors(authors),
       n_citation(n_citation),
-      references(references),
       title(title),
       venue(venue),
       year(year),
@@ -48,9 +44,7 @@ Article::Article(string abstract,
 
 Article::Article(const Article &other)
     : abstract(other.abstract),
-      authors(other.authors),
       n_citation(other.n_citation),
-      references(other.references),
       title(other.title),
       venue(other.venue),
       year(other.year),
@@ -65,18 +59,6 @@ Article::Article(const Article &other)
 
 [[nodiscard]] string Article::getArticleTitle() const {
     return title;
-}
-
-[[nodiscard]] vector<string> Article::getAuthors() const {
-    if (authors.empty()) {
-        return {};
-    }
-
-    return authors;
-}
-
-[[nodiscard]] vector<string> Article::getReferences() const {
-    return references;
 }
 
 [[nodiscard]] int Article::getYear() const

@@ -27,9 +27,7 @@ class Article {
 protected:
 	string article_id;
     string abstract;
-	vector<string> authors;
 	int n_citation;
-	vector<string> references;
 	string title;
 	string venue;
 	int year;
@@ -39,9 +37,7 @@ protected:
 public:
     // Constructors
     Article(string abstract = "",
-		    vector<string> authors = {},
 		    int n_citation = 0,
-		    vector<string> references = {},
 		    string title = "",
 		    string venue = "",
 		    int year = 0,
@@ -54,11 +50,9 @@ public:
     // Getters
     [[nodiscard]] string getArticleID() const;
     [[nodiscard]] string getArticleTitle() const;
-    [[nodiscard]] vector<string> getAuthors() const;
     [[nodiscard]] string getVenueName() const;
 	[[nodiscard]] string getAbstract() const; 
-	[[nodiscard]] int getCitation() const; 
-	[[nodiscard]] vector<string> getReferences() const; 
+	[[nodiscard]] int getCitation() const;  
 	[[nodiscard]] int getYear() const;
 	[[nodiscard]] string typeToString() const;
 	[[nodiscard]] string statusToString() const;
