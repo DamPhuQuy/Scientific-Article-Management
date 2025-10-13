@@ -47,10 +47,6 @@ AuthorsRepo::AuthorsRepo(unordered_map<string, Author> au_con)
 {
 }
 
-AuthorsRepo::~AuthorsRepo()
-{
-}
-
 void AuthorsRepo::add(const Author &au)
 {
     string id = au.getId(); 
@@ -74,4 +70,47 @@ void AuthorsRepo::remove(const Author &au)
     else {
         cout << "Id nay khong ton tai!" << endl; 
     }
+}
+
+RepositoryManager::RepositoryManager(
+    const ArticlesRepo& a_repo,
+    const AuthorsRepo& au_repo,
+    const vector<ArticleReference>& ar_ref,
+    const vector<AuthorArticle>& au_ar
+)
+    : a_repo(a_repo),
+      au_repo(au_repo),
+      ar_ref(ar_ref),
+      au_ar(au_ar)
+{}
+
+void RepositoryManager::sync()
+{
+    
+}
+
+vector<string> RepositoryManager::getArticlesByAuthor(const string &author_id) const
+{
+    vector<string> store; 
+    for (auto element : au_ar) {
+        store.push_back(element.get_article_id(author_id)); 
+    }
+    return store; 
+}
+
+vector<string> RepositoryManager::getAuthorsByArticle(const string &article_id) const {
+    vector<string> store; 
+    for (auto element : au_ar) {
+        store.push_back(element.get_author_id(article_id)); 
+    }
+    return store; 
+}
+
+vector<string> RepositoryManager::getReferencesOfArticle(const string &article_id) const
+{
+    vector<string> store;
+    for (auto element : ar_ref) {
+        store.push_back(element.get_reference_id(article_id));
+    }
+    return store; 
 }

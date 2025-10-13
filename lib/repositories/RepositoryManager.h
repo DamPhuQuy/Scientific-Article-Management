@@ -13,8 +13,7 @@ class ArticlesRepo {
 private:
     unordered_map<string, Article*> articles_container; 
 public: 
-    
-    explicit ArticlesRepo(unordered_map<string, Article*> ar_con);
+    explicit ArticlesRepo(unordered_map<string, Article*> ar_con = {});
     ~ArticlesRepo();  
 
     void add(const Article& a); 
@@ -25,8 +24,8 @@ class AuthorsRepo {
 private: 
     unordered_map<string, Author> authors_container; 
 public: 
-    explicit AuthorsRepo(unordered_map<string, Author> au_con); 
-    ~AuthorsRepo(); 
+    explicit AuthorsRepo(unordered_map<string, Author> au_con = {}); 
+    ~AuthorsRepo() = default; 
 
     void add(const Author& au);
     void remove(const Author& au);
@@ -35,15 +34,23 @@ public:
 class RepositoryManager {
 private:
     ArticlesRepo a_repo; 
+    AuthorsRepo au_repo; 
     vector<ArticleReference> ar_ref; 
     vector<AuthorArticle> au_ar; 
 public:
     RepositoryManager(
-        ArticlesRepo a_repo,
-        vector<ArticleReference> ar_ref,
-        vector<AuthorArticle> au_ar
+        const ArticlesRepo& a_repo = ArticlesRepo(),
+        const AuthorsRepo& au_repo = AuthorsRepo(),
+        const vector<ArticleReference>& ar_ref = {},
+        const vector<AuthorArticle>& au_ar = {}
     );
 
-    ~RepositoryManager();
+    ~RepositoryManager() = default;
+
+    void sync(); 
+
+    vector<string> getArticlesByAuthor(const string& author_id) const;
+    vector<string> getAuthorsByArticle(const string& article_id) const; 
+    vector<string> getReferencesOfArticle(const string& article_id) const;
 };
 
