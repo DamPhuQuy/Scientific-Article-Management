@@ -24,5 +24,8 @@ public:
 
     template<typename T>
     map<string, T> init();
+
+    vector<Article*> fetchFromArticle();
+    vector<Author*> fetchFromAuthors();
 };
 
