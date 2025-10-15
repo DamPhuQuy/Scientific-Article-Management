@@ -17,9 +17,11 @@ void begin(){
     switch(choice){
         case 1:
             cout<<" Quan ly bai bao"<<endl;
+            
             break;
         case 2:
             cout<<" Quan ly tac gia"<<endl;
+            
             break;
         case 3:
             cout<<" Quan ly tap chi"<<endl;
@@ -38,7 +40,6 @@ void start() {
     RepositoryManager repo(
         data_m.init<Article*>(),
         data_m.init<Author>(),
-        data_m.init<Journal>()
     );
 }
 

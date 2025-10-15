@@ -14,4 +14,17 @@ public:
             return reference_id; 
         }
     }
+
+    string get_article_id(const string& reference_id) {
+        if (this->reference_id == reference_id) {
+            return article_id; 
+        }
+    }
 };
+
+    ArticleReference(const string& article_id, const string& reference_id) 
+        : article_id(article_id), reference_id(reference_id) {}
+
+    vector<ArticleReference> links = {}
+
+    
