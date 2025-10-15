@@ -9,6 +9,9 @@ private:
     string article_id; 
     string reference_id;
 public: 
+    ArticleReference(string article_id, string reference_id)
+    : article_id(article_id), reference_id(reference_id) {} 
+
     string get_reference_id(const string& article_id) {
         if (this->article_id == article_id) {
             return reference_id; 
@@ -21,10 +24,5 @@ public:
         }
     }
 };
-
-    ArticleReference(const string& article_id, const string& reference_id) 
-        : article_id(article_id), reference_id(reference_id) {}
-
-    vector<ArticleReference> links = {}
 
     

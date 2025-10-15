@@ -10,7 +10,7 @@ private:
     string id;            
     string fullName;         
     string country;           
-    string fieldOfStudy;    
+    string fieldOfStudy;     
     int totalPublications;
 public: 
     Author(
