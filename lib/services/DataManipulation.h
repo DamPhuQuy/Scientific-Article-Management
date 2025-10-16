@@ -24,7 +24,11 @@ public:
                                   Type t = Type::OTHER,
                                   ArticleStatus st = ArticleStatus::DRAFT);
 
-    unordered_map<string, Article*> fetchArticles(const fs::path& file_path); 
+    unordered_map<string, Article*> fetchArticles(
+        const fs::path& file_path,
+        vector<string>& AuthorArticle,
+        vector<string>& ArticleReference
+    ); 
     vector<Article*> fetchFromArticle();
     vector<Author*> fetchFromAuthors();
 };

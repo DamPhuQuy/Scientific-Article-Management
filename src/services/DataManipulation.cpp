@@ -53,32 +53,47 @@ bool DataManipulation::fileCheck(const fs::path &file_path, ifstream &in) {
     return true;
 }
 
-unordered_map<string, Article*> DataManipulation::fetchArticles(const fs::path& file_path) {
+unordered_map<string, Article*> DataManipulation::fetchArticles(
+    const fs::path& file_path,
+    vector<string>& AuthorArticle,
+    vector<string>& ArticleReference
+) {
     ifstream in; 
     if (!fileCheck(file_path, in)) 
         return {}; 
 
-    string line; 
-    
+    string line;     
     while (getline(in, line)) {
-        stringstream ss;
-           
-        string token; 
-        while (getline(ss, token, ',')) {
-            if (token.front() == '"' && token.back() == '"') {
-                token = token.substr(1, token.length() - 2); 
+        string abstract;
+        int n_citation = 0;
+        string title;
+        string venue;
+        int year = 0;
+        string id; 
+        int type = 0; 
 
-                if (token.front() == '[' && token.back() == ']') {
-                    token.substr(1, token.length() - 2); 
+        regex array_pattern(R"(\[([^\]]+)\])"); // [^\]]: \] is escape character of ] so that mean [ ^\] ] 
 
-                    regex pattern("'([^']+)'"); 
-                    sregex_iterator start(token.begin(), token.end(), pattern);
-                    sregex_iterator end; 
-                
-                    vector<string> authors; 
-                    for (auto it = start; it != end; it++) {
-                        authors.push_back((*it)[1].str()); 
-                    }
+        sregex_iterator start(line.begin(), line.end(), array_pattern); 
+        sregex_iterator end; 
+    
+        int order = 0; // order of array
+        for (auto it = start; it != end; ++it, order++) {
+            smatch match = *it; 
+            string content = match.str();
+            
+            regex content_pattern(R"'('([^']+)')'"); 
+            sregex_iterator start_content(content.begin(), content.end(), content_pattern);
+            sregex_iterator end_content; 
+
+            for (auto it2 = start_content; it2 != end_content; ++it2) {
+                smatch match2 = *it2; 
+                string value = match2.str(); 
+
+                if (order == 0) {
+                    AuthorArticle.emplace_back(value);
+                } else if (order == 1) {
+                    ArticleReference.emplace_back(value); 
                 }
             }
         }
