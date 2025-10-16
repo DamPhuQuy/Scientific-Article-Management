@@ -133,9 +133,3 @@ void Article::publish() {
     cout<<"Bai bao da duoc publish !"<<endl;
 }
 
-// abstract method
-
-void Article::display() const {
-    //
-}
-

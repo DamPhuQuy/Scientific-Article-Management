@@ -20,6 +20,7 @@ public:
 	);
 	explicit SCIE_Article(const Article& other);
 
+	void showDescription() const override; 
 	[[nodiscard]] Article *clone() const override;
 	[[nodiscard]] Article* input() const override;
 };

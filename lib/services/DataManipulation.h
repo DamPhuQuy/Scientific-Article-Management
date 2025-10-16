@@ -10,7 +10,7 @@ using namespace std;
 
 class DataManipulation {
 private:
-    static bool fileCheck(const fs::path &filePath, ifstream &in);
+    static bool fileCheck(const fs::path &file_path, ifstream &in);
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;
@@ -24,9 +24,7 @@ public:
                                   Type t = Type::OTHER,
                                   ArticleStatus st = ArticleStatus::DRAFT);
 
-    template<typename T>
-    map<string, T> init();
-
+    unordered_map<string, Article*> fetchArticles(const fs::path& file_path); 
     vector<Article*> fetchFromArticle();
     vector<Author*> fetchFromAuthors();
 };

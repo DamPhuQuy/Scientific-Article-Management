@@ -67,8 +67,8 @@ public:
     void reject();
     void publish();
 
-    // Abstract interface
-    void display() const;
+    // Abstract methods
+    void virtual showDescription() const = 0;
 	[[nodiscard]] virtual Article* clone() const = 0;
 	[[nodiscard]] virtual Article* input() const = 0;
 };
