@@ -1,12 +1,21 @@
-#include <vector>
-#include <string>
-#include "models/users/User.h"
+#pragma once 
 
+#include "models/users/User.h"
+#include "../repositories/RepositoryManager.h"
+#include "models/articles/Article.h"
+#include <string>
+
+enum decision{
+    ACCEPT,
+    REJECT,
+    PUBLISHED,
+};
 
 using namespace std;
 class Admin : public User {
 private:
     string admin_id;
+    decision admin_decision;
 public:
     Admin( 
         string username, 
@@ -18,4 +27,6 @@ public:
     Admin(const Admin& admin);
 
     string getAdminId() const;
+
+    void changeArticleStatus(const Article& article_id ,const ArticleStatus& newStatus,const decision& admin_decision);
 };

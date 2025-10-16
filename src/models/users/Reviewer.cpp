@@ -4,7 +4,7 @@ Reviewer::Reviewer(
     string username,
     string password,
     string reviewer_id,
-    Role role = Role::REVIEWER,
+    Role role = Role::READER,
     Status status = Status::ONLINE
 ) : User(username, password, role, status), reviewer_id(reviewer_id) {}
 

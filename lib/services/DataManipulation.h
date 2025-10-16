@@ -3,7 +3,9 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <filesystem>
 
+namespace fs = std::filesystem;
 using namespace std;
 
 class DataManipulation {

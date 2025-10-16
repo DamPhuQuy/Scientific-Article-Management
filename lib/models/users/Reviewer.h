@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <string>
 #include "models/users/User.h"
@@ -12,7 +14,7 @@ public:
         string username,
         string password,
         string reviewer_id,
-        Role role = Role::REVIEWER,
+        Role role = Role::READER,
         Status status = Status::ONLINE
     );
 
