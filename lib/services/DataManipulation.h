@@ -11,6 +11,9 @@ using namespace std;
 class DataManipulation {
 private:
     static bool fileCheck(const fs::path &file_path, ifstream &in);
+    static bool isNumber(const string& token); 
+    static void parseArray(const string& line, vector<string> &AuthorArticle, vector<string> &ArticleReference); 
+    static void parseAbstract(const string& line, string& abstract); 
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;
