@@ -5,16 +5,19 @@
 #include <sstream>
 #include <vector>
 #include <cctype>
-#include "services/DataManipulation.h"
-#include "models/articles/CONFERENCE_Article.h"
-#include "models/articles/SCIE_Article.h"
-#include "models/articles/SCOPUS_Article.h"
-#include "models/articles/OTHER_Article.h"
-#include "models/articles/Author.h"
-#include "utilities/Constants.h"
+#include <stack> 
+#include <nlohmann/json.hpp>
+#include "DataManipulation.h"
+#include "CONFERENCE_Article.h"
+#include "SCIE_Article.h"
+#include "SCOPUS_Article.h"
+#include "OTHER_Article.h"
+#include "Author.h"
+#include "Constants.h"
 
 using namespace std;
 namespace fs = std::filesystem;
+using json = nlohmann::json;
 
 Article* DataManipulation::createArticle(
     string abstract,
@@ -40,8 +43,8 @@ bool DataManipulation::fileCheck(const fs::path &file_path, ifstream &in) {
         return false;
     }
 
-    if (file_path.extension() != ".csv") {
-        cout << "ERROR: Invalid file extension (expected .csv): " << file_path << "\n";
+    if (file_path.extension() != ".json") {
+        cout << "ERROR: Invalid file extension (expected.json): " << file_path << "\n";
         return false;
     }
 
@@ -54,43 +57,6 @@ bool DataManipulation::fileCheck(const fs::path &file_path, ifstream &in) {
     return true;
 }
 
-void DataManipulation::parseArray(const string &line, vector<string>& AuthorArticle, vector<string>& ArticleReference) {
-    regex array_pattern(R"(\[([^\]]+)\])"); // [^\]]: \] is escape character of ] so that mean [ ^\] ] 
-
-    sregex_iterator start(line.begin(), line.end(), array_pattern); 
-    sregex_iterator end; 
-
-    int order = 0; // order of array
-    for (auto it = start; it != end; ++it, order++) {
-        smatch match = *it; 
-        string content = match.str();
-        
-        regex content_pattern(R"'('([^']+)')'"); 
-        sregex_iterator start_content(content.begin(), content.end(), content_pattern);
-        sregex_iterator end_content; 
-        for (auto it2 = start_content; it2 != end_content; ++it2) {
-            smatch match2 = *it2; 
-            string value = match2.str(); 
-            if (order == 0) {
-                AuthorArticle.emplace_back(value);
-            } else if (order == 1) {
-                ArticleReference.emplace_back(value); 
-            }
-        }
-    }
-}
-
-void DataManipulation::parseAbstract(const string& line, string& abstract) {
-    regex abstract_pattern(R"(\"([^.?])\")"); 
-
-    sregex_iterator start(line.begin(), line.end(), abstract_pattern);
-    sregex_iterator end;
-    for (auto it = start; it != end; ++it) {
-        smatch match = *it; 
-        abstract = match.str(); 
-    }
-}
-
 bool DataManipulation::isNumber(const string& token) {
     regex pattern(R"(^-?\d+(\.\d+)?$)"); 
     return regex_match(token, pattern); 
@@ -98,47 +64,37 @@ bool DataManipulation::isNumber(const string& token) {
 
 unordered_map<string, Article*> DataManipulation::fetchArticles(
     const fs::path& file_path,
-    vector<string>& AuthorArticle,
-    vector<string>& ArticleReference
+    vector<AuthorArticle>& author_article,
+    vector<ArticleReference>& article_reference
 ) {
     ifstream in; 
-    if (!fileCheck(file_path, in))
-        cout << "Khong tim thay file!";  
+    if (!fileCheck(file_path, in)) 
         return {}; 
 
-    string line;     
-    while (getline(in, line)) {
-        string abstract;
-        int n_citation = 0;
-        string title;
-        string venue;
-        int year = 0;
-        string id; 
-        int type = 0; 
+    unordered_map<string, Article*> store; 
 
-        parseAbstract(line, abstract); 
-        parseArray(line, AuthorArticle, ArticleReference);
-        
-        stringstream ss; 
-        string token; 
-        while (getline(ss, token, ',')) {
-            if (token.front() == '[' && token.back() == ']') continue; 
-            else if (token.front() == '"' && token.back() == '"') continue;
+    json data;
+    in >> data;
 
-            int index = 0; 
-            if (isNumber(token)) {
-                int value = stoi(token); 
-                if (index == 0) {
-                    n_citation = value; 
-                } else if (index == 1) {
-                    year = value; 
-                } else if (index == 2) {
-                    type = value; 
-                }
-            }
-            index++; 
-
-            
+    for (auto& item : data) {
+        for (auto element : item["authors"]) {
+            AuthorArticle temp(item["id"], element); 
+            author_article.push_back(temp); 
         }
+        
+        for (auto element : item["references"]) {
+            ArticleReference temp(item["id"], element); 
+            article_reference.push_back(temp); 
+        }
+        store[item["id"]] = createArticle(item["abstract"],
+                                          item["n_citation"],
+                                          item["title"],
+                                          item["venue"],
+                                          item["year"],
+                                          item["id"],
+                                          static_cast<Type>(item["type"])
+        );
     }
+    
+    return store; 
 }

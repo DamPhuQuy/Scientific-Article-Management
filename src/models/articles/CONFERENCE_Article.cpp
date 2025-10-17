@@ -1,5 +1,5 @@
-#include "models/articles/CONFERENCE_Article.h"
-
+#include "CONFERENCE_Article.h"
+#include <iostream> 
 using namespace std; 
 
 CONFERENCE_Article::CONFERENCE_Article(
@@ -7,7 +7,7 @@ CONFERENCE_Article::CONFERENCE_Article(
 	int n_citation,
 	string title,
 	string venue,
-	int year = 0,
+	int year,
     string a_id,
     Type t,
     ArticleStatus st
@@ -23,10 +23,29 @@ CONFERENCE_Article::CONFERENCE_Article(
     st
 ) {}
 
+CONFERENCE_Article::~CONFERENCE_Article() {} 
+
 CONFERENCE_Article::CONFERENCE_Article(const Article &other) : Article(other) {}
+
+void CONFERENCE_Article::showDescription() const
+{
+    cout << "==== ARTICLE INFO ====" << endl;
+    cout << "ID: " << article_id << endl;
+    cout << "Title: " << title << endl;
+    cout << "Venue: " << venue << endl;
+    cout << "Year: " << year << endl;
+    cout << "Citations: " << n_citation << endl;
+    cout << "Type: " << typeToString(type) << endl;
+    cout << "Abstract: " << abstract << endl;
+    cout << "============================" << endl; 
+}
 
 Article *CONFERENCE_Article::clone() const
 {
     return new CONFERENCE_Article(*this);
 }
 
+Article *CONFERENCE_Article::input() const
+{
+    return nullptr;
+}

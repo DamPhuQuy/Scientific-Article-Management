@@ -8,11 +8,11 @@ using namespace std;
 
 class Constants {
 private: 
-    inline static const fs::path MODELS_PATH = "data/models"; 
+    inline static const fs::path MODELS_PATH = "../data"; 
 public: 
     static fs::path getModelsPath(const std::string &file) {
         return MODELS_PATH / file; 
     }
 
-    inline static const fs::path DataSet = getModelsPath("dataset.csv");
+    inline static const fs::path DataSet = getModelsPath("dataset.json");
 };

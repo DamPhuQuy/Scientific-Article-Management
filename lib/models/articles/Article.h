@@ -56,6 +56,8 @@ public:
 	[[nodiscard]] string getAbstract() const; 
 	[[nodiscard]] int getCitation() const;  
 	[[nodiscard]] int getYear() const;
+    [[nodiscard]] static Type getType(int order); 
+    [[nodiscard]] static ArticleStatus getStatus(int order); 
 	[[nodiscard]] static string typeToString(Type type);
 	[[nodiscard]] static string statusToString(ArticleStatus status);
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "models/articles/Article.h"
+#include "Article.h"
 #include <string> 
 #include <vector> 
 
@@ -18,7 +18,7 @@ public:
         Type t = Type::OTHER,
         ArticleStatus st = ArticleStatus::DRAFT
 	);
-
+	~OTHER_Article(); 
 	explicit OTHER_Article(const Article& other);
 
 	void showDescription() const override; 

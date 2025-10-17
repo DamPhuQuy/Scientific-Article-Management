@@ -1,7 +1,9 @@
-#include "repositories/RepositoryManager.h"
-#include "services/DataManipulation.h"
+#include "RepositoryManager.h"
+#include "DataManipulation.h"
+#include "Constants.h"
 
 using namespace std;
+namespace fs = std::filesystem; 
 
 void begin(){ 
     cout<<"Chao mung den voi he thong quan ly bai bao"<<endl;
@@ -37,10 +39,14 @@ void begin(){
 
 void start() {
     DataManipulation data_m;
-    RepositoryManager repo(
-        data_m.init<Article*>(),
-        data_m.init<Author>(),
-    );
+    vector<AuthorArticle> author_article; 
+    vector<ArticleReference> article_reference;
+    fs::path file_path(Constants::DataSet); 
+    unordered_map<string, Article*> articles = data_m.fetchArticles(file_path, author_article, article_reference);
+    
+    for (auto element : articles) {
+        element.second->showDescription(); 
+    }
 }
 
 int main() {

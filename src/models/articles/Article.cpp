@@ -1,5 +1,5 @@
-﻿#include "models/articles/Article.h"
-#include <iostream>
+﻿#include <iostream>
+#include "Article.h"
 
 using namespace std;
 
@@ -65,7 +65,21 @@ Article::Article(const Article &other)
     return year;
 }
 
-[[nodiscard]] string Article::getVenueName() const {
+Type Article::getType(int order)
+{
+    if (order >= 1 && order <= 4)
+        return static_cast<Type>(order);
+    return Type::OTHER;
+}
+
+ArticleStatus Article::getStatus(int order) {
+    if (order >= 11 && order <= 17)
+        return static_cast<ArticleStatus>(order); 
+    return ArticleStatus::DRAFT; 
+}
+
+[[nodiscard]] string Article::getVenueName() const
+{
     return venue;
 }
 

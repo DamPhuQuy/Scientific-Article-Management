@@ -4,6 +4,9 @@
 #include <map>
 #include <vector>
 #include <filesystem>
+#include "ArticleReference.h"
+#include "AuthorArticle.h"
+#include "Article.h" 
 
 namespace fs = std::filesystem;
 using namespace std;
@@ -12,8 +15,6 @@ class DataManipulation {
 private:
     static bool fileCheck(const fs::path &file_path, ifstream &in);
     static bool isNumber(const string& token); 
-    static void parseArray(const string& line, vector<string> &AuthorArticle, vector<string> &ArticleReference); 
-    static void parseAbstract(const string& line, string& abstract); 
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;
@@ -29,10 +30,10 @@ public:
 
     unordered_map<string, Article*> fetchArticles(
         const fs::path& file_path,
-        vector<string>& AuthorArticle,
-        vector<string>& ArticleReference
+        vector<AuthorArticle>& author_article,
+        vector<ArticleReference>& article_reference
     ); 
-    vector<Article*> fetchFromArticle();
-    vector<Author*> fetchFromAuthors();
+    // vector<Article*> fetchFromArticle();
+    // vector<Author*> fetchFromAuthors();
 };
 

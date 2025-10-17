@@ -1,7 +1,6 @@
-#include "repositories/RepositoryManager.h"
+#include "RepositoryManager.h"
 #include <algorithm> 
 #include <iostream> 
-#include "RepositoryManager.h"
 
 using namespace std;
 
@@ -84,10 +83,10 @@ RepositoryManager::RepositoryManager(
       au_ar(au_ar)
 {}
 
-void RepositoryManager::sync()
-{
+// void RepositoryManager::sync()
+// {
     
-}
+// }
 
 vector<string> RepositoryManager::getArticlesByAuthor(const string &author_id) const
 {

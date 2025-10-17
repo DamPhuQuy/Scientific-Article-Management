@@ -1,11 +1,11 @@
 #pragma once
 #include <unordered_map>
 #include <string>
-#include "models/articles/Article.h"
-#include "models/articles/ArticleReference.h"
-#include "models/articles/AuthorArticle.h"
-#include "services/DataManipulation.h"
-#include "models/articles/Author.h"
+#include "Article.h"
+#include "ArticleReference.h"
+#include "AuthorArticle.h"
+#include "DataManipulation.h"
+#include "Author.h"
 
 using namespace std;
 

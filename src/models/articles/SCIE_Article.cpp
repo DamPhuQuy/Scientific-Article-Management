@@ -1,5 +1,5 @@
-#include "models/articles/SCIE_Article.h"
-
+#include "SCIE_Article.h"
+#include <iostream> 
 using namespace std; 
 
 SCIE_Article::SCIE_Article(
@@ -7,7 +7,7 @@ SCIE_Article::SCIE_Article(
 	int n_citation,
 	string title,
 	string venue,
-	int year = 0,
+	int year,
     string a_id,
     Type t,
     ArticleStatus st
@@ -23,8 +23,31 @@ SCIE_Article::SCIE_Article(
     st
 ) {}
 
+SCIE_Article::~SCIE_Article()
+{
+}
+
 SCIE_Article::SCIE_Article(const Article &other) : Article(other) {}
 
-Article* SCIE_Article::clone() const {
+void SCIE_Article::showDescription() const
+{
+    cout << "==== ARTICLE INFO ====" << endl;
+    cout << "ID: " << article_id << endl;
+    cout << "Title: " << title << endl;
+    cout << "Venue: " << venue << endl;
+    cout << "Year: " << year << endl;
+    cout << "Citations: " << n_citation << endl;
+    cout << "Type: " << typeToString(type) << endl;
+    cout << "Abstract: " << abstract << endl;
+    cout << "============================" << endl;
+}
+
+Article *SCIE_Article::clone() const
+{
     return new SCIE_Article(*this);
+}
+
+Article *SCIE_Article::input() const
+{
+    return nullptr;
 }
