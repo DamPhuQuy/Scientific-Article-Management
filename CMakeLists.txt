@@ -17,10 +17,6 @@ file(GLOB_RECURSE SRC_FILES
     "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
-find_package(nlohmann_json CONFIG REQUIRED)
-
 add_executable(Run
     ${SRC_FILES}
 )
-
-target_link_libraries(Run PRIVATE nlohmann_json::nlohmann_json)
