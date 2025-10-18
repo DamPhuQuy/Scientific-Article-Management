@@ -37,21 +37,24 @@ void begin(){
     }
 }
 
-void start() {
-    DataManipulation data_m;
-    vector<AuthorArticle> author_article; 
-    vector<ArticleReference> article_reference;
-    fs::path file_path(Constants::DataSet); 
-    unordered_map<string, Article*> articles = data_m.fetchArticles(file_path, author_article, article_reference);
-    
-    for (auto element : articles) {
-        element.second->showDescription(); 
-    }
+void init_data() {
+    DataManipulation data_m; 
 
-    vector<Author> authors = data_m.fetchAuthorInformation(Constants::AuthorInfo);
-    for (const auto& author : authors) {
-        author.showAuthorDetails(); 
-    }
+    AuthorsRepo au_repo(
+        data_m.fetchAuthorInformation(Constants::AuthorInfo)
+    ); 
+
+    vector<AuthorArticle> au_ar; 
+    vector<ArticleReference> ar_ref; 
+    ArticlesRepo a_repo(
+        data_m.fetchArticles(Constants::DataSet, au_ar, ar_ref)
+    );
+
+    RepositoryManager repo(a_repo, au_repo, ar_ref, au_ar); 
+}
+
+void start() {
+    init_data(); 
 }
 
 int main() {

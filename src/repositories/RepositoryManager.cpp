@@ -87,29 +87,3 @@ RepositoryManager::RepositoryManager(
 // {
     
 // }
-
-vector<string> RepositoryManager::getArticlesByAuthor(const string &author_id) const
-{
-    vector<string> store; 
-    for (auto element : au_ar) {
-        store.push_back(element.get_article_id(author_id)); 
-    }
-    return store; 
-}
-
-vector<string> RepositoryManager::getAuthorsByArticle(const string &article_id) const {
-    vector<string> store; 
-    for (auto element : au_ar) {
-        store.push_back(element.get_author_id(article_id)); 
-    }
-    return store; 
-}
-
-vector<string> RepositoryManager::getReferencesOfArticle(const string &article_id) const
-{
-    vector<string> store;
-    for (auto element : ar_ref) {
-        store.push_back(element.get_reference_id(article_id));
-    }
-    return store; 
-}

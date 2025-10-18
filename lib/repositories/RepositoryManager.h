@@ -48,9 +48,5 @@ public:
     ~RepositoryManager() = default;
 
     void sync(); 
-
-    vector<string> getArticlesByAuthor(const string& author_id) const;
-    vector<string> getAuthorsByArticle(const string& article_id) const; 
-    vector<string> getReferencesOfArticle(const string& article_id) const;
 };
 

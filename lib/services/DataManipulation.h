@@ -33,6 +33,6 @@ public:
         vector<AuthorArticle>& author_article,
         vector<ArticleReference>& article_reference
     );
-    vector<Author> fetchAuthorInformation(const fs::path &file_path);
+    unordered_map<string, Author> fetchAuthorInformation(const fs::path &file_path);
 };
 
