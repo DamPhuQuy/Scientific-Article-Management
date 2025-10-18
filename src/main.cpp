@@ -47,6 +47,11 @@ void start() {
     for (auto element : articles) {
         element.second->showDescription(); 
     }
+
+    vector<Author> authors = data_m.fetchAuthorInformation(Constants::AuthorInfo);
+    for (const auto& author : authors) {
+        author.showAuthorDetails(); 
+    }
 }
 
 int main() {

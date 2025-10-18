@@ -1,4 +1,5 @@
 #include "Author.h"
+#include <iostream> 
 
 using namespace std; 
 
@@ -54,4 +55,13 @@ void Author::setFieldOfStudy(const string& newFieldOfStudy) {
 }
 void Author::setTotalPublications(int newTotal) {
     this->totalPublications = newTotal;
+}
+
+void Author::showAuthorDetails() const {
+    cout << "Author ID: " << this->id << "\n";
+    cout << "Full Name: " << this->fullName << "\n";
+    cout << "Country: " << this->country << "\n";
+    cout << "Field of Study: " << this->fieldOfStudy << "\n";
+    cout << "Total Publications: " << this->totalPublications << "\n";
+    cout << "---------------------------------------" << endl;
 }

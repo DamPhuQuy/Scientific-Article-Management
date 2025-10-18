@@ -36,4 +36,5 @@ public:
     void setCountry(const string& newCountry); 
     void setFieldOfStudy(const string& newFieldOfStudy); 
     void setTotalPublications(int newTotal);
+    void showAuthorDetails() const;
 };

@@ -32,8 +32,7 @@ public:
         const fs::path& file_path,
         vector<AuthorArticle>& author_article,
         vector<ArticleReference>& article_reference
-    ); 
-    // vector<Article*> fetchFromArticle();
-    // vector<Author*> fetchFromAuthors();
+    );
+    vector<Author> fetchAuthorInformation(const fs::path &file_path);
 };
 

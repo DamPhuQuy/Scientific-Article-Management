@@ -98,3 +98,26 @@ unordered_map<string, Article*> DataManipulation::fetchArticles(
     
     return store; 
 }
+
+vector<Author> DataManipulation::fetchAuthorInformation(const fs::path& file_path) {
+    ifstream in;
+    if (!fileCheck(file_path, in))
+        return {};
+
+    vector<Author> info; 
+    json data = json::parse(in); 
+
+    for (auto& item : data) {
+        info.push_back(
+            Author(
+                item["id"],
+                item["name"], 
+                item["country"],
+                item["field_of_study"],
+                item["total_publications"] 
+            )
+        ); 
+    }
+
+    return info; 
+}
