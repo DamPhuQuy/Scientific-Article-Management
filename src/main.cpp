@@ -37,7 +37,7 @@ void begin(){
     }
 }
 
-void init_data() {
+void start() {
     DataManipulation data_m; 
 
     ArticleRepo a_repo; 
@@ -48,11 +48,8 @@ void init_data() {
     data_m.fetchArticleDataSet(Constants::DataSet, a_repo, au_ar, ar_ref); 
     data_m.fetchAuthorInformation(Constants::AuthorInfo, au_repo); 
 
-    RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref); 
-}
-
-void start() {
-    init_data(); 
+    RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
+    repo.getArticles().traverse(); 
 }
 
 int main() {

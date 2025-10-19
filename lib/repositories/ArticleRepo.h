@@ -14,4 +14,6 @@ public:
 
     void add(Article* a); 
     void remove(const Article& a); 
+
+    void traverse(); 
 };

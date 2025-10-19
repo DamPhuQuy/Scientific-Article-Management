@@ -19,10 +19,11 @@ void ArticleRepo::add(Article *a)
     auto it = this->articles_container.find(id);
     if (it != this->articles_container.end()) {
         cout << "Id nay da ton tai!" << endl;
+        delete a; 
         return;
     }
     else {
-        this->articles_container[id] = a->clone(); 
+        this->articles_container[id] = a; 
     }
 }
 
@@ -35,5 +36,12 @@ void ArticleRepo::remove(const Article &a)
     } 
     else {
         cout << "Id nay khong ton tai!" << endl; 
+    }
+}
+
+void ArticleRepo::traverse()
+{
+    for (auto element : articles_container) {
+        element.second->showDescription(); 
     }
 }
