@@ -5,10 +5,10 @@
 using namespace std;
 
 RepositoryManager::RepositoryManager(
-    const ArticleRepo& a_repo = ArticleRepo(),
-    const AuthorRepo& au_repo = AuthorRepo(),
-    const AuthorArticleRepo& au_ar = AuthorArticleRepo(),
-    const ArticleReferenceRepo& ar_ref = ArticleReferenceRepo()
+    ArticleRepo& a_repo,
+    AuthorRepo& au_repo,
+    AuthorArticleRepo& au_ar,
+    ArticleReferenceRepo& ar_ref
 )
     : a_repo(a_repo),
       au_repo(au_repo),

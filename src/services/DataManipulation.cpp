@@ -12,9 +12,7 @@
 #include "SCIE_Article.h"
 #include "SCOPUS_Article.h"
 #include "OTHER_Article.h"
-#include "Constants.h"
-#include "ArticleReferenceRepo.h"
-#include "AuthorArticleRepo.h" 
+#include "Constants.h" 
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -63,58 +61,50 @@ bool DataManipulation::isNumber(const string& token) {
     return regex_match(token, pattern); 
 }
 
-unordered_map<string, Article*> DataManipulation::fetchArticles(
+void DataManipulation::fetchArticleDataSet(
     const fs::path& file_path,
-    vector<AuthorArticle>& author_article,
-    vector<ArticleReference>& article_reference
+    ArticleRepo& ar_repo,
+    AuthorArticleRepo& au_ar,
+    ArticleReferenceRepo& ar_ref
 ) {
     ifstream in; 
     if (!fileCheck(file_path, in)) 
-        return {}; 
-
-    unordered_map<string, Article*> store; 
+        return; 
 
     json data;
     in >> data;
 
     for (auto& item : data) {
         for (auto element : item["authors"]) {
-            AuthorArticle temp(item["id"], element); 
-            author_article.push_back(temp); 
+            au_ar.add(item["id"], element); 
         }
         
         for (auto element : item["references"]) {
-            ArticleReference temp(item["id"], element); 
-            article_reference.push_back(temp); 
+            ar_ref.addReference(item["id"], element);  
         }
-        store[item["id"]] = createArticle(item["abstract"],
-                                          item["n_citation"],
-                                          item["title"],
-                                          item["venue"],
-                                          item["year"],
-                                          item["id"],
-                                          static_cast<Type>(item["type"])
-        );
-    }
-    
-    return store; 
+
+        ar_repo.add(createArticle(item["abstract"],
+                                  item["n_citation"],
+                                  item["title"],
+                                  item["venue"],
+                                  item["year"],
+                                  item["id"],
+                                  static_cast<Type>(item["type"]))); 
+    } 
 }
 
-unordered_map<string, Author> DataManipulation::fetchAuthorInformation(const fs::path& file_path) {
+void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorRepo& au_repo) {
     ifstream in;
     if (!fileCheck(file_path, in))
-        return {};
+        return;
 
-    unordered_map<string, Author> info;  
     json data = json::parse(in); 
 
     for (auto& item : data) {
-        info[item["id"]] = Author(item["id"],
-                                  item["fullName"], 
-                                  item["country"],
-                                  item["fieldOfStudy"],
-                                  item["totalPublications"]); 
-    }
-
-    return info; 
+        au_repo.add(Author(item["id"],
+                     item["fullName"], 
+                     item["country"],
+                     item["fieldOfStudy"],
+                     item["totalPublications"])); 
+    } 
 }

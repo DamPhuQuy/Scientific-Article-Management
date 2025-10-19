@@ -8,21 +8,21 @@ ArticleRepo::ArticleRepo(unordered_map<string, Article *> ar_con)
 
 ArticleRepo::~ArticleRepo()
 {
-    for (auto element : this->articles_container) {
+    for (auto &element : this->articles_container) {
         delete element.second; 
     }
 }
 
-void ArticleRepo::add(const Article &a)
+void ArticleRepo::add(Article *a)
 {
-    string id = a.getArticleID(); 
+    string id = a->getArticleID(); 
     auto it = this->articles_container.find(id);
     if (it != this->articles_container.end()) {
         cout << "Id nay da ton tai!" << endl;
         return;
     }
     else {
-        this->articles_container[id] = a.clone(); 
+        this->articles_container[id] = a->clone(); 
     }
 }
 

@@ -8,9 +8,10 @@ class ArticleRepo {
 private:
     unordered_map<string, Article*> articles_container; 
 public: 
-    explicit ArticleRepo(unordered_map<string, Article*> ar_con = {});
+    ArticleRepo() = default; 
+    explicit ArticleRepo(unordered_map<string, Article*> ar_con);
     ~ArticleRepo();  
 
-    void add(const Article& a); 
+    void add(Article* a); 
     void remove(const Article& a); 
 };

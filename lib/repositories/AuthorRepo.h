@@ -8,7 +8,8 @@ class AuthorRepo {
 private: 
     unordered_map<string, Author> authors_container; 
 public: 
-    explicit AuthorRepo(unordered_map<string, Author> au_con = {}); 
+    AuthorRepo() = default; 
+    explicit AuthorRepo(unordered_map<string, Author> au_con); 
     ~AuthorRepo() = default; 
 
     void add(const Author& au);

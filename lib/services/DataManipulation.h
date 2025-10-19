@@ -4,8 +4,12 @@
 #include <map>
 #include <vector>
 #include <filesystem>
+#include "ArticleRepo.h" 
+#include "AuthorRepo.h"
 #include "ArticleReference.h"
 #include "AuthorArticle.h"
+#include "ArticleReferenceRepo.h"
+#include "AuthorArticleRepo.h"
 #include "Article.h" 
 
 namespace fs = std::filesystem;
@@ -28,11 +32,12 @@ public:
                                   Type t = Type::OTHER,
                                   ArticleStatus st = ArticleStatus::DRAFT);
 
-    unordered_map<string, Article*> fetchArticles(
+    void fetchArticleDataSet(
         const fs::path& file_path,
-        vector<AuthorArticle>& author_article,
-        vector<ArticleReference>& article_reference
+        ArticleRepo& ar_repo,
+        AuthorArticleRepo& au_ar,
+        ArticleReferenceRepo& ar_ref
     );
-    unordered_map<string, Author> fetchAuthorInformation(const fs::path &file_path);
+    void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo);
 };
 

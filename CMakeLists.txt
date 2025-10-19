@@ -17,6 +17,9 @@ file(GLOB_RECURSE SRC_FILES
     "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
+# add_compile_options(-fsanitize=address -g)
+# add_link_options(-fsanitize=address)
+
 add_executable(Run
     ${SRC_FILES}
 )

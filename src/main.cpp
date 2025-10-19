@@ -1,7 +1,7 @@
 #include "RepositoryManager.h"
 #include "DataManipulation.h"
 #include "Constants.h"
-
+#include <iostream> 
 using namespace std;
 namespace fs = std::filesystem; 
 
@@ -40,17 +40,15 @@ void begin(){
 void init_data() {
     DataManipulation data_m; 
 
-    AuthorsRepo au_repo(
-        data_m.fetchAuthorInformation(Constants::AuthorInfo)
-    ); 
+    ArticleRepo a_repo; 
+    AuthorRepo au_repo; 
+    ArticleReferenceRepo ar_ref; 
+    AuthorArticleRepo au_ar; 
 
-    vector<AuthorArticle> au_ar; 
-    vector<ArticleReference> ar_ref; 
-    ArticlesRepo a_repo(
-        data_m.fetchArticles(Constants::DataSet, au_ar, ar_ref)
-    );
+    data_m.fetchArticleDataSet(Constants::DataSet, a_repo, au_ar, ar_ref); 
+    data_m.fetchAuthorInformation(Constants::AuthorInfo, au_repo); 
 
-    RepositoryManager repo(a_repo, au_repo, ar_ref, au_ar); 
+    RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref); 
 }
 
 void start() {
