@@ -16,6 +16,16 @@ RepositoryManager::RepositoryManager(
       au_ar(au_ar)
 {}
 
+ArticleRepo &RepositoryManager::getArticles()
+{ return a_repo; }
+AuthorRepo &RepositoryManager::getAuthors()
+{ return au_repo; }
+AuthorArticleRepo &RepositoryManager::getAuthorArticles()
+{ return au_ar; }
+ArticleReferenceRepo &RepositoryManager::getArticleReferences()
+{ return ar_ref; }
+
+
 // void RepositoryManager::sync()
 // {
     

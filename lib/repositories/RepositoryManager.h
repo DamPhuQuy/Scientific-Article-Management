@@ -25,7 +25,14 @@ public:
 
     ~RepositoryManager() = default;
 
-    void sync(); 
-    
+     // --- Access to each repository ---
+    ArticleRepo& getArticles();
+    AuthorRepo& getAuthors();
+    AuthorArticleRepo& getAuthorArticles();
+    ArticleReferenceRepo& getArticleReferences();
+
+    // --- High-level logic combining repos ---
+    void sync();
+    void clearAll(); 
 };
 
