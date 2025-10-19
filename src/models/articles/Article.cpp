@@ -3,6 +3,8 @@
 
 using namespace std;
 
+int Article::count = 0; 
+
 string Article::typeToString(Type type) {
     switch (type) {
         case Type::SCIE:       return "SCIE";
@@ -39,6 +41,7 @@ Article::Article(string abstract,
       article_id(a_id),
       type(t),
       status(st) {
+    ++count; 
 }
 
 Article::Article(const Article &other)

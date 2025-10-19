@@ -12,8 +12,9 @@
 #include "SCIE_Article.h"
 #include "SCOPUS_Article.h"
 #include "OTHER_Article.h"
-#include "Author.h"
 #include "Constants.h"
+#include "ArticleReferenceRepo.h"
+#include "AuthorArticleRepo.h" 
 
 using namespace std;
 namespace fs = std::filesystem;

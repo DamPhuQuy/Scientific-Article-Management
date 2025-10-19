@@ -1,0 +1,16 @@
+#pragma once
+#include "Author.h" 
+#include <unordered_map>
+
+using namespace std; 
+
+class AuthorRepo {
+private: 
+    unordered_map<string, Author> authors_container; 
+public: 
+    explicit AuthorRepo(unordered_map<string, Author> au_con = {}); 
+    ~AuthorRepo() = default; 
+
+    void add(const Author& au);
+    void remove(const Author& au);
+};
