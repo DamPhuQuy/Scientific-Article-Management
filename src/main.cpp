@@ -49,7 +49,6 @@ void start() {
     data_m.fetchAuthorInformation(Constants::AuthorInfo, au_repo); 
 
     RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
-    repo.getArticles().traverse(); 
 }
 
 int main() {

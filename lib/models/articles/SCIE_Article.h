@@ -8,6 +8,7 @@ using namespace std;
 
 class SCIE_Article : public Article {
 public:
+	// Constructor
 	SCIE_Article(
 		string abstract = "",
 		int n_citation = 0,
@@ -18,9 +19,12 @@ public:
         Type t = Type::OTHER,
         ArticleStatus st = ArticleStatus::DRAFT
 	);
-	~SCIE_Article(); 
 	explicit SCIE_Article(const Article& other);
 
+	// Destructor
+	~SCIE_Article(); 
+
+	// Methods
 	void showDescription() const override; 
 	[[nodiscard]] Article *clone() const override;
 	[[nodiscard]] Article* input() const override;

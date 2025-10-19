@@ -8,6 +8,7 @@ using namespace std;
 
 class SCOPUS_Article : public Article {
 public:
+	// Constructor 
 	SCOPUS_Article(
 		string abstract = "",
 		int n_citation = 0,
@@ -18,9 +19,12 @@ public:
         Type t = Type::OTHER,
         ArticleStatus st = ArticleStatus::DRAFT
 	);
-	~SCOPUS_Article(); 
 	explicit SCOPUS_Article(const Article& other);
 
+	// Destructor
+	~SCOPUS_Article(); 
+
+	// Methods
 	void showDescription() const override; 
 	[[nodiscard]] Article* clone() const override;
 	[[nodiscard]] Article* input() const override;

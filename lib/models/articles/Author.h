@@ -13,6 +13,7 @@ private:
     string fieldOfStudy;     
     int totalPublications;
 public: 
+    // Constructor 
     Author() = default;
     Author(
         string id, 
@@ -23,14 +24,14 @@ public:
     ); 
     Author(const Author& other);
 
-    // getters
+    // Getters
     string getId() const; 
     string getFullName() const; 
     string getCountry() const; 
     string getFieldOfStudy() const; 
     int getTotalPublications() const; 
 
-    // setters
+    // Setters
     void setId(const string& newId); 
     void setFullName(const string& newFullName); 
     void setCountry(const string& newCountry); 

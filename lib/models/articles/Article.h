@@ -47,6 +47,8 @@ public:
             Type t = Type::OTHER,
             ArticleStatus st = ArticleStatus::DRAFT);
 	Article(const Article &other);
+
+    // Destructor
     virtual ~Article() = default; // virtual destructor
 
     // Getters
