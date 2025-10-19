@@ -32,12 +32,14 @@ void ArticleRepo::remove(const Article &a)
     string id = a.getArticleID(); 
     auto it = this->articles_container.find(id); 
     if (it != this->articles_container.end()) {
-        this->articles_container.erase(id); 
+        delete it->second;       
+        this->articles_container.erase(it);  
     } 
     else {
         cout << "Id nay khong ton tai!" << endl; 
     }
 }
+
 
 void ArticleRepo::traverse()
 {
