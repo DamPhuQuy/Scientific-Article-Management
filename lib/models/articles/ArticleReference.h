@@ -9,19 +9,17 @@ private:
     string article_id; 
     string reference_id;
 public: 
-    // Constructor
     ArticleReference() = default; 
     ArticleReference(const string& article_id, const string& reference_id)
     : article_id(article_id), reference_id(reference_id) {} 
 
-    // Destructor
     ~ArticleReference() = default; 
 
-    // Getter
+    // getters
     string getReferenceId() const { return reference_id; }
     string getArticleId() const { return article_id; }
 
-    // Setter 
+    // setters
     void setReferenceId(const string& ref_id) {
         reference_id = ref_id; 
     }

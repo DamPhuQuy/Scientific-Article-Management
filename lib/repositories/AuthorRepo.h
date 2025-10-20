@@ -10,8 +10,10 @@ private:
 public: 
     AuthorRepo() = default; 
     explicit AuthorRepo(unordered_map<string, Author> au_con); 
+
     ~AuthorRepo() = default; 
 
+    // utilities
     void add(const Author& au);
     void remove(const Author& au);
 };

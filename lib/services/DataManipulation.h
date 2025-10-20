@@ -17,12 +17,14 @@ using namespace std;
 
 class DataManipulation {
 private:
+    // Assist 
     static bool fileCheck(const fs::path &file_path, ifstream &in);
     static bool isNumber(const string& token); 
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;
 
+    // Assist to create article depending on Type
     static Article* createArticle(string abstract = "",
 		                          int n_citation = 0,
 		                          string title = "",
@@ -32,6 +34,7 @@ public:
                                   Type t = Type::OTHER,
                                   ArticleStatus st = ArticleStatus::DRAFT);
 
+    // Fetch data from file 
     void fetchArticleDataSet(
         const fs::path& file_path,
         ArticleRepo& ar_repo,

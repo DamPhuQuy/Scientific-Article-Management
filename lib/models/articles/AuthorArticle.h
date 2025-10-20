@@ -10,17 +10,16 @@ private:
     string article_id; 
     string author_id; 
 public:
-    // Constructor
     AuthorArticle() = default; 
     AuthorArticle(const string& article_id, const string& author_id) 
     : article_id(article_id), author_id(author_id) {} 
     ~AuthorArticle() = default; 
 
-    // Getter
+    // getters
     string getArticleId() const { return article_id; }
     string getAuthorId() const { return author_id; }
 
-    // Setter
+    // setters
     void setArticleId(const string& a_id) {
         article_id = a_id; 
     }

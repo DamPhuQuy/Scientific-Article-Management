@@ -8,7 +8,6 @@ using namespace std;
 
 class CONFERENCE_Article : public Article {
 public: 
-	// Constructor
 	CONFERENCE_Article(
 		string abstract = "",
 		int n_citation = 0,
@@ -21,11 +20,12 @@ public:
 	);
 	explicit CONFERENCE_Article(const Article& other); 
 
-	// Destructor
 	~CONFERENCE_Article(); 
 
-	// Methods
+	// utilities
 	void showDescription() const override; 
 	[[nodiscard]] Article* clone() const override; 
+
+	// input
 	[[nodiscard]] Article* input() const override; 
 };

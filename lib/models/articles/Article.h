@@ -37,7 +37,6 @@ protected:
     ArticleStatus status;
 	static int count;
 public:
-    // Constructors
     Article(string abstract = "",
 		    int n_citation = 0,
 		    string title = "",
@@ -48,10 +47,9 @@ public:
             ArticleStatus st = ArticleStatus::DRAFT);
 	Article(const Article &other);
 
-    // Destructor
-    virtual ~Article() = default; // virtual destructor
+    virtual ~Article() = default; 
 
-    // Getters
+    // getters
     [[nodiscard]] string getArticleID() const;
     [[nodiscard]] string getArticleTitle() const;
     [[nodiscard]] string getVenueName() const;
@@ -63,6 +61,9 @@ public:
 	[[nodiscard]] static string typeToString(Type type);
 	[[nodiscard]] static string statusToString(ArticleStatus status);
 
+    // setters
+    
+
     // Workflow
     void submit();
     void startReview();
@@ -71,8 +72,10 @@ public:
     void reject();
     void publish();
 
-    // Abstract methods
+    // utilities
     void virtual showDescription() const = 0;
 	[[nodiscard]] virtual Article* clone() const = 0;
+
+    // input
 	[[nodiscard]] virtual Article* input() const = 0;
 };
