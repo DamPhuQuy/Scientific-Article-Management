@@ -4,13 +4,14 @@
 #include <map>
 #include <vector>
 #include <filesystem>
-#include "ArticleRepo.h" 
-#include "AuthorRepo.h"
+#include <fstream>
+#include <regex>
+#include <fstream>
+#include "RepositoryManager.h"
 #include "ArticleReference.h"
 #include "AuthorArticle.h"
-#include "ArticleReferenceRepo.h"
-#include "AuthorArticleRepo.h"
 #include "Article.h" 
+
 
 namespace fs = std::filesystem;
 using namespace std;
@@ -21,6 +22,7 @@ private:
     static bool fileCheck(const fs::path &file_path, ifstream &in);
     static bool isNumber(const string& token); 
 public:
+    string find;
     DataManipulation() = default;
     ~DataManipulation() = default;
 
@@ -42,5 +44,11 @@ public:
         ArticleReferenceRepo& ar_ref
     );
     void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo);
+    void findArticleByRegex(const Article *article, const unordered_map<string, Article*>& articles_container,
+        string find, 
+        const fs::path& file_path,
+        ArticleRepo& ar_repo,
+        AuthorArticleRepo& au_ar,
+        ArticleReferenceRepo& ar_ref);
 };
 

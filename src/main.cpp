@@ -19,7 +19,22 @@ void begin(){
     switch(choice){
         case 1:
             cout<<" Quan ly bai bao"<<endl;
+            Article a;
+            int choices;
+            cout<<"-----------------------------------------------"<<endl;
+            cout<<"1. Them bai bao"<<endl;
+            cout<<"2. Tim kiem bai bao"<<endl;
+            cout<<"-----------------------------------------------"<<endl;
+            if(choices == 1){
+            ArticleRepo.add(a);
+        }else{
+            string find;
+            cin.ignore;
+            getline(cin,find);
             
+            findArticleByRegex(article,articles_container,find,file_path,ar_repo,au_ar,ar_ref);
+        }
+
             break;
         case 2:
             cout<<" Quan ly tac gia"<<endl;
@@ -51,7 +66,9 @@ void start() {
     RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
 }
 
-int main() {
+int main(){
     start();
+
+    begin();
     return 0;
 }

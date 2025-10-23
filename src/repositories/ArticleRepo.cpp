@@ -13,7 +13,7 @@ ArticleRepo::~ArticleRepo()
     }
 }
 
-void ArticleRepo::add(Article *a)
+void ArticleRepo::add(Article* a)
 {
     string id = a->getArticleID(); 
     auto it = this->articles_container.find(id);
@@ -46,4 +46,8 @@ void ArticleRepo::traverse()
     for (auto element : articles_container) {
         element.second->showDescription(); 
     }
+}
+
+const vector<Article*>& ArticleRepo::getAll()const{
+       return a;
 }

@@ -1,7 +1,6 @@
 #include <iostream>
-#include <fstream>
+
 #include <filesystem>
-#include <regex>
 #include <sstream>
 #include <vector>
 #include <cctype>
@@ -108,3 +107,41 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
                      item["totalPublications"])); 
     } 
 }
+
+
+
+void DataManipulation::findArticleByRegex(const Article *article,
+    const unordered_map<string, Article*> articles_container,
+    string find,
+    const fs::path& file_path,
+    ArticleRepo& ar_repo,
+    AuthorArticleRepo& au_ar,
+    ArticleReferenceRepo& ar_ref){
+
+    regex pattern(find,regex_constants::icase);    
+
+    DataManipulation::fetchArticleDataSet(file_path,ar_repo,au_ar,ar_ref);
+    bool found = false;
+
+    for (const auto& articleRead : ar_repo.getAll()) {
+        if (regex_search(articleRead.getTitle().c_str(), pattern) ||
+            regex_search(articleRead.getAbstract().c_str(), pattern) ||
+            regex_search(articleRead.getVenue().c_str(), pattern)) {
+            found = true;
+            cout << "----------------------------------\n";
+            cout << "ID: " << articleRead.getId() << "\n";
+            cout << "Title: " << articleRead.getTitle() << "\n";
+            cout << "Venue: " << articleRead.getVenue() << "\n";
+            cout << "Year: " << articleRead.getYear() << "\n";
+            cout << "Abstract: " << articleRead.getAbstract().substr(0, 100) << "...\n";
+        }
+    }
+    if (!found){
+        cout << "Khong tim thay bai bao tuong ung .\n";
+    }
+}
+
+
+    
+
+
