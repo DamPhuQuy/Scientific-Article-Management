@@ -43,12 +43,21 @@ public:
         AuthorArticleRepo& au_ar,
         ArticleReferenceRepo& ar_ref
     );
+    
     void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo);
-    void findArticleByRegex(const Article *article, const unordered_map<string, Article*>& articles_container,
+    
+    void findArticleByRegex(const Article *article, const unordered_map<string, Article*> articles_container,
         string find, 
         const fs::path& file_path,
         ArticleRepo& ar_repo,
         AuthorArticleRepo& au_ar,
         ArticleReferenceRepo& ar_ref);
+    
+    void findAuthorByRegex(const Author *author,unordered_map<string, Author*> au_con,
+    string find,
+    const fs::path& file_path,
+    AuthorRepo& au_repo, 
+    AuthorArticleRepo& au_ar
+    )
 };
 

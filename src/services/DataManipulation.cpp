@@ -124,22 +124,45 @@ void DataManipulation::findArticleByRegex(const Article *article,
     bool found = false;
 
     for (const auto& articleRead : ar_repo.getAll()) {
-        if (regex_search(articleRead.getTitle().c_str(), pattern) ||
-            regex_search(articleRead.getAbstract().c_str(), pattern) ||
-            regex_search(articleRead.getVenue().c_str(), pattern)) {
+        if (regex_search(articleRead.getTitle().c_str(), pattern)) {
             found = true;
             cout << "----------------------------------\n";
-            cout << "ID: " << articleRead.getId() << "\n";
-            cout << "Title: " << articleRead.getTitle() << "\n";
-            cout << "Venue: " << articleRead.getVenue() << "\n";
-            cout << "Year: " << articleRead.getYear() << "\n";
-            cout << "Abstract: " << articleRead.getAbstract().substr(0, 100) << "...\n";
+            cout << au_ar << endl;
+            cout << ar_ref << endl;
+            cout << ar_repo << endl;
+            cout << "----------------------------------\n"
         }
     }
     if (!found){
         cout << "Khong tim thay bai bao tuong ung .\n";
     }
 }
+
+void DataManipulation::findAuthorByRegex(const Author *author,unordered_map<string, Author*> au_con,
+    string find,
+    const fs::path& file_path,
+    AuthorRepo& au_repo, 
+    AuthorArticleRepo& au_ar){
+
+    regex pattern(find,regex_constants::icase);
+
+    DataManipulation::fetchAuthorInformation(file_path,au_repo);
+       
+    bool found = false;
+    for (const auto& authorRead : au_repo.getAll()) {
+    if (regex_search(authorRead.getTitle().c_str(), pattern)) {
+        found = true;
+        cout << "----------------------------------\n";
+        cout << au_repo << endl;
+        cout << "----------------------------------\n"
+        }
+    }
+    if (!found){
+        cout << "Khong tim thay tac gia tuong ung .\n";
+    }
+}
+
+
 
 
     
