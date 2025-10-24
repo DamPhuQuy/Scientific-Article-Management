@@ -12,8 +12,8 @@ void start() {
     AuthorRepo au_repo; 
     ArticleReferenceRepo ar_ref; 
     AuthorArticleRepo au_ar; 
-    data_m.fetchArticleDataSet(Constants::DataSet, a_repo, au_ar, ar_ref); 
-    data_m.fetchAuthorInformation(Constants::AuthorInfo, au_repo); 
+    data_m.fetchArticleDataSet(Constants::DataSetCsv, a_repo, au_ar, ar_ref); 
+    data_m.fetchAuthorInformation(Constants::AuInfoCsv, au_repo); 
     RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
 
     repo.getArticles().traverse(); 

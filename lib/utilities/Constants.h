@@ -14,9 +14,11 @@ public:
         return MODELS_PATH / file; 
     }
 
-    // Dataset.json
-    inline static const fs::path DataSet = getModelsPath("dataset.json");
+    inline static fs::path DataSetCsv = getModelsPath("dataset.csv"); 
 
-    // Authors_dataset.json 
-    inline static const fs::path AuthorInfo = getModelsPath("authors_dataset.json"); 
+    inline static fs::path DataSetJson = getModelsPath("datasets.json"); 
+
+    inline static fs::path AuInfoCsv = getModelsPath("authors_dataset.csv"); 
+
+    inline static fs::path AuInfoJson = getModelsPath("authors_dataset.json"); 
 };

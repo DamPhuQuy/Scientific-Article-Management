@@ -98,7 +98,7 @@ void DataManipulation::fetchArticleDataSet(
         } 
     } 
     else if (file_path.extension() == ".csv") {
-        string line; 
+        string line; getline(in, line);
         while (getline(in, line)) {
             stringstream ss(line); 
             vector<string> data; 
@@ -199,7 +199,7 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
         } 
     }
     else if (file_path.extension() == ".csv") { 
-        string line; 
+        string line; getline(in, line); 
         while (getline(in, line)) {
             stringstream ss(line); 
             vector<string> data; 
@@ -235,8 +235,9 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
                         country = value; 
                         break; 
                     case 3: 
-                        fieldOfStudy = value; 
-                    case 4: 
+                        fieldOfStudy = value;
+                        break;  
+                    case 4:  
                         pub = stoi(value);
                 }
             }
