@@ -48,6 +48,10 @@ void ArticleRepo::traverse()
     }
 }
 
-const vector<Article*>& ArticleRepo::getAll()const{
-       return a;
+vector<Article*> ArticleRepo::getAll() const {
+    vector<Article*> res; 
+    for (auto element : this->articles_container) {
+        res.push_back(element.second); 
+    }
+    return res; 
 }

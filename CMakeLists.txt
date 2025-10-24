@@ -21,5 +21,5 @@ add_executable(Run
     ${SRC_FILES}
 )
 
-target_compile_options(Run PRIVATE -fsanitize=address -g)
-target_link_options(Run PRIVATE -fsanitize=address)
+# target_compile_options(Run PRIVATE -fsanitize=address -g)
+# target_link_options(Run PRIVATE -fsanitize=address)

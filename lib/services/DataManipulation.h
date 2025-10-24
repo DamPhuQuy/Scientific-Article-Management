@@ -22,7 +22,6 @@ private:
     static bool fileCheck(const fs::path &file_path, ifstream &in);
     static bool isNumber(const string& token); 
 public:
-    string find;
     DataManipulation() = default;
     ~DataManipulation() = default;
 
@@ -45,19 +44,5 @@ public:
     );
     
     void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo);
-    
-    void findArticleByRegex(const Article *article, const unordered_map<string, Article*> articles_container,
-        string find, 
-        const fs::path& file_path,
-        ArticleRepo& ar_repo,
-        AuthorArticleRepo& au_ar,
-        ArticleReferenceRepo& ar_ref);
-    
-    void findAuthorByRegex(const Author *author,unordered_map<string, Author*> au_con,
-    string find,
-    const fs::path& file_path,
-    AuthorRepo& au_repo, 
-    AuthorArticleRepo& au_ar
-    )
 };
 
