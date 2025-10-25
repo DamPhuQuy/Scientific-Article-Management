@@ -40,9 +40,10 @@ public:
         const fs::path& file_path,
         ArticleRepo& ar_repo,
         AuthorArticleRepo& au_ar,
-        ArticleReferenceRepo& ar_ref
+        ArticleReferenceRepo& ar_ref,
+        int option
     );
     
-    void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo);
+    void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo, int option);
 };
 

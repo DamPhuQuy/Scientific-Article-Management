@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <cctype>
+#include <windows.h> 
 #include <iomanip> // std::quoted
 #include <nlohmann/json.hpp>
 #include "DataManipulation.h"
@@ -69,13 +70,16 @@ void DataManipulation::fetchArticleDataSet(
     const fs::path& file_path,
     ArticleRepo& ar_repo,
     AuthorArticleRepo& au_ar,
-    ArticleReferenceRepo& ar_ref
+    ArticleReferenceRepo& ar_ref,
+    int option
 ) {
     ifstream in; 
     if (!fileCheck(file_path, in)) 
         return; 
 
-    if (file_path.extension() == ".json") {
+    cout << "Loading data from the system..." << endl;
+    Sleep(1000); 
+    if (option == 1) {
         json data;
         in >> data;
 
@@ -97,7 +101,7 @@ void DataManipulation::fetchArticleDataSet(
                                       static_cast<Type>(item["type"]))); 
         } 
     } 
-    else if (file_path.extension() == ".csv") {
+    else if (option == 2) {
         string line; getline(in, line);
         while (getline(in, line)) {
             stringstream ss(line); 
@@ -180,14 +184,18 @@ void DataManipulation::fetchArticleDataSet(
             ar_repo.add(createArticle(abstract, n_citation, title, venue, year, id, type)); 
         }
     }
+    cout << "Successfully loaded data from " << file_path.filename() << "!" << endl; 
 }
 
-void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorRepo& au_repo) {
+void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorRepo& au_repo, int option) {
     ifstream in;
     if (!fileCheck(file_path, in))
         return;
 
-    if (file_path.extension() == ".json") { 
+    cout << "Loading data from the system...";
+    Sleep(1000); 
+    
+    if (option == 1) { 
         json data = json::parse(in); 
     
         for (auto& item : data) {
@@ -198,7 +206,7 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
                          item["totalPublications"])); 
         } 
     }
-    else if (file_path.extension() == ".csv") { 
+    else if (option == 2) { 
         string line; getline(in, line); 
         while (getline(in, line)) {
             stringstream ss(line); 
@@ -245,4 +253,5 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
             au_repo.add(Author(id, name, country, fieldOfStudy, pub));
         }
     }
+    cout << "Successfully loaded data from " << file_path.filename() << "!" << endl; 
 }
