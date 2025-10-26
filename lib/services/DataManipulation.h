@@ -41,9 +41,9 @@ public:
         ArticleRepo& ar_repo,
         AuthorArticleRepo& au_ar,
         ArticleReferenceRepo& ar_ref,
-        int option
+        int option = 1
     );
     
-    void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo, int option);
+    void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo, int option = 1);
 };
 

@@ -25,6 +25,7 @@ void manipulateData(DataManipulation& service,
     cout << "\n--- Data Manipulation ---\n";
     cout << "1. Import dataset from JSON\n";
     cout << "2. Export dataset to CSV\n";
+    cout << "3. Automatically import from system\n"; 
     cout << "0. Back to main menu\n";
     cout << "Your choice: ";
     cin >> option; cin.ignore();
@@ -49,6 +50,11 @@ void manipulateData(DataManipulation& service,
             getline(cin, file); 
             service.fetchAuthorInformation(Constants::getModelsPath(file), au_repo, option);  
             break;
+        }
+        case 3: {
+            service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar, ar_ref); 
+            service.fetchAuthorInformation(Constants::AuInfoJson, au_repo);
+            break; 
         }
         case 0:
             break;
@@ -76,6 +82,8 @@ void start() {
     case 1:
         repo.getArticles().traverse(); 
         break;
+    case 2: 
+        repo.getAuthors().liveSearchByCountry(); 
     case 0: 
         break; 
     default:

@@ -2,6 +2,7 @@
 
 #include <filesystem>  
 #include <string> 
+#include <vector> 
 
 namespace fs = std::filesystem;
 using namespace std;
@@ -16,7 +17,7 @@ public:
 
     inline static fs::path DataSetCsv = getModelsPath("dataset.csv"); 
 
-    inline static fs::path DataSetJson = getModelsPath("datasets.json"); 
+    inline static fs::path DataSetJson = getModelsPath("dataset.json"); 
 
     inline static fs::path AuInfoCsv = getModelsPath("authors_dataset.csv"); 
 

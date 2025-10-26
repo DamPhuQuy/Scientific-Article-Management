@@ -53,6 +53,7 @@ Article::Article(const Article &other)
       article_id(other.article_id),
       type(other.type),
       status(other.status) {
+    ++count; 
 }
 
 [[nodiscard]] string Article::getArticleID() const {

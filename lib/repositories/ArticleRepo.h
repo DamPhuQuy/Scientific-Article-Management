@@ -18,4 +18,7 @@ public:
     void remove(const Article& a); 
     void traverse();
     vector<Article*> getAll() const; 
+
+    // search functions     
+    
 };
