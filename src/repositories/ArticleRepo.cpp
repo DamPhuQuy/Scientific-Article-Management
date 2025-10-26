@@ -1,4 +1,5 @@
 #include "ArticleRepo.h"
+#include "SearchByRegex.h" 
 #include <iostream> 
 
 ArticleRepo::ArticleRepo(unordered_map<string, Article *> ar_con)
@@ -15,7 +16,7 @@ ArticleRepo::~ArticleRepo()
 
 void ArticleRepo::add(Article* a)
 {
-    string id = a->getArticleID(); 
+    string id = a->getId(); 
     auto it = this->articles_container.find(id);
     if (it != this->articles_container.end()) {
         cout << "Id nay da ton tai!" << endl;
@@ -29,7 +30,7 @@ void ArticleRepo::add(Article* a)
 
 void ArticleRepo::remove(const Article &a)
 {
-    string id = a.getArticleID(); 
+    string id = a.getId(); 
     auto it = this->articles_container.find(id); 
     if (it != this->articles_container.end()) {
         delete it->second;       
@@ -54,4 +55,22 @@ vector<Article*> ArticleRepo::getAll() const {
         res.push_back(element.second); 
     }
     return res; 
+} 
+
+string ArticleRepo::liveSearchByTitle() const
+{
+    auto getTitle = [](Article* a) -> string { return a->getArticleTitle(); }; 
+
+    auto printArticle = [](Article* a, bool highlight) -> void {
+        // if (highlight)
+            // cout << "-> [" << a->getArticleTitle() << "] (" << a->getYear() << ", " << a->typeToString(a->getType()) << ")\n";
+        // else
+            // cout << "    " << a->getArticleTitle() << "] (" << a->getYear() << ", " << a->typeToString(a->getType()) << ")\n";
+    }; 
+
+    return SearchByRegex::liveSearch(
+        this->articles_container,
+        getTitle, 
+        printArticle
+    ); 
 }

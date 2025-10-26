@@ -50,7 +50,7 @@ public:
     virtual ~Article() = default; 
 
     // getters
-    [[nodiscard]] string getArticleID() const;
+    [[nodiscard]] string getId() const;
     [[nodiscard]] string getArticleTitle() const;
     [[nodiscard]] string getVenueName() const;
 	[[nodiscard]] string getAbstract() const; 

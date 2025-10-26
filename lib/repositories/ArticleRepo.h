@@ -20,5 +20,7 @@ public:
     vector<Article*> getAll() const; 
 
     // search functions     
-    
+    string liveSearchByTitle() const; 
+    string liveSearchByYear() const; 
+    string liveSearchByType() const; 
 };

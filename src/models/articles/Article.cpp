@@ -56,7 +56,7 @@ Article::Article(const Article &other)
     ++count; 
 }
 
-[[nodiscard]] string Article::getArticleID() const {
+[[nodiscard]] string Article::getId() const {
     return article_id;
 }
 

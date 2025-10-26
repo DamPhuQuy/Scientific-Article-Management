@@ -32,8 +32,16 @@ public:
         return results;
     }
 
+    template<typename T>
+    static auto getIdAuto(T&& obj) {
+        if constexpr (is_pointer_v<remove_reference_t<T>>)
+            return obj->getId();
+        else
+            return obj.getId();
+    }
+
     template <typename T, typename Getter, typename Printer>
-    static int liveSearch(
+    static string liveSearch(
         const unordered_map<string, T>& container,
         Getter fieldGetter,
         Printer printer
@@ -53,7 +61,7 @@ public:
                 if (c == 27) {
                     system("cls");
                     cout << "\nSearch cancelled.\n";
-                    return -1;
+                    return "";
                 }
 
                 // enter
@@ -62,13 +70,13 @@ public:
                     vector<T> results = searchByRegex(container, fieldGetter, input);
                     if (results.empty()) {
                         cout << "No results found.\n";
-                        return -1;
+                        return "";
                     }
                     cout << "You selected:\n";
                     printer(results[selectedIndex], true);
                     cout << "\n(Press any key to return...)\n";
                     _getch();
-                    return selectedIndex;
+                    return SearchByRegex::getIdAuto(results[selectedIndex]);
                 }
 
                 // backspace

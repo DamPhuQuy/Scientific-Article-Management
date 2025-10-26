@@ -20,7 +20,7 @@ private:
     
     // search functions
     
-    void liveSearchByName() const;
-    void liveSearchByCountry() const; 
-    void liveSearchByFieldOfStudy() const; 
+    string liveSearchByName() const;
+    string liveSearchByCountry() const; 
+    string liveSearchByFieldOfStudy() const; 
 };
