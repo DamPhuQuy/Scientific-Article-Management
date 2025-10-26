@@ -19,8 +19,8 @@ private:
     void remove(const Author& au);
     
     // search functions
-    
     string liveSearchByName() const;
     string liveSearchByCountry() const; 
     string liveSearchByFieldOfStudy() const; 
+    void searchAuthorMenu(); 
 };

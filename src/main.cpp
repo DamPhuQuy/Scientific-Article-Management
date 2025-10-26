@@ -2,18 +2,71 @@
 #include "DataManipulation.h"
 #include "Constants.h"
 #include <iostream> 
+#include <conio.h>
 using namespace std;
 namespace fs = std::filesystem; 
 
-void showMainMenu() {
-    cout << "\n==============================\n";
-    cout << "    ARTICLE MANAGEMENT MENU  \n";
-    cout << "==============================\n";
-    cout << "  1. Manage Articles\n";
-    cout << "  2. Manage Authors\n";
-    cout << "  3. Data Manipulation\n";
-    cout << "  0. Exit\n";
-    cout << "==============================\n";
+void showMainMenu(RepositoryManager& repo) {
+    const string options[] = {
+        "Manage Articles",
+        "Manage Authors",
+        "Exit"
+    };
+    const int numOptions = sizeof(options) / sizeof(options[0]);
+
+    int selected = 0; // vị trí đang chọn
+
+    char c; 
+
+    while (true) {
+        if (_kbhit()) {
+            system("cls");
+            cout << "\n==============================\n";
+            cout << "    ARTICLE MANAGEMENT MENU  \n";
+            cout << "==============================\n";
+            
+            for (int i = 0; i < numOptions; i++) {
+                if (i == selected) {
+                    cout << "-> " << "[" << options[i] << "]" << "\n"; 
+                } else {
+                    cout << "    " << "[" << options[i] << "]" << "\n"; 
+                }
+            }
+            
+            cout << "==============================\n";
+            cout << "Use arrow UP/DOWN key to move, Enter to select\n";
+            
+            c = _getch();
+        
+            if (c == 0 || c == -32) {
+                c = _getch();
+                if (c == 72 && selected > 0) selected--;          // ↑
+                else if (c == 80 && selected < numOptions - 1) selected++; // ↓
+            } else if (c == 13) {
+                system("cls");
+                switch (selected) {
+                case 0:
+                    cout << "→ Opening Article Management...\n";
+                    repo.getArticles().searchMenu();
+                    break;
+                case 1:
+                    cout << "→ Opening Author Management...\n";
+                    repo.getAuthors().searchAuthorMenu(); 
+                    break;
+                case 2:
+                    cout << "Exiting program...\n";
+                    return;
+                }
+                cout << "\nPress any key to return...";
+                _getch();
+            } else if (c == 27) {
+                break;
+            }
+
+            if (selected >= numOptions) // if index > size
+                selected = numOptions - 1;
+        }
+    }
 }
 
 void manipulateData(DataManipulation& service, 
@@ -75,23 +128,23 @@ void start() {
 
     RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
 
-    showMainMenu(); 
-    int choice; cin >> choice; cin.ignore(); 
+    showMainMenu(repo); 
+    // int choice; cin >> choice; cin.ignore(); 
 
-    switch (choice) {
-    case 1:
-        repo.getArticles().traverse(); 
-        break;
-    case 2: 
-        repo.getAuthors().liveSearchByCountry(); 
-    case 0: 
-        break; 
-    default:
-        break;
-    }
+    // switch (choice) {
+    // case 1:
+    //     repo.getArticles().searchMenu(); 
+    //     break; 
+    // case 2: 
+    //     repo.getAuthors().searchAuthorMenu(); 
+    // case 0: 
+    //     break; 
+    // default:
+    //     break;
+    // }
 }
 
-int main(){
+int main() {
     start();
     return 0;
 }

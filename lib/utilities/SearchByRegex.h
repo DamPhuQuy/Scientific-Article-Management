@@ -11,6 +11,7 @@ using namespace std;
 
 class SearchByRegex {
 public: 
+    // Generic regex search (case-insensitive)
     template<typename T, typename Getter>
     static vector<T> searchByRegex(
         const unordered_map<string, T>& container,
@@ -32,6 +33,7 @@ public:
         return results;
     }
 
+    // object or pointer
     template<typename T>
     static auto getIdAuto(T&& obj) {
         if constexpr (is_pointer_v<remove_reference_t<T>>)
@@ -50,11 +52,12 @@ public:
         string input;
         char c;
         int selectedIndex = 0;
+        vector<T> results;
 
         cout << "\n Start typing to search (ENTER = select, ESC = exit):\n";
 
         while (true) {
-            if (_kbhit()) { // check keyboard press
+            if (_kbhit()) {
                 c = _getch();
 
                 // esc
@@ -67,7 +70,6 @@ public:
                 // enter
                 else if (c == 13) {
                     system("cls");
-                    vector<T> results = searchByRegex(container, fieldGetter, input);
                     if (results.empty()) {
                         cout << "No results found.\n";
                         return "";
@@ -76,7 +78,7 @@ public:
                     printer(results[selectedIndex], true);
                     cout << "\n(Press any key to return...)\n";
                     _getch();
-                    return SearchByRegex::getIdAuto(results[selectedIndex]);
+                    return getIdAuto(results[selectedIndex]);
                 }
 
                 // backspace
@@ -85,16 +87,17 @@ public:
                 }
 
                 // arrow
-                else if (c == 0 || c == -32) { // special key (arrows)
+                else if (c == 0 || c == -32) { // special keys
                     c = _getch();
-                    if (c == 72) { // UP
+                    if (c == 72) { // up
                         if (selectedIndex > 0) selectedIndex--;
-                    } else if (c == 80) { // DOWN
-                        selectedIndex++;
+                    } else if (c == 80) { // down
+                        if (!results.empty() && selectedIndex < (int)results.size() - 1)
+                            selectedIndex++;
                     }
                 }
 
-                // printable character
+                // char
                 else if (isprint(c)) {
                     input.push_back(c);
                 }
@@ -103,17 +106,17 @@ public:
                 system("cls");
                 cout << "Search: " << input << "\n\n";
 
-                vector<T> results = searchByRegex(container, fieldGetter, input);
+                results = searchByRegex(container, fieldGetter, input);
 
                 if (results.empty()) {
                     cout << "No results.\n";
                     selectedIndex = 0;
                 } else {
-                    if (selectedIndex >= (int)results.size()) 
+                    if (selectedIndex >= (int)results.size()) // if index > size
                         selectedIndex = results.size() - 1;
-                    for (int i = 0; i < (int)results.size(); ++i) {
+
+                    for (int i = 0; i < (int)results.size(); ++i)
                         printer(results[i], i == selectedIndex);
-                    }
                 }
             }
         }

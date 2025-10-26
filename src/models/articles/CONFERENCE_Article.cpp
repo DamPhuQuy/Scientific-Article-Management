@@ -35,7 +35,7 @@ void CONFERENCE_Article::showDescription() const
     cout << "Venue: " << venue << endl;
     cout << "Year: " << year << endl;
     cout << "Citations: " << n_citation << endl;
-    cout << "Type: " << typeToString(type) << endl;
+    cout << "Type: " << typeToString() << endl;
     cout << "Abstract: " << abstract << endl;
     cout << "============================" << endl; 
 }

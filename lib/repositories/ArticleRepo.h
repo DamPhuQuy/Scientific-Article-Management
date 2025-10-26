@@ -19,8 +19,9 @@ public:
     void traverse();
     vector<Article*> getAll() const; 
 
-    // search functions     
+    // search
     string liveSearchByTitle() const; 
     string liveSearchByYear() const; 
     string liveSearchByType() const; 
+    void searchMenu() const; 
 };

@@ -21,9 +21,9 @@
   {
     "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase. In the oscillatory phase, the network activity continously jumps between the stored patterns. Compared with other activity-dependent mechanisms such as synaptic depression, synaptic facilitation enhances the network ability to switch among the stored patterns and, therefore, its adaptation to external stimuli. A detailed analysis of our system reflects an efficient-more rapid and with lesser errors-network access to the stored information with stronger facilitation. We also present a set of Monte Carlo simulations confirming our analytical results.",
     "authors": [
-      "Joaquín J. Torres",
-      "Jesús M. Cortés",
-      "Joaquín Marro",
+      "Joaquin J. Torres",
+      "Jesus M. Cortes",
+      "Joaquin Marro",
       "Hilbert J. Kappen"
     ],
     "n_citation": 50,

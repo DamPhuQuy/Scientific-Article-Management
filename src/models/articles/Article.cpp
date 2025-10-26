@@ -14,6 +14,19 @@ string Article::typeToString(Type type) {
     }
 }
 
+string Article::statusToString() const
+{
+    switch(this->status) {
+        case ArticleStatus::SUBMITTED:     return "SUBMITTED";
+        case ArticleStatus::UNDER_REVIEW:  return "UNDER_REVIEW";
+        case ArticleStatus::REVISIONS:     return "REVISIONS";
+        case ArticleStatus::ACCEPTED:      return "ACCEPTED";
+        case ArticleStatus::REJECTED:      return "REJECTED";
+        case ArticleStatus::PUBLISHED:     return "PUBLISHED";
+        default:                           return "DRAFT";
+    }
+}
+
 string Article::statusToString(ArticleStatus status) {
     switch(status) {
         case ArticleStatus::SUBMITTED:     return "SUBMITTED";
@@ -80,6 +93,16 @@ ArticleStatus Article::getStatus(int order) {
     if (order >= 11 && order <= 17)
         return static_cast<ArticleStatus>(order); 
     return ArticleStatus::DRAFT; 
+}
+
+string Article::typeToString() const 
+{
+    switch (this->type) {
+        case Type::SCIE:       return "SCIE";
+        case Type::SCOPUS:     return "SCOPUS";
+        case Type::CONFERENCE: return "CONFERENCE";
+        default:               return "OTHER";
+    }
 }
 
 [[nodiscard]] string Article::getVenueName() const

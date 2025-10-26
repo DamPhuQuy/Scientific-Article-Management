@@ -87,3 +87,40 @@ string AuthorRepo::liveSearchByFieldOfStudy() const {
         printAuthor
     );
 }
+
+void AuthorRepo::searchAuthorMenu()
+{
+    int choice;
+    do {
+        system("cls");
+        cout << "\n===== Search Authors =====\n";
+        cout << "     1. Search by Name\n";
+        cout << "     2. Search by Country\n";
+        cout << "     3. Search by Field of Study\n";
+        cout << "     0. Back to main menu\n";
+        cout << "---------------------------\n";
+        cout << "Your choice: ";
+        cin >> choice; cin.ignore(); 
+
+        switch (choice) {
+        case 1:
+            liveSearchByName();
+            break;
+        case 2:
+            liveSearchByCountry();
+            break;
+        case 3:
+            liveSearchByFieldOfStudy();
+            break;
+        case 0:
+            cout << "Returning to main menu...\n";
+            break;
+        default:
+            cout << "Invalid option. Try again.\n";
+        }
+        if (choice != 0) {
+            cout << "\nPress any key to continue...";
+            _getch();
+        }
+    } while (choice != 0);
+}
