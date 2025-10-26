@@ -14,7 +14,16 @@ public:
 		string title = "",
 		string venue = "",
 		int year = 0,
-    	string a_id = "",
+		string id = "", 
+        Type t = Type::OTHER,
+        ArticleStatus st = ArticleStatus::DRAFT
+	);
+	OTHER_Article(
+		string abstract = "",
+		int n_citation = 0,
+		string title = "",
+		string venue = "",
+		int year = 0,
         Type t = Type::OTHER,
         ArticleStatus st = ArticleStatus::DRAFT
 	);

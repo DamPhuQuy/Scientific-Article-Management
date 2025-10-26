@@ -8,7 +8,7 @@ SCOPUS_Article::SCOPUS_Article(
 	string title,
 	string venue,
 	int year,
-    string a_id,
+    string id,
     Type t,
     ArticleStatus st
 )
@@ -18,7 +18,26 @@ SCOPUS_Article::SCOPUS_Article(
     title, 
     venue, 
     year, 
-    a_id, 
+    id, 
+    t, 
+    st
+) {}
+
+SCOPUS_Article::SCOPUS_Article(
+    string abstract,
+	int n_citation,
+	string title,
+	string venue,
+	int year,
+    Type t,
+    ArticleStatus st
+)
+: Article(
+    abstract,  
+    n_citation, 
+    title, 
+    venue, 
+    year, 
     t, 
     st
 ) {}

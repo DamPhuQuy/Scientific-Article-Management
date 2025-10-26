@@ -26,6 +26,9 @@ public:
     AuthorArticleRepo& getAuthorArticles();
     ArticleReferenceRepo& getArticleReferences();
 
+    // search
+    // void liveSearchReferences
+
     // High-level logic combining repos 
     void sync();
     void clearAll(); 

@@ -14,105 +14,154 @@ void showMainMenu(RepositoryManager& repo) {
     };
     const int numOptions = sizeof(options) / sizeof(options[0]);
 
-    int selected = 0; // vị trí đang chọn
+    int selected = 0; 
 
     char c; 
 
     while (true) {
-        if (_kbhit()) {
-            
-            c = _getch();
-            
-            if (c == 0 || c == -32) {
+        system("cls");
+        cout << "\n==============================\n";
+        cout << "    ARTICLE MANAGEMENT MENU  \n";
+        cout << "==============================\n";
+        
+        for (int i = 0; i < numOptions; i++) {
+            if (i == selected)
+                cout << "-> [" << options[i] << "]\n";
+            else
+                cout << "   " << options[i] << "\n";
+        }
+
+        cout << "==============================\n";
+        cout << "Use arrow UP/DOWN key to move, Enter to select\n";
+
+        while (true) {
+            if (_kbhit()) {
                 c = _getch();
-                if (c == 72 && selected > 0) selected--;          // ↑
-                else if (c == 80 && selected < numOptions - 1) selected++; // ↓
-            } else if (c == 13) {
-                system("cls");
-                switch (selected) {
-                    case 0:
+                break; 
+            }
+        }
+        
+        if (c == 0 || c == -32 || c == 224) {
+            c = _getch();
+            switch (c) {
+                case 72: selected = (selected - 1 + numOptions) % numOptions; break; 
+                case 80: selected = (selected + 1) % numOptions; break;  
+            }
+        } else if (c == 13) {
+            system("cls");
+            switch (selected) {
+                case 0:
                     cout << "→ Opening Article Management...\n";
                     repo.getArticles().searchMenu();
                     break;
-                    case 1:
+                case 1:
                     cout << "→ Opening Author Management...\n";
                     repo.getAuthors().searchAuthorMenu(); 
                     break;
-                    case 2:
-                    cout << "Exiting program...\n";
+                case 2:
+                    cout << "Exiting... \n";
+                    return;
+            }
+            // cout << "\nPress any key to return...";
+            // _getch();
+        } else if (c == 27) {
+            cin.ignore(); 
+            break;
+        } else {
+            continue; 
+        }
+    }
+}
+
+void fetchData(
+    DataManipulation& service,
+    ArticleRepo& a_repo,
+    AuthorRepo& au_repo,
+    ArticleReferenceRepo& ar_ref,
+    AuthorArticleRepo& au_ar
+) {
+    const string options[] = {
+        "Import dataset from JSON",
+        "Export dataset to CSV",
+        "Automatically import from system",
+        "Back to main menu"
+    };
+
+    const int numOptions = sizeof(options) / sizeof(options[0]);
+    int selected = 0;
+    char c;
+
+    while (true) {
+        system("cls");
+        cout << "\n==============================\n";
+        cout << "    DATA MANIPULATION MENU   \n";
+        cout << "==============================\n";
+
+        for (int i = 0; i < numOptions; i++) {
+            if (i == selected)
+                cout << "-> [" << options[i] << "]\n";
+            else
+                cout << "   " << options[i] << "\n";
+        }
+
+        cout << "==============================\n";
+        cout << "Use arrow UP/DOWN to move, Enter to select\n";
+
+        while (true) {
+            if (_kbhit()) {
+                c = _getch();
+                break; 
+            }
+        }
+
+        if (c == 0 || c == 224 || c == -32) {
+            c = _getch();
+            switch (c) {
+                case 72: selected = (selected - 1 + numOptions) % numOptions; break; 
+                case 80: selected = (selected + 1) % numOptions; break;      
+            }
+        } else if (c == 13) {
+            switch (selected) {
+                case 0: {
+                    cout << "Insert dataset: ";
+                    cin.ignore();
+                    string file;
+                    getline(cin, file);
+                    service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, ar_ref);
+
+                    cout << "Insert authors dataset: ";
+                    getline(cin, file);
+                    service.fetchAuthorInformation(Constants::getModelsPath(file), au_repo);
+                    return; 
+                }
+                case 1: {
+                    cout << "Insert dataset: ";
+                    cin.ignore();
+                    string file;
+                    getline(cin, file);
+                    service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, ar_ref);
+
+                    cout << "Insert authors dataset: ";
+                    getline(cin, file);
+                    service.fetchAuthorInformation(Constants::getModelsPath(file), au_repo);
                     return;
                 }
-                cout << "\nPress any key to return...";
-                _getch();
-            } else if (c == 27) {
-                break;
+                case 2:
+                    service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar, ar_ref);
+                    service.fetchAuthorInformation(Constants::AuInfoJson, au_repo);
+                    return;
+                case 3:
+                    cout << "Exit...\n";
+                    exit(0); 
             }
-
-            system("cls");
-            cout << "\n==============================\n";
-            cout << "    ARTICLE MANAGEMENT MENU  \n";
-            cout << "==============================\n";
-            
-            for (int i = 0; i < numOptions; i++) {
-                if (i == selected) {
-                    cout << "-> " << "[" << options[i] << "]" << "\n"; 
-                } else {
-                    cout << "    " << "[" << options[i] << "]" << "\n"; 
-                }
-            }
-
-            cout << "==============================\n";
-            cout << "Use arrow UP/DOWN key to move, Enter to select\n";
+        } else if (c == 27) {
+            exit(0);   
+        } else {
+            continue; 
         }
     }
 }
 
-void manipulateData(DataManipulation& service, 
-                    ArticleRepo& a_repo,
-                    AuthorRepo& au_repo,
-                    ArticleReferenceRepo& ar_ref,
-                    AuthorArticleRepo& au_ar) {
-    int option;
-    cout << "\n--- Data Manipulation ---\n";
-    cout << "1. Import dataset from JSON\n";
-    cout << "2. Export dataset to CSV\n";
-    cout << "3. Automatically import from system\n"; 
-    cout << "0. Back to main menu\n";
-    cout << "Your choice: ";
-    cin >> option; cin.ignore();
-
-    switch (option) {
-        case 1: {
-            cout << "Insert dataset: "; 
-            string file; getline(cin, file);
-            service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, ar_ref, option);
-
-            cout << "Insert authors dataset: "; 
-            getline(cin, file); 
-            service.fetchAuthorInformation(Constants::getModelsPath(file), au_repo, option); 
-            break;
-        }
-        case 2: {
-            cout << "Insert dataset: "; 
-            string file; getline(cin, file); 
-            service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, ar_ref, option);
-
-            cout << "Insert authors dataset: "; 
-            getline(cin, file); 
-            service.fetchAuthorInformation(Constants::getModelsPath(file), au_repo, option);  
-            break;
-        }
-        case 3: {
-            service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar, ar_ref); 
-            service.fetchAuthorInformation(Constants::AuInfoJson, au_repo);
-            break; 
-        }
-        case 0:
-            break;
-        default:
-            cout << "Invalid option!\n";
-    }
-}
 
 void start() {
     // fetch data
@@ -122,24 +171,11 @@ void start() {
     ArticleReferenceRepo ar_ref;    
     AuthorArticleRepo au_ar; 
 
-    manipulateData(service, a_repo, au_repo, ar_ref, au_ar); 
+    fetchData(service, a_repo, au_repo, ar_ref, au_ar); 
 
     RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
 
     showMainMenu(repo); 
-    // int choice; cin >> choice; cin.ignore(); 
-
-    // switch (choice) {
-    // case 1:
-    //     repo.getArticles().searchMenu(); 
-    //     break; 
-    // case 2: 
-    //     repo.getAuthors().searchAuthorMenu(); 
-    // case 0: 
-    //     break; 
-    // default:
-    //     break;
-    // }
 }
 
 int main() {

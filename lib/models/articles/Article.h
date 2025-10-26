@@ -42,9 +42,18 @@ public:
 		    string title = "",
 		    string venue = "",
 		    int year = 0,
-    		string a_id = "",
+            string id = "",
             Type t = Type::OTHER,
             ArticleStatus st = ArticleStatus::DRAFT);
+
+    Article(string abstract = "",
+		    int n_citation = 0,
+		    string title = "",
+		    string venue = "",
+		    int year = 0,
+            Type t = Type::OTHER,
+            ArticleStatus st = ArticleStatus::DRAFT);
+            
 	Article(const Article &other);
 
     virtual ~Article() = default; 
@@ -79,5 +88,5 @@ public:
 	[[nodiscard]] virtual Article* clone() const = 0;
 
     // input
-	[[nodiscard]] virtual Article* input() const = 0;
+	[[nodiscard]] virtual Article* input() const;
 };

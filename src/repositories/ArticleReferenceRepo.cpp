@@ -19,13 +19,3 @@ vector<string> ArticleReferenceRepo::getReferencesOf(const std::string &article_
     }
     return result;
 }
-
-vector<string> ArticleReferenceRepo::getCitedBy(const string &reference_id) const
-{
-    vector<string> result;
-    for (const auto& ref : references) {
-        if (ref.getReferenceId() == reference_id)
-            result.push_back(ref.getArticleId());
-    }
-    return result;
-}

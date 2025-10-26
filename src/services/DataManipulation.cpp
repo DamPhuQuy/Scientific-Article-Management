@@ -4,7 +4,6 @@
 #include <sstream>
 #include <vector>
 #include <cctype>
-#include <windows.h> 
 #include <iomanip> // std::quoted
 #include <nlohmann/json.hpp>
 #include "DataManipulation.h"
@@ -13,7 +12,11 @@
 #include "SCOPUS_Article.h"
 #include "OTHER_Article.h"
 #include "Constants.h" 
+#include <thread>
+#include <chrono>
 
+using namespace std::this_thread; 
+using namespace std::chrono_literals; 
 using namespace std;
 namespace fs = std::filesystem;
 using json = nlohmann::json;
@@ -78,7 +81,6 @@ void DataManipulation::fetchArticleDataSet(
         return; 
 
     cout << "Loading data from the system..." << endl;
-    Sleep(1000); 
     if (option == 1) {
         json data;
         in >> data;
@@ -184,7 +186,8 @@ void DataManipulation::fetchArticleDataSet(
             ar_repo.add(createArticle(abstract, n_citation, title, venue, year, id, type)); 
         }
     }
-    cout << "Successfully loaded data from " << file_path.filename() << "!" << endl; 
+    cout << "Successfully loaded data from " << file_path.filename() << "!\n"; 
+    sleep_for(2s);
 }
 
 void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorRepo& au_repo, int option) {
@@ -192,8 +195,7 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
     if (!fileCheck(file_path, in))
         return;
 
-    cout << "Loading data from the system...";
-    Sleep(1000); 
+    cout << "Loading data from the system...\n";
     
     if (option == 1) { 
         json data = json::parse(in); 
@@ -253,5 +255,6 @@ void DataManipulation::fetchAuthorInformation(const fs::path& file_path, AuthorR
             au_repo.add(Author(id, name, country, fieldOfStudy, pub));
         }
     }
-    cout << "Successfully loaded data from " << file_path.filename() << "!" << endl; 
+    cout << "Successfully loaded data from " << file_path.filename() << "!\n"; 
+    sleep_for(2s); 
 }
