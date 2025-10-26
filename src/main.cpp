@@ -20,6 +20,34 @@ void showMainMenu(RepositoryManager& repo) {
 
     while (true) {
         if (_kbhit()) {
+            
+            c = _getch();
+            
+            if (c == 0 || c == -32) {
+                c = _getch();
+                if (c == 72 && selected > 0) selected--;          // ↑
+                else if (c == 80 && selected < numOptions - 1) selected++; // ↓
+            } else if (c == 13) {
+                system("cls");
+                switch (selected) {
+                    case 0:
+                    cout << "→ Opening Article Management...\n";
+                    repo.getArticles().searchMenu();
+                    break;
+                    case 1:
+                    cout << "→ Opening Author Management...\n";
+                    repo.getAuthors().searchAuthorMenu(); 
+                    break;
+                    case 2:
+                    cout << "Exiting program...\n";
+                    return;
+                }
+                cout << "\nPress any key to return...";
+                _getch();
+            } else if (c == 27) {
+                break;
+            }
+
             system("cls");
             cout << "\n==============================\n";
             cout << "    ARTICLE MANAGEMENT MENU  \n";
@@ -32,39 +60,9 @@ void showMainMenu(RepositoryManager& repo) {
                     cout << "    " << "[" << options[i] << "]" << "\n"; 
                 }
             }
-            
+
             cout << "==============================\n";
             cout << "Use arrow UP/DOWN key to move, Enter to select\n";
-            
-            c = _getch();
-        
-            if (c == 0 || c == -32) {
-                c = _getch();
-                if (c == 72 && selected > 0) selected--;          // ↑
-                else if (c == 80 && selected < numOptions - 1) selected++; // ↓
-            } else if (c == 13) {
-                system("cls");
-                switch (selected) {
-                case 0:
-                    cout << "→ Opening Article Management...\n";
-                    repo.getArticles().searchMenu();
-                    break;
-                case 1:
-                    cout << "→ Opening Author Management...\n";
-                    repo.getAuthors().searchAuthorMenu(); 
-                    break;
-                case 2:
-                    cout << "Exiting program...\n";
-                    return;
-                }
-                cout << "\nPress any key to return...";
-                _getch();
-            } else if (c == 27) {
-                break;
-            }
-
-            if (selected >= numOptions) // if index > size
-                selected = numOptions - 1;
         }
     }
 }
