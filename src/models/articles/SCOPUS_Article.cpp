@@ -69,8 +69,3 @@ Article *SCOPUS_Article::clone() const
 {
     return new SCOPUS_Article(*this);
 }
-
-Article *SCOPUS_Article::input() const
-{
-    return nullptr;
-}

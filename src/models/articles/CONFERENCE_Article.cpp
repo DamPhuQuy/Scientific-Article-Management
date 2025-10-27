@@ -67,8 +67,3 @@ Article *CONFERENCE_Article::clone() const
 {
     return new CONFERENCE_Article(*this);
 }
-
-Article *CONFERENCE_Article::input() const
-{
-    return nullptr;
-}

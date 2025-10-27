@@ -4,13 +4,9 @@
     "authors": ["S. Ben Jabra", "Ezzeddine Zagrouba"],
     "n_citation": 50,
     "references": [
-      "09cb2d7d-47d1-4a85-bfe5-faa8221e644b",
-      "10aa16da-3cc8-4af6-9d66-48037e915d76",
-      "35cb45c3-9408-4096-ab30-bc2e4de3fb5d",
-      "661a342e-a911-4420-b67d-51c75d3b14e9",
-      "779553f3-e4c1-456e-bc01-5eb9d9567541",
-      "b24ba5c0-fee8-4a3e-9330-17f6564856cd",
-      "fd1c676d-1296-4f19-89b4-17c7ecd270f3"
+      "Advances in 3D Mesh Segmentation Techniques",
+      "Robust Watermarking for 3D Models",
+      "Curvature-Based Analysis for Digital Watermarking"
     ],
     "title": "A new approach of 3D watermarking based on image segmentation",
     "venue": "international symposium on computers and communications",
@@ -28,9 +24,10 @@
     ],
     "n_citation": 50,
     "references": [
-      "4017c9d2-9845-4ad2-ad5b-ba65523727c5",
-      "b1187381-cc24-471e-b288-5da09c3d4ca9",
-      "ecf8e7f0-cac6-47e4-9c29-f4241b0e1d7a"
+      "Dynamic Synapses in Neural Networks: A Review",
+      "Mean-Field Theory for Neural Network Dynamics",
+      "Monte Carlo Methods in Neural Network Analysis",
+      "Synaptic Facilitation and Memory Retrieval"
     ],
     "title": "Attractor neural networks with activity-dependent synapses: The role of synaptic facilitation",
     "venue": "Neurocomputing",
@@ -43,13 +40,9 @@
     "authors": ["Genevi eve Paquin", "Laurent Vuillon"],
     "n_citation": 50,
     "references": [
-      "1c655ee2-067d-4bc4-b8cc-bc779e9a7f10",
-      "2e4e57ca-d190-4bc7-b7ad-2e33aca2f574",
-      "508ea83a-035b-4542-a315-9247c172d255",
-      "666a65af-8657-43f6-b765-f2b72a16726a",
-      "8100bfb7-3f6a-4269-bba8-7c4a6a578570",
-      "8e035cc6-d692-4532-bb3c-a6a34b4db83a",
-      "e10a00d9-bb59-4f19-8f1c-85917bc03b5f"
+      "Sturmian Sequences and Their Generalizations",
+      "On the Complexity of Episturmian Sequences",
+      "Fraenkel's Conjecture and Combinatorial Sequences"
     ],
     "title": "A characterization of balanced episturmian sequences",
     "venue": "Electronic Journal of Combinatorics",
@@ -62,16 +55,10 @@
     "authors": ["Yaser Sheikh", "Mumtaz Sheikh", "Mubarak Shah"],
     "n_citation": 221,
     "references": [
-      "056116c1-9e7a-4f9b-a918-44eb199e67d6",
-      "05ac52a1-dfa2-4c32-9a54-6c1e58cfcca5",
-      "0b2f71cc-6797-445a-82df-5be29945c0a7",
-      "60cf9842-c3aa-463d-a5cf-17fbb8f99ccd",
-      "7a3bb575-8313-4e77-a008-ee5cde444746",
-      "7eda9b91-21f1-490f-8ef2-f94e81c558a4",
-      "905461e4-643b-4da0-a669-f52318b9e126",
-      "be336575-9974-411d-b637-45440213cbd4",
-      "be9527aa-97e2-4951-86d1-cc6130cbb777",
-      "f0d57def-3340-49be-a1c3-cbc996af8dec"
+      "Spatio-Temporal Analysis for Action Recognition",
+      "Modeling Human Motion in Video Sequences",
+      "Principal Angles for Subspace-Based Recognition",
+      "Handling Variability in Computer Vision"
     ],
     "title": "Exploring the space of a human action",
     "venue": "international conference on computer vision",

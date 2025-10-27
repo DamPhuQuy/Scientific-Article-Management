@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include "AuthorArticleRepo.h"
 
 using namespace std;
 
@@ -92,7 +93,4 @@ public:
     // utilities
     void virtual showDescription() const = 0;
 	[[nodiscard]] virtual Article* clone() const = 0;
-
-    // input
-	[[nodiscard]] virtual Article* input() const;
 };

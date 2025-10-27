@@ -31,7 +31,7 @@ SCIE_Article::SCIE_Article(
 	string title,
 	string venue,
 	int year,
-    Type t,
+    Type
     ArticleStatus st,
     const vector<string>& r
 )
@@ -68,9 +68,4 @@ void SCIE_Article::showDescription() const
 Article *SCIE_Article::clone() const
 {
     return new SCIE_Article(*this);
-}
-
-Article *SCIE_Article::input() const
-{
-    return nullptr;
 }

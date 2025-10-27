@@ -35,8 +35,5 @@ public:
 
 	// utilities
 	void showDescription() const override; 
-	[[nodiscard]] Article* clone() const override; 
-
-	// input
-	[[nodiscard]] Article* input() const override; 
+	[[nodiscard]] Article* clone() const override;
 };

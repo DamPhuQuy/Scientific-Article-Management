@@ -36,7 +36,7 @@ OTHER_Article::OTHER_Article(
     const vector<string>& r
 )
 : Article(
-    abstract, 
+    abstrac
     n_citation, 
     title, 
     venue, 
@@ -68,9 +68,4 @@ void OTHER_Article::showDescription() const
 Article *OTHER_Article::clone() const
 {
     return new OTHER_Article(*this) ;
-}
-
-Article *OTHER_Article::input() const
-{
-    return nullptr;
 }
