@@ -10,7 +10,8 @@ SCOPUS_Article::SCOPUS_Article(
 	int year,
     string id,
     Type t,
-    ArticleStatus st
+    ArticleStatus st,
+    const vector<string>& r
 )
 : Article(
     abstract,  
@@ -20,7 +21,8 @@ SCOPUS_Article::SCOPUS_Article(
     year, 
     id, 
     t, 
-    st
+    st,
+    r
 ) {}
 
 SCOPUS_Article::SCOPUS_Article(
@@ -30,7 +32,8 @@ SCOPUS_Article::SCOPUS_Article(
 	string venue,
 	int year,
     Type t,
-    ArticleStatus st
+    ArticleStatus st,
+    const vector<string>& r
 )
 : Article(
     abstract,  
@@ -39,7 +42,8 @@ SCOPUS_Article::SCOPUS_Article(
     venue, 
     year, 
     t, 
-    st
+    st, 
+    r
 ) {}
 
 SCOPUS_Article::~SCOPUS_Article()

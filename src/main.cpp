@@ -77,7 +77,6 @@ void fetchData(
     DataManipulation& service,
     ArticleRepo& a_repo,
     AuthorRepo& au_repo,
-    ArticleReferenceRepo& ar_ref,
     AuthorArticleRepo& au_ar
 ) {
     const string options[] = {
@@ -127,7 +126,7 @@ void fetchData(
                     cin.ignore();
                     string file;
                     getline(cin, file);
-                    service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, ar_ref);
+                    service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar);
 
                     cout << "Insert authors dataset: ";
                     getline(cin, file);
@@ -139,7 +138,7 @@ void fetchData(
                     cin.ignore();
                     string file;
                     getline(cin, file);
-                    service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, ar_ref);
+                    service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar);
 
                     cout << "Insert authors dataset: ";
                     getline(cin, file);
@@ -147,7 +146,7 @@ void fetchData(
                     return;
                 }
                 case 2:
-                    service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar, ar_ref);
+                    service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar);
                     service.fetchAuthorInformation(Constants::AuInfoJson, au_repo);
                     return;
                 case 3:
@@ -168,12 +167,11 @@ void start() {
     DataManipulation service; 
     ArticleRepo a_repo; 
     AuthorRepo au_repo; 
-    ArticleReferenceRepo ar_ref;    
     AuthorArticleRepo au_ar; 
 
-    fetchData(service, a_repo, au_repo, ar_ref, au_ar); 
+    fetchData(service, a_repo, au_repo, au_ar); 
 
-    RepositoryManager repo(a_repo, au_repo, au_ar, ar_ref);
+    RepositoryManager repo(a_repo, au_repo, au_ar);
 
     showMainMenu(repo); 
 }

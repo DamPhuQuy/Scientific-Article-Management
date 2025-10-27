@@ -29,13 +29,14 @@ Article* DataManipulation::createArticle(
 	int year,
     string a_id,
     Type t,
-    ArticleStatus st) {
+    ArticleStatus st, 
+    const vector<string>& r) {
 
     switch (t) {
-        case Type::CONFERENCE:      return new CONFERENCE_Article(abstract, n_citation, title, venue, year, a_id, t, st);
-        case Type::SCIE:            return new SCIE_Article(abstract, n_citation, title, venue, year, a_id, t, st);
-        case Type::SCOPUS:          return new SCOPUS_Article(abstract, n_citation, title, venue, year, a_id, t, st);
-        default:                    return new OTHER_Article(abstract, n_citation, title, venue, year, a_id, t, st);
+        case Type::CONFERENCE:      return new CONFERENCE_Article(abstract, n_citation, title, venue, year, a_id, t, st, r);
+        case Type::SCIE:            return new SCIE_Article(abstract, n_citation, title, venue, year, a_id, t, st, r);
+        case Type::SCOPUS:          return new SCOPUS_Article(abstract, n_citation, title, venue, year, a_id, t, st, r);
+        default:                    return new OTHER_Article(abstract, n_citation, title, venue, year, a_id, t, st, r);
     }
 }
 
@@ -73,7 +74,6 @@ void DataManipulation::fetchArticleDataSet(
     const fs::path& file_path,
     ArticleRepo& ar_repo,
     AuthorArticleRepo& au_ar,
-    ArticleReferenceRepo& ar_ref,
     int option
 ) {
     ifstream in; 
@@ -90,8 +90,9 @@ void DataManipulation::fetchArticleDataSet(
                 au_ar.add(item["id"], element); 
             }
 
+            vector<string> refs; 
             for (auto element : item["references"]) {
-                ar_ref.addReference(item["id"], element);  
+                refs.push_back(element); 
             }
 
             ar_repo.add(createArticle(item["abstract"],
@@ -100,7 +101,9 @@ void DataManipulation::fetchArticleDataSet(
                                       item["venue"],
                                       item["year"],
                                       item["id"],
-                                      static_cast<Type>(item["type"]))); 
+                                      static_cast<Type>(item["type"]),
+                                      ArticleStatus::DRAFT,
+                                      refs)); 
         } 
     } 
     else if (option == 2) {
@@ -180,10 +183,10 @@ void DataManipulation::fetchArticleDataSet(
             }
 
             for (auto element : refs) {
-                ar_ref.addReference(id, element); 
+                refs.push_back(element) ; 
             }
 
-            ar_repo.add(createArticle(abstract, n_citation, title, venue, year, id, type)); 
+            ar_repo.add(createArticle(abstract, n_citation, title, venue, year, id, type, ArticleStatus::DRAFT, refs)); 
         }
     }
     cout << "Successfully loaded data from " << file_path.filename() << "!\n"; 

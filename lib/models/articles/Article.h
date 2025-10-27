@@ -35,6 +35,7 @@ protected:
 	int year;
 	Type type;
     ArticleStatus status;
+    vector<string> refs;
 	static int count;
 public:
     Article(string abstract = "",
@@ -44,7 +45,8 @@ public:
 		    int year = 0,
             string id = "",
             Type t = Type::OTHER,
-            ArticleStatus st = ArticleStatus::DRAFT);
+            ArticleStatus st = ArticleStatus::DRAFT,
+            const vector<string>& r = {});
 
     Article(string abstract = "",
 		    int n_citation = 0,
@@ -52,25 +54,29 @@ public:
 		    string venue = "",
 		    int year = 0,
             Type t = Type::OTHER,
-            ArticleStatus st = ArticleStatus::DRAFT);
+            ArticleStatus st = ArticleStatus::DRAFT,
+            const vector<string>& r = {});
             
 	Article(const Article &other);
 
     virtual ~Article() = default; 
 
     // getters
-    [[nodiscard]] string getId() const;
-    [[nodiscard]] string getArticleTitle() const;
-    [[nodiscard]] string getVenueName() const;
-	[[nodiscard]] string getAbstract() const; 
-	[[nodiscard]] int getCitation() const;  
-	[[nodiscard]] int getYear() const;
-    [[nodiscard]] Type getType(int order); 
-    [[nodiscard]] ArticleStatus getStatus(int order); 
-    [[nodiscard]] virtual string typeToString() const; 
-	[[nodiscard]] string typeToString(Type type);
-    [[nodiscard]] virtual string statusToString() const;
-	[[nodiscard]] string statusToString(ArticleStatus status);
+    string getId() const;
+    string getArticleTitle() const;
+    string getVenueName() const;
+	string getAbstract() const; 
+	int getCitation() const;  
+	int getYear() const;
+    Type getType(int order); 
+    ArticleStatus getStatus(int order); 
+    vector<string> getReferences() const; 
+
+    // utilities
+    virtual string typeToString() const; 
+	string typeToString(Type type);
+    virtual string statusToString() const;
+	string statusToString(ArticleStatus status);
 
     // setters
     

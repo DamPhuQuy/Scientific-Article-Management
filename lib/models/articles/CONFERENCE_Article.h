@@ -16,7 +16,8 @@ public:
 		int year = 0,
 		string id = "", 
         Type t = Type::OTHER,
-        ArticleStatus st = ArticleStatus::DRAFT
+        ArticleStatus st = ArticleStatus::DRAFT,
+		const vector<string>& r = {}
 	);
 	CONFERENCE_Article(
 		string abstract = "",
@@ -25,7 +26,8 @@ public:
 		string venue = "",
 		int year = 0,
         Type t = Type::OTHER,
-        ArticleStatus st = ArticleStatus::DRAFT
+        ArticleStatus st = ArticleStatus::DRAFT,
+		const vector<string>& r = {}
 	);
 	explicit CONFERENCE_Article(const Article& other); 
 

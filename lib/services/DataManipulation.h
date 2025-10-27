@@ -8,7 +8,6 @@
 #include <regex>
 #include <fstream>
 #include "RepositoryManager.h"
-#include "ArticleReference.h"
 #include "AuthorArticle.h"
 #include "Article.h" 
 
@@ -33,14 +32,14 @@ public:
 		                          int year = 0,
     		                      string a_id = "",
                                   Type t = Type::OTHER,
-                                  ArticleStatus st = ArticleStatus::DRAFT);
+                                  ArticleStatus st = ArticleStatus::DRAFT,
+                                  const vector<string>& refs = {});
 
     // Fetch data from file 
     void fetchArticleDataSet(
         const fs::path& file_path,
         ArticleRepo& ar_repo,
         AuthorArticleRepo& au_ar,
-        ArticleReferenceRepo& ar_ref,
         int option = 1
     );
     

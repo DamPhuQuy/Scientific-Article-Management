@@ -89,11 +89,9 @@ public:
                 // arrow
                 else if (c == 0 || c == -32) { // special keys
                     c = _getch();
-                    if (c == 72) { // up
-                        if (selectedIndex > 0) selectedIndex--;
-                    } else if (c == 80) { // down
-                        if (!results.empty() && selectedIndex < (int)results.size() - 1)
-                            selectedIndex++;
+                    switch (c) { 
+                        case 72: selectedIndex = (selectedIndex - 1 + results.size()) % results.size(); break; 
+                        case 80: selectedIndex = (selectedIndex + 1) % results.size(); break;  
                     }
                 }
 

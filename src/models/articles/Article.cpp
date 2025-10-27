@@ -46,7 +46,8 @@ Article::Article(string abstract,
                 int year,
                 string id,
                 Type t,
-                ArticleStatus st)
+                ArticleStatus st,
+                const vector<string>& r)
     : abstract(abstract),
       n_citation(n_citation),
       title(title),
@@ -54,7 +55,8 @@ Article::Article(string abstract,
       year(year),
       article_id(id),
       type(t),
-      status(st) {
+      status(st),
+      refs(r) {
     ++count; 
 }
 
@@ -63,14 +65,16 @@ Article::Article(string abstract,
                 string title, string venue,
                 int year,
                 Type t,
-                ArticleStatus st)
+                ArticleStatus st,
+                const vector<string>& r)
     : abstract(abstract),
       n_citation(n_citation),
       title(title),
       venue(venue),
       year(year),
       type(t),
-      status(st) {
+      status(st),
+      refs(r) {
     ++count; 
     article_id = UUID_Generator::generateUUID();
 }
@@ -111,6 +115,11 @@ ArticleStatus Article::getStatus(int order) {
     if (order >= 11 && order <= 17)
         return static_cast<ArticleStatus>(order); 
     return ArticleStatus::DRAFT; 
+}
+
+vector<string> Article::getReferences() const
+{
+    return this->refs;
 }
 
 string Article::typeToString() const 

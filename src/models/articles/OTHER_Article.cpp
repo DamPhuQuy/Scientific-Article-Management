@@ -3,41 +3,47 @@
 using namespace std; 
 
 OTHER_Article::OTHER_Article(
-    string abstract, 
-    int n_citation, 
-    string title, 
-    string venue, 
-    int year, 
+    string abstract,
+	int n_citation,
+	string title,
+	string venue,
+	int year,
     string id, 
-    Type t, 
-    ArticleStatus st)
+    Type t,
+    ArticleStatus st,
+    const vector<string>& r
+)
 : Article(
     abstract, 
     n_citation, 
     title, 
     venue, 
-    year, 
+    year,  
     id, 
     t, 
-    st
+    st,
+    r
 ) {}
 
-OTHER_Article::OTHER_Article(
-    string abstract, 
-    int n_citation, 
-    string title, 
-    string venue, 
-    int year, 
-    Type t, 
-    ArticleStatus st)
+OTHER_Article::OTHER_Article( 
+    string abstract,
+	int n_citation,
+	string title,
+	string venue,
+	int year,
+    Type t,
+    ArticleStatus st,
+    const vector<string>& r
+)
 : Article(
     abstract, 
     n_citation, 
     title, 
     venue, 
-    year, 
+    year,  
     t, 
-    st
+    st,
+    r
 ) {}
 
 OTHER_Article::~OTHER_Article()

@@ -2,20 +2,17 @@
 #include "ArticleRepo.h"
 #include "AuthorRepo.h"
 #include "AuthorArticleRepo.h"
-#include "ArticleReferenceRepo.h"
 
 class RepositoryManager {
 private:
     ArticleRepo& a_repo;
     AuthorRepo& au_repo;
     AuthorArticleRepo& au_ar;
-    ArticleReferenceRepo& ar_ref;
 public:
     RepositoryManager(
         ArticleRepo& a_repo,
         AuthorRepo& au_repo,
-        AuthorArticleRepo& au_ar,
-        ArticleReferenceRepo& ar_ref
+        AuthorArticleRepo& au_ar
     );
 
     ~RepositoryManager() = default;
@@ -24,7 +21,6 @@ public:
     ArticleRepo& getArticles();
     AuthorRepo& getAuthors();
     AuthorArticleRepo& getAuthorArticles();
-    ArticleReferenceRepo& getArticleReferences();
 
     // search
     // void liveSearchReferences

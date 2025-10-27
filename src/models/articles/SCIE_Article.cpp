@@ -10,36 +10,40 @@ SCIE_Article::SCIE_Article(
 	int year,
     string id, 
     Type t,
-    ArticleStatus st
+    ArticleStatus st,
+    const vector<string>& r
 )
 : Article(
     abstract, 
     n_citation, 
     title, 
     venue, 
-    year, 
+    year,  
     id, 
     t, 
-    st
+    st,
+    r
 ) {}
 
-SCIE_Article::SCIE_Article(
+SCIE_Article::SCIE_Article( 
     string abstract,
 	int n_citation,
 	string title,
 	string venue,
 	int year,
     Type t,
-    ArticleStatus st
+    ArticleStatus st,
+    const vector<string>& r
 )
 : Article(
     abstract, 
     n_citation, 
     title, 
     venue, 
-    year, 
+    year,  
     t, 
-    st
+    st,
+    r
 ) {}
 
 SCIE_Article::~SCIE_Article()
