@@ -1,4 +1,5 @@
 #include "ArticleService.h"
+#include <iostream> 
 
 using namespace std; 
 
@@ -41,7 +42,7 @@ void ArticleService::inputArticleReferences(Article* article)
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-    article->refs.clear();
+    article->getReferences().clear(); 
     // pick or add
     for (int i = 0; i < numReferences; ++i) {
         cout << "\n=== Reference " << (i + 1) << " of " << numReferences << " ===\n";
@@ -51,8 +52,8 @@ void ArticleService::inputArticleReferences(Article* article)
             int idx = 1;
             vector<string> titles;
             for (const auto& [id, element] : repo.getArticles().getContainer()) {
-                cout << idx << ". " << element.getTitle() << "\n";
-                titles.push_back(element.getTitle());
+                cout << idx << ". " << element->getArticleTitle() << "\n";
+                titles.push_back(element->getArticleTitle());
                 ++idx;
             }
             cout << idx << ". Add new reference title\n";
@@ -70,15 +71,15 @@ void ArticleService::inputArticleReferences(Article* article)
                     cout << "Title cannot be empty.\n";
                     continue;
                 }
-                article->refs.push_back(newTitle);
+                article->getReferences().push_back(newTitle);
                 cout << "Added: " << newTitle << "\n";
                 break;
             }
             else if (sel > 0 && sel < idx) {
                 const string& chosen = titles[sel - 1];
-                article->refs.push_back(chosen);
+                article->getReferences().push_back(chosen);
                 cout << "Selected: " << chosen << "\n";
-                break;
+                break;  
             }
             else {
                 cout << "Invalid choice.\n";

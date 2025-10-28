@@ -1,9 +1,16 @@
 #include "AuthorRepo.h"
 #include "SearchByRegex.h"
+#include "MenuUtilities.h"
 #include <iostream> 
 #include <regex> 
 #include <functional>
 #include <conio.h> // getch()
+#include <thread>           // sleep_for
+#include <chrono>           // milliseconds
+
+using namespace std;
+using namespace std::this_thread;
+using namespace std::chrono_literals;
 
 AuthorRepo::AuthorRepo(unordered_map<string, Author> au_con)
 : authors_container(au_con)
@@ -93,39 +100,43 @@ string AuthorRepo::liveSearchByFieldOfStudy() const {
     );
 }
 
-void AuthorRepo::searchAuthorMenu()
-{
-    int choice;
-    do {
-        system("cls");
-        cout << "\n===== Search Authors =====\n";
-        cout << "     1. Search by Name\n";
-        cout << "     2. Search by Country\n";
-        cout << "     3. Search by Field of Study\n";
-        cout << "     0. Back to main menu\n";
-        cout << "---------------------------\n";
-        cout << "Your choice: ";
-        cin >> choice; cin.ignore(); 
+void AuthorRepo::searchAuthorMenu() {
+    vector<string> options = {
+        "Search by Name",
+        "Search by Country",
+        "Search by Field of Study",
+        "Back to Main Menu"
+    };
+
+    while (true) {
+        int choice = MenuUtilities::general_menu(options, "Search Authors", true);
+
+        if (choice == -1) {
+            cout << "Returning to main menu...\n";
+            sleep_for(800ms);
+            break;
+        }
 
         switch (choice) {
-        case 1:
-            liveSearchByName();
-            break;
-        case 2:
-            liveSearchByCountry();
-            break;
-        case 3:
-            liveSearchByFieldOfStudy();
-            break;
-        case 0:
-            cout << "Returning to main menu...\n";
-            break;
-        default:
-            cout << "Invalid option. Try again.\n";
+            case 0:
+                liveSearchByName();
+                break;
+            case 1:
+                liveSearchByCountry();
+                break;
+            case 2:
+                liveSearchByFieldOfStudy();
+                break;
+            case 3: // Back
+                cout << "Returning to main menu...\n";
+                sleep_for(800ms);
+                return;
+            default:
+                break;
         }
-        if (choice != 0) {
+        if (choice != 3) {
             cout << "\nPress any key to continue...";
             _getch();
         }
-    } while (choice != 0);
+    }
 }

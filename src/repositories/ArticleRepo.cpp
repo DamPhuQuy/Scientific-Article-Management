@@ -1,6 +1,13 @@
 #include "ArticleRepo.h"
-#include "SearchByRegex.h" 
+#include "SearchByRegex.h"
+#include "MenuUtilities.h" 
+#include <thread>           // sleep_for
+#include <chrono>           // milliseconds
 #include <iostream> 
+
+using namespace std;
+using namespace std::this_thread;
+using namespace std::chrono_literals;
 
 ArticleRepo::ArticleRepo(unordered_map<string, Article *> ar_con)
 : articles_container(ar_con)
@@ -115,56 +122,56 @@ string ArticleRepo::liveSearchByType() const {
 }
 
 void ArticleRepo::searchMenu() const {
-    int option;
-    do {
-        system("cls"); 
-        cout << "\n===== Search Articles =====\n";
-        cout << "     1. Search by Title\n";
-        cout << "     2. Search by Year\n";
-        cout << "     3. Search by Type\n";
-        cout << "     0. Back to Main Menu\n";
-        cout << "---------------------------\n";
-        cout << "Your choice: ";
-        cin >> option;
+    vector<string> options = {
+        "Search by Title",
+        "Search by Year",
+        "Search by Type",
+        "Back to Main Menu"
+    };
 
-        // Clear input buffer 
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore();
-            continue;
+    while (true) {
+        int choice = MenuUtilities::general_menu(options, "Search Articles", true);
+
+        if (choice == -1) { // ESC pressed
+            cout << "Returning to main menu...\n";
+            sleep_for(800ms);
+            break;
         }
 
-        switch (option) {
-            case 1: {
-                string id = liveSearchByTitle();
-                if (!id.empty()) {
-                    cout << "\nSelected article ID: " << id << "\n";
+        string selectedId;
+
+        switch (choice) {
+            case 0: // Search by Title
+                selectedId = liveSearchByTitle();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected article ID: " << selectedId << "\n";
+                    system("pause");
                 }
-                system("pause");
                 break;
-            }
-            case 2: {
-                string id = liveSearchByYear();
-                if (!id.empty()) {
-                    cout << "\nSelected article ID: " << id << "\n";
+
+            case 1: // Search by Year
+                selectedId = liveSearchByYear();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected article ID: " << selectedId << "\n";
+                    system("pause");
                 }
-                system("pause");
                 break;
-            }
-            case 3: {
-                string id = liveSearchByType();
-                if (!id.empty()) {
-                    cout << "\nSelected article ID: " << id << "\n";
+
+            case 2: // Search by Type
+                selectedId = liveSearchByType();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected article ID: " << selectedId << "\n";
+                    system("pause");
                 }
-                system("pause");
                 break;
-            }
-            case 0:
+
+            case 3: // Back
                 cout << "Returning to main menu...\n";
-                break;
+                sleep_for(800ms);
+                return;
+
             default:
-                cout << "Invalid option. Please try again.\n";
                 break;
         }
-    } while (option != 0);
+    }
 }
