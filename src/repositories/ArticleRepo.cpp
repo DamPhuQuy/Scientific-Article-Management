@@ -49,6 +49,11 @@ void ArticleRepo::traverse()
     }
 }
 
+unordered_map<string, Article *> &ArticleRepo::getContainer()
+{
+    return this->articles_container;
+}
+
 vector<Article*> ArticleRepo::getAll() const {
     vector<Article*> res; 
     for (auto element : this->articles_container) {

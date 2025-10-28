@@ -17,6 +17,7 @@ public:
     void add(Article* a); 
     void remove(const Article& a); 
     void traverse();
+    unordered_map<string, Article*>& getContainer();
     vector<Article*> getAll() const; 
 
     // search

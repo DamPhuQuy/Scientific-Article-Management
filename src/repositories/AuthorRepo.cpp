@@ -35,6 +35,11 @@ void AuthorRepo::remove(const Author &au)
     }
 }
 
+unordered_map<string, Author> &AuthorRepo::getAuthorContainer()
+{
+    return this->authors_container; 
+}
+
 // ---------------- Search functions ---------------- //
 
 string AuthorRepo::liveSearchByName() const {

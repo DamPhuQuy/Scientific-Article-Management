@@ -58,10 +58,42 @@ void Author::setTotalPublications(int newTotal) {
 }
 
 void Author::showAuthorDetails() const {
-    cout << "Author ID: " << this->id << "\n";
-    cout << "Full Name: " << this->fullName << "\n";
-    cout << "Country: " << this->country << "\n";
-    cout << "Field of Study: " << this->fieldOfStudy << "\n";
-    cout << "Total Publications: " << this->totalPublications << "\n";
-    cout << "---------------------------------------" << endl;
+    cout << "Author:\n"
+         << "  ID                : " << id               << '\n'
+         << "  Full name         : " << fullName         << '\n'
+         << "  Country           : " << country          << '\n'
+         << "  Field of study    : " << fieldOfStudy     << '\n'
+         << "  Total publications: " << totalPublications<< '\n';
+}
+
+void Author::inputFromUser()
+{
+    cout << "=== Enter Author Details ===\n";
+    
+    auto readLine = [](const string& prompt) -> string {
+        string line;
+        cout << prompt;
+        getline(cin >> ws, line);   // skip leading whitespace
+        return line;
+    };
+    // Helper lambda for integer input with validation
+    auto readInt = [](const string& prompt) -> int {
+        int value;
+        while (true) {
+            cout << prompt;
+            if (cin >> value) {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                return value;
+            }
+            cout << "  ** Invalid number, try again.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }Ư
+    };
+
+    this->fullName         = readLine("Full name        : ");
+    this->country          = readLine("Country          : ");
+    this->fieldOfStudy     = readLine("Field of study   : ");
+    this->totalPublications = readInt("Total publications: ");
+    cout << "-----------------------------\n";
 }

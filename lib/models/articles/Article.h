@@ -78,9 +78,16 @@ public:
 	string typeToString(Type type);
     virtual string statusToString() const;
 	string statusToString(ArticleStatus status);
+    void addReference(const string& title) { refs.push_back(title); }
 
     // setters
-    
+    void setArticleId(const string& id) { article_id = id; }
+    void setAbstract(const string& abs) { abstract = abs; }
+    void setNCitation(int n) { n_citation = n; }
+    void setTitle(const string& t) { title = t; }
+    void setVenue(const string& v) { venue = v; }
+    void setYear(int y) { year = y; }
+    void setStatus(ArticleStatus status) { this->status = status; }
 
     // Workflow
     void submit();

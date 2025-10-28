@@ -1,6 +1,7 @@
 #pragma once 
 #include "RepositoryManager.h"
 #include "UUID_Generator.h" 
+#include "DataManipulation.h"
 
 class ArticleService {
 private:
@@ -8,25 +9,105 @@ private:
 public:
     ArticleService(RepositoryManager& r) : repo(r) {}
 
-    Article createArticle() {
-        Article* article;
+    void createArticle() {
+        int typeChoice;
+        do {
+            cout << "Choose the type of article (1: SCIE, 2: SCOPUS, 3: CONFERENCE, 4: OTHER): ";
+            cin >> typeChoice; cin.ignore();
+            if (cin.fail() || typeChoice < 1 || typeChoice > 4) {
+                cout << "Loai bai bao khong hop le. Vui long nhap lai.\n";
+                cin.clear();    
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            } else {
+                break;
+            }
+        } while (true);
+        Type type = static_cast<Type>(typeChoice); 
+        Article* article = DataManipulation::createArticle(type);
 
-        inputAuthors(article);    // xử lý liên kết với Author
-        return article;
+        inputArticle(article);    // xử lý liên kết với Author
     }
 
 private:
-    void inputAuthors(Article* article) {
-        Article* new_article; 
+    void inputArticleReferences(Article* article)
+    {
+        int numReferences = 0;
+        while (true) {
+            cout << "Enter the number of reference documents (0 or more): ";
+            if (cin >> numReferences && numReferences >= 0) {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
+            cout << "Invalid input. Please enter a non-negative integer.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        article->refs.clear();
+
+        // pick or add
+        for (int i = 0; i < numReferences; ++i) {
+            cout << "\n=== Reference " << (i + 1) << " of " << numReferences << " ===\n";
+
+            while (true) {
+                // Show available titles
+                cout << "Available reference titles:\n";
+                int idx = 1;
+                vector<string> titles;
+                for (const auto& [id, element] : repo.getArticles().getContainer()) {
+                    cout << idx << ". " << element.getTitle() << "\n";
+                    titles.push_back(element.getTitle());
+                    ++idx;
+                }
+                cout << idx << ". Add new reference title\n";
+
+                string choice;
+                cout << "Choose (or " << idx << " to add new): ";
+                getline(cin >> ws, choice);
+
+                int sel;
+                try { sel = stoi(choice); }
+                catch (...) { cout << "Please enter a number.\n"; continue; }
+
+                if (sel == idx) {
+                    string newTitle;
+                    cout << "Enter the reference title: ";
+                    getline(cin >> ws, newTitle);
+
+                    if (newTitle.empty()) {
+                        cout << "Title cannot be empty.\n";
+                        continue;
+                    }
+
+                    article->refs.push_back(newTitle);
+                    cout << "Added: " << newTitle << "\n";
+                    break;
+                }
+                else if (sel > 0 && sel < idx) {
+                    const string& chosen = titles[sel - 1];
+                    article->refs.push_back(chosen);
+                    cout << "Selected: " << chosen << "\n";
+                    break;
+                }
+                else {
+                    cout << "Invalid choice.\n";
+                }
+            }
+        }
+
+        cout << "\nAll references added to article.\n";
+    }
+
+    void inputArticle(Article* article) {
 
         cout << "Enter title of article: ";
-        string title; getline(cin, title);
+        string title; getline(cin, title); article->setTitle(title);
 
         cout << "Enter abstract of article: ";
-        string abstract; getline(cin, abstract);
+        string abstract; getline(cin, abstract); article->setAbstract(abstract); 
 
         cout << "Enter the venue of article: ";
-        string venue; getline(cin, venue);
+        string venue; getline(cin, venue); article->setVenue(venue);
 
         int year = 0; 
         do {
@@ -40,6 +121,7 @@ private:
                 break;
             }
         } while (true);
+        article->setYear(year);
 
         int n_citation = 0; 
         do {
@@ -53,20 +135,7 @@ private:
                 break;
             }
         } while (true);
-
-        int typeChoice;
-        do {
-            cout << "Choose the type of article (1: SCIE, 2: SCOPUS, 3: CONFERENCE, 4: OTHER): ";
-            cin >> typeChoice;
-            if (cin.fail() || typeChoice < 1 || typeChoice > 4) {
-                cout << "Loai bai bao khong hop le. Vui long nhap lai.\n";
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
-                break;
-            }
-        } while (true);
-        Type type = static_cast<Type>(typeChoice);
+        article->setNCitation(n_citation);
 
         int statusChoice;
         ArticleStatus status;
@@ -86,6 +155,7 @@ private:
             case 2: status = ArticleStatus::SUBMITTED; break;
             case 3: status = ArticleStatus::PUBLISHED; break;
         }
+        article->setStatus(status); 
 
         int numAuthors;
         do {
@@ -102,30 +172,50 @@ private:
 
         // Choose available author or add new one
 
-        int numReferences;
-        do {
-            cout << "Enter the number of reference documents: ";
-            cin >> numReferences;
-            if (cin.fail() || numReferences < 0) {
-                cout << "Invalid reference number. Please try again.\n";
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            } else {
-                break;
+        while (true) {
+            cout << "Available authors:\n";
+            int index = 1;
+            vector<string> keys;
+            for (const auto& element : repo.getAuthors().getAuthorContainer()) {
+                cout << index << ". " << element.second.getFullName() << "\n";
+                keys.push_back(element.first);  // Save the ID
+                ++index;
             }
-        } while (true);
+            cout << index << ". Add new author\n";
 
-        // Choose available references or add external references
+            cout << "Choose an author (or " << index << " to add new): ";
+            cin >> choice; cin.ignore();
 
-        
-    }
+            int selected;
+            try {
+                selected = stoi(choice);
+            } catch (...) {
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }
 
-    Author createNewAuthor() {
-        string name;
-        cout << "Nhap ten tac gia: ";
-        getline(cin, name);
+            if (selected == index) {
+                // Add new author
+                Author newAuthor;
+                newAuthor.inputFromUser();
+                repo.getAuthors().add(newAuthor);
+                cout << "Added new author: " << newAuthor.getFullName() << "\n";
 
-        string id = Utilities::generateUUID();
-        return Author(id, name);
+                repo.getAuthorArticles().add(article->getId(), newAuthor.getId());
+            } else if (selected > 0 && selected < index) {
+                const string& chosenId = keys[selected - 1];
+                const Author& chosen = repo.getAuthors().getAuthorContainer().at(chosenId);
+                    
+                cout << "You selected: " << chosen.getFullName() << "\n";
+
+                repo.getAuthorArticles().add(article->getId(), chosen.getId());
+                break; 
+            } else {
+                cout << "Invalid choice.\n";
+            }
+        }
+
+        inputArticleReferences(article);
+        repo.getArticles().add(article);
     }
 };

@@ -21,6 +21,15 @@ using namespace std;
 namespace fs = std::filesystem;
 using json = nlohmann::json;
 
+Article* DataManipulation::createArticle(Type t) {
+    switch (t) {
+        case Type::CONFERENCE:      return new CONFERENCE_Article();
+        case Type::SCIE:            return new SCIE_Article();
+        case Type::SCOPUS:          return new SCOPUS_Article();
+        default:                    return new OTHER_Article();
+    }
+}
+
 Article* DataManipulation::createArticle(
     string abstract,
 	int n_citation,

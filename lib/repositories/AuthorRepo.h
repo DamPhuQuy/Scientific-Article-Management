@@ -17,6 +17,8 @@ private:
     // utilities
     void add(const Author& au);
     void remove(const Author& au);
+
+    unordered_map<string, Author>& getAuthorContainer();
     
     // search functions
     string liveSearchByName() const;

@@ -13,7 +13,6 @@ private:
     string fieldOfStudy;     
     int totalPublications;
 public: 
-    Author() = default;
     Author(
         string id, 
         string fullName = "", 
@@ -39,4 +38,6 @@ public:
     void setFieldOfStudy(const string& newFieldOfStudy); 
     void setTotalPublications(int newTotal);
     void showAuthorDetails() const;
+
+    void inputFromUser();
 };
