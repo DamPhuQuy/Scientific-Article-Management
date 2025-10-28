@@ -61,25 +61,6 @@ Article::Article(string abstract,
     ++count; 
 }
 
-Article::Article(string abstract,
-                int n_citation,
-                string title, string venue,
-                int year,
-                Type t,
-                ArticleStatus st,
-                const vector<string>& r)
-    : abstract(abstract),
-      n_citation(n_citation),
-      title(title),
-      venue(venue),
-      year(year),
-      type(t),
-      status(st),
-      refs(r) {
-    ++count; 
-    article_id = UUID_Generator::generateUUID();
-}
-
 Article::Article(const Article &other)
     : abstract(other.abstract),
       n_citation(other.n_citation),

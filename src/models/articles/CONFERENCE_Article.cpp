@@ -19,28 +19,7 @@ CONFERENCE_Article::CONFERENCE_Article(
     title, 
     venue, 
     year,  
-    id, 
-    t, 
-    st,
-    r
-) {}
-
-CONFERENCE_Article::CONFERENCE_Article(
-    string abstract,
-	int n_citation,
-	string title,
-	string venue,
-	int year,
-    Type t,
-    ArticleStatus st,
-    const vector<string>& r
-)
-: Article(
-    abstract, 
-    n_citation, 
-    title, 
-    venue, 
-    year,  
+    id.empty() ? UUID_Generator::generateUUID() : id, 
     t, 
     st,
     r

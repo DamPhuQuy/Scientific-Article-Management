@@ -19,16 +19,7 @@ public:
         ArticleStatus st = ArticleStatus::DRAFT,
 		const vector<string>& r = {}
 	);
-	OTHER_Article(
-		string abstract = "",
-		int n_citation = 0,
-		string title = "",
-		string venue = "",
-		int year = 0,
-        Type t = Type::OTHER,
-        ArticleStatus st = ArticleStatus::DRAFT,
-		const vector<string>& r = {}
-	);
+
 	explicit OTHER_Article(const Article& other);
 
 	~OTHER_Article(); 

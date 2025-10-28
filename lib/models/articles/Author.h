@@ -2,6 +2,7 @@
 
 #include <string> 
 #include <vector>
+#include "UUID_Generator.h"
 
 using namespace std;
 
@@ -13,8 +14,9 @@ private:
     string fieldOfStudy;     
     int totalPublications;
 public: 
+    
     Author(
-        string id, 
+        string id = UUID_Generator::generateUUID(), 
         string fullName = "", 
         string country = "", 
         string fieldOfStudy = "", 

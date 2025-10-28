@@ -10,6 +10,7 @@ public:
     ArticleService(RepositoryManager& r) : repo(r) {}
 
     void createArticle() {
+        // Type
         int typeChoice;
         do {
             cout << "Choose the type of article (1: SCIE, 2: SCOPUS, 3: CONFERENCE, 4: OTHER): ";
@@ -25,7 +26,13 @@ public:
         Type type = static_cast<Type>(typeChoice); 
         Article* article = DataManipulation::createArticle(type);
 
+        // input Article + Author + References
         inputArticle(article);    // xử lý liên kết với Author
+        inputArticleReferences(article);
+
+        // Save
+        repo.getArticles().add(article);
+        cout << "Article created successfully!\n"; 
     }
 
 private:
@@ -101,18 +108,24 @@ private:
     void inputArticle(Article* article) {
 
         cout << "Enter title of article: ";
-        string title; getline(cin, title); article->setTitle(title);
+        string title;
+        getline(cin, title);
+        article->setTitle(title);
 
         cout << "Enter abstract of article: ";
-        string abstract; getline(cin, abstract); article->setAbstract(abstract); 
+        string abstract;
+        getline(cin, abstract);
+        article->setAbstract(abstract);
 
         cout << "Enter the venue of article: ";
-        string venue; getline(cin, venue); article->setVenue(venue);
+        string venue;
+        getline(cin, venue);
+        article->setVenue(venue);
 
         int year = 0; 
         do {
             cout << "Enter publish year: ";
-            cin >> year;
+            cin >> year; cin.ignore(); 
             if (cin.fail() || year < 0 || year > 2025) {
                 cout << "Invalid data. Please try again.\n";
                 cin.clear();
@@ -126,7 +139,7 @@ private:
         int n_citation = 0; 
         do {
             cout << "Enter the number of citations: ";
-            cin >> n_citation;
+            cin >> n_citation; cin.ignore(); 
             if (cin.fail() || n_citation < 0) {
                 cout << "Invalid citations count. Please try again.\n";
                 cin.clear();
@@ -138,18 +151,18 @@ private:
         article->setNCitation(n_citation);
 
         int statusChoice;
-        ArticleStatus status;
         do {
             cout << "Choose the status of article (1: DRAFT, 2: SUBMITTED, 3: PUBLISHED): ";
-            cin >> statusChoice;
+            cin >> statusChoice; cin.ignore();
             if (cin.fail() || statusChoice < 1 || statusChoice > 3) {
-                cout << "Trang thai khong hop le. Vui long nhap lai.\n";
+                cout << "Invalid status. Please try again.\n";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } else {
                 break;
             }
         } while (true);
+        ArticleStatus status;
         switch (statusChoice) {
             case 1: status = ArticleStatus::DRAFT; break;
             case 2: status = ArticleStatus::SUBMITTED; break;
@@ -157,6 +170,7 @@ private:
         }
         article->setStatus(status); 
 
+        // Input Authors (Multiple)
         int numAuthors;
         do {
             cout << "Enter the number of authors: ";
@@ -172,50 +186,56 @@ private:
 
         // Choose available author or add new one
 
-        while (true) {
-            cout << "Available authors:\n";
-            int index = 1;
-            vector<string> keys;
-            for (const auto& element : repo.getAuthors().getAuthorContainer()) {
-                cout << index << ". " << element.second.getFullName() << "\n";
-                keys.push_back(element.first);  // Save the ID
-                ++index;
-            }
-            cout << index << ". Add new author\n";
+        for (int i = 0; i < numAuthors; ++i) {
+            cout << "\n--- Author " << (i + 1) << " of " << numAuthors << " ---\n";
+            while (true) {
+                cout << "Available authors:\n";
+                int index = 1;
+                vector<string> keys;
+                for (const auto& [id, author] : repo.getAuthors().getAuthorContainer()) {
+                    cout << index << ". " << author.getFullName() << " (ID: " << id << ")\n";
+                    keys.push_back(id);
+                    ++index;
+                }
+                cout << index << ". Add new author\n";
 
-            cout << "Choose an author (or " << index << " to add new): ";
-            cin >> choice; cin.ignore();
+                string choice;
+                cout << "Choose (or " << index << " to add new): ";
+                getline(cin, choice);
 
-            int selected;
-            try {
-                selected = stoi(choice);
-            } catch (...) {
-                cout << "Invalid input. Please enter a number.\n";
-                continue;
-            }
+                int selected;
+                try {
+                    selected = stoi(choice);
+                } catch (...) {
+                    cout << "Invalid input. Please enter a number.\n";
+                    continue;
+                }
 
-            if (selected == index) {
-                // Add new author
-                Author newAuthor;
-                newAuthor.inputFromUser();
-                repo.getAuthors().add(newAuthor);
-                cout << "Added new author: " << newAuthor.getFullName() << "\n";
+                if (selected == index) {
+                    // Add new author
+                    Author newAuthor;
+                    newAuthor.inputFromUser();
+                    repo.getAuthors().add(newAuthor);
+                    cout << "Added new author: " << newAuthor.getFullName() << "\n";
 
-                repo.getAuthorArticles().add(article->getId(), newAuthor.getId());
-            } else if (selected > 0 && selected < index) {
-                const string& chosenId = keys[selected - 1];
-                const Author& chosen = repo.getAuthors().getAuthorContainer().at(chosenId);
-                    
-                cout << "You selected: " << chosen.getFullName() << "\n";
+                    if (repo.getAuthors().getAuthorContainer().count(newAuthor.getId())) {
+                        cout << "ID already exists. Author not added.\n";
+                        continue;
+                    }
 
-                repo.getAuthorArticles().add(article->getId(), chosen.getId());
-                break; 
-            } else {
-                cout << "Invalid choice.\n";
+                    repo.getAuthorArticles().add(article->getId(), newAuthor.getId());
+                } else if (selected > 0 && selected < index) {
+                    const string& chosenId = keys[selected - 1];
+                    const Author& chosen = repo.getAuthors().getAuthorContainer().at    (chosenId);
+
+                    cout << "You selected: " << chosen.getFullName() << "\n";
+
+                    repo.getAuthorArticles().add(article->getId(), chosen.getId());
+                    break; 
+                } else {
+                    cout << "Invalid choice.\n";
+                }
             }
         }
-
-        inputArticleReferences(article);
-        repo.getArticles().add(article);
     }
 };

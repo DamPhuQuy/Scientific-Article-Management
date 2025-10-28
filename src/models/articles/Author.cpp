@@ -1,5 +1,6 @@
 #include "Author.h"
 #include <iostream> 
+#include <limits>
 
 using namespace std; 
 
@@ -88,7 +89,7 @@ void Author::inputFromUser()
             cout << "  ** Invalid number, try again.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }Ư
+        }
     };
 
     this->fullName         = readLine("Full name        : ");

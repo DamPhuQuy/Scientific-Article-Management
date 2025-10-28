@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include "AuthorArticleRepo.h"
+#include "UUID_Generator.h"
 
 using namespace std;
 
@@ -44,16 +45,7 @@ public:
 		    string title = "",
 		    string venue = "",
 		    int year = 0,
-            string id = "",
-            Type t = Type::OTHER,
-            ArticleStatus st = ArticleStatus::DRAFT,
-            const vector<string>& r = {});
-
-    Article(string abstract = "",
-		    int n_citation = 0,
-		    string title = "",
-		    string venue = "",
-		    int year = 0,
+            string id = UUID_Generator::generateUUID(),
             Type t = Type::OTHER,
             ArticleStatus st = ArticleStatus::DRAFT,
             const vector<string>& r = {});

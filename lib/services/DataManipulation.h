@@ -25,6 +25,8 @@ public:
     ~DataManipulation() = default;
 
     // Assist to create article depending on Type
+    static Article* createArticle(Type t); 
+
     static Article* createArticle(string abstract = "",
 		                          int n_citation = 0,
 		                          string title = "",

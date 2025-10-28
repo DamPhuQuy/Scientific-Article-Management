@@ -19,16 +19,6 @@ public:
         ArticleStatus st = ArticleStatus::DRAFT,
 		const vector<string>& r = {}
 	);
-	SCOPUS_Article(
-		string abstract = "",
-		int n_citation = 0,
-		string title = "",
-		string venue = "",
-		int year = 0,
-        Type t = Type::OTHER,
-        ArticleStatus st = ArticleStatus::DRAFT,
-		const vector<string>& r = {}
-	);
 	explicit SCOPUS_Article(const Article& other);
 
 	~SCOPUS_Article(); 

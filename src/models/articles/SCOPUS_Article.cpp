@@ -19,33 +19,11 @@ SCOPUS_Article::SCOPUS_Article(
     title, 
     venue, 
     year, 
-    id, 
+    id.empty() ? UUID_Generator::generateUUID() : id, 
     t, 
     st,
     r
 ) {}
-
-SCOPUS_Article::SCOPUS_Article(
-    string abstract,
-	int n_citation,
-	string title,
-	string venue,
-	int year,
-    Type t,
-    ArticleStatus st,
-    const vector<string>& r
-)
-: Article(
-    abstract,  
-    n_citation, 
-    title, 
-    venue, 
-    year, 
-    t, 
-    st, 
-    r
-) {}
-
 SCOPUS_Article::~SCOPUS_Article()
 {
 }
