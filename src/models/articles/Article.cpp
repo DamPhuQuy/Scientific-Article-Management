@@ -86,11 +86,9 @@ Article::Article(const Article &other)
     return year;
 }
 
-Type Article::getType(int order)
+Type Article::getType()
 {
-    if (order >= 1 && order <= 4)
-        return static_cast<Type>(order);
-    return Type::OTHER;
+    return this->type; 
 }
 
 ArticleStatus Article::getStatus(int order) {

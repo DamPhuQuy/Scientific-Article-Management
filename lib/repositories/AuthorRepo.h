@@ -25,4 +25,7 @@ private:
     string liveSearchByCountry() const; 
     string liveSearchByFieldOfStudy() const; 
     void searchAuthorMenu(); 
+
+    // create 
+    void createAuthor(); 
 };

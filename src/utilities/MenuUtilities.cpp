@@ -1,4 +1,6 @@
 #include "MenuUtilities.h"
+#include "ArticleService.h" 
+#include "Statistic.h" 
 #include <iostream>
 #include <vector>
 #include <conio.h>          // getch(), kbhit()
@@ -67,7 +69,7 @@ int MenuUtilities::general_menu(const vector<string> &options, const string &tit
     }
 }
 
-void MenuUtilities::article_menu(RepositoryManager &repo)
+void MenuUtilities::main_menu(ArticleService& a_service)
 {
     const vector<string> options = {
         "Manage Articles",
@@ -80,11 +82,11 @@ void MenuUtilities::article_menu(RepositoryManager &repo)
         switch (selected) {
             case 0:
                 cout << "-> Opening Article Management...\n";
-                repo.getArticles().searchMenu();
+                MenuUtilities::article_sub_menu(repo, a_service); 
                 break;
             case 1:
                 cout << "-> Opening Author Management...\n";
-                repo.getAuthors().searchAuthorMenu(); 
+                MenuUtilities::author_sub_menu(repo); 
                 break;
             case 2:
                 cout << "Exiting... \n";
@@ -92,6 +94,115 @@ void MenuUtilities::article_menu(RepositoryManager &repo)
        }
     }
 }
+
+void MenuUtilities::article_sub_menu(ArticleService& a_service)
+{
+    const vector<string> options = {
+        "Create Article",
+        "View All Articles",
+        "Update Article",
+        "Delete Article",
+        "Search Articles",
+        "Statistics",
+        "Back"
+    };
+
+    while (true) {
+        int selected = MenuUtilities::general_menu(options, "ARTICLE MANAGEMENT");
+        switch (selected) {
+            case 0: {
+                cout << "-> Creating new article...\n";
+                a_service.createArticle(); 
+                break;
+            }
+            case 1: {
+                cout << "-> Viewing all articles...\n";
+                for (const auto& element : repo.getArticles().getAll()) {
+                    element->showDescription();
+                }
+                break;
+            }
+            case 2: {
+                cout << "-> Updating article...\n";
+                repo.updateArticleMenu();
+                break;
+            }
+            case 3: {
+                cout << "-> Deleting article...\n";
+                repo.deleteArticleMenu();
+                break;
+            }
+            case 4: {
+                cout << "-> Searching articles...\n";
+                repo.getArticles().searchMenu();
+                break;
+            }
+            case 5: {
+                cout << "-> Viewing article statistics...\n";
+                MenuUtilities::statisticArticleMenu(repo); 
+                break;
+            }
+            case 6: {
+                cout << "Returning to main menu...\n";
+                return;
+            }
+        }
+    }
+}
+
+void MenuUtilities::author_sub_menu(RepositoryManager& repo)
+{
+    const vector<string> options = {
+        "Create Author",
+        "View All Authors",
+        "Update Author",
+        "Delete Author",
+        "Search Authors",
+        "Statistics",
+        "Back"
+    };
+
+    while (true) {
+        int selected = MenuUtilities::general_menu(options, "AUTHOR MANAGEMENT");
+        switch (selected) {
+            case 0: {
+                cout << "-> Creating new author...\n";
+                repo.getAuthors().createAuthor();
+                break;
+            }
+            case 1: {
+                cout << "-> Viewing all authors...\n";
+                repo.displayAll();
+                break;
+            }
+            case 2: {
+                cout << "-> Updating author...\n";
+                repo.updateAuthorMenu();
+                break;
+            }
+            case 3: {
+                cout << "-> Deleting author...\n";
+                repo.deleteAuthorMenu();
+                break;
+            }
+            case 4: {
+                cout << "-> Searching authors...\n";
+                repo.searchAuthorMenu();
+                break;
+            }
+            case 5: {
+                cout << "-> Viewing author statistics...\n";
+                MenuUtilities::statisticAuthorMenu(repo); 
+                break;
+            }
+            case 6: {
+                cout << "Returning to main menu...\n";
+                return;
+            }
+        }
+    }
+}
+
 
 void MenuUtilities::data_menu(DataManipulation &service, ArticleRepo &a_repo, AuthorRepo &au_repo, AuthorArticleRepo &au_ar)
 {
@@ -127,5 +238,55 @@ void MenuUtilities::data_menu(DataManipulation &service, ArticleRepo &a_repo, Au
         case 2:
             cout << "Exit...\n";
             exit(0);  
+    }
+}
+
+void MenuUtilities::statisticArticleMenu(RepositoryManager& repo) {
+    const std::vector<std::string> options = {
+        "Statistics by Year",
+        "Statistics by Type",
+        "Back"
+    };
+
+    while (true) {
+        int selected = MenuUtilities::general_menu(options, "ARTICLE STATISTICS MENU");
+        switch (selected) {
+            case 0:
+                Statistics::articlesByYear(repo);
+                break;
+            case 1:
+                Statistics::articlesByType(repo);
+                break;
+            case 2:
+                return;
+        }
+    }
+}
+
+void MenuUtilities::statisticAuthorMenu(RepositoryManager& repo) {
+    const std::vector<std::string> options = {
+        "Statistics by Country",
+        "Statistics by Field of Study",
+        "Top Authors by Publications",
+        "Back"
+    };
+
+    while (true) {
+        int selected = MenuUtilities::general_menu(options, "AUTHOR STATISTICS MENU");
+        switch (selected) {
+            case 0:
+                Statistics::authorsByCountry(repo);
+                break;
+            case 1:
+                Statistics::authorsByField(repo);
+                break;
+            case 2:
+                Statistics::topAuthorsByPublication(repo);
+                break;
+            case 3:
+                return;
+            default:
+                std::cout << "Invalid selection.\n";
+        }
     }
 }

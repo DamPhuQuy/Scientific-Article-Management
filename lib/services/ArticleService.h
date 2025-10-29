@@ -13,5 +13,7 @@ public:
     ArticleService(RepositoryManager& repo); 
     ~ArticleService() = default; 
 
+    RepositoryManager& getRepo() const { return repo; } 
+
     void createArticle(); 
 };

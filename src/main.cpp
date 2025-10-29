@@ -15,8 +15,10 @@ void start() {
 
     MenuUtilities::data_menu(service, a_repo, au_repo, au_ar); 
     RepositoryManager repo(a_repo, au_repo, au_ar);
+    
+    ArticleService a_service(repo);
 
-    MenuUtilities::article_menu(repo); 
+    MenuUtilities::main_menu(a_service); 
 }
 
 int main() {

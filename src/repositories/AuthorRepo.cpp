@@ -140,3 +140,10 @@ void AuthorRepo::searchAuthorMenu() {
         }
     }
 }
+
+void AuthorRepo::createAuthor()
+{
+    Author newAuthor; 
+    newAuthor.inputFromUser(); 
+    add(newAuthor); 
+}
