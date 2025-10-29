@@ -1,6 +1,6 @@
 #include "MenuUtilities.h"
 #include "ArticleService.h" 
-#include "Statistic.h" 
+#include "Statistics.h"
 #include <iostream>
 #include <vector>
 #include <conio.h>          // getch(), kbhit()
@@ -82,11 +82,11 @@ void MenuUtilities::main_menu(ArticleService& a_service)
         switch (selected) {
             case 0:
                 cout << "-> Opening Article Management...\n";
-                MenuUtilities::article_sub_menu(repo, a_service); 
+                MenuUtilities::article_sub_menu(a_service);
                 break;
             case 1:
                 cout << "-> Opening Author Management...\n";
-                MenuUtilities::author_sub_menu(repo); 
+                MenuUtilities::author_sub_menu(a_service.getRepo());
                 break;
             case 2:
                 cout << "Exiting... \n";
@@ -117,29 +117,29 @@ void MenuUtilities::article_sub_menu(ArticleService& a_service)
             }
             case 1: {
                 cout << "-> Viewing all articles...\n";
-                for (const auto& element : repo.getArticles().getAll()) {
+                for (const auto& element : a_service.getRepo().getArticles().getAll()) {
                     element->showDescription();
                 }
                 break;
             }
             case 2: {
                 cout << "-> Updating article...\n";
-                repo.updateArticleMenu();
+                MenuUtilities::article_update_menu(a_service.getRepo());
                 break;
             }
             case 3: {
                 cout << "-> Deleting article...\n";
-                repo.deleteArticleMenu();
+                MenuUtilities::article_delete_menu(a_service.getRepo());
                 break;
             }
             case 4: {
                 cout << "-> Searching articles...\n";
-                repo.getArticles().searchMenu();
+                a_service.getRepo().getArticles().searchMenu();
                 break;
             }
             case 5: {
                 cout << "-> Viewing article statistics...\n";
-                MenuUtilities::statisticArticleMenu(repo); 
+                MenuUtilities::statisticArticleMenu(a_service.getRepo());
                 break;
             }
             case 6: {
@@ -172,27 +172,29 @@ void MenuUtilities::author_sub_menu(RepositoryManager& repo)
             }
             case 1: {
                 cout << "-> Viewing all authors...\n";
-                repo.displayAll();
+                for (const auto& [id, author] : repo.getAuthors().getAuthorContainer()) {
+                    author.showAuthorDetails();
+                }
                 break;
             }
             case 2: {
                 cout << "-> Updating author...\n";
-                repo.updateAuthorMenu();
+                MenuUtilities::author_update_menu(repo);
                 break;
             }
             case 3: {
                 cout << "-> Deleting author...\n";
-                repo.deleteAuthorMenu();
+                author_delete_menu(repo);
                 break;
             }
             case 4: {
                 cout << "-> Searching authors...\n";
-                repo.searchAuthorMenu();
+                repo.getAuthors().searchAuthorMenu();
                 break;
             }
             case 5: {
                 cout << "-> Viewing author statistics...\n";
-                MenuUtilities::statisticAuthorMenu(repo); 
+                MenuUtilities::statisticAuthorMenu(repo);
                 break;
             }
             case 6: {
@@ -289,4 +291,139 @@ void MenuUtilities::statisticAuthorMenu(RepositoryManager& repo) {
                 std::cout << "Invalid selection.\n";
         }
     }
+}
+
+void MenuUtilities::article_update_menu(RepositoryManager& repo) {
+    cout << "\n=== UPDATE ARTICLE MENU ===\n";
+
+    string id;
+    cout << "Enter Article ID to update: ";
+    getline(cin, id);
+
+    auto it = repo.getArticles().getContainer().find(id);
+    if (it != repo.getArticles().getContainer().end()) {
+        cout << "Article not found.\n";
+        return;
+    }
+
+    const vector<string> options = {
+        "Update Title",
+        "Update Venue",
+        "Update Year",
+        "Back"
+    };
+
+    while (true) {
+        int selected = MenuUtilities::general_menu(options, "UPDATE ARTICLE");
+        switch (selected) {
+            case 0: {
+                cout << "Enter new title: ";
+                string title; getline(cin, title);
+                it->second->setTitle(title);
+                cout << "Title updated successfully.\n";
+                break;
+            }
+            case 1: {
+                cout << "Enter new venue: ";
+                string venue; getline(cin, venue);
+                it->second->setVenue(venue);
+                cout << "Venue updated successfully.\n";
+                break;
+            }
+            case 2: {
+                cout << "Enter new year: ";
+                string input; getline(cin, input);
+                int year = stoi(input);
+                it->second->setYear(year);
+                cout << "Year updated successfully.\n";
+                break;
+            }
+            case 3:
+                cout << "Returning...\n";
+                return;
+        }
+    }
+}
+
+void MenuUtilities::article_delete_menu(RepositoryManager& repo) {
+    cout << "\n=== DELETE ARTICLE MENU ===\n";
+
+    string id;
+    cout << "Enter Article ID to delete: ";
+    getline(cin, id);
+
+    if (repo.getArticles().getContainer().erase(id))
+        cout << "Article deleted successfully.\n";
+    else
+        cout << "Article not found.\n";
+}
+
+void MenuUtilities::author_update_menu(RepositoryManager& repo) {
+    cout << "\n=== UPDATE AUTHOR MENU ===\n";
+
+    string id;
+    cout << "Enter Author ID to update: ";
+    getline(cin, id);
+
+    auto it = repo.getAuthors().getAuthorContainer().find(id);
+    if (it != repo.getAuthors().getAuthorContainer().end()) {
+        cout << "Author not found.\n";
+        return;
+    }
+
+    const vector<string> options = {
+        "Update Name",
+        "Update Country",
+        "Update Field of Study",
+        "Update Total of Publications",
+        "Back"
+    };
+
+    while (true) {
+        int selected = MenuUtilities::general_menu(options, "UPDATE AUTHOR");
+        switch (selected) {
+            case 0: {
+                cout << "Enter new name: ";
+                string name; getline(cin, name);
+                it->second.setFullName(name);
+                cout << "Name updated successfully.\n";
+                break;
+            }
+            case 1: {
+                cout << "Enter new country: ";
+                string country; getline(cin, country);
+                it->second.setCountry(country);
+                cout << "Country updated successfully.\n";
+                break;
+            }
+            case 2: {
+                cout << "Enter new study: ";
+                string study; getline(cin, study);
+                it->second.setFieldOfStudy(study);
+                cout << "Study updated successfully.\n";
+            }
+            case 3: {
+                cout << "Enter new total of publications: ";
+                string total; getline(cin, total);
+                it->second.setTotalPublications(stoi(total));
+                cout << "Total publications updated successfully.\n";
+            }
+            case 4:
+                cout << "Returning...\n";
+                return;
+        }
+    }
+}
+
+void MenuUtilities::author_delete_menu(RepositoryManager& repo) {
+    cout << "\n=== DELETE AUTHOR MENU ===\n";
+
+    string id;
+    cout << "Enter Author ID to delete: ";
+    getline(cin, id);
+
+    if (repo.getAuthors().getAuthorContainer().erase(id))
+        cout << "Author deleted successfully.\n";
+    else
+        cout << "Author not found.\n";
 }

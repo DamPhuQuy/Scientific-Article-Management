@@ -21,6 +21,11 @@ static int general_menu(const vector<string> &options, const string &title, bool
                           ArticleRepo &a_repo,
                           AuthorRepo &au_repo,
                           AuthorArticleRepo &au_ar);
-    void statisticArticleMenu(RepositoryManager &repo);
-    void statisticAuthorMenu(RepositoryManager& repo); 
+    static void statisticArticleMenu(RepositoryManager &repo);
+    static void statisticAuthorMenu(RepositoryManager& repo);
+
+    static void article_update_menu(RepositoryManager& repo);
+    static void article_delete_menu(RepositoryManager& repo);
+    static void author_update_menu(RepositoryManager& repo);
+    static void author_delete_menu(RepositoryManager& repo);
 };

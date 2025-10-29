@@ -61,7 +61,7 @@ public:
 	string getAbstract() const; 
 	int getCitation() const;  
 	int getYear() const;
-    Type getType(int order); 
+    Type getType();
     ArticleStatus getStatus(int order); 
     vector<string>& getReferences(); 
 
