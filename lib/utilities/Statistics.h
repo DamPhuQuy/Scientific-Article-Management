@@ -5,14 +5,15 @@
 #include <string>
 #include <vector>
 
-class Statistics {
+class Statistics
+{
 public:
-    static void articlesByYear(RepositoryManager& repo);
-    static void articlesByType(RepositoryManager& repo);
+    // Article
+    static void articlesByYear(RepositoryManager &repo);
+    static void articlesByType(RepositoryManager &repo);
 
-    static void authorsByCountry(RepositoryManager& repo);
-
-    static void authorsByField(RepositoryManager& repo);
-
-    static void topAuthorsByPublication(RepositoryManager& repo, int topN = 5);
+    // Author
+    static void authorsByCountry(RepositoryManager &repo);
+    static void authorsByField(RepositoryManager &repo);
+    static void topAuthorsByPublication(RepositoryManager &repo, int topN = 5);
 };

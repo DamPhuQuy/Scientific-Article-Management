@@ -18,7 +18,7 @@ void start() {
     
     ArticleService a_service(repo);
 
-    MenuUtilities::main_menu(a_service); 
+    MenuUtilities::main_menu(a_service);  
 }
 
 int main() {

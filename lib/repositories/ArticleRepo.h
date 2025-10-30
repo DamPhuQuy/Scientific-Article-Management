@@ -1,6 +1,8 @@
 #pragma once
 #include <unordered_map>
 #include "Article.h" 
+#include <string> 
+#include <vector> 
 
 using namespace std; 
 
