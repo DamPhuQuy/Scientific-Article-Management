@@ -203,6 +203,7 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
             for (const auto &[id, author] : repo.getAuthors().getAuthorContainer())
             {
                 author.showAuthorDetails();
+                cout << "\n";
             }
             cout << "Press any key to continue...";
             _getch();

@@ -24,6 +24,6 @@ public:
 	~CONFERENCE_Article(); 
 
 	// utilities
-	void showDescription() const override; 
+	void showDescription()override; 
 	[[nodiscard]] Article* clone() const override;
 };
