@@ -23,29 +23,4 @@ add_executable(Run
         ${SRC_FILES}
 )
 
-# ---------------------- Find Python & NumPy ----------------------
-find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-
-if (Python3_FOUND)
-    message(STATUS "✅ Found Python: ${Python3_EXECUTABLE}")
-    message(STATUS "Include dir: ${Python3_INCLUDE_DIRS}")
-    message(STATUS "Library: ${Python3_LIBRARIES}")
-else()
-    message(FATAL_ERROR "❌ Python not found!")
-endif()
-
-# --- Get NumPy include path dynamically ---
-execute_process(
-        COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
-        OUTPUT_VARIABLE NumPy_INCLUDE_DIR
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-message(STATUS "✅ NumPy include dir: ${NumPy_INCLUDE_DIR}")
-
-# ---------------------- Link Python & NumPy ----------------------
-include_directories(${Python3_INCLUDE_DIRS} ${NumPy_INCLUDE_DIR})
-target_link_libraries(Run PRIVATE ${Python3_LIBRARIES})
-
-# target_compile_options(Run PRIVATE -fsanitize=address -g)
-# target_link_options(Run PRIVATE -fsanitize=address)
+ 
