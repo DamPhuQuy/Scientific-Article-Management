@@ -5,6 +5,11 @@ AuthorArticleRepo::AuthorArticleRepo(const vector<AuthorArticle> &r)
 {
 }
 
+const vector<AuthorArticle> &AuthorArticleRepo::getRelations() const
+{
+    return this->relations;
+}
+
 void AuthorArticleRepo::add(const string &article_id, const string &author_id)
 {
     relations.emplace_back(article_id, author_id);

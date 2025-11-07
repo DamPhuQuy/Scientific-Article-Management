@@ -275,26 +275,28 @@ void MenuUtilities::data_menu(DataManipulation &service, ArticleRepo &a_repo, Au
     {
     case 0:
     {
-        cout << "Insert dataset: ";
-        cin.ignore();
         string file;
-        getline(cin, file);
-        service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar);
-        sleep_for(1s);
-
         cout << "Insert authors dataset: ";
         getline(cin, file);
         service.fetchAuthorInformation(Constants::getModelsPath(file), au_repo);
         sleep_for(1s);
 
+        cout << "Insert dataset: ";
+        cin.ignore();
+        getline(cin, file);
+        service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, au_repo);
+        sleep_for(1s);
+
+
         return;
     }
     case 1:
-        service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar);
-        sleep_for(1s);
-
         service.fetchAuthorInformation(Constants::AuInfoJson, au_repo);
         sleep_for(1s);
+
+        service.fetchArticleDataSet(Constants::DataSetJson, a_repo, au_ar, au_repo);
+        sleep_for(1s);
+
         return;
     case 2:
         cout << "Exit...\n";

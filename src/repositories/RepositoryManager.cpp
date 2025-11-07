@@ -1,6 +1,8 @@
 #include "RepositoryManager.h"
+#include <unordered_set>
 #include <algorithm>
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
@@ -221,7 +223,46 @@ void RepositoryManager::inputArticle(Article* article) {
         }
     }
 }
-// void RepositoryManager::sync()
-// {
 
-// }
+bool RepositoryManager::validateDataConsistency() const {
+    bool isConsistent = true;
+    const auto& relations = au_ar.getRelations();
+    const auto& articles = a_repo.getContainer();
+    const auto& authors = au_repo.getAuthorContainer();
+    unordered_set<string> validArticleIds;
+    unordered_set<string> validAuthorIds;
+
+    // fetch valid id
+    for (const auto& [id, articlePtr] : articles) validArticleIds.insert(id);
+    for (const auto& [id, author] : authors) validAuthorIds.insert(id);
+
+    // check relationship
+    cout << "\n=== DATA CONSISTENCY CHECK ===\n";
+    for (const auto& rel : relations) {
+        string aid = rel.getArticleId();
+        string auid = rel.getAuthorId();
+        if (validArticleIds.find(aid) == validArticleIds.end()) {
+            cout << "[ERROR] Article ID '" << aid << "' DOES NOT EXIST in ArticleRepo!\n";
+            isConsistent = false;
+        }
+        if (validAuthorIds.find(auid) == validAuthorIds.end()) {
+            cout << "[LOI] Author ID '" << auid << "' DOES NOT EXIST in AuthorRepo!\n";
+            isConsistent = false;
+        }
+    }
+
+    // report
+    cout << "Summary:\n";
+    cout << "  - Number of articles: " << articles.size() << endl;
+    cout << "  - Number of authors: " << authors.size() << endl;
+    cout << "  - Number of relations: " << relations.size() << endl;
+    if (isConsistent) {
+        cout << "=> [SUCCESS] All data are FULLY CONSISTENT!\n";
+    } else {
+        cout << "=> [ERROR] Inconsistent data detected!\n";
+    }
+
+    cout << "Press any key to continue...";
+    _getch();
+    return isConsistent;
+}

@@ -215,5 +215,138 @@
     "country": "Poland",
     "fieldOfStudy": "Combinatorial Optimization",
     "totalPublications": 54
+  },
+  {
+    "id": "11111111-aaaa-2222-bbbb-333333333301",
+    "fullName": "Bo Tan",
+    "country": "China",
+    "fieldOfStudy": "Combinatorics",
+    "totalPublications": 87
+  },
+  {
+    "id": "22222222-bbbb-3333-cccc-444444444402",
+    "fullName": "Xiaojing Zheng",
+    "country": "China",
+    "fieldOfStudy": "Algorithm Design",
+    "totalPublications": 62
+  },
+  {
+    "id": "33333333-cccc-4444-dddd-555555555503",
+    "fullName": "Pierre Arnoux",
+    "country": "France",
+    "fieldOfStudy": "Dynamical Systems",
+    "totalPublications": 198
+  },
+  {
+    "id": "44444444-dddd-5555-eeee-666666666604",
+    "fullName": "Shigeki Akiyama",
+    "country": "Japan",
+    "fieldOfStudy": "Number Theory",
+    "totalPublications": 145
+  },
+  {
+    "id": "55555555-eeee-6666-ffff-777777777705",
+    "fullName": "Valérie Berthé",
+    "country": "France",
+    "fieldOfStudy": "Ergodic Theory",
+    "totalPublications": 176
+  },
+  {
+    "id": "66666666-ffff-7777-aaaa-888888888806",
+    "fullName": "Sébastien Labbé",
+    "country": "Canada",
+    "fieldOfStudy": "Computational Geometry",
+    "totalPublications": 93
+  },
+  {
+    "id": "77777777-aaaa-8888-bbbb-999999999907",
+    "fullName": "Anna Frid",
+    "country": "Russia",
+    "fieldOfStudy": "Combinatorics on Words",
+    "totalPublications": 108
+  },
+  {
+    "id": "88888888-bbbb-9999-cccc-aaaaaaaaa008",
+    "fullName": "Sergey Puzynin",
+    "country": "Russia",
+    "fieldOfStudy": "Theoretical Physics",
+    "totalPublications": 71
+  },
+  {
+    "id": "99999999-cccc-aaaa-dddd-bbbbbbbbb009",
+    "fullName": "Aseem L. Sharma",
+    "country": "India",
+    "fieldOfStudy": "Automatic Sequences",
+    "totalPublications": 56
+  },
+  {
+    "id": "aaaaaaaa-dddd-bbbb-eeee-ccccccccc010",
+    "fullName": "Maxime Crochemore",
+    "country": "France",
+    "fieldOfStudy": "String Algorithms",
+    "totalPublications": 312
+  },
+  {
+    "id": "bbbbbbbb-eeee-cccc-ffff-dddddddd011",
+    "fullName": "Lucian Ilie",
+    "country": "Canada",
+    "fieldOfStudy": "Bioinformatics",
+    "totalPublications": 124
+  },
+  {
+    "id": "cccccccc-ffff-dddd-aaaa-eeeeeeee012",
+    "fullName": "Tero Harju",
+    "country": "Finland",
+    "fieldOfStudy": "Formal Languages",
+    "totalPublications": 189
+  },
+  {
+    "id": "dddddddd-aaaa-eeee-bbbb-ffffffff013",
+    "fullName": "Dirk Nowotka",
+    "country": "Germany",
+    "fieldOfStudy": "Automata Theory",
+    "totalPublications": 102
+  },
+  {
+    "id": "eeeeeeee-bbbb-ffff-cccc-aaaaaaaa014",
+    "fullName": "Michel Dekking",
+    "country": "Netherlands",
+    "fieldOfStudy": "Fractal Geometry",
+    "totalPublications": 167
+  },
+  {
+    "id": "ffffffff-cccc-aaaa-dddd-bbbbbbbb015",
+    "fullName": "Christian Mauduit",
+    "country": "France",
+    "fieldOfStudy": "Analytic Number Theory",
+    "totalPublications": 134
+  },
+  {
+    "id": "11111111-dddd-bbbb-eeee-cccccccc016",
+    "fullName": "Hengjia Wei",
+    "country": "China",
+    "fieldOfStudy": "Information Theory",
+    "totalPublications": 78
+  },
+  {
+    "id": "22222222-eeee-cccc-ffff-dddddddd017",
+    "fullName": "Moshe Schwartz",
+    "country": "Israel",
+    "fieldOfStudy": "Coding Theory",
+    "totalPublications": 156
+  },
+  {
+    "id": "33333333-ffff-dddd-aaaa-eeeeeeee018",
+    "fullName": "Amy Glen",
+    "country": "Australia",
+    "fieldOfStudy": "Combinatorics",
+    "totalPublications": 95
+  },
+  {
+    "id": "44444444-aaaa-eeee-bbbb-ffffffff019",
+    "fullName": "Bjarni Jensson",
+    "country": "Iceland",
+    "fieldOfStudy": "Discrete Mathematics",
+    "totalPublications": 61
   }
 ]

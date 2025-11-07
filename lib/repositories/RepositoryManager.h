@@ -35,7 +35,7 @@ public:
     void createArticle();
 
     // High-level logic combining repos
-    void sync();
+    bool validateDataConsistency() const;
     void clearAll();
 };
 

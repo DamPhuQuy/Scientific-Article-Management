@@ -158,6 +158,15 @@ string AuthorRepo::searchAuthorMenu() {
     return "";
 }
 
+string AuthorRepo::findAuthorIdByName(const string &name) const
+{
+    for (const auto& [id, author] : authors_container) {
+        if (author.getFullName() == name)
+            return id;
+    }
+    return "";
+}
+
 void AuthorRepo::createAuthor()
 {
     Author newAuthor;

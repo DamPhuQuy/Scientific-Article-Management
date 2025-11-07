@@ -15,8 +15,12 @@ void start() {
 
     MenuUtilities::data_menu(service, a_repo, au_repo, au_ar);
     RepositoryManager repo(a_repo, au_repo, au_ar);
+    bool isCorrect = repo.validateDataConsistency();
 
-    MenuUtilities::main_menu(repo);
+    if (isCorrect)
+        MenuUtilities::main_menu(repo);
+    else
+        return;
 }
 
 int main() {

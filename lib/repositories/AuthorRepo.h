@@ -8,7 +8,7 @@ using namespace std;
 class AuthorRepo {
 private:
     unordered_map<string, Author> authors_container;
-    public:
+public:
     AuthorRepo() = default;
     explicit AuthorRepo(unordered_map<string, Author> au_con);
 
@@ -25,6 +25,8 @@ private:
     string liveSearchByCountry() const;
     string liveSearchByFieldOfStudy() const;
     string searchAuthorMenu();
+    string findAuthorIdByName(const string& name) const;
+
 
     // create
     void createAuthor();

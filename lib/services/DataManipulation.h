@@ -9,7 +9,7 @@
 #include <fstream>
 #include "RepositoryManager.h"
 #include "AuthorArticle.h"
-#include "Article.h" 
+#include "Article.h"
 
 
 namespace fs = std::filesystem;
@@ -17,15 +17,15 @@ using namespace std;
 
 class DataManipulation {
 private:
-    // Assist 
+    // Assist
     static bool fileCheck(const fs::path &file_path, ifstream &in);
-    static bool isNumber(const string& token); 
+    static bool isNumber(const string& token);
 public:
     DataManipulation() = default;
     ~DataManipulation() = default;
 
     // Assist to create article depending on Type
-    static Article* createArticle(Type t); 
+    static Article* createArticle(Type t);
 
     static Article* createArticle(string abstract = "",
 		                          int n_citation = 0,
@@ -37,14 +37,14 @@ public:
                                   ArticleStatus st = ArticleStatus::DRAFT,
                                   const vector<string>& refs = {});
 
-    // Fetch data from file 
+    // Fetch data from file
     void fetchArticleDataSet(
         const fs::path& file_path,
         ArticleRepo& ar_repo,
         AuthorArticleRepo& au_ar,
-        int option = 1
+        AuthorRepo& au_repo
     );
-    
+
     void fetchAuthorInformation(const fs::path &file_path, AuthorRepo& au_repo, int option = 1);
 };
 
