@@ -25,9 +25,9 @@ public:
 
     // Author
     static void author_sub_menu(RepositoryManager &repo);
-    static void statisticAuthorMenu(RepositoryManager &repo);
     static void author_update_menu(RepositoryManager &repo);
     static void author_delete_menu(RepositoryManager &repo);
+    static void statisticAuthorMenu(RepositoryManager &repo);
     static void show_article_through_authorId(RepositoryManager &repo, string selectedId);
 
     // Article

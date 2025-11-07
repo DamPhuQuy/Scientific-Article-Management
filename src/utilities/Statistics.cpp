@@ -11,11 +11,11 @@ void Statistics::articlesByYear(RepositoryManager &repo)
 {
     map<int, int> yearCount;
 
-    for (const auto &[id, article] : repo.getArticles().getContainer())
+    for (const auto &[id, articlePtr] : repo.getArticles().getContainer())
     {
-        if (article)
+        if (articlePtr)
         {
-            yearCount[article->getYear()]++;
+            yearCount[articlePtr->getYear()]++;
         }
     }
 
