@@ -1,5 +1,7 @@
 #include "ArticleService.h"
 #include <iostream> 
+#include <thread>
+#include <chrono>
 
 using namespace std; 
 
@@ -34,14 +36,18 @@ void ArticleService::inputArticleReferences(Article* article)
     int numReferences = 0;
     while (true) {
         cout << "Enter the number of reference documents (0 or more): ";
+
         if (cin >> numReferences && numReferences >= 0) {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             break;
         }
+
         cout << "Invalid input. Please enter a non-negative integer.\n";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+
+
     article->getReferences().clear(); 
     // pick or add
     for (int i = 0; i < numReferences; ++i) {
@@ -59,24 +65,44 @@ void ArticleService::inputArticleReferences(Article* article)
             cout << idx << ". Add new reference title\n";
             string choice;
             cout << "Choose (or " << idx << " to add new): ";
-            getline(cin >> ws, choice);
+            if (!cin.good()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            getline(cin, choice);
+
+            if (choice.empty()) {
+            cout << "Input cannot be empty.\n";
+            continue;
+            }
+
             int sel;
             try { sel = stoi(choice); }
-            catch (...) { cout << "Please enter a number.\n"; continue; }
+            catch (...) { 
+                cout << "Please enter a number.\n"; 
+                continue; }
             if (sel == idx) {
                 string newTitle;
                 cout << "Enter the reference title: ";
-                getline(cin >> ws, newTitle);
+
+                if (!cin.good()) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+                getline(cin, newTitle);
                 if (newTitle.empty()) {
                     cout << "Title cannot be empty.\n";
                     continue;
                 }
+
                 article->getReferences().push_back(newTitle);
                 cout << "Added: " << newTitle << "\n";
                 break;
             }
             else if (sel > 0 && sel < idx) {
                 const string& chosen = titles[sel - 1];
+
                 article->getReferences().push_back(chosen);
                 cout << "Selected: " << chosen << "\n";
                 break;  
@@ -173,6 +199,7 @@ void ArticleService::inputArticle(Article* article) {
                 ++index;
             }
             cout << index << ". Add new author\n";
+            cout << index+1 << ". Back\n";
             string choice;
             cout << "Choose (or " << index << " to add new): ";
             getline(cin, choice);
@@ -181,6 +208,8 @@ void ArticleService::inputArticle(Article* article) {
                 selected = stoi(choice);
             } catch (...) {
                 cout << "Invalid input. Please enter a number.\n";
+                this_thread::sleep_for(chrono::milliseconds(800));
+                system("cls");
                 continue;
             }
             if (selected == index) {
@@ -202,6 +231,8 @@ void ArticleService::inputArticle(Article* article) {
                 cout << "You selected: " << chosen.getFullName() << "\n";
                 repo.getAuthorArticles().add(article->getId(), chosen.getId());
                 break; 
+            } else if (selected == index + 1) {
+                return;
             } else {
                 system("cls");
                 cout << "--------------------\n";

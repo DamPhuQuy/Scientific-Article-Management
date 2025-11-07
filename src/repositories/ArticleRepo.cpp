@@ -23,6 +23,7 @@ ArticleRepo::~ArticleRepo()
 
 void ArticleRepo::add(Article* a)
 {
+
     string id = a->getId(); 
     auto it = this->articles_container.find(id);
     if (it != this->articles_container.end()) {

@@ -137,6 +137,7 @@ void MenuUtilities::article_sub_menu(ArticleService &a_service)
             {
                 element->showDescription();
                 cout << "\n";
+                this_thread::sleep_for(chrono::milliseconds(500));
             }
             cout << "Press any key to continue...";
             _getch();
@@ -204,6 +205,7 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
             {
                 author.showAuthorDetails();
                 cout << "\n";
+                this_thread::sleep_for(chrono::milliseconds(500));
             }
             cout << "Press any key to continue...";
             _getch();
@@ -358,7 +360,6 @@ void MenuUtilities::article_update_menu(RepositoryManager &repo)
                 continue;
             }
             cout << "Enter new title: ";
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             string title;
             getline(cin, title);
             it->second->setTitle(title);
@@ -376,7 +377,7 @@ void MenuUtilities::article_update_menu(RepositoryManager &repo)
                 continue;
             }
             cout << "Enter new venue: ";
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
             string venue;
             getline(cin, venue);
             it->second->setVenue(venue);
@@ -394,7 +395,6 @@ void MenuUtilities::article_update_menu(RepositoryManager &repo)
                 continue;
             }
             cout << "Enter new year: ";
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             string input;
             getline(cin, input);
             int year = stoi(input);

@@ -182,7 +182,7 @@ ArticleStatus Article::getStatus(int order)
     return ArticleStatus::DRAFT;
 }
 
-vector<string> &Article::getReferences()
+vector<string>& Article::getReferences()
 {
     return this->refs;
 }

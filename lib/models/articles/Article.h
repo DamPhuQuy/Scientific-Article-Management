@@ -70,7 +70,7 @@ public:
     int getYear() const;
     Type getType();
     ArticleStatus getStatus(int order);
-    vector<string> &getReferences();
+    vector<string>& getReferences();
 
     // utilities
     virtual string typeToString() const;

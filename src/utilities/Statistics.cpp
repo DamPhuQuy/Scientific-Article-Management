@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <iomanip>
 #include <conio.h>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -18,6 +20,8 @@ void Statistics::articlesByYear(RepositoryManager &repo)
             yearCount[article->getYear()]++;
         }
     }
+
+    system("cls");
 
     cout << "\n=== ARTICLES BY YEAR ===\n";
     cout << left << setw(10) << "Year" << " : " << "Number of Articles\n";
@@ -34,6 +38,7 @@ void Statistics::articlesByYear(RepositoryManager &repo)
     cout << string(40, '-') << "\n";
     cout << left << setw(10) << "TOTAL" << " : " << total << " articles\n\n";
 
+    this_thread::sleep_for(chrono::milliseconds(800));
     cout << "Press any key to continue...";
     _getch();
 }
@@ -65,6 +70,8 @@ void Statistics::articlesByType(RepositoryManager &repo)
         }
     }
 
+    system("cls");
+
     cout << "\n=== ARTICLES BY TYPE ===\n";
     cout << left << setw(15) << "Type" << " : " << "Count\n";
     cout << string(35, '-') << "\n";
@@ -80,6 +87,7 @@ void Statistics::articlesByType(RepositoryManager &repo)
     cout << string(35, '-') << "\n";
     cout << left << setw(15) << "TOTAL" << " : " << total << "\n\n";
 
+    this_thread::sleep_for(chrono::milliseconds(800));
     cout << "Press any key to continue...";
     _getch();
 }
@@ -97,6 +105,8 @@ void Statistics::authorsByCountry(RepositoryManager &repo)
         }
     }
 
+    system("cls");
+
     cout << "\n=== AUTHORS BY COUNTRY ===\n";
     cout << left << setw(25) << "Country" << " : " << "Number of Authors\n";
     cout << string(50, '-') << "\n";
@@ -111,6 +121,8 @@ void Statistics::authorsByCountry(RepositoryManager &repo)
         total += count;
     cout << string(50, '-') << "\n";
     cout << left << setw(25) << "TOTAL" << " : " << total << "\n\n";
+
+    this_thread::sleep_for(chrono::milliseconds(800));
 
     cout << "Press any key to continue...";
     _getch();
@@ -129,6 +141,8 @@ void Statistics::authorsByField(RepositoryManager &repo)
         }
     }
 
+    system("cls");
+
     cout << "\n=== AUTHORS BY FIELD OF STUDY ===\n";
     cout << left << setw(35) << "Field of Study" << " : " << "Number of Authors\n";
     cout << string(65, '-') << "\n";
@@ -144,6 +158,8 @@ void Statistics::authorsByField(RepositoryManager &repo)
     cout << string(65, '-') << "\n";
     cout << left << setw(35) << "TOTAL" << " : " << total << "\n\n";
 
+    this_thread::sleep_for(chrono::milliseconds(800));
+    
     cout << "Press any key to continue...";
     _getch();
 }
