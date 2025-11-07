@@ -197,11 +197,16 @@ void ArticleService::inputArticle(Article* article) {
             } else if (selected > 0 && selected < index) {
                 const string& chosenId = keys[selected - 1];
                 const Author& chosen = repo.getAuthors().getAuthorContainer().at   (chosenId);
+
+                system("cls");
                 cout << "You selected: " << chosen.getFullName() << "\n";
                 repo.getAuthorArticles().add(article->getId(), chosen.getId());
                 break; 
             } else {
+                system("cls");
+                cout << "--------------------\n";
                 cout << "Invalid choice.\n";
+                cout << "--------------------\n";
             }
         }
     }
