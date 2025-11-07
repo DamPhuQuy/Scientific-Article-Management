@@ -1,8 +1,8 @@
 #include "AuthorRepo.h"
 #include "SearchByRegex.h"
 #include "MenuUtilities.h"
-#include <iostream> 
-#include <regex> 
+#include <iostream>
+#include <regex>
 #include <functional>
 #include <conio.h> // getch()
 #include <thread>           // sleep_for
@@ -19,38 +19,38 @@ AuthorRepo::AuthorRepo(unordered_map<string, Author> au_con)
 
 void AuthorRepo::add(const Author &au)
 {
-    string id = au.getId(); 
-    auto it = this->authors_container.find(id); 
+    string id = au.getId();
+    auto it = this->authors_container.find(id);
     if (it != this->authors_container.end()) {
-        cout << "Id nay da ton tai!" << endl; 
-        return; 
+        cout << "Id nay da ton tai!" << endl;
+        return;
     }
     else {
-        this->authors_container[id] = au; 
+        this->authors_container[id] = au;
     }
 }
 
 void AuthorRepo::remove(const Author &au)
 {
-    string id = au.getId(); 
-    auto it = this->authors_container.find(id); 
+    string id = au.getId();
+    auto it = this->authors_container.find(id);
     if (it != this->authors_container.end()) {
-        this->authors_container.erase(id); 
-    } 
+        this->authors_container.erase(id);
+    }
     else {
-        cout << "Id nay khong ton tai!" << endl; 
+        cout << "Id nay khong ton tai!" << endl;
     }
 }
 
 unordered_map<string, Author> &AuthorRepo::getAuthorContainer()
 {
-    return this->authors_container; 
+    return this->authors_container;
 }
 
 // ---------------- Search functions ---------------- //
 
 string AuthorRepo::liveSearchByName() const {
-    auto getName = [](const Author& au) { return au.getFullName(); }; 
+    auto getName = [](const Author& au) { return au.getFullName(); };
 
     auto printAuthor = [](const Author& au, bool highlight) -> void{
         if (highlight)
@@ -60,14 +60,14 @@ string AuthorRepo::liveSearchByName() const {
     };
 
     return SearchByRegex::liveSearch<Author>(
-        this->authors_container, 
+        this->authors_container,
         getName,
         printAuthor
-    ); 
+    );
 }
 
 string AuthorRepo::liveSearchByCountry() const {
-    auto getCountry = [](const Author& au) { return au.getCountry(); }; 
+    auto getCountry = [](const Author& au) { return au.getCountry(); };
 
     auto printAuthor = [](const Author& au, bool highlight) -> void {
         if (highlight)
@@ -84,10 +84,10 @@ string AuthorRepo::liveSearchByCountry() const {
 }
 
 string AuthorRepo::liveSearchByFieldOfStudy() const {
-    auto getField = [](const Author& au) { return au.getFieldOfStudy(); }; 
+    auto getField = [](const Author& au) { return au.getFieldOfStudy(); };
 
     auto printAuthor = [](const Author& au, bool highlight) -> void {
-        if (highlight) 
+        if (highlight)
             cout << "-> [" << au.getFieldOfStudy() << "] (" << au.getFullName() << ", " << au.getCountry() << ")\n";
         else
             cout << "    " << "[" << au.getFieldOfStudy() << "] (" << au.getFullName() << ", " << au.getCountry() << ")\n";
@@ -100,7 +100,7 @@ string AuthorRepo::liveSearchByFieldOfStudy() const {
     );
 }
 
-void AuthorRepo::searchAuthorMenu() {
+string AuthorRepo::searchAuthorMenu() {
     vector<string> options = {
         "Search by Name",
         "Search by Country",
@@ -117,33 +117,50 @@ void AuthorRepo::searchAuthorMenu() {
             break;
         }
 
+        string selectedId;
+
         switch (choice) {
-            case 0:
-                liveSearchByName();
+            case 0: {
+                string selectedId = liveSearchByName();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected author ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
                 break;
-            case 1:
-                liveSearchByCountry();
+            }
+            case 1: {
+                string selectedId = liveSearchByCountry();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected author ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
                 break;
-            case 2:
-                liveSearchByFieldOfStudy();
+            }
+            case 2: {
+                string selectedId = liveSearchByFieldOfStudy();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected author ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
                 break;
+            }
             case 3: // Back
                 cout << "Returning to main menu...\n";
                 sleep_for(800ms);
-                return;
+                return "";
             default:
                 break;
         }
-        if (choice != 3) {
-            cout << "\nPress any key to continue...";
-            _getch();
-        }
     }
+    return "";
 }
 
 void AuthorRepo::createAuthor()
 {
-    Author newAuthor; 
-    newAuthor.inputFromUser(); 
-    add(newAuthor); 
+    Author newAuthor;
+    newAuthor.inputFromUser();
+    add(newAuthor);
 }

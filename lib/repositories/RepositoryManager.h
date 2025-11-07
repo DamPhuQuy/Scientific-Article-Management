@@ -2,12 +2,18 @@
 #include "ArticleRepo.h"
 #include "AuthorRepo.h"
 #include "AuthorArticleRepo.h"
+#include "UUID_Generator.h"
+#include "DataManipulation.h"
 
 class RepositoryManager {
 private:
     ArticleRepo& a_repo;
     AuthorRepo& au_repo;
     AuthorArticleRepo& au_ar;
+
+    // Article input
+    void inputArticle(Article* article);
+    void inputArticleReferences(Article* article);
 public:
     RepositoryManager(
         ArticleRepo& a_repo,
@@ -25,8 +31,11 @@ public:
     // search
     // void liveSearchReferences
 
-    // High-level logic combining repos 
+    // create article utility
+    void createArticle();
+
+    // High-level logic combining repos
     void sync();
-    void clearAll(); 
+    void clearAll();
 };
 

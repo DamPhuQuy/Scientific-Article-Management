@@ -1,31 +1,31 @@
 #pragma once
-#include "Author.h" 
+#include "Author.h"
 #include <vector>
 #include <unordered_map>
 
-using namespace std; 
+using namespace std;
 
 class AuthorRepo {
-private: 
-    unordered_map<string, Author> authors_container; 
-    public: 
-    AuthorRepo() = default; 
-    explicit AuthorRepo(unordered_map<string, Author> au_con); 
-    
-    ~AuthorRepo() = default; 
-    
+private:
+    unordered_map<string, Author> authors_container;
+    public:
+    AuthorRepo() = default;
+    explicit AuthorRepo(unordered_map<string, Author> au_con);
+
+    ~AuthorRepo() = default;
+
     // utilities
     void add(const Author& au);
     void remove(const Author& au);
 
     unordered_map<string, Author>& getAuthorContainer();
-    
+
     // search functions
     string liveSearchByName() const;
-    string liveSearchByCountry() const; 
-    string liveSearchByFieldOfStudy() const; 
-    void searchAuthorMenu(); 
+    string liveSearchByCountry() const;
+    string liveSearchByFieldOfStudy() const;
+    string searchAuthorMenu();
 
-    // create 
-    void createAuthor(); 
+    // create
+    void createAuthor();
 };

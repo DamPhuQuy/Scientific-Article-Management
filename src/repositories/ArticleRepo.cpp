@@ -1,9 +1,9 @@
 #include "ArticleRepo.h"
 #include "SearchByRegex.h"
-#include "MenuUtilities.h" 
+#include "MenuUtilities.h"
 #include <thread>           // sleep_for
 #include <chrono>           // milliseconds
-#include <iostream> 
+#include <iostream>
 
 using namespace std;
 using namespace std::this_thread;
@@ -17,34 +17,34 @@ ArticleRepo::ArticleRepo(unordered_map<string, Article *> ar_con)
 ArticleRepo::~ArticleRepo()
 {
     for (auto &element : this->articles_container) {
-        delete element.second; 
+        delete element.second;
     }
 }
 
 void ArticleRepo::add(Article* a)
 {
-    string id = a->getId(); 
+    string id = a->getId();
     auto it = this->articles_container.find(id);
     if (it != this->articles_container.end()) {
         cout << "Id nay da ton tai!" << endl;
-        delete a; 
+        delete a;
         return;
     }
     else {
-        this->articles_container[id] = a; 
+        this->articles_container[id] = a;
     }
 }
 
 void ArticleRepo::remove(const Article &a)
 {
-    string id = a.getId(); 
-    auto it = this->articles_container.find(id); 
+    string id = a.getId();
+    auto it = this->articles_container.find(id);
     if (it != this->articles_container.end()) {
-        delete it->second;       
-        this->articles_container.erase(it);  
-    } 
+        delete it->second;
+        this->articles_container.erase(it);
+    }
     else {
-        cout << "Id nay khong ton tai!" << endl; 
+        cout << "Id nay khong ton tai!" << endl;
     }
 }
 
@@ -52,7 +52,7 @@ void ArticleRepo::remove(const Article &a)
 void ArticleRepo::traverse()
 {
     for (auto element : articles_container) {
-        element.second->showDescription(); 
+        element.second->showDescription();
     }
 }
 
@@ -62,17 +62,17 @@ unordered_map<string, Article *> &ArticleRepo::getContainer()
 }
 
 vector<Article*> ArticleRepo::getAll() const {
-    vector<Article*> res; 
+    vector<Article*> res;
     for (auto element : this->articles_container) {
-        res.push_back(element.second); 
+        res.push_back(element.second);
     }
-    return res; 
-} 
+    return res;
+}
 
 string ArticleRepo::liveSearchByTitle() const {
     auto getTitle = [](Article* a) -> string { return a->getArticleTitle(); };
 
-    auto printArticle = [](Article* a, bool highlight) {
+    auto printArticle = [](Article* a, bool highlight) -> void {
         if (highlight)
             cout << "-> " << "[" << a->getArticleTitle() << "] (" << a->getYear() << ", " << a->typeToString() << ")\n";
         else
@@ -80,15 +80,15 @@ string ArticleRepo::liveSearchByTitle() const {
     };
 
     return SearchByRegex::liveSearch(
-        this->articles_container, 
-        getTitle, 
+        this->articles_container,
+        getTitle,
         printArticle
     );
 }
 
 string ArticleRepo::liveSearchByYear() const {
     auto getYear = [](Article* a) -> string { return to_string(a->getYear()); };
-    auto printArticle = [](Article* a, bool highlight) {
+    auto printArticle = [](Article* a, bool highlight) -> void {
         if (highlight)
             cout << "-> " << "[" << a->getYear() << "] (" << a->getArticleTitle() << ", " << a->typeToString() << ")\n";
         else
@@ -96,8 +96,8 @@ string ArticleRepo::liveSearchByYear() const {
     };
 
     return SearchByRegex::liveSearch(
-        this->articles_container, 
-        getYear, 
+        this->articles_container,
+        getYear,
         printArticle
     );
 }
@@ -107,7 +107,7 @@ string ArticleRepo::liveSearchByType() const {
         return a->typeToString();
     };
 
-    auto printArticle = [](Article* a, bool highlight) {
+    auto printArticle = [](Article* a, bool highlight) -> void {
         if (highlight)
             cout << "-> " << "[" << a->typeToString() << "] (" << a->getArticleTitle() << ", " << a->getYear() << ")\n";
         else
@@ -115,13 +115,13 @@ string ArticleRepo::liveSearchByType() const {
     };
 
     return SearchByRegex::liveSearch(
-        this->articles_container, 
-        getType, 
+        this->articles_container,
+        getType,
         printArticle
     );
 }
 
-void ArticleRepo::searchMenu() const {
+string ArticleRepo::searchMenu() const {
     vector<string> options = {
         "Search by Title",
         "Search by Year",
@@ -132,7 +132,7 @@ void ArticleRepo::searchMenu() const {
     while (true) {
         int choice = MenuUtilities::general_menu(options, "Search Articles", true);
 
-        if (choice == -1) { // ESC pressed
+        if (choice == -1) {
             cout << "Returning to main menu...\n";
             sleep_for(800ms);
             break;
@@ -146,6 +146,7 @@ void ArticleRepo::searchMenu() const {
                 if (!selectedId.empty()) {
                     cout << "\nSelected article ID: " << selectedId << "\n";
                     system("pause");
+                    return selectedId;
                 }
                 break;
 
@@ -154,6 +155,7 @@ void ArticleRepo::searchMenu() const {
                 if (!selectedId.empty()) {
                     cout << "\nSelected article ID: " << selectedId << "\n";
                     system("pause");
+                    return selectedId;
                 }
                 break;
 
@@ -162,16 +164,18 @@ void ArticleRepo::searchMenu() const {
                 if (!selectedId.empty()) {
                     cout << "\nSelected article ID: " << selectedId << "\n";
                     system("pause");
+                    return selectedId;
                 }
                 break;
 
             case 3: // Back
                 cout << "Returning to main menu...\n";
                 sleep_for(800ms);
-                return;
+                return "";
 
             default:
                 break;
         }
     }
+    return "";
 }

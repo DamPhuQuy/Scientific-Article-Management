@@ -1,5 +1,4 @@
 #include "MenuUtilities.h"
-#include "ArticleService.h"
 #include "Statistics.h"
 #include <iostream>
 #include <vector>
@@ -81,7 +80,7 @@ int MenuUtilities::general_menu(const vector<string> &options, const string &tit
     }
 }
 
-void MenuUtilities::main_menu(ArticleService &a_service)
+void MenuUtilities::main_menu(RepositoryManager& repo)
 {
     const vector<string> options = {
         "Manage Articles",
@@ -95,11 +94,11 @@ void MenuUtilities::main_menu(ArticleService &a_service)
         {
         case 0:
             cout << "-> Opening Article Management...\n";
-            MenuUtilities::article_sub_menu(a_service);
+            MenuUtilities::article_sub_menu(repo);
             break;
         case 1:
             cout << "-> Opening Author Management...\n";
-            MenuUtilities::author_sub_menu(a_service.getRepo());
+            MenuUtilities::author_sub_menu(repo);
             break;
         case 2:
             cout << "Exiting... \n";
@@ -108,7 +107,7 @@ void MenuUtilities::main_menu(ArticleService &a_service)
     }
 }
 
-void MenuUtilities::article_sub_menu(ArticleService &a_service)
+void MenuUtilities::article_sub_menu(RepositoryManager& repo)
 {
     const vector<string> options = {
         "Create Article",
@@ -127,13 +126,13 @@ void MenuUtilities::article_sub_menu(ArticleService &a_service)
         case 0:
         {
             cout << "-> Creating new article...\n";
-            a_service.createArticle();
+            repo.createArticle();
             break;
         }
         case 1:
         {
             cout << "-> Viewing all articles...\n";
-            for (const auto &element : a_service.getRepo().getArticles().getAll())
+            for (const auto &element : repo.getArticles().getAll())
             {
                 element->showDescription();
                 cout << "\n";
@@ -145,25 +144,25 @@ void MenuUtilities::article_sub_menu(ArticleService &a_service)
         case 2:
         {
             cout << "-> Updating article...\n";
-            MenuUtilities::article_update_menu(a_service.getRepo());
+            MenuUtilities::article_update_menu(repo);
             break;
         }
         case 3:
         {
             cout << "-> Deleting article...\n";
-            MenuUtilities::article_delete_menu(a_service.getRepo());
+            MenuUtilities::article_delete_menu(repo);
             break;
         }
         case 4:
         {
             cout << "-> Searching articles...\n";
-            a_service.getRepo().getArticles().searchMenu();
+            repo.getArticles().searchMenu();
             break;
         }
         case 5:
         {
             cout << "-> Viewing article statistics...\n";
-            MenuUtilities::statisticArticleMenu(a_service.getRepo());
+            MenuUtilities::statisticArticleMenu(repo);
             break;
         }
         case 6:
@@ -175,6 +174,24 @@ void MenuUtilities::article_sub_menu(ArticleService &a_service)
     }
 }
 
+char getYesNo(const string& prompt) {
+    string input;
+    while (true) {
+        cout << prompt << " (y/n): ";
+        getline(cin, input);
+
+        if (input.empty()) continue;
+
+        char choice = tolower(input[0]);
+
+        if (choice == 'y' || choice == 'n') {
+            return choice;
+        }
+
+        cout << "Invalid input. Please enter 'y' or 'n'." << endl;
+    }
+}
+
 void MenuUtilities::author_sub_menu(RepositoryManager &repo)
 {
     const vector<string> options = {
@@ -182,9 +199,11 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
         "View All Authors",
         "Update Author",
         "Delete Author",
-        "Search Authors",
+        "Search Author",
         "Statistics",
         "Back"};
+
+    string selectedId;
 
     while (true)
     {
@@ -224,7 +243,10 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
         case 4:
         {
             cout << "-> Searching authors...\n";
-            repo.getAuthors().searchAuthorMenu();
+            selectedId = repo.getAuthors().searchAuthorMenu();
+
+            char ans = getYesNo("Show the article that author attended?: ");
+            if (ans == 'y') show_article_through_authorId(repo, selectedId);
             break;
         }
         case 5:
@@ -518,4 +540,10 @@ void MenuUtilities::author_delete_menu(RepositoryManager &repo)
         cout << "Author deleted successfully.\n";
     else
         cout << "Author not found.\n";
+}
+
+void MenuUtilities::show_article_through_authorId(RepositoryManager &repo, string selectedId)
+{
+    Article* a = repo.getArticles().getContainer().at(selectedId);
+    a->showDescription();
 }
