@@ -12,6 +12,8 @@ using namespace std;
 
 class MenuUtilities
 {
+private:
+    static char getYesNo(const string& prompt);
 public:
     static void intro();
 
@@ -30,11 +32,12 @@ public:
     static void author_update_menu(RepositoryManager &repo);
     static void author_delete_menu(RepositoryManager &repo);
     static void statisticAuthorMenu(RepositoryManager &repo);
+    static void show_refs_through_authorId(RepositoryManager &repo, const string& selectedId);
 
     // Article
     static void article_sub_menu(RepositoryManager &repo);
     static void statisticArticleMenu(RepositoryManager &repo);
     static void article_update_menu(RepositoryManager &repo);
     static void article_delete_menu(RepositoryManager &repo);
-    static void show_article_through_authorId(RepositoryManager &repo, string selectedId);
+    static void show_article_through_authorId(RepositoryManager &repo, const string& selectedId);
 };

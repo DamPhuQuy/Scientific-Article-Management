@@ -27,7 +27,7 @@ void MenuUtilities::intro() {
 
     this_thread::sleep_for(chrono::milliseconds(800));
 
-    cout<<("Nhan phim bat ki de bat dau...");
+    cout<<("Press any button to get started...");
 
     _getch();
 }
@@ -177,7 +177,12 @@ void MenuUtilities::article_sub_menu(RepositoryManager& repo)
         case 4:
         {
             cout << "-> Searching articles...\n";
-            repo.getArticles().searchMenu();
+            string selectedId = repo.getArticles().searchMenu();
+
+            if (selectedId != "") {
+                char ans = getYesNo("Show the references of article: ");
+                if (ans == 'y') show_refs_through_authorId(repo, selectedId);
+            }
             break;
         }
         case 5:
@@ -195,7 +200,7 @@ void MenuUtilities::article_sub_menu(RepositoryManager& repo)
     }
 }
 
-char getYesNo(const string& prompt) {
+char MenuUtilities::getYesNo(const string& prompt) {
     string input;
     while (true) {
         cout << prompt << " (y/n): ";
@@ -305,7 +310,6 @@ void MenuUtilities::data_menu(DataManipulation &service, ArticleRepo &a_repo, Au
         sleep_for(1s);
 
         cout << "Insert dataset: ";
-        cin.ignore();
         getline(cin, file);
         service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar, au_repo);
         sleep_for(1s);
@@ -380,6 +384,13 @@ void MenuUtilities::statisticAuthorMenu(RepositoryManager &repo)
         }
     }
 }
+
+void MenuUtilities::show_refs_through_authorId(RepositoryManager &repo, const string& selectedId) {
+    Article* temp = repo.getArticles().getContainer().at(selectedId);
+    for (const auto& ref : temp->getReferences()) {
+        cout << ref << endl;
+    }
+ }
 
 void MenuUtilities::article_update_menu(RepositoryManager &repo)
 {
@@ -567,7 +578,7 @@ void MenuUtilities::author_delete_menu(RepositoryManager &repo)
         cout << "Author not found.\n";
 }
 
-void MenuUtilities::show_article_through_authorId(RepositoryManager &repo, string selectedId)
+void MenuUtilities::show_article_through_authorId(RepositoryManager &repo, const string& selectedId)
 {
     Article* a = repo.getArticles().getContainer().at(selectedId);
     a->showDescription();
