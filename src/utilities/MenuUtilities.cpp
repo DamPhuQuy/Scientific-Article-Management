@@ -11,6 +11,27 @@ using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono_literals;
 
+void MenuUtilities::intro() {
+    system("cls");
+
+    cout << "\n";
+    cout <<("----------------------------------------------------------------------------------------------------------\n");
+    cout <<("|                               Truong Dai Hoc Bach Khoa - Dai Hoc Da Nang                               |\n");
+    cout <<("+--------------------------------------------------------------------------------------------------------+\n");
+    cout <<("|   PBL2:  Du an co so lap trinh      |           Xay dung ung dung quan ly bai bao khoa hoc             |\n");
+    cout <<("+--------------------------------------------------------------------------------------------------------+\n");
+    cout <<("|         Sinh vien thuc hien         |                                                                  |\n");
+    cout <<("|             Dam Phu Quy             |                     GVHD. Do Thi Tuyet Hoa                       |\n");
+    cout <<("|            Dam Vinh Quang           |                                                                  |\n");
+    cout <<("----------------------------------------------------------------------------------------------------------\n");
+
+    this_thread::sleep_for(chrono::milliseconds(800));
+
+    cout<<("Nhan phim bat ki de bat dau...");
+
+    _getch();
+}
+
 int MenuUtilities::general_menu(const vector<string> &options, const string &title, bool allowEsc)
 {
     int selected = 0;
@@ -245,8 +266,10 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
             cout << "-> Searching authors...\n";
             selectedId = repo.getAuthors().searchAuthorMenu();
 
-            char ans = getYesNo("Show the article that author attended?: ");
-            if (ans == 'y') show_article_through_authorId(repo, selectedId);
+            if (selectedId != "") {
+                char ans = getYesNo("Show the article that author attended?: ");
+                if (ans == 'y') show_article_through_authorId(repo, selectedId);
+            }
             break;
         }
         case 5:

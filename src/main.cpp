@@ -15,15 +15,17 @@ void start() {
 
     MenuUtilities::data_menu(service, a_repo, au_repo, au_ar);
     RepositoryManager repo(a_repo, au_repo, au_ar);
-    bool isCorrect = repo.validateDataConsistency();
+    bool isConsistent = repo.validateDataConsistency();
 
-    if (isCorrect)
+    if (isConsistent)
         MenuUtilities::main_menu(repo);
-    else
-        return;
+
+    cout << "Ket thuc chuong trinh...";
+    return;
 }
 
 int main() {
+    MenuUtilities::intro();
     start();
     return 0;
 }
