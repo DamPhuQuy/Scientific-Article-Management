@@ -178,7 +178,7 @@ void ArticleService::inputArticle(Article* article) {
     do {
         cout << "Enter the number of authors: ";
         cin >> numAuthors;
-        if (cin.fail() || numAuthors < 0) {
+        if (cin.fail() || numAuthors < 1) {
             cout << "Invalid author number. Please try again.\n";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');

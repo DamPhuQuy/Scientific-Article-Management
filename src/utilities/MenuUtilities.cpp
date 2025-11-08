@@ -256,7 +256,6 @@ void MenuUtilities::data_menu(DataManipulation &service, ArticleRepo &a_repo, Au
     case 0:
     {
         cout << "Insert dataset: ";
-        cin.ignore();
         string file;
         getline(cin, file);
         service.fetchArticleDataSet(Constants::getModelsPath(file), a_repo, au_ar);
