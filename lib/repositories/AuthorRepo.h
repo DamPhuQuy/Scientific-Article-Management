@@ -24,10 +24,17 @@ public:
     string liveSearchByName() const;
     string liveSearchByCountry() const;
     string liveSearchByFieldOfStudy() const;
-    string searchAuthorMenu();
     string findAuthorIdByName(const string& name) const;
-
 
     // create
     void createAuthor();
+
+    // update
+    void updateName(const string& id);
+    void updateCountry(const string& id);
+    void updateFieldOfStudy(const string& id);
+    void updateTotalOfPublications(const string& id);
+
+    // remove
+    void removeAuthor(const string& id);
 };

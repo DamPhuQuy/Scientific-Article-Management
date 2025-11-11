@@ -269,7 +269,7 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
         case 4:
         {
             cout << "-> Searching authors...\n";
-            selectedId = repo.getAuthors().searchAuthorMenu();
+            selectedId = searchAuthorMenu(repo);
 
             if (selectedId != "") {
                 char ans = getYesNo("Show the article that author attended?: ");
@@ -392,6 +392,64 @@ void MenuUtilities::show_refs_through_authorId(RepositoryManager &repo, const st
     }
  }
 
+ string MenuUtilities::searchAuthorMenu(RepositoryManager& repo) {
+    vector<string> options = {
+        "Search by Name",
+        "Search by Country",
+        "Search by Field of Study",
+        "Back to Main Menu"
+    };
+
+    while (true) {
+        int choice = MenuUtilities::general_menu(options, "Search Authors", true);
+
+        if (choice == -1) {
+            cout << "Returning to main menu...\n";
+            sleep_for(800ms);
+            break;
+        }
+
+        string selectedId;
+
+        switch (choice) {
+            case 0: {
+                string selectedId = repo.getAuthors().liveSearchByName();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected author ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
+                break;
+            }
+            case 1: {
+                string selectedId = repo.getAuthors().liveSearchByCountry();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected author ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
+                break;
+            }
+            case 2: {
+                string selectedId = repo.getAuthors().liveSearchByFieldOfStudy();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected author ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
+                break;
+            }
+            case 3: // Back
+                cout << "Returning to main menu...\n";
+                sleep_for(800ms);
+                return "";
+            default:
+                break;
+        }
+    }
+    return "";
+}
+
 void MenuUtilities::article_update_menu(RepositoryManager &repo)
 {
     const vector<string> options = {
@@ -496,67 +554,27 @@ void MenuUtilities::author_update_menu(RepositoryManager &repo)
         case 0:
         {
             string id = repo.getAuthors().liveSearchByName();
-            auto it = repo.getAuthors().getAuthorContainer().find(id);
-            if (it == repo.getAuthors().getAuthorContainer().end())
-            {
-                cout << "This id does not exist!";
-                selected = 0;
-                continue;
-            }
-            cout << "Enter new name: ";
-            string name;
-            getline(cin, name);
-            it->second.setFullName(name);
+            repo.getAuthors().updateName(id);
             cout << "Name updated successfully.\n";
             break;
         }
         case 1:
         {
             string id = repo.getAuthors().liveSearchByName();
-            auto it = repo.getAuthors().getAuthorContainer().find(id);
-            if (it == repo.getAuthors().getAuthorContainer().end())
-            {
-                cout << "This id does not exist!";
-                selected = 0;
-                continue;
-            }
-            cout << "Enter new country: ";
-            string country;
-            getline(cin, country);
-            it->second.setCountry(country);
+            repo.getAuthors().updateCountry(id);
             cout << "Country updated successfully.\n";
             break;
         }
         case 2:
         {
             string id = repo.getAuthors().liveSearchByName();
-            auto it = repo.getAuthors().getAuthorContainer().find(id);
-            if (it == repo.getAuthors().getAuthorContainer().end())
-            {
-                cout << "This id does not exist!";
-                selected = 0;
-                continue;
-            }
-            cout << "Enter new study: ";
-            string study;
-            getline(cin, study);
-            it->second.setFieldOfStudy(study);
+            repo.getAuthors().updateFieldOfStudy(id);
             cout << "Study updated successfully.\n";
         }
         case 3:
         {
             string id = repo.getAuthors().liveSearchByName();
-            auto it = repo.getAuthors().getAuthorContainer().find(id);
-            if (it == repo.getAuthors().getAuthorContainer().end())
-            {
-                cout << "This id does not exist!";
-                selected = 0;
-                continue;
-            }
-            cout << "Enter new total of publications: ";
-            string total;
-            getline(cin, total);
-            it->second.setTotalPublications(stoi(total));
+            repo.getAuthors().updateTotalOfPublications(id);
             cout << "Total publications updated successfully.\n";
         }
         case 4:
@@ -571,11 +589,7 @@ void MenuUtilities::author_delete_menu(RepositoryManager &repo)
     cout << "\n=== DELETE AUTHOR MENU ===\n";
 
     string id = repo.getAuthors().liveSearchByName();
-    auto it = repo.getAuthors().getAuthorContainer().find(id);
-    if (repo.getAuthors().getAuthorContainer().erase(id))
-        cout << "Author deleted successfully.\n";
-    else
-        cout << "Author not found.\n";
+    repo.getAuthors().removeAuthor(id);
 }
 
 void MenuUtilities::show_article_through_authorId(RepositoryManager &repo, const string& selectedId)

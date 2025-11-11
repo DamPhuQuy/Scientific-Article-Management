@@ -100,64 +100,6 @@ string AuthorRepo::liveSearchByFieldOfStudy() const {
     );
 }
 
-string AuthorRepo::searchAuthorMenu() {
-    vector<string> options = {
-        "Search by Name",
-        "Search by Country",
-        "Search by Field of Study",
-        "Back to Main Menu"
-    };
-
-    while (true) {
-        int choice = MenuUtilities::general_menu(options, "Search Authors", true);
-
-        if (choice == -1) {
-            cout << "Returning to main menu...\n";
-            sleep_for(800ms);
-            break;
-        }
-
-        string selectedId;
-
-        switch (choice) {
-            case 0: {
-                string selectedId = liveSearchByName();
-                if (!selectedId.empty()) {
-                    cout << "\nSelected author ID: " << selectedId << "\n";
-                    system("pause");
-                    return selectedId;
-                }
-                break;
-            }
-            case 1: {
-                string selectedId = liveSearchByCountry();
-                if (!selectedId.empty()) {
-                    cout << "\nSelected author ID: " << selectedId << "\n";
-                    system("pause");
-                    return selectedId;
-                }
-                break;
-            }
-            case 2: {
-                string selectedId = liveSearchByFieldOfStudy();
-                if (!selectedId.empty()) {
-                    cout << "\nSelected author ID: " << selectedId << "\n";
-                    system("pause");
-                    return selectedId;
-                }
-                break;
-            }
-            case 3: // Back
-                cout << "Returning to main menu...\n";
-                sleep_for(800ms);
-                return "";
-            default:
-                break;
-        }
-    }
-    return "";
-}
-
 string AuthorRepo::findAuthorIdByName(const string &name) const
 {
     for (const auto& [id, author] : authors_container) {
@@ -172,4 +114,101 @@ void AuthorRepo::createAuthor()
     Author newAuthor;
     newAuthor.inputFromUser();
     add(newAuthor);
+}
+
+void AuthorRepo::updateName(const string& id) {
+    auto it = this->authors_container.find(id);
+    if (it == this->authors_container.end()) {
+        // cout << "This id does not exist!";
+        return;
+    } else {
+        cout << "Enter new name: ";
+        string name;
+        getline(cin, name);
+        it->second.setFullName(name);
+        json data;
+        for (auto& [thisid, author] : this->authors_container) {
+            data.push_back(author.to_json());
+        }
+        ofstream outfile("../../data/authors_dataset.json");
+        outfile << data.dump(4);
+        outfile.close();
+    }
+}
+
+void AuthorRepo::updateCountry(const string& id) {
+    auto it = this->authors_container.find(id);
+    if (it == this->authors_container.end()) {
+        // cout << "This id does not exist!";
+        return;
+    } else {
+        cout << "Enter new country: ";
+        string country;
+        getline(cin, country);
+        it->second.setCountry(country);
+        json data;
+        for (auto& [thisid, author] : this->authors_container) {
+            data.push_back(author.to_json());
+        }
+        ofstream outfile("../../data/authors_dataset.json");
+        outfile << data.dump(4);
+        outfile.close();
+    }
+}
+
+void AuthorRepo::updateFieldOfStudy(const string& id) {
+    auto it = this->authors_container.find(id);
+    if (it == this->authors_container.end()) {
+        // cout << "This id does not exist!";
+        return;
+    } else {
+        cout << "Enter new field of study: ";
+        string fieldofstudy;
+        getline(cin, fieldofstudy);
+        it->second.setFieldOfStudy(fieldofstudy);
+        json data;
+        for (auto& [thisid, author] : this->authors_container) {
+            data.push_back(author.to_json());
+        }
+        ofstream outfile("../../data/authors_dataset.json");
+        outfile << data.dump(4);
+        outfile.close();
+    }
+}
+
+void AuthorRepo::updateTotalOfPublications(const string& id) {
+    auto it = this->authors_container.find(id);
+    if (it == this->authors_container.end()) {
+        // cout << "This id does not exist!";
+        return;
+    } else {
+        cout << "Enter new total of publications: ";
+        string pubs;
+        getline(cin, pubs);
+        it->second.setTotalPublications(stoi(pubs));
+        json data;
+        for (auto& [thisid, author] : this->authors_container) {
+            data.push_back(author.to_json());
+        }
+        ofstream outfile("../../data/authors_dataset.json");
+        outfile << data.dump(4);
+        outfile.close();
+    }
+}
+
+void AuthorRepo::removeAuthor(const string & id)
+{
+    auto it = this->authors_container.find(id);
+    if (it == this->authors_container.end()) {
+        return;
+    } else {
+        this->authors_container.erase(id);
+        json data;
+        for (auto& [thisid, author] : this->authors_container) {
+            data.push_back(author.to_json());
+        }
+        ofstream outfile("../../data/authors_dataset.json");
+        outfile << data.dump(4);
+        outfile.close();
+    }
 }

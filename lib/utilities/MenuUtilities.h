@@ -33,6 +33,7 @@ public:
     static void author_delete_menu(RepositoryManager &repo);
     static void statisticAuthorMenu(RepositoryManager &repo);
     static void show_refs_through_authorId(RepositoryManager &repo, const string& selectedId);
+    static string searchAuthorMenu(RepositoryManager& repo);
 
     // Article
     static void article_sub_menu(RepositoryManager &repo);

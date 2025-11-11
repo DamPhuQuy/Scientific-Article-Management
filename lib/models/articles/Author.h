@@ -1,45 +1,58 @@
 #pragma once
 
-#include <string> 
+#include <string>
 #include <vector>
 #include "UUID_Generator.h"
+#include <../utilities/nlohmann/json.hpp>
 
 using namespace std;
+using json = nlohmann::json;
 
 class Author {
 private:
-    string id;            
-    string fullName;         
-    string country;           
-    string fieldOfStudy;     
+    string id;
+    string fullName;
+    string country;
+    string fieldOfStudy;
     int totalPublications;
-public: 
-    
+public:
+
     Author(
-        string id = UUID_Generator::generateUUID(), 
-        string fullName = "", 
-        string country = "", 
-        string fieldOfStudy = "", 
+        string id = UUID_Generator::generateUUID(),
+        string fullName = "",
+        string country = "",
+        string fieldOfStudy = "",
         int totalPublications = 0
-    ); 
+    );
     Author(const Author& other);
 
-    ~Author() = default; 
+    ~Author() = default;
 
     // getters
-    string getId() const; 
-    string getFullName() const; 
-    string getCountry() const; 
-    string getFieldOfStudy() const; 
-    int getTotalPublications() const; 
+    string getId() const;
+    string getFullName() const;
+    string getCountry() const;
+    string getFieldOfStudy() const;
+    int getTotalPublications() const;
 
     // setters
-    void setId(const string& newId); 
-    void setFullName(const string& newFullName); 
-    void setCountry(const string& newCountry); 
-    void setFieldOfStudy(const string& newFieldOfStudy); 
+    void setId(const string& newId);
+    void setFullName(const string& newFullName);
+    void setCountry(const string& newCountry);
+    void setFieldOfStudy(const string& newFieldOfStudy);
     void setTotalPublications(int newTotal);
     void showAuthorDetails() const;
+
+    // convert
+    json to_json() const {
+        return json{
+            {"id", id},
+            {"fullName", fullName},
+            {"country", country},
+            {"fieldOfStudy", fieldOfStudy},
+            {"totalPublications", totalPublications}
+        };
+    }
 
     void inputFromUser();
 };
