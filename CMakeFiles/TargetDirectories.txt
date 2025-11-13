@@ -1,0 +1,9 @@
+D:/texst/Scientific-Article-Management/CMakeFiles/LoginForm.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/edit_cache.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/rebuild_cache.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/list_install_components.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/install.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/install/local.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/install/strip.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/LoginForm_autogen_timestamp_deps.dir
+D:/texst/Scientific-Article-Management/CMakeFiles/LoginForm_autogen.dir

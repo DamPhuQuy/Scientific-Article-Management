@@ -1,0 +1,1 @@
+-I"D:/texst/Scientific-Article-Management/lib/models" -I"D:/texst/Scientific-Article-Management/lib/models/articles" -I"D:/texst/Scientific-Article-Management/lib/models/users" -I"D:/texst/Scientific-Article-Management/lib/repositories" -I"D:/texst/Scientific-Article-Management/lib/services" -I"D:/texst/Scientific-Article-Management/lib/utilities"
