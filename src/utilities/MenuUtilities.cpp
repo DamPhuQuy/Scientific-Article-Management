@@ -6,130 +6,109 @@
 #include <thread>  // sleep_for
 #include <chrono>  // milliseconds
 #include <string>
+#include "../utilities/ftxui/component/component.hpp"
+#include "../utilities/ftxui/component/screen_interactive.hpp"
+#include "../utilities/ftxui/dom/elements.hpp"
+#include "../utilities/ftxui/component/event.hpp"
 
 using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono_literals;
+using namespace ftxui;
 
 void MenuUtilities::intro() {
-    system("cls");
+    auto screen = ScreenInteractive::TerminalOutput();
 
-    cout << "\n";
-    cout <<("----------------------------------------------------------------------------------------------------------\n");
-    cout <<("|                               Truong Dai Hoc Bach Khoa - Dai Hoc Da Nang                               |\n");
-    cout <<("+--------------------------------------------------------------------------------------------------------+\n");
-    cout <<("|   PBL2:  Du an co so lap trinh      |           Xay dung ung dung quan ly bai bao khoa hoc             |\n");
-    cout <<("+--------------------------------------------------------------------------------------------------------+\n");
-    cout <<("|         Sinh vien thuc hien         |                                                                  |\n");
-    cout <<("|             Dam Phu Quy             |                     GVHD. Do Thi Tuyet Hoa                       |\n");
-    cout <<("|            Dam Vinh Quang           |                                                                  |\n");
-    cout <<("----------------------------------------------------------------------------------------------------------\n");
+    ButtonOption hover_button = ButtonOption::Animated();
+    hover_button.transform = [](const EntryState& s) {
+        auto label = text(s.label) | bold;
+        if (s.focused)
+            label |= bgcolor(Color::Blue) | color(Color::White);
+        else
+            label |= bgcolor(Color::Black) | color(Color::GrayLight);
+        return label | borderEmpty | center;  // Minimal border
+    };
 
-    this_thread::sleep_for(chrono::milliseconds(800));
+    auto button1 = Button("Start", screen.ExitLoopClosure(), hover_button);
+    auto button2 = Button("Exit", [] { exit(0); }, hover_button);
 
-    cout<<("Press any button to get started...");
+    auto layout = Container::Vertical({button1, button2}) | center;
 
-    _getch();
+    auto renderer = Renderer(layout, [&] {
+        return vbox({
+            text("MENU") | bold | center,
+            separator(),
+            text("ĐẠI HỌC BÁCH KHOA - ĐÀ NẴNG") | bold | color(Color::White) | center,
+            text("PBL2: QUẢN LÝ BÀI BÁO KHOA HỌC") | center,
+            separator(),
+            text("Sinh viên: Đàm Phú Quý • Đàm Vinh Quang") | center,
+            text("GVHD: ThS. Đỗ Thị Tuyết Hoa") | center,
+            separator(),
+            layout->Render()
+        }) | borderEmpty | bgcolor(Color::RGB(10, 15, 25)) | center;
+    });
+
+    screen.Loop(renderer);
 }
 
-int MenuUtilities::general_menu(const vector<string> &options, const string &title, bool allowEsc)
+int MenuUtilities::general_menu(const std::vector<std::string>& options, const std::string& title)
 {
     int selected = 0;
-    int key = 0;
 
-    while (true)
-    {
-        system("cls");
-        cout << "\n";
-        for (int i = 0; i < 40; ++i)
-            cout << "=";
-        cout << "\n    " << title << "    \n";
-        for (int i = 0; i < 40; ++i)
-            cout << "=";
-        cout << "\n\n";
+    auto menu = Menu(&options, &selected, MenuOption::VerticalAnimated());
 
-        for (int i = 0; i < options.size(); ++i)
-        {
-            if (i == selected)
-                cout << "-> [" << options[i] << "]\n";
-            else
-                cout << "   " << options[i] << "\n";
-        }
+    auto layout = Renderer(menu, [&] {
+        return vbox({
+            text(title) | bold | center,
+            separator(),
+            menu->Render() | borderRounded | center
+        }) | border | center;
+    });
 
-        cout << "\n";
-        for (int i = 0; i < 40; ++i)
-            cout << "-";
-        cout << "\n";
-        cout << "Use Up/Down to move, ENTER to select";
-        if (allowEsc)
-            cout << ", ESC to go back";
-        cout << "\n";
+    // screen.Loop(CatchEvent(layout, [&](Event e) {
+    //     if (e == Event::Return) {
+    //         screen.ExitLoopClosure()(); // thoát loop khi chọn
+    //         return true;
+    //     }
+    //     if (e == Event::Escape) {
+    //         selected = -1;          // ESC trả về -1
+    //         screen.ExitLoopClosure()();
+    //         return true;
+    //     }
+    //     return false;
+    // }));
 
-        while (!kbhit())
-        {
-            sleep_for(50ms);
-        }
-        key = getch();
-
-        if (key == 224 || key == 0 || key == 27)
-        {
-            if (key == 27)
-            { // ESC
-                if (allowEsc)
-                    return -1;
-                continue;
-            }
-            key = getch();
-            switch (key)
-            {
-            case 72: // Up
-                selected = (selected - 1 + options.size()) % options.size();
-                break;
-            case 80: // Down
-                selected = (selected + 1) % options.size();
-                break;
-            }
-        }
-        else if (key == 13)
-        { // Enter
-            return selected;
-        }
-        else if (key == 27 && allowEsc)
-        {
-            return -1;
-        }
-    }
+    return selected;
 }
 
 void MenuUtilities::main_menu(RepositoryManager& repo)
 {
-    const vector<string> options = {
+    auto screen = ScreenInteractive::TerminalOutput();
+
+    const std::vector<std::string> options = {
         "Manage Articles",
         "Manage Authors",
-        "Exit"};
+        "Exit"
+    };
 
-    while (true)
-    {
-        int selected = MenuUtilities::general_menu(options, "ARTICLE MANAGEMENT MENU");
-        switch (selected)
-        {
-        case 0:
-            cout << "-> Opening Article Management...\n";
-            MenuUtilities::article_sub_menu(repo);
-            break;
-        case 1:
-            cout << "-> Opening Author Management...\n";
-            MenuUtilities::author_sub_menu(repo);
-            break;
-        case 2:
-            cout << "Exiting... \n";
-            return;
+    while (true) {
+        int selected = general_menu(options, "ARTICLE MANAGEMENT MENU");
+
+        switch (selected) {
+            case 0:
+                article_sub_menu(repo);
+                break;
+            case 1:
+                author_sub_menu(repo);
+                break;
+            case 2:
+            case -1:  // ESC
+                return;
         }
     }
 }
 
-void MenuUtilities::article_sub_menu(RepositoryManager& repo)
-{
+void MenuUtilities::article_sub_menu(RepositoryManager& repo) {
     const vector<string> options = {
         "Create Article",
         "View All Articles",
@@ -137,65 +116,35 @@ void MenuUtilities::article_sub_menu(RepositoryManager& repo)
         "Delete Article",
         "Search Articles",
         "Statistics",
-        "Back"};
+        "Back"
+    };
 
-    while (true)
-    {
-        int selected = MenuUtilities::general_menu(options, "ARTICLE MANAGEMENT");
-        switch (selected)
-        {
-        case 0:
-        {
-            cout << "-> Creating new article...\n";
-            repo.createArticle();
-            break;
-        }
-        case 1:
-        {
-            cout << "-> Viewing all articles...\n";
-            for (const auto &element : repo.getArticles().getAll())
-            {
-                element->showDescription();
-                cout << "\n";
-            }
-            cout << "Press any key to continue...";
-            _getch();
-            break;
-        }
-        case 2:
-        {
-            cout << "-> Updating article...\n";
-            MenuUtilities::article_update_menu(repo);
-            break;
-        }
-        case 3:
-        {
-            cout << "-> Deleting article...\n";
-            MenuUtilities::article_delete_menu(repo);
-            break;
-        }
-        case 4:
-        {
-            cout << "-> Searching articles...\n";
-            string selectedId = repo.getArticles().searchMenu();
+    while (true) {
+        int selected = general_menu(options, "ARTICLE MANAGEMENT");
 
-            if (selectedId != "") {
-                char ans = getYesNo("Show the references of article: ");
-                if (ans == 'y') show_refs_through_authorId(repo, selectedId);
+        switch (selected) {
+            case 0: repo.createArticle(); break;
+            case 1:
+                for (const auto &element : repo.getArticles().getAll()) {
+                    element->showDescription();
+                    std::cout << "\n";
+                }
+                std::cout << "Press any key to continue...";
+                _getch();
+                break;
+            case 2: article_update_menu(repo); break;
+            case 3: article_delete_menu(repo); break;
+            case 4: {
+                string selectedId = repo.getArticles().searchMenu();
+                if (!selectedId.empty()) {
+                    char ans = getYesNo("Show the references of article: ");
+                    if (ans == 'y') show_refs_through_authorId(repo, selectedId);
+                }
+                break;
             }
-            break;
-        }
-        case 5:
-        {
-            cout << "-> Viewing article statistics...\n";
-            MenuUtilities::statisticArticleMenu(repo);
-            break;
-        }
-        case 6:
-        {
-            cout << "Returning to main menu...\n";
-            return;
-        }
+            case 5: statisticArticleMenu(repo); break;
+            case 6:
+            case -1: return; // Back
         }
     }
 }
@@ -220,6 +169,8 @@ char MenuUtilities::getYesNo(const string& prompt) {
 
 void MenuUtilities::author_sub_menu(RepositoryManager &repo)
 {
+    auto screen = ScreenInteractive::TerminalOutput();
+
     const vector<string> options = {
         "Create Author",
         "View All Authors",
@@ -294,6 +245,7 @@ void MenuUtilities::author_sub_menu(RepositoryManager &repo)
 
 void MenuUtilities::data_menu(DataManipulation &service, ArticleRepo &a_repo, AuthorRepo &au_repo, AuthorArticleRepo &au_ar)
 {
+    auto screen = ScreenInteractive::TerminalOutput();
     const vector<string> options = {
         "Import dataset from JSON",
         "Automatically import from system",
@@ -401,7 +353,7 @@ void MenuUtilities::show_refs_through_authorId(RepositoryManager &repo, const st
     };
 
     while (true) {
-        int choice = MenuUtilities::general_menu(options, "Search Authors", true);
+        int choice = MenuUtilities::general_menu(options, "Search Authors");
 
         if (choice == -1) {
             cout << "Returning to main menu...\n";

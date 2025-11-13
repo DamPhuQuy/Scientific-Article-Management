@@ -15,6 +15,9 @@ void start() {
 
     MenuUtilities::data_menu(service, a_repo, au_repo, au_ar);
     RepositoryManager repo(a_repo, au_repo, au_ar);
+
+    MenuUtilities::intro();
+
     bool isConsistent = repo.validateDataConsistency();
 
     if (isConsistent)
@@ -25,7 +28,6 @@ void start() {
 }
 
 int main() {
-    MenuUtilities::intro();
     start();
     return 0;
 }
