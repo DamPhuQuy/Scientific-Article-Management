@@ -51,34 +51,73 @@ void MenuUtilities::intro() {
     screen.Loop(renderer);
 }
 
-int MenuUtilities::general_menu(const std::vector<std::string>& options, const std::string& title)
+int MenuUtilities::general_menu(const vector<string> &options, const string &title, bool allowEsc)
 {
     int selected = 0;
+    int key = 0;
 
-    auto menu = Menu(&options, &selected, MenuOption::VerticalAnimated());
+    while (true)
+    {
+        system("cls");
+        cout << "\n";
+        for (int i = 0; i < 40; ++i)
+            cout << "=";
+        cout << "\n    " << title << "    \n";
+        for (int i = 0; i < 40; ++i)
+            cout << "=";
+        cout << "\n\n";
 
-    auto layout = Renderer(menu, [&] {
-        return vbox({
-            text(title) | bold | center,
-            separator(),
-            menu->Render() | borderRounded | center
-        }) | border | center;
-    });
+        for (int i = 0; i < options.size(); ++i)
+        {
+            if (i == selected)
+                cout << "-> [" << options[i] << "]\n";
+            else
+                cout << "   " << options[i] << "\n";
+        }
 
-    // screen.Loop(CatchEvent(layout, [&](Event e) {
-    //     if (e == Event::Return) {
-    //         screen.ExitLoopClosure()(); // thoát loop khi chọn
-    //         return true;
-    //     }
-    //     if (e == Event::Escape) {
-    //         selected = -1;          // ESC trả về -1
-    //         screen.ExitLoopClosure()();
-    //         return true;
-    //     }
-    //     return false;
-    // }));
+        cout << "\n";
+        for (int i = 0; i < 40; ++i)
+            cout << "-";
+        cout << "\n";
+        cout << "Use Up/Down to move, ENTER to select";
+        if (allowEsc)
+            cout << ", ESC to go back";
+        cout << "\n";
 
-    return selected;
+        while (!kbhit())
+        {
+            sleep_for(50ms);
+        }
+        key = getch();
+
+        if (key == 224 || key == 0 || key == 27)
+        {
+            if (key == 27)
+            { // ESC
+                if (allowEsc)
+                    return -1;
+                continue;
+            }
+            key = getch();
+            switch (key)
+            {
+            case 72: // Up
+                selected = (selected - 1 + options.size()) % options.size();
+                break;
+            case 80: // Down
+                selected = (selected + 1) % options.size();
+                break;
+            }
+        }
+        else if (key == 13)
+        { // Enter
+            return selected;
+        }
+        else if (key == 27 && allowEsc)
+        {
+            return -1;
+        }
+    }
 }
 
 void MenuUtilities::main_menu(RepositoryManager& repo)

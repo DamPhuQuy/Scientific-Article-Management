@@ -130,7 +130,7 @@ string ArticleRepo::searchMenu() const {
     };
 
     while (true) {
-        int choice = MenuUtilities::general_menu(options, "Search Articles", true);
+        int choice = MenuUtilities::general_menu(options, "Search Articles");
 
         if (choice == -1) {
             cout << "Returning to main menu...\n";

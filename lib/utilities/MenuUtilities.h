@@ -17,7 +17,7 @@ private:
 public:
     static void intro();
 
-    static int general_menu(const std::vector<std::string>& options, const std::string& title);
+    static int general_menu(const std::vector<std::string>& options, const std::string& title, bool allowEsc=true);
     // main menu
     static void main_menu(RepositoryManager &a_service);
 
