@@ -14,9 +14,6 @@ class MenuUtilities
 {
 private:
     static char getYesNo(const string& prompt);
-public:
-    static void intro();
-
     static int general_menu(const std::vector<std::string>& options, const std::string& title, bool allowEsc=true);
     // main menu
     static void main_menu(RepositoryManager &a_service);
@@ -41,4 +38,6 @@ public:
     static void article_update_menu(RepositoryManager &repo);
     static void article_delete_menu(RepositoryManager &repo);
     static void show_article_through_authorId(RepositoryManager &repo, const string& selectedId);
+public:
+    static void start(RepositoryManager& repo);
 };

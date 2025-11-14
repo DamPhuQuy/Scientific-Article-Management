@@ -16,39 +16,58 @@ using namespace std::this_thread;
 using namespace std::chrono_literals;
 using namespace ftxui;
 
-void MenuUtilities::intro() {
+void MenuUtilities::start(RepositoryManager& repo) {
     auto screen = ScreenInteractive::TerminalOutput();
 
-    ButtonOption hover_button = ButtonOption::Animated();
-    hover_button.transform = [](const EntryState& s) {
-        auto label = text(s.label) | bold;
-        if (s.focused)
-            label |= bgcolor(Color::Blue) | color(Color::White);
-        else
-            label |= bgcolor(Color::Black) | color(Color::GrayLight);
-        return label | borderEmpty | center;  // Minimal border
+    bool quit = false;
+
+    // Minimal button style
+    ButtonOption minimal_btn = ButtonOption::Animated();
+    minimal_btn.transform = [](const EntryState& s) {
+        auto label = text(s.label);
+        if (s.focused) {
+            label |= bgcolor(Color::RGB(30, 30, 40)) | color(Color::White) | bold;
+        } else {
+            label |= color(Color::GrayLight);
+        }
+        return label | center;
     };
 
-    auto button1 = Button("Start", screen.ExitLoopClosure(), hover_button);
-    auto button2 = Button("Exit", [] { exit(0); }, hover_button);
+    auto btn_start = Button("Start", screen.ExitLoopClosure(), minimal_btn);
+    auto btn_exit  = Button("Exit", [&] { quit = true; screen.Exit(); }, minimal_btn);
 
-    auto layout = Container::Vertical({button1, button2}) | center;
+    // Minimal layout
+    auto layout = Container::Vertical({
+        btn_start,
+        btn_exit,
+    });
 
+    // Renderer
     auto renderer = Renderer(layout, [&] {
         return vbox({
-            text("MENU") | bold | center,
-            separator(),
-            text("ĐẠI HỌC BÁCH KHOA - ĐÀ NẴNG") | bold | color(Color::White) | center,
-            text("PBL2: QUẢN LÝ BÀI BÁO KHOA HỌC") | center,
-            separator(),
-            text("Sinh viên: Đàm Phú Quý • Đàm Vinh Quang") | center,
-            text("GVHD: ThS. Đỗ Thị Tuyết Hoa") | center,
-            separator(),
-            layout->Render()
-        }) | borderEmpty | bgcolor(Color::RGB(10, 15, 25)) | center;
+            text("MENU") | bold | color(Color::White) | center,
+            separatorEmpty(),
+
+            text("ĐẠI HỌC BÁCH KHOA - ĐÀ NẴNG") | center | color(Color::GrayLight),
+            text("PBL2 • QUẢN LÝ BÀI BÁO KHOA HỌC") | center | color(Color::GrayLight),
+            separatorEmpty(),
+
+            // Authors
+            text("SV: Đàm Phú Quý • Đàm Vinh Quang") | center | color(Color::GrayDark),
+            text("GVHD: ThS. Đỗ Thị Tuyết Hoa") | center | color(Color::GrayDark),
+            separatorEmpty(),
+
+            layout->Render() | center
+        })
+        | center
+        | bgcolor(Color::RGB(12, 12, 16));
     });
 
     screen.Loop(renderer);
+
+    if (quit) {
+        return;
+    }
 }
 
 int MenuUtilities::general_menu(const vector<string> &options, const string &title, bool allowEsc)
