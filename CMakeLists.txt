@@ -13,6 +13,8 @@ find_package(ftxui CONFIG REQUIRED)
 
 # ---------------------- Include Project Headers ----------------------
 include_directories(
+    ${PROJECT_SOURCE_DIR}/lib/components
+    ${PROJECT_SOURCE_DIR}/lib/components/ui
     ${PROJECT_SOURCE_DIR}/lib/models
     ${PROJECT_SOURCE_DIR}/lib/models/articles
     ${PROJECT_SOURCE_DIR}/lib/models/users

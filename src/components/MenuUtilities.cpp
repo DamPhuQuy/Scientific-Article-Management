@@ -193,7 +193,7 @@ void MenuUtilities::article_sub_menu(RepositoryManager& repo) {
             case 2: article_update_menu(repo); break;
             case 3: article_delete_menu(repo); break;
             case 4: {
-                string selectedId = repo.getArticles().searchMenu();
+                string selectedId = searchArticleMenu(repo);
                 if (!selectedId.empty()) {
                     char ans = getYesNo("Show the references of article: ");
                     if (ans == 'y') show_refs_through_authorId(repo, selectedId);
@@ -606,4 +606,63 @@ void MenuUtilities::show_article_through_authorId(RepositoryManager &repo, const
 {
     Article* a = repo.getArticles().getContainer().at(selectedId);
     a->showDescription();
+}
+
+string MenuUtilities::searchArticleMenu(RepositoryManager& repo) {
+    vector<string> options = {
+        "Search by Title",
+        "Search by Year",
+        "Search by Type",
+        "Back to Main Menu"
+    };
+
+    while (true) {
+        int choice = MenuUtilities::general_menu(options, "Search Articles");
+
+        if (choice == -1) {
+            cout << "Returning to main menu...\n";
+            sleep_for(800ms);
+            break;
+        }
+
+        string selectedId;
+
+        switch (choice) {
+            case 0: // Search by Title
+                selectedId = repo.getArticles().liveSearchByTitle();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected article ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
+                break;
+
+            case 1: // Search by Year
+                selectedId = repo.getArticles().liveSearchByYear();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected article ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
+                break;
+
+            case 2: // Search by Type
+                selectedId = repo.getArticles().liveSearchByType();
+                if (!selectedId.empty()) {
+                    cout << "\nSelected article ID: " << selectedId << "\n";
+                    system("pause");
+                    return selectedId;
+                }
+                break;
+
+            case 3: // Back
+                cout << "Returning to main menu...\n";
+                sleep_for(800ms);
+                return "";
+
+            default:
+                break;
+        }
+    }
+    return "";
 }

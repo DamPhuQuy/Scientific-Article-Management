@@ -26,5 +26,4 @@ public:
     string liveSearchByTitle() const;
     string liveSearchByYear() const;
     string liveSearchByType() const;
-    string searchMenu() const;
 };

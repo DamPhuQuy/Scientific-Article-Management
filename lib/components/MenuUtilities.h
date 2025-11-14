@@ -38,6 +38,7 @@ private:
     static void article_update_menu(RepositoryManager &repo);
     static void article_delete_menu(RepositoryManager &repo);
     static void show_article_through_authorId(RepositoryManager &repo, const string& selectedId);
+    static string searchArticleMenu(RepositoryManager& repo);
 public:
     static void start(RepositoryManager& repo);
 };

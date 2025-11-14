@@ -13,18 +13,18 @@ void start() {
     AuthorRepo au_repo;
     AuthorArticleRepo au_ar;
 
-    MenuUtilities::data_menu(service, a_repo, au_repo, au_ar);
+    // MenuUtilities::data_menu(service, a_repo, au_repo, au_ar);
     RepositoryManager repo(a_repo, au_repo, au_ar);
 
-    MenuUtilities::intro();
+    MenuUtilities::start(repo);
 
-    bool isConsistent = repo.validateDataConsistency();
+    // bool isConsistent = repo.validateDataConsistency();
 
-    if (isConsistent)
-        MenuUtilities::main_menu(repo);
+    // if (isConsistent)
+    //     MenuUtilities::main_menu(repo);
 
-    cout << "Ket thuc chuong trinh...";
-    return;
+    // cout << "Ket thuc chuong trinh...";
+    // return;
 }
 
 int main() {
