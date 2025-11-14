@@ -20,7 +20,6 @@ public:
     unordered_map<string, unique_ptr<Article>>& getContainer();
     const unordered_map<string, unique_ptr<Article>>& getContainer() const; // for read
 
-    void extracted(vector<unique_ptr<Article>> &res) const;
     vector<unique_ptr<Article>> getCopyAsVector() const;
 
     // Import and export data

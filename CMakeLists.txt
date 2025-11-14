@@ -41,6 +41,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/repos/repomanager.h src/repos/repomanager.cpp
         src/utils/constants.h
         src/repos/authorarticlerepo.h src/repos/authorarticlerepo.cpp
+        src/utils/datautils.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Management APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
