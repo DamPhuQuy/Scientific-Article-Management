@@ -1,39 +1,88 @@
 cmake_minimum_required(VERSION 3.16)
-project(ResearchArticleSystem)
+
+project(Management VERSION 0.1 LANGUAGES CXX)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# ---------------------- Vcpkg Integration ----------------------
-set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-list(APPEND CMAKE_PREFIX_PATH "C:/vcpkg/installed/x64-windows/share/ftxui")
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-# ---------------------- Find FTXUI ----------------------
-find_package(ftxui CONFIG REQUIRED)
-
-# ---------------------- Include Project Headers ----------------------
-include_directories(
-    ${PROJECT_SOURCE_DIR}/lib/components
-    ${PROJECT_SOURCE_DIR}/lib/components/ui
-    ${PROJECT_SOURCE_DIR}/lib/models
-    ${PROJECT_SOURCE_DIR}/lib/models/articles
-    ${PROJECT_SOURCE_DIR}/lib/models/users
-    ${PROJECT_SOURCE_DIR}/lib/repositories
-    ${PROJECT_SOURCE_DIR}/lib/services
-    ${PROJECT_SOURCE_DIR}/lib/utilities
+set(PROJECT_SOURCES
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
 )
 
-# ---------------------- Collect Source Files ----------------------
-file(GLOB_RECURSE SRC_FILES
-    "${PROJECT_SOURCE_DIR}/src/*.cpp"
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(Management
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+        src/models/article.h src/models/article.cpp
+        src/utils/uuid_generator.h src/utils/uuid_generator.cpp
+
+        src/utils/exception/ArticleException.h
+        src/models/scie_article.h src/models/scie_article.cpp
+        src/models/scopus_article.h src/models/scopus_article.cpp
+        src/models/conference_article.h src/models/conference_article.cpp
+        src/models/other_article.h src/models/other_article.cpp
+        data/dataset.json
+        data/author_dataset.json
+        src/models/author.h src/models/author.cpp
+        src/utils/nlohmann/json.hpp
+        src/models/author_article.h
+        src/repos/articlerepo.h src/repos/articlerepo.cpp
+        src/repos/authorrepo.h src/repos/authorrepo.cpp
+        src/repos/repomanager.h src/repos/repomanager.cpp
+        src/utils/constants.h
+        src/repos/authorarticlerepo.h src/repos/authorarticlerepo.cpp
+    )
+# Define target properties for Android with Qt 6 as:
+#    set_property(TARGET Management APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
+# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+else()
+    if(ANDROID)
+        add_library(Management SHARED
+            ${PROJECT_SOURCES}
+        )
+# Define properties for Android with Qt 5 after find_package() calls as:
+#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+    else()
+        add_executable(Management
+            ${PROJECT_SOURCES}
+        )
+    endif()
+endif()
+
+target_link_libraries(Management PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+if(${QT_VERSION} VERSION_LESS 6.1.0)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Management)
+endif()
+set_target_properties(Management PROPERTIES
+    ${BUNDLE_ID_OPTION}
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
 )
 
-add_executable(Run
-    ${SRC_FILES}
+include(GNUInstallDirs)
+install(TARGETS Management
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-target_link_libraries(Run PRIVATE
-    ftxui::screen
-    ftxui::dom
-    ftxui::component
-)
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(Management)
+endif()
