@@ -27,7 +27,8 @@ LoginForm::LoginForm(QWidget *parent) :
     // connect(ui->forgotPasswordLabel, &QLabel::linkActivated, this, [](const QString &link){
     //     qDebug("Forgot password link clicked!");
     // });
-    connect(ui->signUpLabel, &QLabel::linkActivated, this, &LoginForm::on_signInButton_clicked);
+    connect(ui->signInButton, &QPushButton::clicked, this, &LoginForm::on_signInButton_clicked);
+    connect(ui->signUpLabel, &QLabel::linkActivated, this, &LoginForm::on_signUpLabel_linkActivated);
 }
 
 LoginForm::~LoginForm()
@@ -239,3 +240,10 @@ inline void LoginForm::showMessage(QWidget* parent, MessageType type, const QStr
         msgBox.exec();
 
 }
+
+void LoginForm::on_signUpLabel_linkActivated(const QString &link)
+{
+    Q_UNUSED(link);
+    emit switchToSignUp();
+}
+

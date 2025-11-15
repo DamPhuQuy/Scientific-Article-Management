@@ -4,6 +4,7 @@
 
 #include <string>
 #include "../utils/nlohmann/json.hpp"
+#include <QString>
 
 class UserManager {
 public:
@@ -11,9 +12,15 @@ public:
     static bool login(const std::string& username, const std::string& password);
     static std::string getPassword();  // trả về std::string
     static bool verifyLogin(const std::string& username, const std::string& password);
-private:
-    static nlohmann::json loadUsers();
-    static void saveUsers(const nlohmann::json& users);
+    static bool loadUsers(nlohmann::json& users);
+    static bool saveUsers(const nlohmann::json& users);
+    static bool addUser(const QString& username, const QString& password);
+    static bool userExists(const QString& username)
+    {
+        nlohmann::json users;
+        if (!loadUsers(users)) return false;
+        return users.contains(username.toStdString());
+    }
 };
 
 #endif

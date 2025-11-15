@@ -24,10 +24,15 @@ public:
     explicit LoginForm(QWidget *parent = nullptr);
     ~LoginForm();
 
+signals:
+    void switchToSignUp();  // Phát tín hiệu chuyển sang SignUp
+
 private slots:
     void onTogglePasswordVisibility(); // Slot để bật/tắt hiển thị mật khẩu
 
     void on_signInButton_clicked();
+
+    void on_signUpLabel_linkActivated(const QString &link);
 
 private:
     void applyStyles(); // Hàm tải file QSS

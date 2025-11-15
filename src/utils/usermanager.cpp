@@ -7,36 +7,37 @@
 using json = nlohmann::json;
 using namespace std;
 
-json UserManager::loadUsers() {
+bool UserManager::loadUsers(json& users)
+{
     ifstream file("../../data/accounts.json");
     if (!file.is_open()) {
-        return json::array();
+        users = json::object();
+        return true;
     }
-    json data;
     try {
-        file >> data;
-    } catch (const json::parse_error& e) {
-        cerr << "Lỗi parse JSON: " << e.what() << endl;
-        return json::array();
+        file >> users;
+        return true;
+    } catch (...) {
+        users = json::object();
+        return false;
     }
-    file.close();
-    return data;
 }
 
-void UserManager::saveUsers(const json& users) {
+bool UserManager::saveUsers(const json& users) {
     ofstream file("../../data/accounts.json");
-    if (file.is_open()) {
-        file << users.dump(4);
-        file.close();
-    } else {
-        cerr << "Không thể mở file accounts.json để ghi!\n";
+    if (!file.is_open()) {
+        // std::cerr << "Không thể mở file accounts.json để ghi!\n";
+        return false;
     }
+    file << users.dump(4);
+    return true;
 }
 
 bool UserManager::verifyLogin(const std::string& username, const std::string& password) {
     if (username.empty() || password.empty()) return false;
 
-    json users = loadUsers();
+    json users;
+    bool isWorked = loadUsers(users);
     for (const auto& user : users) {
         if (user.contains("username") && user.contains("password") &&
             user["username"] == username && user["password"] == password) {
@@ -53,7 +54,8 @@ bool UserManager::registerUser(const string& username, const string& password) {
         cout << "Tên đăng nhập và mật khẩu không được để trống!\n";
         return false;
     }
-    json users = loadUsers();
+    json users;
+    bool isWorked = loadUsers(users);
     for (const auto& user : users) {
         if (user["username"] == username) {
             cout << "Tên đăng nhập đã tồn tại!\n";
@@ -68,7 +70,8 @@ bool UserManager::registerUser(const string& username, const string& password) {
 }
 
 bool UserManager::login(const string& username, const string& password) {
-    json users = loadUsers();
+    json users;
+    bool isWorked = loadUsers(users);
     for (const auto& user : users) {
         if (user["username"] == username && user["password"] == password) {
             cout << "Đăng nhập thành công! Chào " << username << "!\n";
@@ -96,4 +99,16 @@ string UserManager::getPassword() {
     }
     cout << endl;
     return password;
+}
+
+bool UserManager::addUser(const QString& username, const QString& password)
+{
+    json users;
+    if (!loadUsers(users)) return false;
+
+    std::string user = username.toStdString();
+    if (users.contains(user)) return false;
+
+    users[user] = password.toStdString();
+    return saveUsers(users);
 }

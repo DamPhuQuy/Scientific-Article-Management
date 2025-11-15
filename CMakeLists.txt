@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         loginform.h loginform.cpp loginform.ui
         resources.qrc
         src/utils/usermanager.h src/utils/usermanager.cpp
+        signupform.h signupform.cpp signupform.ui
 
 
     )
