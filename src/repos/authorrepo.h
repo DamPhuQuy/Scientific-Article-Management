@@ -19,14 +19,13 @@ public:
     unordered_map<string, Author>& getAuthorContainer();
 
     // Import and Export
+    void load();
+    void save();
 
     // search functions
     Author findById(const string& id) const;
     Author findByName(const string& name) const;
     Author findByCountry(const string& coutry) const;
-
-    // create
-    void createAuthor();
 
     // filter
     vector<Author> filterByField(const string& field) const;

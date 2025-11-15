@@ -10,7 +10,7 @@ private:
     unordered_map<string, unique_ptr<Article>> articles_container;
 public:
     ArticleRepo() = default;
-    explicit ArticleRepo(unordered_map<string, unique_ptr<Article>> ar_con);
+    explicit ArticleRepo(unordered_map<string, unique_ptr<Article>>& ar_con);
 
     ~ArticleRepo() = default;
 
@@ -23,8 +23,8 @@ public:
     vector<unique_ptr<Article>> getCopyAsVector() const;
 
     // Import and export data
-    void load();
-    void save();
+    void load(vector<string>& authors);
+    void save(const vector<string> authors);
 
     // Search
     unique_ptr<Article> findById(const string& id) const;

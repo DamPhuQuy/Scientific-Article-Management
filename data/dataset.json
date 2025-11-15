@@ -1,88 +1,88 @@
 [
-    {
-      "id": "4ab3735c-80f1-472d-b953-fa0557fed28b",
-      "type": 2,
-      "title": "A new approach of 3D watermarking based on image segmentation",
-      "abstract": "In this paper, a robust 3D triangular mesh watermarking algorithm based on 3D segmentation is proposed. In this algorithm three classes of watermarking are combined. First, we segment the original image to many different regions. Then we mark every type of region with the corresponding algorithm based on their curvature value. The experiments show that our watermarking is robust against numerous attacks including RST transformations, smoothing, additive random noise, cropping, simplification and remeshing.",
-      "venue": "International Symposium on Computers and Communications",
-      "year": 2008,
-      "n_citation": 50,
-      "authors": [
-        "S. Ben Jabra",
-        "Ezzeddine Zagrouba"
-      ],
-      "references": [
-        "Advances in 3D Mesh Segmentation Techniques",
-        "Robust Watermarking for 3D Models",
-        "Curvature-Based Analysis for Digital Watermarking"
-      ],
-      "status": "PUBLISHED",
-      "conference_rank": "A",
-      "location": "Tokyo, Japan",
-      "acceptance_rate": 18.5
-    },
-    {
-      "id": "68932f33-728b-4580-af19-8b58853c9ad9",
-      "type": 1,
-      "title": "Attractor neural networks with activity-dependent synapses: The role of synaptic facilitation",
-      "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase. In the oscillatory phase, the network activity continously jumps between the stored patterns. Compared with other activity-dependent mechanisms such as synaptic depression, synaptic facilitation enhances the network ability to switch among the stored patterns and, therefore, its adaptation to external stimuli. A detailed analysis of our system reflects an efficient-more rapid and with lesser errors-network access to the stored information with stronger facilitation. We also present a set of Monte Carlo simulations confirming our analytical results.",
-      "venue": "Neurocomputing",
-      "year": 2007,
-      "n_citation": 50,
-      "authors": [
-        "Joaquin J. Torres",
-        "Jesus M. Cortes",
-        "Joaquin Marro",
-        "Hilbert J. Kappen"
-      ],
-      "references": [
-        "Dynamic Synapses in Neural Networks: A Review",
-        "Mean-Field Theory for Neural Network Dynamics",
-        "Monte Carlo Methods in Neural Network Analysis",
-        "Synaptic Facilitation and Memory Retrieval"
-      ],
-      "status": "PUBLISHED",
-      "impact_factor": 5.67,
-      "q_rank": 1
-    },
-    {
-      "id": "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
-      "type": 3,
-      "title": "Efficient Construction of Balanced Ternary Sequences",
-      "abstract": "We present an efficient algorithm for constructing balanced sequences over 3 letters using continued fraction expansions. The method runs in O(n log n) and generates sequences with minimal imbalance.",
-      "venue": "WORDS 2023",
-      "year": 2023,
-      "n_citation": 28,
-      "authors": [
-        "Bo Tan",
-        "Xiaojing Zheng"
-      ],
-      "references": [
-        "Continued Fractions and Balanced Words",
-        "Efficient Generation of Morphic Sequences",
-        "Imbalance Bounds for Ternary Alphabets"
-      ],
-      "status": "PUBLISHED",
-      "sjr": 0.85,
-      "hIndex": 47
-    },
-    {
-      "id": "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
-      "type": 4,
-      "title": "Balanced Sequences in Data Compression: A Survey",
-      "abstract": "This technical report surveys recent results on balanced sequences over non-integer alphabets and their applications in data compression.",
-      "venue": "arXiv Technical Report",
-      "year": 2023,
-      "n_citation": 15,
-      "authors": [
-        "Maxime Crochemore",
-        "Lucian Ilie"
-      ],
-      "references": [
-        "Balanced Sequences in Compression",
-        "Non-integer Alphabets",
-        "Survey of Word Combinatorics"
-      ],
-      "status": "PUBLISHED"
-    }
+  {
+    "id": "4ab3735c-80f1-472d-b953-fa0557fed28b",
+    "type": 2,
+    "title": "A new approach of 3D watermarking based on image segmentation",
+    "abstract": "In this paper, a robust 3D triangular mesh watermarking algorithm based on 3D segmentation is proposed. In this algorithm three classes of watermarking are combined. First, we segment the original image to many different regions. Then we mark every type of region with the corresponding algorithm based on their curvature value. The experiments show that our watermarking is robust against numerous attacks including RST transformations, smoothing, additive random noise, cropping, simplification and remeshing.",
+    "venue": "International Symposium on Computers and Communications",
+    "year": 2008,
+    "n_citation": 50,
+    "authors": [
+      "S. Ben Jabra",
+      "Ezzeddine Zagrouba"
+    ],
+    "references": [
+      "Advances in 3D Mesh Segmentation Techniques",
+      "Robust Watermarking for 3D Models",
+      "Curvature-Based Analysis for Digital Watermarking"
+    ],
+    "status": "PUBLISHED",
+    "conference_rank": "A",
+    "location": "Tokyo, Japan",
+    "acceptance_rate": 18.5
+  },
+  {
+    "id": "68932f33-728b-4580-af19-8b58853c9ad9",
+    "type": 1,
+    "title": "Attractor neural networks with activity-dependent synapses: The role of synaptic facilitation",
+    "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase. In the oscillatory phase, the network activity continously jumps between the stored patterns. Compared with other activity-dependent mechanisms such as synaptic depression, synaptic facilitation enhances the network ability to switch among the stored patterns and, therefore, its adaptation to external stimuli. A detailed analysis of our system reflects an efficient-more rapid and with lesser errors-network access to the stored information with stronger facilitation. We also present a set of Monte Carlo simulations confirming our analytical results.",
+    "venue": "Neurocomputing",
+    "year": 2007,
+    "n_citation": 50,
+    "authors": [
+      "Joaquin J. Torres",
+      "Jesus M. Cortes",
+      "Joaquin Marro",
+      "Hilbert J. Kappen"
+    ],
+    "references": [
+      "Dynamic Synapses in Neural Networks: A Review",
+      "Mean-Field Theory for Neural Network Dynamics",
+      "Monte Carlo Methods in Neural Network Analysis",
+      "Synaptic Facilitation and Memory Retrieval"
+    ],
+    "status": "PUBLISHED",
+    "impact_factor": 5.67,
+    "q_rank": 1
+  },
+  {
+    "id": "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
+    "type": 3,
+    "title": "Efficient Construction of Balanced Ternary Sequences",
+    "abstract": "We present an efficient algorithm for constructing balanced sequences over 3 letters using continued fraction expansions. The method runs in O(n log n) and generates sequences with minimal imbalance.",
+    "venue": "WORDS 2023",
+    "year": 2023,
+    "n_citation": 28,
+    "authors": [
+      "Bo Tan",
+      "Xiaojing Zheng"
+    ],
+    "references": [
+      "Continued Fractions and Balanced Words",
+      "Efficient Generation of Morphic Sequences",
+      "Imbalance Bounds for Ternary Alphabets"
+    ],
+    "status": "PUBLISHED",
+    "sjr": 0.85,
+    "hIndex": 47
+  },
+  {
+    "id": "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
+    "type": 4,
+    "title": "Balanced Sequences in Data Compression: A Survey",
+    "abstract": "This technical report surveys recent results on balanced sequences over non-integer alphabets and their applications in data compression.",
+    "venue": "arXiv Technical Report",
+    "year": 2023,
+    "n_citation": 15,
+    "authors": [
+      "Maxime Crochemore",
+      "Lucian Ilie"
+    ],
+    "references": [
+      "Balanced Sequences in Compression",
+      "Non-integer Alphabets",
+      "Survey of Word Combinatorics"
+    ],
+    "status": "PUBLISHED"
+  }
 ]

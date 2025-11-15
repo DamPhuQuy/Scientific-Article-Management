@@ -1,205 +1,250 @@
-#include "../repos/authorrepo.h"
-#include "../utils/exception/ArticleException.h"
+#include "authorrepo.h"
+#include "../utils/nlohmann/json.hpp"
+#include "../utils/constants.h"
+#include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <filesystem>
+#include <iomanip>
+#include <exception>
+#include <QDebug>
+#include <QString>
 
-using namespace std;
+using json = nlohmann::json;
+namespace fs = std::filesystem;
 
 AuthorRepo::AuthorRepo(unordered_map<string, Author> au_con)
-    : authors_container(au_con)
-{
+    : authors_container(std::move(au_con)) {}
+
+// Thêm tác giả
+void AuthorRepo::add(const Author& au) {
+    if (!au.getId().empty()) {
+        authors_container[au.getId()] = au;
+    }
 }
 
-void AuthorRepo::add(const Author &au)
+// Xóa tác giả
+void AuthorRepo::remove(const string& id) {
+    authors_container.erase(id);
+}
+
+// Lấy container (non-const)
+unordered_map<string, Author>& AuthorRepo::getAuthorContainer() {
+    return authors_container;
+}
+
+// === Import & Export ===
+
+// Tải dữ liệu từ file JSON
+void AuthorRepo::load()
 {
-    string id = au.getId();
-    auto it = this->authors_container.find(id);
-    if (it != this->authors_container.end()) {
-        throw ArticleException("Id nay da ton tai!");
+    const fs::path file_path = Constants::AuInfoJson;
+    ifstream in(file_path);
+
+    if (!in.is_open()) {
+        qCritical() << "ERROR: Cannot open file: "
+                    << QString::fromStdString(fs::absolute(file_path).string());
         return;
     }
-    else {
-        this->authors_container[id] = au;
+
+    try {
+        json data;
+        in >> data;
+
+        if (!data.is_array()) {
+            qCritical() << "JSON format error: expected array of authors";
+            return;
+        }
+
+        authors_container.clear();
+
+        for (const auto& item : data)
+        {
+            string id      = item.value("id", "");
+            string name    = item.value("fullName", "");
+            string country = item.value("country", "");
+            string field   = item.value("fieldOfStudy", "");
+            int pubs       = item.value("totalPublications", 0);
+
+            // id bắt buộc phải tồn tại
+            if (id.empty())
+                continue;
+
+            // emplace trực tiếp, không copy tạm
+            authors_container.emplace(
+                id,
+                Author(id, name, country, field, pubs)
+            );
+        }
+
+        qInfo() << "Loaded" << authors_container.size()
+                << "authors from"
+                << QString::fromStdString(file_path.filename().string());
+    }
+    catch (const json::exception& e) {
+        qCritical() << "JSON parse error:" << e.what();
+    }
+    catch (const exception& e) {
+        qCritical() << "Error loading authors:" << e.what();
     }
 }
 
-void AuthorRepo::remove(const Author &au)
-{
-    string id = au.getId();
-    auto it = this->authors_container.find(id);
-    if (it != this->authors_container.end()) {
-        this->authors_container.erase(id);
+
+// Lưu dữ liệu ra file JSON
+void AuthorRepo::save() {
+    try {
+        json data = json::array();
+
+        for (const auto& [id, author] : authors_container) {
+            data.push_back({
+                {"id", author.getId()},
+                {"fullName", author.getFullName()},
+                {"country", author.getCountry()},
+                {"fieldOfStudy", author.getFieldOfStudy()},
+                {"totalPublications", author.getTotalPublications()}
+            });
+        }
+
+        const fs::path file_path = Constants::AuInfoJson;
+
+        std::ofstream out(file_path, ios::trunc);
+        if (!out.is_open()) {
+            qCritical() << "ERROR: Cannot open file: "
+                        << QString::fromStdString(fs::absolute(file_path).string());
+            return;
+        }
+
+        out << setw(2) << data << endl;
+        out.close();
+
+        qInfo() << "Saved" << authors_container.size()
+                << "authors to"
+                << QString::fromStdString(file_path.filename().string());
+    } catch (const json::exception& e) {
+        qCritical() << "JSON serialization error:" << e.what();
     }
-    else {
-        throw ArticleException("Id nay khong ton tai!");
+    catch (const exception& e) {
+        qCritical() << "Error saving authors:" << e.what();
+    }
+    catch (...) {
+        qCritical() << "Unknown error occurred while saving authors.";
     }
 }
 
-unordered_map<string, Author> &AuthorRepo::getAuthorContainer()
-{
-    return this->authors_container;
+
+// === Search ===
+
+Author AuthorRepo::findById(const string& id) const {
+    auto it = authors_container.find(id);
+    return (it != authors_container.end()) ? it->second : Author();
 }
 
-// ---------------- Search functions ---------------- //
-
-string AuthorRepo::liveSearchByName() const {
-    auto getName = [](const Author& au) { return au.getFullName(); };
-
-    auto printAuthor = [](const Author& au, bool highlight) -> void{
-        if (highlight)
-            cout << "-> [" << au.getFullName() << "] (" << au.getCountry() << ", " << au.getFieldOfStudy() << ")\n";
-        else
-            cout << "    " << "[" << au.getFullName() << "] (" << au.getCountry() << ", " << au.getFieldOfStudy() << ")\n";
-    };
-
-    return SearchByRegex::liveSearch<Author>(
-        this->authors_container,
-        getName,
-        printAuthor
-        );
-}
-
-string AuthorRepo::liveSearchByCountry() const {
-    auto getCountry = [](const Author& au) { return au.getCountry(); };
-
-    auto printAuthor = [](const Author& au, bool highlight) -> void {
-        if (highlight)
-            cout << "-> " << "[" << au.getCountry() << "] (" << au.getFullName() << ", " << au.getFieldOfStudy() << ")\n";
-        else
-            cout << "    " << "[" << au.getCountry() << "] (" << au.getFullName() << ", " << au.getFieldOfStudy() << ")\n";
-    };
-
-    return SearchByRegex::liveSearch<Author>(
-        this->authors_container,
-        getCountry,
-        printAuthor
-        );
-}
-
-string AuthorRepo::liveSearchByFieldOfStudy() const {
-    auto getField = [](const Author& au) { return au.getFieldOfStudy(); };
-
-    auto printAuthor = [](const Author& au, bool highlight) -> void {
-        if (highlight)
-            cout << "-> [" << au.getFieldOfStudy() << "] (" << au.getFullName() << ", " << au.getCountry() << ")\n";
-        else
-            cout << "    " << "[" << au.getFieldOfStudy() << "] (" << au.getFullName() << ", " << au.getCountry() << ")\n";
-    };
-
-    return SearchByRegex::liveSearch<Author>(
-        this->authors_container,
-        getField,
-        printAuthor
-        );
-}
-
-string AuthorRepo::findAuthorIdByName(const string &name) const
-{
-    for (const auto& [id, author] : authors_container) {
-        if (author.getFullName() == name)
-            return id;
+Author AuthorRepo::findByName(const string& name) const {
+    for (const auto& [id, au] : authors_container) {
+        if (au.getFullName() == name) {
+            return au;
+        }
     }
-    return "";
+    return Author(); // default empty
 }
 
-void AuthorRepo::createAuthor()
-{
-    Author newAuthor;
-    newAuthor.inputFromUser();
-    add(newAuthor);
+Author AuthorRepo::findByCountry(const string& country) const {
+    for (const auto& [id, au] : authors_container) {
+        if (au.getCountry() == country) {
+            return au;
+        }
+    }
+    return Author();
 }
 
-void AuthorRepo::updateName(const string& id) {
-    auto it = this->authors_container.find(id);
-    if (it == this->authors_container.end()) {
-        // cout << "This id does not exist!";
-        return;
-    } else {
-        cout << "Enter new name: ";
-        string name;
-        getline(cin, name);
+// === Filter ===
+
+vector<Author> AuthorRepo::filterByField(const string& field) const {
+    vector<Author> res;
+    for (const auto& [id, au] : authors_container) {
+        if (au.getFieldOfStudy() == field) {
+            res.push_back(au);
+        }
+    }
+    return res;
+}
+
+vector<Author> AuthorRepo::filterByMinPublications(int minPubs) const {
+    vector<Author> res;
+    for (const auto& [id, au] : authors_container) {
+        if (au.getTotalPublications() >= minPubs) {
+            res.push_back(au);
+        }
+    }
+    return res;
+}
+
+// === Sort ===
+
+vector<Author> AuthorRepo::sortedByName(bool ascending) const {
+    vector<Author> vec;
+    vec.reserve(authors_container.size());
+    for (const auto& [id, au] : authors_container) {
+        vec.push_back(au);
+    }
+
+    std::sort(vec.begin(), vec.end(),
+              [ascending](const Author& a, const Author& b) {
+                  return ascending ? a.getFullName() < b.getFullName()
+                                   : a.getFullName() > b.getFullName();
+              });
+
+    return vec;
+}
+
+vector<Author> AuthorRepo::sortedByPublications(bool ascending) const {
+    vector<Author> vec;
+    vec.reserve(authors_container.size());
+    for (const auto& [id, au] : authors_container) {
+        vec.push_back(au);
+    }
+
+    std::sort(vec.begin(), vec.end(),
+              [ascending](const Author& a, const Author& b) {
+                  return ascending ? a.getTotalPublications() < b.getTotalPublications()
+                                   : a.getTotalPublications() > b.getTotalPublications();
+              });
+
+    return vec;
+}
+
+// === Update ===
+
+void AuthorRepo::updateName(const string& id, const string& name) {
+    auto it = authors_container.find(id);
+    if (it != authors_container.end()) {
         it->second.setFullName(name);
-        json data;
-        for (auto& [thisid, author] : this->authors_container) {
-            data.push_back(author.to_json());
-        }
-        ofstream outfile("../../data/authors_dataset.json");
-        outfile << data.dump(4);
-        outfile.close();
     }
 }
 
-void AuthorRepo::updateCountry(const string& id) {
-    auto it = this->authors_container.find(id);
-    if (it == this->authors_container.end()) {
-        // cout << "This id does not exist!";
-        return;
-    } else {
-        cout << "Enter new country: ";
-        string country;
-        getline(cin, country);
+void AuthorRepo::updateCountry(const string& id, const string& country) {
+    auto it = authors_container.find(id);
+    if (it != authors_container.end()) {
         it->second.setCountry(country);
-        json data;
-        for (auto& [thisid, author] : this->authors_container) {
-            data.push_back(author.to_json());
-        }
-        ofstream outfile("../../data/authors_dataset.json");
-        outfile << data.dump(4);
-        outfile.close();
     }
 }
 
-void AuthorRepo::updateFieldOfStudy(const string& id) {
-    auto it = this->authors_container.find(id);
-    if (it == this->authors_container.end()) {
-        // cout << "This id does not exist!";
-        return;
-    } else {
-        cout << "Enter new field of study: ";
-        string fieldofstudy;
-        getline(cin, fieldofstudy);
-        it->second.setFieldOfStudy(fieldofstudy);
-        json data;
-        for (auto& [thisid, author] : this->authors_container) {
-            data.push_back(author.to_json());
-        }
-        ofstream outfile("../../data/authors_dataset.json");
-        outfile << data.dump(4);
-        outfile.close();
+void AuthorRepo::updateFieldOfStudy(const string& id, const string& field) {
+    auto it = authors_container.find(id);
+    if (it != authors_container.end()) {
+        it->second.setFieldOfStudy(field);
     }
 }
 
-void AuthorRepo::updateTotalOfPublications(const string& id) {
-    auto it = this->authors_container.find(id);
-    if (it == this->authors_container.end()) {
-        // cout << "This id does not exist!";
-        return;
-    } else {
-        cout << "Enter new total of publications: ";
-        string pubs;
-        getline(cin, pubs);
-        it->second.setTotalPublications(stoi(pubs));
-        json data;
-        for (auto& [thisid, author] : this->authors_container) {
-            data.push_back(author.to_json());
-        }
-        ofstream outfile("../../data/authors_dataset.json");
-        outfile << data.dump(4);
-        outfile.close();
+void AuthorRepo::updateTotalOfPublications(const string& id, const int& pubs) {
+    auto it = authors_container.find(id);
+    if (it != authors_container.end()) {
+        it->second.setTotalPublications(pubs);
     }
 }
 
-void AuthorRepo::removeAuthor(const string & id)
-{
-    auto it = this->authors_container.find(id);
-    if (it == this->authors_container.end()) {
-        return;
-    } else {
-        this->authors_container.erase(id);
-        json data;
-        for (auto& [thisid, author] : this->authors_container) {
-            data.push_back(author.to_json());
-        }
-        ofstream outfile("../../data/authors_dataset.json");
-        outfile << data.dump(4);
-        outfile.close();
-    }
+// === Statistics ===
+
+int AuthorRepo::count() const {
+    return static_cast<int>(authors_container.size());
 }

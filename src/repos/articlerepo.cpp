@@ -2,6 +2,7 @@
 #include "../models/scie_article.h"
 #include "../models/scopus_article.h"
 #include "../utils/datautils.h"
+#include "../utils/constants.h"
 #include <regex>
 #include "../utils/nlohmann/json.hpp"
 #include <QDebug>
@@ -13,8 +14,8 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-ArticleRepo::ArticleRepo(unordered_map<string, unique_ptr<Article>> ar_con)
-    : articles_container(ar_con) {}
+ArticleRepo::ArticleRepo(unordered_map<string, unique_ptr<Article>>& ar_con)
+    : articles_container(std::move(ar_con)) {}
 
 void ArticleRepo::add(unique_ptr<Article> a) {
     if (!a || a->getId().empty()) return;
@@ -44,11 +45,12 @@ vector<unique_ptr<Article>> ArticleRepo::getCopyAsVector() const {
 }
 
 // need more fix
-void ArticleRepo::load() {
-    const fs::path file_path = "dataset.json";
+void ArticleRepo::load(vector<string>& authors) {
+    const fs::path file_path = Constants::DataSetJson;
     ifstream in(file_path);
 
     if (!in.is_open()) {
+        qCritical() << "Cannot open file for loading:" << QString::fromStdString(file_path.string());
         return;
     }
 
@@ -59,34 +61,61 @@ void ArticleRepo::load() {
         articles_container.clear();
 
         for (const auto& item : data) {
-            string abstract    = item.value("abstract", "");
-            int n_citation          = item.value("n_citation", 0);
-            string title       = item.value("title", "");
-            string venue       = item.value("venue", "");
-            int year                = item.value("year", 0);
-            string id          = item.value("id", "");
-            Type type               = static_cast<Type>(item.value("type", 4));
-            ArticleStatus status    = ArticleStatus::DRAFT;
+            // Base
+            string abstract      = item.value("abstract", "");
+            int    n_citation    = item.value("n_citation", 0);
+            string title         = item.value("title", "");
+            string venue         = item.value("venue", "");
+            int    year          = item.value("year", 0);
+            string id            = item.value("id", "");
 
-            // Xử lý references
-            std::vector<string> refs;
+            Type type            = static_cast<Type>(item.value("type", 4));
+            ArticleStatus status = ArticleStatus::PUBLISHED;
+
+            // Lấy references
+            vector<string> refs;
             if (item.contains("references") && item["references"].is_array()) {
+                refs.reserve(item["references"].size());
                 for (const auto& ref : item["references"]) {
                     refs.push_back(ref.get<string>());
                 }
             }
 
-            // Tạo Article đúng loại
-            unique_ptr<Article> article(
-                DataUtils::createArticle(
-                    abstract, n_citation, title, venue, year, id, type, status, refs
-                    )
-                );
+            // Take authors
+            if (item.contains("authors") && item["authors"].is_array()) {
+                authors.clear();
+                authors.reserve(item["authors"].size());
+                for (const auto& au : item["authors"]) {
+                    authors.push_back(au.get<string>());
+                }
+            }
 
+            // ---- Tạo Article đúng loại ----
+            unique_ptr<Article> article = DataUtils::createArticle(
+                abstract,
+                n_citation,
+                title,
+                venue,
+                year,
+                id,
+                type,
+                status,
+                refs,
+                item.value("conference_rank", ""),
+                item.value("location", ""),
+                item.value("acceptance_rate", 0.0),
+                item.value("impact_factor", 0.0),
+                item.value("q_rank", 0),
+                item.value("sjr", 0.0),
+                item.value("hIndex", 0)
+            );
+
+            // Lưu vào map
             if (article && !id.empty()) {
                 articles_container[id] = std::move(article);
             }
         }
+        in.close();
     }
     catch (const json::exception& e) {
         qCritical() << "JSON parse error: " << e.what() << "\n";
@@ -95,6 +124,40 @@ void ArticleRepo::load() {
         qCritical() << "Error loading articles: " << e.what() << "\n";
     }
 }
+
+void ArticleRepo::save(const vector<string> authors) {
+    try {
+        json data = json::array();
+
+        for (const auto& pair : articles_container) {
+            const auto& article = pair.second;     // unique_ptr<Article>
+            if (article) {
+                data.push_back(article->to_json(authors)); // gọi hàm ảo
+            }
+        }
+
+        const fs::path file_path = Constants::DataSetJson;
+        ofstream out(file_path, ios::trunc);
+
+        if (!out.is_open()) {
+            qCritical() << "Cannot open file for saving:" << QString::fromStdString(file_path.string());
+            return;
+        }
+
+        out << setw(2) << data << endl;
+        out.close();
+    }
+    catch (const json::exception& e) {
+        qCritical() << "JSON serialization error:" << e.what();
+    }
+    catch (const exception& e) {
+        qCritical() << "Error saving authors:" << e.what();
+    }
+    catch (...) {
+        qCritical() << "Unknown error occurred while saving authors.";
+    }
+}
+
 
 unique_ptr<Article> ArticleRepo::findById(const string& id) const {
     auto it = articles_container.find(id);
@@ -179,7 +242,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) co
 
     for (auto& ptr : vec) {
         if (auto* journal = dynamic_cast<SCIE_Article*>(ptr.get())) {
-            filtered.push_back(ptr);
+            filtered.push_back(std::move(ptr));
         }
     }
 
@@ -202,7 +265,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
 
     for (auto& ptr : vec) {
         if (auto* journal = dynamic_cast<SCOPUS_Article*>(ptr.get())) {
-            filtered.push_back(ptr);
+            filtered.push_back(ptr->clone());
         }
     }
 
@@ -225,7 +288,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
 
     for (auto& ptr : vec) {
         if (auto* journal = dynamic_cast<SCOPUS_Article*>(ptr.get())) {
-            filtered.push_back(ptr);
+            filtered.push_back(ptr->clone());
         }
     }
 

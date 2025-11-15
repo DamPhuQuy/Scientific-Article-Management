@@ -1,8 +1,7 @@
 #pragma once
-#include "ArticleRepo.h"
-#include "AuthorRepo.h"
-#include "AuthorArticleRepo.h"
-#include "DataManipulation.h"
+#include "articlerepo.h"
+#include "authorrepo.h"
+#include "authorarticlerepo.h"
 
 class RepositoryManager {
 private:
