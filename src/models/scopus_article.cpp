@@ -10,6 +10,7 @@ SCOPUS_Article::SCOPUS_Article(
     Type t,
     ArticleStatus st,
     const vector<string>& r,
+    const vector<string>& aus,
     const double& rank,
     const int& index)
     : Article(
@@ -21,7 +22,8 @@ SCOPUS_Article::SCOPUS_Article(
           id.empty() ? UUID_Generator::generateUUID() : id,
           t,
           st,
-          r), sjr(rank), hIndex(index) {}
+          r,
+          aus), sjr(rank), hIndex(index) {}
 
 SCOPUS_Article::~SCOPUS_Article()
 {
@@ -34,7 +36,7 @@ unique_ptr<Article> SCOPUS_Article::clone() const
     return make_unique<SCOPUS_Article>(*this);
 }
 
-json SCOPUS_Article::to_json(const vector<string>& authors) const {
+json SCOPUS_Article::to_json() const {
     return json{
         {"id", getId()},
         {"type", static_cast<int>(getType())},

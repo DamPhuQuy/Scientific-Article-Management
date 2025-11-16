@@ -8,8 +8,8 @@
     "year": 2008,
     "n_citation": 50,
     "authors": [
-      "S. Ben Jabra",
-      "Ezzeddine Zagrouba"
+      "db4ec36e-324a-477b-87f2-0dd4aabb048d",
+      "eff2ad8f-b5e1-4339-867b-e7e87d3e7651"
     ],
     "references": [
       "Advances in 3D Mesh Segmentation Techniques",
@@ -25,15 +25,15 @@
     "id": "68932f33-728b-4580-af19-8b58853c9ad9",
     "type": 1,
     "title": "Attractor neural networks with activity-dependent synapses: The role of synaptic facilitation",
-    "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase. In the oscillatory phase, the network activity continously jumps between the stored patterns. Compared with other activity-dependent mechanisms such as synaptic depression, synaptic facilitation enhances the network ability to switch among the stored patterns and, therefore, its adaptation to external stimuli. A detailed analysis of our system reflects an efficient-more rapid and with lesser errors-network access to the stored information with stronger facilitation. We also present a set of Monte Carlo simulations confirming our analytical results.",
+    "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase...",
     "venue": "Neurocomputing",
     "year": 2007,
     "n_citation": 50,
     "authors": [
-      "Joaquin J. Torres",
-      "Jesus M. Cortes",
-      "Joaquin Marro",
-      "Hilbert J. Kappen"
+      "3195b257-0ab1-45be-91e2-e88ba6c62827",
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
+      "82844d84-2425-4017-8670-0f1e354e517a",
+      "2b94573f-5146-4b66-9016-310494fe9170"
     ],
     "references": [
       "Dynamic Synapses in Neural Networks: A Review",
@@ -54,8 +54,8 @@
     "year": 2023,
     "n_citation": 28,
     "authors": [
-      "Bo Tan",
-      "Xiaojing Zheng"
+      "836a5c98-1418-4c1c-a580-c42d7bc51420",
+      "b3585b46-d22b-4b2c-9317-dec3b72a3159"
     ],
     "references": [
       "Continued Fractions and Balanced Words",
@@ -75,8 +75,8 @@
     "year": 2023,
     "n_citation": 15,
     "authors": [
-      "Maxime Crochemore",
-      "Lucian Ilie"
+      "8e907521-6e0d-4472-bb75-8968e541d262",
+      "c9fa938b-48a3-4841-996f-3a01697ee222"
     ],
     "references": [
       "Balanced Sequences in Compression",

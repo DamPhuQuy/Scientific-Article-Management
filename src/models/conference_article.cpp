@@ -9,7 +9,8 @@ CONFERENCE_Article::CONFERENCE_Article(
     const string& id,
     Type t,
     ArticleStatus st,
-    const vector<string>& r, const string &rank, const string &l, const double &ar)
+    const vector<string>& r,
+    const vector<string>& aus, const string &rank, const string &l, const double &ar)
     : Article(
           abstract,
           n_citation,
@@ -19,7 +20,8 @@ CONFERENCE_Article::CONFERENCE_Article(
           id.empty() ? UUID_Generator::generateUUID() : id,
           t,
           st,
-          r), conferenceRank(rank), location(l), acceptanceRate(ar) {}
+          r,
+          aus), conferenceRank(rank), location(l), acceptanceRate(ar) {}
 
 CONFERENCE_Article::~CONFERENCE_Article() {}
 
@@ -30,7 +32,7 @@ unique_ptr<Article> CONFERENCE_Article::clone() const
     return make_unique<CONFERENCE_Article>(*this);
 }
 
-json CONFERENCE_Article::to_json(const vector<string>& authors) const {
+json CONFERENCE_Article::to_json() const {
     return json{
         {"id", getId()},
         {"type", static_cast<int>(getType())},

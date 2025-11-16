@@ -10,7 +10,8 @@ OTHER_Article::OTHER_Article(
     const string& id,
     Type t,
     ArticleStatus st,
-    const vector<string>& r)
+    const vector<string>& r,
+    const vector<string>& aus)
     : Article(
           abstract,
           n_citation,
@@ -20,7 +21,8 @@ OTHER_Article::OTHER_Article(
           id.empty() ? UUID_Generator::generateUUID() : id,
           t,
           st,
-          r) {}
+          r,
+          aus) {}
 
 OTHER_Article::~OTHER_Article()
 {
@@ -33,7 +35,7 @@ unique_ptr<Article> OTHER_Article::clone() const
     return make_unique<OTHER_Article>(*this);
 }
 
-json OTHER_Article::to_json(const vector<string>& authors) const {
+json OTHER_Article::to_json() const {
     return json{
         {"id", getId()},
         {"type", static_cast<int>(getType())},

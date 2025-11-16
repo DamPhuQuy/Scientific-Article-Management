@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Article.h"
+#include "article.h"
 #include <string>
 #include <memory>
 #include <vector>
@@ -19,7 +19,8 @@ public:
         const string& id = "",
         Type t = Type::OTHER,
         ArticleStatus st = ArticleStatus::DRAFT,
-        const vector<string> &r = {});
+        const vector<string> &r = {},
+        const vector<string>& aus = {});
 
     explicit OTHER_Article(const Article &other);
 
@@ -27,5 +28,5 @@ public:
 
     // utilities
     unique_ptr<Article> clone() const override;
-    json to_json(const vector<string>& authors) const override;
+    json to_json() const override;
 };

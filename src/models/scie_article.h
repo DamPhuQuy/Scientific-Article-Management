@@ -22,6 +22,7 @@ public:
         Type t = Type::SCIE,
         ArticleStatus st = ArticleStatus::DRAFT,
         const vector<string>& r = {},
+        const vector<string>& aus = {},
         const double& iftor = 0.0,
         const int& rank = 0
     );
@@ -38,5 +39,5 @@ public:
 
     // utilities
     unique_ptr<Article> clone() const override;
-    json to_json(const vector<string>& authors) const override;
+    json to_json() const override;
 };

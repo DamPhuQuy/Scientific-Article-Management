@@ -1,6 +1,7 @@
 #include "article.h"
 #include <algorithm>
 #include <unordered_map>
+#include "../utils/exception/ArticleException.h"
 
 Article::Article(const string &abstract,
                  const int &n_citation,
@@ -10,7 +11,8 @@ Article::Article(const string &abstract,
                  const string &id,
                  const Type t,
                  const ArticleStatus st,
-                 const vector<string> &r)
+                 const vector<string> &r,
+                 const vector<string> &aus)
     : abstract(abstract),
     n_citation(n_citation),
     title(title),
@@ -19,7 +21,8 @@ Article::Article(const string &abstract,
     id(id),
     type(t),
     status(st),
-    refs(r)
+    refs(r),
+    authors(aus)
 {}
 
 
@@ -31,7 +34,9 @@ Article::Article(const Article &other)
     year(other.year),
     id(other.id),
     type(other.type),
-    status(other.status)
+    status(other.status),
+    refs(other.refs),
+    authors(other.authors)
 {
 }
 

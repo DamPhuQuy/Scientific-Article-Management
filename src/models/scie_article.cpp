@@ -11,6 +11,7 @@ SCIE_Article::SCIE_Article(
     Type t,
     ArticleStatus st,
     const vector<string>& r,
+    const vector<string>& aus,
     const double& iftor,
     const int& rank)
     : Article(
@@ -31,7 +32,7 @@ unique_ptr<Article> SCIE_Article::clone() const
    return make_unique<SCIE_Article>(*this);
 }
 
-json SCIE_Article::to_json(const vector<string>& authors) const {
+json SCIE_Article::to_json() const {
     return json{
         {"id", getId()},
         {"type", static_cast<int>(getType())},

@@ -45,7 +45,7 @@ vector<unique_ptr<Article>> ArticleRepo::getCopyAsVector() const {
 }
 
 // need more fix
-void ArticleRepo::load(vector<string>& authors) {
+void ArticleRepo::load() {
     const fs::path file_path = Constants::DataSetJson;
     ifstream in(file_path);
 
@@ -82,6 +82,7 @@ void ArticleRepo::load(vector<string>& authors) {
             }
 
             // Take authors
+            vector<string> authors;
             if (item.contains("authors") && item["authors"].is_array()) {
                 authors.clear();
                 authors.reserve(item["authors"].size());
@@ -101,6 +102,7 @@ void ArticleRepo::load(vector<string>& authors) {
                 type,
                 status,
                 refs,
+                authors,
                 item.value("conference_rank", ""),
                 item.value("location", ""),
                 item.value("acceptance_rate", 0.0),
@@ -125,14 +127,14 @@ void ArticleRepo::load(vector<string>& authors) {
     }
 }
 
-void ArticleRepo::save(const vector<string> authors) {
+void ArticleRepo::save() {
     try {
         json data = json::array();
 
         for (const auto& pair : articles_container) {
             const auto& article = pair.second;     // unique_ptr<Article>
             if (article) {
-                data.push_back(article->to_json(authors)); // gọi hàm ảo
+                data.push_back(article->to_json()); // gọi hàm ảo
             }
         }
 

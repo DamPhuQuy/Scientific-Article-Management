@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainDialog</class>
+ <widget class="QWidget" name="mainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>850</width>
+    <height>950</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Thêm bài báo</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <spacer name="horizontalSpacer_1">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QFrame" name="centralCard">
+     <property name="minimumSize">
+      <size>
+       <width>550</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>550</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_Card">
+      <property name="spacing">
+       <number>16</number>
+      </property>
+      <property name="leftMargin">
+       <number>32</number>
+      </property>
+      <property name="topMargin">
+       <number>32</number>
+      </property>
+      <property name="rightMargin">
+       <number>32</number>
+      </property>
+      <property name="bottomMargin">
+       <number>32</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="titleLabel">
+        <property name="text">
+         <string>Thêm bài báo mới</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="subtitleLabel">
+        <property name="text">
+         <string>Điền thông tin chi tiết cho bài báo.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_1">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Policy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>10</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>474</width>
+           <height>812</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_Form">
+          <property name="spacing">
+           <number>16</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="titleLineEdit">
+            <property name="placeholderText">
+             <string>Tiêu đề (Title)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="venueLineEdit">
+            <property name="placeholderText">
+             <string>Nơi xuất bản (Venue)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="hLayout_YearCite">
+            <property name="spacing">
+             <number>12</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="yearLabel">
+              <property name="text">
+               <string>Year</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="yearSpin"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="citationLabel">
+              <property name="text">
+               <string>Citations</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="citationSpin"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="hLayout_TypeStatus">
+            <property name="spacing">
+             <number>12</number>
+            </property>
+            <item>
+             <widget class="QComboBox" name="typeComboBox">
+              <property name="placeholderText">
+               <string>Loại bài báo (Type)</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>SCIE</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>CONFERENCE</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>SCOPUS</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>OTHER</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="statusComboBox">
+              <property name="placeholderText">
+               <string>Tình trạng bài báo (Status)</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>DRAFT</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>PUBLISHED</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>SUBMITTED</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>UNDER_REVIEW</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>REVISIONS</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>ACCEPTED</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>REJECTED</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="detailsGroupLabel">
+            <property name="text">
+             <string>Chi tiết bài báo</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QStackedWidget" name="typeSpecificStackedWidget">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="page_scie">
+             <layout class="QFormLayout" name="formLayout_scie">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_impact">
+                <property name="text">
+                 <string>Impact Factor:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="impactFactorSpinBox"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_qrank">
+                <property name="text">
+                 <string>Q-Rank:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="qRankSpinBox"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>SCIE Article</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_conference">
+             <layout class="QFormLayout" name="formLayout_conf">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_confRank">
+                <property name="text">
+                 <string>Rank:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="conferenceRankLineEdit">
+                <property name="placeholderText">
+                 <string>Conference Rank (A, A*...)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_location">
+                <property name="text">
+                 <string>Location:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="locationLineEdit">
+                <property name="placeholderText">
+                 <string>Thành phố, Đất nước (Tokyo, Japan)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_acceptance">
+                <property name="text">
+                 <string>Acceptance Rate:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QDoubleSpinBox" name="acceptanceRateSpinBox"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>CONFERENCE Article</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_scopus">
+             <layout class="QFormLayout" name="formLayout_scopus">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_sjr">
+                <property name="text">
+                 <string>SJR:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="sjrSpinBox"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_hindex">
+                <property name="text">
+                 <string>H-Index:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="hIndexSpinBox"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>SCOPUS Article</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="page_other">
+             <layout class="QVBoxLayout" name="verticalLayout_other">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>OTHER Article</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_other">
+                <property name="text">
+                 <string>Không có trường dữ liệu cụ thể.</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="abstractLabel">
+            <property name="text">
+             <string>Tóm tắt (Abstract)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="abstractTextEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>120</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string>Nhập tóm tắt...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="authorsLabel">
+            <property name="text">
+             <string>Tác giả (Authors)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="authorsListWidget">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="hLayout_AuthorsButtons">
+            <item>
+             <spacer name="spacer_Authors">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="referencesLabel">
+            <property name="text">
+             <string>Tham khảo (References)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="referencesListWidget">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="hLayout_RefsButtons">
+            <item>
+             <spacer name="spacer_Refs">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="buttonLayout">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="cancelButton">
+          <property name="text">
+           <string>Hủy</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="addArticleButton">
+          <property name="text">
+           <string>Thêm bài báo</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

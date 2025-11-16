@@ -1,5 +1,4 @@
 #include "repomanager.h"
-#include <unordered_set>
 #include <QString>
 #include <QFile>
 #include <QDebug>
@@ -8,10 +7,9 @@ using namespace std;
 
 RepositoryManager::RepositoryManager(
     ArticleRepo &a_repo,
-    AuthorRepo &au_repo,
-    AuthorArticleRepo &au_ar
+    AuthorRepo &au_repo
     )
-    : a_repo(a_repo), au_repo(au_repo), au_ar(au_ar)
+    : a_repo(a_repo), au_repo(au_repo)
 {
 }
 
@@ -19,75 +17,73 @@ ArticleRepo &RepositoryManager::getArticles()
 { return a_repo; }
 AuthorRepo &RepositoryManager::getAuthors()
 { return au_repo; }
-AuthorArticleRepo &RepositoryManager::getAuthorArticles()
-{ return au_ar; }
 
-bool RepositoryManager::validateDataConsistency() const {
-    bool isConsistent = true;
-    const auto& relations = au_ar.getRelations();
-    const auto& articles = a_repo.getContainer();
-    const auto& authors = au_repo.getAuthorContainer();
-    unordered_set<string> validArticleIds;
-    unordered_set<string> validAuthorIds;
+// bool RepositoryManager::validateDataConsistency() const {
+//     bool isConsistent = true;
+//     const auto& relations = au_ar.getRelations();
+//     const auto& articles = a_repo.getContainer();
+//     const auto& authors = au_repo.getAuthorContainer();
+//     unordered_set<string> validArticleIds;
+//     unordered_set<string> validAuthorIds;
 
-    // fetch valid id
-    for (const auto& [id, articlePtr] : articles) validArticleIds.insert(id);
-    for (const auto& [id, author] : authors) validAuthorIds.insert(id);
+//     // fetch valid id
+//     for (const auto& [id, articlePtr] : articles) validArticleIds.insert(id);
+//     for (const auto& [id, author] : authors) validAuthorIds.insert(id);
 
-    QStringList errorMessages;
-    QString logFilePath = "../../data/data_consistency.log"; // đường dẫn file log
+//     QStringList errorMessages;
+//     QString logFilePath = "../../data/data_consistency.log"; // đường dẫn file log
 
-    QFile logFile(logFilePath);
-    if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
-        qCritical() << "Cannot open log file:" << logFilePath;
-        return false;
-    }
-    QTextStream out(&logFile);
+//     QFile logFile(logFilePath);
+//     if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
+//         qCritical() << "Cannot open log file:" << logFilePath;
+//         return false;
+//     }
+//     QTextStream out(&logFile);
 
-    out << "=== DATA CONSISTENCY CHECK ===\n";
+//     out << "=== DATA CONSISTENCY CHECK ===\n";
 
-    // check relationship
-    for (const auto& rel : relations) {
-        const string& aid = rel.getArticleId();
-        const string& auid = rel.getAuthorId();
+//     // check relationship
+//     for (const auto& rel : relations) {
+//         const string& aid = rel.getArticleId();
+//         const string& auid = rel.getAuthorId();
 
-        if (validArticleIds.find(aid) == validArticleIds.end()) {
-            QString msg = QString("[ERROR] Article ID '%1' DOES NOT EXIST in ArticleRepo!").arg(QString::fromStdString(aid));
-            qWarning() << msg;
-            errorMessages.append(msg);
-            out << msg << "\n";
-            isConsistent = false;
-        }
-        if (validAuthorIds.find(auid) == validAuthorIds.end()) {
-            QString msg = QString("[ERROR] Author ID '%1' DOES NOT EXIST in AuthorRepo!").arg(QString::fromStdString(auid));
-            qWarning() << msg;
-            errorMessages.append(msg);
-            out << msg << "\n";
-            isConsistent = false;
-        }
-    }
+//         if (validArticleIds.find(aid) == validArticleIds.end()) {
+//             QString msg = QString("[ERROR] Article ID '%1' DOES NOT EXIST in ArticleRepo!").arg(QString::fromStdString(aid));
+//             qWarning() << msg;
+//             errorMessages.append(msg);
+//             out << msg << "\n";
+//             isConsistent = false;
+//         }
+//         if (validAuthorIds.find(auid) == validAuthorIds.end()) {
+//             QString msg = QString("[ERROR] Author ID '%1' DOES NOT EXIST in AuthorRepo!").arg(QString::fromStdString(auid));
+//             qWarning() << msg;
+//             errorMessages.append(msg);
+//             out << msg << "\n";
+//             isConsistent = false;
+//         }
+//     }
 
-    // report summary
-    QString summary = QString(
-                          "Summary:\n"
-                          "  - Number of articles: %1\n"
-                          "  - Number of authors: %2\n"
-                          "  - Number of relations: %3\n"
-                          ).arg(articles.size()).arg(authors.size()).arg(relations.size());
+//     // report summary
+//     QString summary = QString(
+//                           "Summary:\n"
+//                           "  - Number of articles: %1\n"
+//                           "  - Number of authors: %2\n"
+//                           "  - Number of relations: %3\n"
+//                           ).arg(articles.size()).arg(authors.size()).arg(relations.size());
 
-    if (isConsistent) {
-        summary += "=> [SUCCESS] All data are FULLY CONSISTENT!";
-        qInfo() << summary;
-    } else {
-        summary += "=> [ERROR] Inconsistent data detected!";
-        qCritical() << summary;
-    }
+//     if (isConsistent) {
+//         summary += "=> [SUCCESS] All data are FULLY CONSISTENT!";
+//         qInfo() << summary;
+//     } else {
+//         summary += "=> [ERROR] Inconsistent data detected!";
+//         qCritical() << summary;
+//     }
 
-    out << summary << "\n";
-    logFile.close();
+//     out << summary << "\n";
+//     logFile.close();
 
-    return isConsistent;
-}
+//     return isConsistent;
+// }
 
 // void RepositoryManager::createArticle() {
 //     // Type

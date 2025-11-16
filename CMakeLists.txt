@@ -35,18 +35,21 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         data/author_dataset.json
         src/models/author.h src/models/author.cpp
         src/utils/nlohmann/json.hpp
-        src/models/author_article.h
+
         src/repos/articlerepo.h src/repos/articlerepo.cpp
         src/repos/authorrepo.h src/repos/authorrepo.cpp
         src/repos/repomanager.h src/repos/repomanager.cpp
         src/utils/constants.h
-        src/repos/authorarticlerepo.h src/repos/authorarticlerepo.cpp
+
         src/utils/datautils.h
         data/accounts.json
         loginform.h loginform.cpp loginform.ui
         resources.qrc
         src/utils/usermanager.h src/utils/usermanager.cpp
         signupform.h signupform.cpp signupform.ui
+        articlemenu.h articlemenu.cpp articlemenu.ui
+        articleinput.h articleinput.cpp articleinput.ui
+
 
 
     )

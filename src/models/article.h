@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include "../utils/uuid_generator.h"
-#include "../utils/exception/ArticleException.h"
 #include "../utils/nlohmann/json.hpp"
 #include <any>
 #include <memory>
@@ -31,7 +30,7 @@ enum class ArticleStatus
 
 class Article
 {
-private:
+protected:
     string id;
     string abstract;
     int n_citation;
@@ -41,6 +40,7 @@ private:
     Type type;
     ArticleStatus status;
     vector<string> refs;
+    vector<string> authors;
 public:
     Article(const string& abstract = "",
             const int& n_citation = 0,
@@ -50,7 +50,8 @@ public:
             const string& id = UUID_Generator::generateUUID(),
             const Type t = Type::OTHER,
             const ArticleStatus st = ArticleStatus::DRAFT,
-            const vector<string> &r = {});
+            const vector<string> &r = {},
+            const vector<string> &aus = {});
 
     Article(const Article &other);
     virtual ~Article() = default;
@@ -73,7 +74,7 @@ public:
     string getStatusInString() const;
 
     vector<string> getReferences() const { return this->refs; }
-
+    vector<string> getAuthors() const { return this->authors; }
     // setters
     void setTitle(const string& t) {
         this->title = t;
@@ -106,5 +107,5 @@ public:
 
     // virtual
     virtual unique_ptr<Article> clone() const = 0;
-    virtual json to_json(const vector<string>& authors) const = 0;
+    virtual json to_json() const = 0;
 };

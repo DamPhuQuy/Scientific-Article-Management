@@ -18,6 +18,7 @@ public:
         Type t = Type::OTHER,
         ArticleStatus st = ArticleStatus::DRAFT,
         const vector<string>& refs = {},
+        const vector<string>& aus = {},
         const string& conference_rank = "",
         const string& location = "",
         double acceptance_rate = 0.0,
@@ -30,22 +31,22 @@ public:
         case Type::CONFERENCE:
             return std::make_unique<CONFERENCE_Article>(
                 abstract, n_citation, title, venue, year, id,
-                t, st, refs, conference_rank, location, acceptance_rate);
+                t, st, refs, aus, conference_rank, location, acceptance_rate);
 
         case Type::SCIE:
             return std::make_unique<SCIE_Article>(
                 abstract, n_citation, title, venue, year, id,
-                t, st, refs, impact_factor, q_rank);
+                t, st, refs, aus, impact_factor, q_rank);
 
         case Type::SCOPUS:
             return std::make_unique<SCOPUS_Article>(
                 abstract, n_citation, title, venue, year, id,
-                t, st, refs, sjr, hIndex);
+                t, st, refs, aus, sjr, hIndex);
 
         default:
             return std::make_unique<OTHER_Article>(
                 abstract, n_citation, title, venue, year, id,
-                t, st, refs);
+                t, st, refs, aus);
         }
     }
 };

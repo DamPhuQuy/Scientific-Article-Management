@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Article.h"
+#include "article.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -23,6 +23,7 @@ public:
         Type t = Type::CONFERENCE,
         ArticleStatus st = ArticleStatus::DRAFT,
         const vector<string>& r = {},
+        const vector<string>& aus = {},
         const string& rank = "",
         const string& l = "",
         const double& ar = 0.0
@@ -42,5 +43,5 @@ public:
 
     // utilities
     unique_ptr<Article> clone() const override;
-    json to_json(const vector<string>& authors) const override;
+    json to_json() const override;
 };

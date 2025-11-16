@@ -23,8 +23,8 @@ public:
     vector<unique_ptr<Article>> getCopyAsVector() const;
 
     // Import and export data
-    void load(vector<string>& authors);
-    void save(const vector<string> authors);
+    void load();
+    void save();
 
     // Search
     unique_ptr<Article> findById(const string& id) const;
