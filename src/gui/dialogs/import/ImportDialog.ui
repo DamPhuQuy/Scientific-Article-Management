@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ImportDialog</class>
+ <widget class="QDialog" name="ImportDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Import Data</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Please select an import method:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="importJsonButton">
+     <property name="text">
+      <string>Import dataset from JSON</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Đây là nơi bạn thêm CSS để nút có màu xanh như hình mẫu */
+QPushButton {
+    background-color: #0055ff; /* Màu xanh dương */
+    color: white;
+    border-radius: 12px;
+    padding: 10px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #0044cc;
+}</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="importAutoButton">
+     <property name="text">
+      <string>Automatically import from system</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Cùng kiểu CSS */
+QPushButton {
+    background-color: #0055ff;
+    color: white;
+    border-radius: 12px;
+    padding: 10px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #0044cc;
+}</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="backButton">
+     <property name="text">
+      <string>Back to main menu</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Kiểu cho nút "Back" có thể khác */
+QPushButton {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 10px;
+}
+QPushButton:hover {
+    background-color: #e0e0e0;
+}</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

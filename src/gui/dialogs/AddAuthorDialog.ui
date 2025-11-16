@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddAuthorDialog</class>
+ <widget class="QDialog" name="AddAuthorDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>350</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Create New Author</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* --- Nền chung --- */
+QWidget#AddAuthorDialog {
+    background-color: #FFFFFF; /* Nền trắng */
+}
+
+/* --- Tiêu đề "Enter Author Details" --- */
+QLabel#titleLabel {
+    font-size: 24px;
+    font-family: "Times New Roman", serif; /* Font có chân như hình */
+    color: #000000;
+    padding-bottom: 15px;
+}
+
+/* --- Các nhãn (Full name, Country...) --- */
+QLabel[objectName$="Label"] { /* Chọn tất cả QLabel có tên kết thúc bằng "Label" */
+    background-color: #12B0E8; /* Màu xanh dương */
+    color: white;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 120px; /* Đảm bảo các nút có chiều rộng */
+}
+
+/* --- Các khung nhập liệu (QLineEdit) --- */
+QLineEdit {
+    border: none; /* Bỏ tất cả viền */
+    border-bottom: 2px solid #000000; /* Chỉ giữ viền dưới */
+    background-color: transparent; /* Nền trong suốt */
+    font-size: 16px;
+    padding-left: 5px;
+}
+QLineEdit:focus {
+    border-bottom: 2px solid #12B0E8; /* Đổi màu khi được chọn */
+}
+
+/* --- Khung nhập số (QSpinBox) --- */
+QSpinBox {
+    border: none;
+    border-bottom: 2px solid #000000;
+    background-color: transparent;
+    font-size: 16px;
+    padding-left: 5px;
+}
+QSpinBox:focus {
+    border-bottom: 2px solid #12B0E8;
+}
+/* Ẩn các nút lên/xuống của QSpinBox */
+QSpinBox::up-button, QSpinBox::down-button {
+    border: none;
+    width: 0px;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <property name="leftMargin">
+    <number>30</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>30</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>Enter Author Details</string> </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <property name="labelAlignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="horizontalSpacing">
+      <number>20</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>25</number>
+     </property>
+     <item row="0" column="0">
+      <widget

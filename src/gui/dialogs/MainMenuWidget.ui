@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainMenuWidget</class>
+ <widget class="QWidget" name="MainMenuWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>350</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Main Menu</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* --- Tổng thể Widget --- */
+QWidget#MainMenuWidget {
+    background-color: #333333; /* Nền tối như hình mẫu */
+}
+
+/* --- Tiêu đề --- */
+QLabel#titleLabel {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+/* --- Nút bấm chính (Màu xanh) --- */
+QPushButton[objectName^=&quot;manage&quot;] {
+    background-color: #0055ff; /* Màu xanh dương từ tiến trình (1) */
+    color: white;
+    border: none;
+    border-radius: 15px; /* Bo tròn nhiều hơn cho giống hình mẫu */
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 30px;
+}
+QPushButton[objectName^=&quot;manage&quot;]:hover {
+    background-color: #0044cc;
+}
+
+/* --- Nút Thoát (Màu xám) --- */
+QPushButton#exitButton {
+    background-color: #666666;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 15px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 30px;
+}
+QPushButton#exitButton:hover {
+    background-color: #555555;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>30</number>
+   </property>
+   <property name="topMargin">
+    <number>30</number>
+   </property>
+   <property name="rightMargin">
+    <number>30</number>
+   </property>
+   <property name="bottomMargin">
+    <number>30</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>ARTICLE MANAGEMENT MENU</string> </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_Top">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="manageArticlesButton">
+     <property name="text">
+      <string>Manage Articles</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="manageAuthorsButton">
+     <property name="text">
+      <string>Manage Authors</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_Bottom">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="exitButton">
+     <property name="text">
+      <string>Exit</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

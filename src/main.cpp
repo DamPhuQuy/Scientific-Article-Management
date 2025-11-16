@@ -5,6 +5,9 @@
 #include <conio.h>
 #include <thread>
 #include <chrono>
+#include "mainwindow.h"
+#include <QApplication>
+#include "ArticleService.h"
 
 using namespace std;
 namespace fs = std::filesystem; 
@@ -57,6 +60,7 @@ void intro(){
 
     _getch();
 }
+
 
 int main() {
     intro();

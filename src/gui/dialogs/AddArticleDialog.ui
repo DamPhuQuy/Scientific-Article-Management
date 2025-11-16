@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddArticleDialog</class>
+ <widget class="QDialog" name="AddArticleDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>550</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Create New Article</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* --- Nền chung --- */
+QWidget#AddArticleDialog {
+    background-color: #FFFFFF;
+}
+
+/* --- Tiêu đề --- */
+QLabel#titleLabel {
+    font-size: 24px;
+    font-family: "Times New Roman", serif;
+    color: #000000;
+    padding-bottom: 10px;
+}
+
+/* --- Nhãn (Labels) --- */
+QLabel[objectName$="Label"] {
+    background-color: #12B0E8;
+    color: white;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 150px; /* Rộng hơn 1 chút */
+}
+
+/* --- Khung nhập liệu (QLineEdit) --- */
+QLineEdit {
+    border: none;
+    border-bottom: 2px solid #000000;
+    background-color: transparent;
+    font-size: 16px;
+    padding-left: 5px;
+}
+QLineEdit:focus {
+    border-bottom: 2px solid #12B0E8;
+}
+
+/* --- Hộp chọn (QComboBox) --- */
+QComboBox {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+QComboBox::drop-down {
+    border: none;
+}
+
+/* --- Hộp nhập số (QSpinBox) --- */
+QSpinBox {
+    border: none;
+    border-bottom: 2px solid #000000;
+    font-size: 16px;
+}
+QSpinBox::up-button, QSpinBox::down-button {
+    border: none;
+    width: 0px;
+}
+
+/* --- Vùng nhập text (QTextEdit) --- */
+QTextEdit {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 14px;
+}
+QTextEdit:focus {
+    border: 1px solid #12B0E8;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>Enter Article Details</string> </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     
+     <widget class="QWidget" name="mainDetailsTab">
+      <attribute name="title">
+       <string>Main Details</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_Tab1">
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <property name="horizontalSpacing">
+          <number>20</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>25</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="typeLabel">
+           <property name="text">
+            <string>Choose the type of article</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="typeComboBox"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="titleFieldLabel">
+           <property name="text">
+            <string>Enter title of article</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="titleLineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="abstractLabel">
+           <property name="text">
+            <string>Enter abstract</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QTextEdit" name="abstractTextEdit">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>80</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="venueLabel">
+           <property name="text">
+            <string>Enter the venue of article</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="venueLineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="yearLabel">
+           <property name="text">
+            <string>Enter publish year</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="yearSpinBox">
+           <property name="maximum">
+            <number>2099</number>
+           </property>
+           <property name="minimum">
+            <number>1900</number>
+           </property>
+           <property name="value">
+            <number>2024</number> </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="citationsLabel">
+           <property name="text">
+            <string>Enter the number of citations</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QSpinBox" name="citationsSpinBox">
+           <property name="maximum">
+            <number>999999</number>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="statusLabel">
+           <property name="text">
+            <string>Choose the status</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="statusComboBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_Tab1">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     
+     <widget class="QWidget" name="authorsTab">
+      <attribute name="title">
+       <string>Authors</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="availableLabel">
+         <property name="text">
+          <string>Available Authors</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="selectedLabel">
+         <property name="text">
+          <string>Selected Authors</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QListWidget" name="availableAuthorsList"/>
+       </item>
+       <item row="1" column="1">
+        <layout class="QVBoxLayout" name="verticalLayout_Buttons">
+         <item>
+          <spacer name="verticalSpacer_Buttons1">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="addAuthorButton">
+           <property name="text">
+            <string>Add --&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="removeAuthorButton">
+           <property name="text">
+            <string>&lt;-- Remove</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_Buttons2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="2">
+        <widget class="QListWidget" name="selectedAuthorsList"/>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QPushButton" name="createNewAuthorButton">
+         <property name="text">
+          <string>Create New Author (and Add)</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #28a745; color: white; padding: 8px;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     
+    </widget>
+    </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>AddArticleDialog</receiver>
+   <slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>AddArticleDialog</receiver>
+   <slot>reject()</slot>
+  </connection>
+ </connections>
+</ui>

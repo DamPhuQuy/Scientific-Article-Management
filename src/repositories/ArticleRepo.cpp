@@ -136,7 +136,7 @@ void ArticleRepo::searchMenu() const {
         if (choice == -1) { // ESC pressed
             cout << "Returning to main menu...\n";
             sleep_for(800ms);
-            break;
+            break; 
         }
 
         string selectedId;

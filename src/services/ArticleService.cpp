@@ -161,7 +161,7 @@ void ArticleService::inputArticle(Article* article) {
         if (cin.fail() || statusChoice < 1 || statusChoice > 3) {
             cout << "Invalid status. Please try again.\n";
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.inputFromUserignore(numeric_limits<streamsize>::max(), '\n');
         } else {
             break;
         }
@@ -215,7 +215,7 @@ void ArticleService::inputArticle(Article* article) {
             if (selected == index) {
                 // Add new author
                 Author newAuthor;
-                newAuthor.inputFromUser();
+                newAuthor.();
                 repo.getAuthors().add(newAuthor);
                 cout << "Added new author: " << newAuthor.getFullName() << "\n";
                 if (repo.getAuthors().getAuthorContainer().count(newAuthor.getId())) {
