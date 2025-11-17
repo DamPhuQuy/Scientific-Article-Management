@@ -1,53 +1,44 @@
+// MainWindow.cpp
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-// Include TẤT CẢ các dialog
-#include "gui/dialogs/import/ImportDialog.h"          // Tiến trình (1)
-#include "gui/dialogs/AddAuthorDialog.h"        // Tiến trình (5)
-#include "gui/dialogs/AddArticleDialog.h"       // Tiến trình (6)
-#include "gui/dialogs/SearchAuthorDialog.h"     // Tiến trình (7)
-#include "gui/dialogs/SearchArticleDialog.h"    // Tiến trình (8)
-#include "gui/dialogs/EditAuthorDialog.h"       // Tiến trình (9)
-#include "gui/dialogs/EditArticleDialog.h"      // Tiến trình (10)
-
-// Include Models
-#include "models/Author.h"
-#include "models/articles/Article.h"
+#include "gui/dialogs/import/ImportDialog.h"
+#include "gui/dialogs/AddAuthorDialog.h"
+#include "gui/dialogs/AddArticleDialog.h"
+#include "gui/dialogs/SearchAuthorDialog.h"
+#include "gui/dialogs/SearchArticleDialog.h"
+#include "gui/dialogs/EditAuthorDialog.h"
+#include "gui/dialogs/EditArticleDialog.h"
 
 #include <QMessageBox>
+#include <QDialogButtonBox>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-    , m_repoManager()                 // Repository Manager
-    , m_dataService()                 // Import Service
-    , m_articleService(&m_repoManager)
-    , m_authorService(&m_repoManager)
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow),
+      m_repoManager(),
+      m_dataService(),
+      m_articleService(&m_repoManager),
+      m_authorService(&m_repoManager)
 {
     ui->setupUi(this);
 
-    // ============ 1. TẠO CÁC TRANG ===============
-    m_mainMenuWidget = new MainMenuWidget(this);
-    m_articleMgmtWidget = new ArticleManagementWidget(this, &m_articleService, &m_authorService);
-    m_authorMgmtWidget  = new AuthorManagementWidget(this, &m_authorService);
+    m_mainMenuWidget     = new MainMenuWidget(this);
+    m_articleMgmtWidget  = new ArticleManagementWidget(this, &m_articleService, &m_authorService);
+    m_authorMgmtWidget   = new AuthorManagementWidget(this, &m_authorService);
+    m_articleStatsWidget = new ArticleStatisticsWidget(this);
+    m_articleViewWidget  = new ViewAllArticlesWidget(this);
+    m_authorViewWidget   = new ViewAllAuthorsWidget(this);
 
-    // ============ 2. ADD VÀO STACKED WIDGET =======
     ui->mainStackedWidget->addWidget(m_mainMenuWidget);
     ui->mainStackedWidget->addWidget(m_articleMgmtWidget);
     ui->mainStackedWidget->addWidget(m_authorMgmtWidget);
+    ui->mainStackedWidget->addWidget(m_articleStatsWidget);
+    ui->mainStackedWidget->addWidget(m_articleViewWidget);
+    ui->mainStackedWidget->addWidget(m_authorViewWidget);
 
-    // ============ 3. CHỌN TRANG MẶC ĐỊNH ==========
-    ui->mainStackedWidget->setCurrentWidget(m_mainMenuWidget);
-
-    // ============ 4. KẾT NỐI SIGNAL/SLOT ==========
     setupConnections();
-
-    // ============ 5. KẾT NỐI ACTION MENU BAR ======
-    connect(ui->actionImportData, &QAction::triggered,
-            this, &MainWindow::on_actionImportData_triggered);
-
-    connect(ui->actionExit, &QAction::triggered,
-            this, &QMainWindow::close);
+    showMainMenu();
 }
 
 MainWindow::~MainWindow()
@@ -57,87 +48,92 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupConnections()
 {
-    // --- Main Menu connections ---
-    connect(m_mainMenuWidget, &MainMenuWidget::manageArticlesClicked,
-            this, &MainWindow::showArticleManagement);
+    // Menu actions
+    connect(ui->actionImportData, &QAction::triggered, this, &MainWindow::onImportFromJson);
+    connect(ui->actionExit, &QAction::triggered, this, &QMainWindow::close);
 
-    connect(m_mainMenuWidget, &MainMenuWidget::manageAuthorsClicked,
-            this, &MainWindow::showAuthorManagement);
+    // Main menu
+    connect(m_mainMenuWidget, &MainMenuWidget::manageArticlesClicked, this, &MainWindow::showArticleManagement);
+    connect(m_mainMenuWidget, &MainMenuWidget::manageAuthorsClicked, this, &MainWindow::showAuthorManagement);
+    connect(m_mainMenuWidget, &MainMenuWidget::importJsonClicked, this, &MainWindow::onImportFromJson);
+    connect(m_mainMenuWidget, &MainMenuWidget::importAutoClicked, this, &MainWindow::onImportAuto);
+    connect(m_mainMenuWidget, &MainMenuWidget::statisticsRequested, this, &MainWindow::showArticleStatistics);
 
-    connect(m_mainMenuWidget, &MainMenuWidget::exitClicked,
-            this, &MainWindow::close);
+    // Article management
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::createArticleClicked, this, &MainWindow::onCreateArticle);
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::updateArticleClicked, this, &MainWindow::onUpdateArticle);
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::deleteArticleClicked, this, &MainWindow::onDeleteArticle);
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::searchArticleClicked, this, &MainWindow::onSearchArticle);
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::viewAllClicked, this, &MainWindow::showViewAllArticles);
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::showStatisticsRequested, this, &MainWindow::showArticleStatistics);
+    connect(m_articleMgmtWidget, &ArticleManagementWidget::pendingAuthorCreation, this, &MainWindow::onPendingAuthorCreation);
 
-    // --- Article Management connections (buttons) ---
-    connect(m_articleMgmtWidget, &ArticleManagementWidget::createArticleClicked,
-            this, &MainWindow::onCreateArticle);
+    // Author management
+    connect(m_authorMgmtWidget, &AuthorManagementWidget::createAuthorClicked, this, &MainWindow::onCreateAuthor);
+    connect(m_authorMgmtWidget, &AuthorManagementWidget::updateAuthorClicked, this, &MainWindow::onUpdateAuthor);
+    connect(m_authorMgmtWidget, &AuthorManagementWidget::deleteAuthorClicked, this, &MainWindow::onDeleteAuthor);
+    connect(m_authorMgmtWidget, &AuthorManagementWidget::searchAuthorClicked, this, &MainWindow::onSearchAuthor);
+    connect(m_authorMgmtWidget, &AuthorManagementWidget::viewAllClicked, this, &MainWindow::showViewAllAuthors);
 
-    connect(m_articleMgmtWidget, &ArticleManagementWidget::updateArticleClicked,
-            this, &MainWindow::onUpdateArticle);
+    // Article view widget signals
+    connect(m_articleViewWidget, &ViewAllArticlesWidget::createRequested, this, &MainWindow::onCreateArticle);
+    connect(m_articleViewWidget, &ViewAllArticlesWidget::updateRequested, this, &MainWindow::onUpdateArticleFromView);
+    connect(m_articleViewWidget, &ViewAllArticlesWidget::deleteRequested, this, &MainWindow::onDeleteArticleFromView);
+    connect(m_articleViewWidget, &ViewAllArticlesWidget::backRequested, this, &MainWindow::showArticleManagement);
+    connect(m_articleViewWidget, &ViewAllArticlesWidget::statsRequested, this, &MainWindow::showArticleStatistics);
 
-    connect(m_articleMgmtWidget, &ArticleManagementWidget::deleteArticleClicked,
-            this, &MainWindow::onDeleteArticle);
+    // Author view widget signals
+    connect(m_authorViewWidget, &ViewAllAuthorsWidget::createRequested, this, &MainWindow::onCreateAuthor);
+    connect(m_authorViewWidget, &ViewAllAuthorsWidget::updateRequested, this, &MainWindow::onUpdateAuthorFromView);
+    connect(m_authorViewWidget, &ViewAllAuthorsWidget::deleteRequested, this, &MainWindow::onDeleteAuthorFromView);
+    connect(m_authorViewWidget, &ViewAllAuthorsWidget::backRequested, this, &MainWindow::showAuthorManagement);
+    connect(m_authorViewWidget, &ViewAllAuthorsWidget::statsRequested, this, &MainWindow::showArticleStatistics);
 
-    connect(m_articleMgmtWidget, &ArticleManagementWidget::searchArticleClicked,
-            this, &MainWindow::onSearchArticle);
-
-    // Tác giả lồng trong Article Dialog
-    connect(m_articleMgmtWidget, &ArticleManagementWidget::pendingAuthorCreation,
-            this, &MainWindow::onPendingAuthorCreation);
-
-    // --- Author Management connections ---
-    connect(m_authorMgmtWidget, &AuthorManagementWidget::createAuthorClicked,
-            this, &MainWindow::onCreateAuthor);
-
-    connect(m_authorMgmtWidget, &AuthorManagementWidget::updateAuthorClicked,
-            this, &MainWindow::onUpdateAuthor);
-
-    connect(m_authorMgmtWidget, &AuthorManagementWidget::deleteAuthorClicked,
-            this, &MainWindow::onDeleteAuthor);
-
-    connect(m_authorMgmtWidget, &AuthorManagementWidget::searchAuthorClicked,
-            this, &MainWindow::onSearchAuthor);
+    // Statistics widget
+    connect(m_articleStatsWidget, &ArticleStatisticsWidget::statsByYearRequested, this, &MainWindow::onImportFromJson); // placeholder if needed
+    connect(m_articleStatsWidget, &ArticleStatisticsWidget::statsByTypeRequested, this, &MainWindow::onImportFromJson); // placeholder
+    connect(m_articleStatsWidget, &ArticleStatisticsWidget::backClicked, this, &MainWindow::showArticleManagement);
 }
 
-// ==========================================================
-// SLOTS ĐIỀU HƯỚNG
-// ==========================================================
-void MainWindow::showMainMenu() {
-    if (!ui->mainStackedWidget) {
-        qWarning("mainStackedWidget is null!");
-        return;
-    }
-    if (ui->mainStackedWidget->indexOf(m_mainMenuWidget) == -1) {
-        qWarning("mainMenuWidget not in mainStackedWidget — adding it dynamically");
-        ui->mainStackedWidget->addWidget(m_mainMenuWidget);
-    }
+// Navigation
+void MainWindow::showMainMenu()
+{
     ui->mainStackedWidget->setCurrentWidget(m_mainMenuWidget);
 }
 
-void MainWindow::showArticleManagement() {
-    if (!ui->mainStackedWidget) { qWarning("mainStackedWidget is null!"); return; }
-    if (ui->mainStackedWidget->indexOf(m_articleMgmtWidget) == -1)
-        ui->mainStackedWidget->addWidget(m_articleMgmtWidget);
+void MainWindow::showArticleManagement()
+{
     ui->mainStackedWidget->setCurrentWidget(m_articleMgmtWidget);
 }
 
-void MainWindow::showAuthorManagement() {
-    if (!ui->mainStackedWidget) { qWarning("mainStackedWidget is null!"); return; }
-    if (ui->mainStackedWidget->indexOf(m_authorMgmtWidget) == -1)
-        ui->mainStackedWidget->addWidget(m_authorMgmtWidget);
+void MainWindow::showAuthorManagement()
+{
     ui->mainStackedWidget->setCurrentWidget(m_authorMgmtWidget);
 }
 
+void MainWindow::showArticleStatistics()
+{
+    ui->mainStackedWidget->setCurrentWidget(m_articleStatsWidget);
+}
 
-// ==========================================================
-// SLOTS CHO IMPORT (Tiến trình 1)
-// ==========================================================
-void MainWindow::on_actionImportData_triggered()
+void MainWindow::showViewAllArticles()
+{
+    m_articleViewWidget->loadData(m_articleService.getAllArticles());
+    ui->mainStackedWidget->setCurrentWidget(m_articleViewWidget);
+}
+
+void MainWindow::showViewAllAuthors()
+{
+    m_authorViewWidget->loadData(m_authorService.getAllAuthors());
+    ui->mainStackedWidget->setCurrentWidget(m_authorViewWidget);
+}
+
+// Import
+void MainWindow::onImportFromJson()
 {
     ImportDialog dialog(this);
-    connect(&dialog, &ImportDialog::importFromJsonRequested,
-            this, &MainWindow::handleImportFromJson);
-    connect(&dialog, &ImportDialog::importAutoRequested,
-            this, &MainWindow::handleImportAuto);
+    connect(&dialog, &ImportDialog::importFromJsonRequested, this, &MainWindow::handleImportFromJson);
+    connect(&dialog, &ImportDialog::importAutoRequested, this, &MainWindow::onImportAuto);
     dialog.exec();
 }
 
@@ -152,29 +148,26 @@ void MainWindow::handleImportFromJson(const QString &articleFile, const QString 
     }
 }
 
-void MainWindow::handleImportAuto()
+void MainWindow::onImportAuto()
 {
     try {
-        // (Bạn cần định nghĩa Constants::DataSetJson và Constants::AuInfoJson)
-        // m_dataService.fetchArticleDataSet(Constants::DataSetJson, ...);
-        // m_dataService.fetchAuthorInformation(Constants::AuInfoJson, ...);
+        // implement auto import constants in your codebase
         QMessageBox::information(this, "Success", "Data imported automatically!");
     } catch (const std::exception &e) {
         QMessageBox::critical(this, "Error", e.what());
     }
 }
 
-// ==========================================================
-// SLOTS CHO AUTHOR MANAGEMENT (4, 5, 7, 9)
-// ==========================================================
+// Author actions
 void MainWindow::onCreateAuthor()
 {
-    AddAuthorDialog dialog(this); // Tiến trình (5)
+    AddAuthorDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         Author newAuthor = dialog.getAuthorData();
         try {
-            m_authorService.createAuthor(newAuthor); // Service tạo ID và lưu
+            m_authorService.createAuthor(newAuthor);
             QMessageBox::information(this, "Success", "Author created successfully!");
+            showViewAllAuthors();
         } catch (const std::exception &e) {
             QMessageBox::critical(this, "Error", e.what());
         }
@@ -183,46 +176,34 @@ void MainWindow::onCreateAuthor()
 
 void MainWindow::onUpdateAuthor()
 {
-    // Bước 1: Chọn Author (Tiến trình 7)
     QList<Author> allAuthors = m_authorService.getAllAuthors();
-    SearchAuthorDialog searchDialog(allAuthors, this); // Tiến trình (7)
-    searchDialog.setWindowTitle("Select Author to Update");
-
-    if (searchDialog.exec() == QDialog::Accepted)
-    {
-        Author authorToUpdate = searchDialog.getSelectedAuthor();
-        
-        // Bước 2: Sửa Author (Tiến trình 9)
-        EditAuthorDialog editDialog(this); // Tiến trình (9)
-        editDialog.setAuthorData(authorToUpdate); 
-        
-        if (editDialog.exec() == QDialog::Accepted)
-        {
-            Author updatedAuthor = editDialog.getAuthorData();
-            m_authorService.updateAuthor(updatedAuthor); 
+    SearchAuthorDialog dlg(allAuthors, this);
+    dlg.setWindowTitle("Select Author to Update");
+    if (dlg.exec() == QDialog::Accepted) {
+        Author authorToUpdate = dlg.getSelectedAuthor();
+        EditAuthorDialog edit(this);
+        edit.setAuthorData(authorToUpdate);
+        if (edit.exec() == QDialog::Accepted) {
+            Author updated = edit.getAuthorData();
+            m_authorService.updateAuthor(updated);
             QMessageBox::information(this, "Success", "Author updated.");
+            showViewAllAuthors();
         }
     }
 }
 
 void MainWindow::onDeleteAuthor()
 {
-    // Bước 1: Chọn Author (Tiến trình 7)
     QList<Author> allAuthors = m_authorService.getAllAuthors();
-    SearchAuthorDialog searchDialog(allAuthors, this); // Tiến trình (7)
-    searchDialog.setWindowTitle("Select Author to Delete");
-
-    if (searchDialog.exec() == QDialog::Accepted)
-    {
-        Author authorToDelete = searchDialog.getSelectedAuthor();
-        auto reply = QMessageBox::question(this, "Confirm Delete",
-            QString("Are you sure you want to delete '%1'?")
-                .arg(QString::fromStdString(authorToDelete.getFullName())),
-            QMessageBox::Yes | QMessageBox::No);
-
+    SearchAuthorDialog dlg(allAuthors, this);
+    dlg.setWindowTitle("Select Author to Delete");
+    if (dlg.exec() == QDialog::Accepted) {
+        Author a = dlg.getSelectedAuthor();
+        auto reply = QMessageBox::question(this, "Confirm Delete", QString("Delete '%1'?").arg(QString::fromStdString(a.getFullName())), QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {
-            m_authorService.deleteAuthor(authorToDelete.getId());
+            m_authorService.deleteAuthor(a.getId());
             QMessageBox::information(this, "Success", "Author deleted.");
+            showViewAllAuthors();
         }
     }
 }
@@ -230,46 +211,28 @@ void MainWindow::onDeleteAuthor()
 void MainWindow::onSearchAuthor()
 {
     QList<Author> allAuthors = m_authorService.getAllAuthors();
-    SearchAuthorDialog dialog(allAuthors, this); // Tiến trình (7)
-    dialog.setWindowTitle("Search Authors");
-    
-    // Ẩn nút OK/Cancel, vì đây là chế độ "chỉ xem"
-    dialog.findChild<QDialogButtonBox*>("buttonBox")->setVisible(false);
-    dialog.exec();
+    SearchAuthorDialog dlg(allAuthors, this);
+    dlg.setWindowTitle("Search Authors");
+    if (auto box = dlg.findChild<QDialogButtonBox*>("buttonBox")) box->setVisible(false);
+    dlg.exec();
 }
 
-void MainWindow::onViewAllAuthors()
+void MainWindow::onViewAllAuthorsRequested()
 {
-    // (Bạn cần tạo một widget/dialog mới để hiển thị danh sách)
-    QMessageBox::information(this, "View All Authors", "Chức năng này cần một UI (ví dụ: QTableWidget) để hiển thị danh sách tác giả.");
+    showViewAllAuthors();
 }
 
-// ==========================================================
-// SLOTS CHO ARTICLE MANAGEMENT (3, 6, 8, 10)
-// ==========================================================
+// Article actions
 void MainWindow::onCreateArticle()
 {
-    QList<Author> allAuthors = m_authorService.getAllAuthors();
-    AddArticleDialog dialog(allAuthors, this); // Tiến trình (6)
-    
-    // Kết nối signal nếu tạo author mới từ trong dialog này
-    connect(&dialog, &AddArticleDialog::newAuthorPendingCreation,
-            this, &MainWindow::onPendingAuthorCreation);
-
-    if (dialog.exec() == QDialog::Accepted)
-    {
+    QList<Author> authors = m_authorService.getAllAuthors();
+    AddArticleDialog dialog(authors, this);
+    connect(&dialog, &AddArticleDialog::newAuthorPendingCreation, this, &MainWindow::onPendingAuthorCreation);
+    if (dialog.exec() == QDialog::Accepted) {
         try {
-            // (Bạn cần mở rộng ArticleService để nhận dữ liệu từ dialog)
-            /*
-            m_articleService.createArticle(
-                dialog.getSelectedType(),
-                dialog.getTitle().toStdString(),
-                dialog.getAbstract().toStdString(),
-                ...
-                dialog.getSelectedAuthors()
-            );
-            */
+            // gather article data from dialog and call m_articleService.createArticle(...)
             QMessageBox::information(this, "Success", "Article created successfully!");
+            showViewAllArticles();
         } catch (const std::exception &e) {
             QMessageBox::critical(this, "Error", e.what());
         }
@@ -278,90 +241,111 @@ void MainWindow::onCreateArticle()
 
 void MainWindow::onUpdateArticle()
 {
-    // Bước 1: Chọn Article (Tiến trình 8)
-    QList<Article*> allArticles = m_articleService.getAllArticles();
-    SearchArticleDialog searchDialog(allArticles, this); // Tiến trình (8)
-    searchDialog.setWindowTitle("Select Article to Update");
-
-    if (searchDialog.exec() == QDialog::Accepted)
-    {
-        Article* articleToUpdate = searchDialog.getSelectedArticle();
-        if (!articleToUpdate) return;
-        
-        // Bước 2: Lấy tác giả & Sửa Article (Tiến trình 10)
-        QList<Author> allAuthors = m_authorService.getAllAuthors();
-        QList<Author> currentAuthors = m_authorService.getAuthorsOfArticle(articleToUpdate->getId());
-
-        EditArticleDialog editDialog(allAuthors, this); // Tiến trình (10)
-        connect(&editDialog, &EditArticleDialog::newAuthorPendingCreation,
-                this, &MainWindow::onPendingAuthorCreation);
-        editDialog.setArticleData(articleToUpdate, currentAuthors); 
-        
-        if (editDialog.exec() == QDialog::Accepted)
-        {
-            // (Bạn cần mở rộng ArticleService để nhận dữ liệu cập nhật)
-            /*
-            m_articleService.updateArticle(
-                articleToUpdate,
-                editDialog.getUpdatedTitle(),
-                ...
-                editDialog.getUpdatedSelectedAuthors()
-            );
-            */
+    QList<Article*> all = m_articleService.getAllArticles();
+    SearchArticleDialog dlg(all, this);
+    dlg.setWindowTitle("Select Article to Update");
+    if (dlg.exec() == QDialog::Accepted) {
+        Article* a = dlg.getSelectedArticle();
+        if (!a) return;
+        QList<Author> authors = m_authorService.getAllAuthors();
+        QList<Author> current = m_authorService.getAuthorsOfArticle(a->getId());
+        EditArticleDialog edit(authors, this);
+        connect(&edit, &EditArticleDialog::newAuthorPendingCreation, this, &MainWindow::onPendingAuthorCreation);
+        edit.setArticleData(a, current);
+        if (edit.exec() == QDialog::Accepted) {
+            // update via service
             QMessageBox::information(this, "Success", "Article updated.");
+            showViewAllArticles();
         }
     }
 }
 
 void MainWindow::onDeleteArticle()
 {
-    // (Tương tự như onDeleteAuthor, nhưng dùng Tiến trình 8)
-    QList<Article*> allArticles = m_articleService.getAllArticles();
-    SearchArticleDialog searchDialog(allArticles, this); // Tiến trình (8)
-    searchDialog.setWindowTitle("Select Article to Delete");
-
-    if (searchDialog.exec() == QDialog::Accepted)
-    {
-        Article* articleToDelete = searchDialog.getSelectedArticle();
-        if (!articleToDelete) return;
-
-        auto reply = QMessageBox::question(this, "Confirm Delete", "Are you sure?",
-            QMessageBox::Yes | QMessageBox::No);
-
+    QList<Article*> all = m_articleService.getAllArticles();
+    SearchArticleDialog dlg(all, this);
+    dlg.setWindowTitle("Select Article to Delete");
+    if (dlg.exec() == QDialog::Accepted) {
+        Article* a = dlg.getSelectedArticle();
+        if (!a) return;
+        auto reply = QMessageBox::question(this, "Confirm Delete", "Are you sure?", QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {
-            m_articleService.deleteArticle(articleToDelete->getId());
+            m_articleService.deleteArticle(a->getId());
             QMessageBox::information(this, "Success", "Article deleted.");
+            showViewAllArticles();
         }
     }
 }
 
 void MainWindow::onSearchArticle()
 {
-    QList<Article*> allArticles = m_articleService.getAllArticles();
-    SearchArticleDialog dialog(allArticles, this); // Tiến trình (8)
-    dialog.setWindowTitle("Search Articles");
-    dialog.findChild<QDialogButtonBox*>("buttonBox")->setVisible(false);
-    dialog.exec();
+    QList<Article*> all = m_articleService.getAllArticles();
+    SearchArticleDialog dlg(all, this);
+    dlg.setWindowTitle("Search Articles");
+    if (auto box = dlg.findChild<QDialogButtonBox*>("buttonBox")) box->setVisible(false);
+    dlg.exec();
 }
 
-void MainWindow::onViewAllArticles()
+void MainWindow::onViewAllArticlesRequested()
 {
-    // (Bạn cần tạo một widget/dialog mới để hiển thị danh sách)
-    QMessageBox::information(this, "View All Articles", "Chức năng này cần một UI (ví dụ: QTableWidget) để hiển thị danh sách bài báo.");
+    showViewAllArticles();
 }
 
-
-// ==========================================================
-// SLOT HỖ TRỢ
-// ==========================================================
-void MainWindow::onPendingAuthorCreation(const Author& newAuthor)
+// From ViewAll widgets
+void MainWindow::onUpdateArticleFromView(Article* articleToUpdate)
 {
-    // Được gọi bởi Add/Edit Article Dialog
+    if (!articleToUpdate) return;
+    QList<Author> authors = m_authorService.getAllAuthors();
+    QList<Author> current = m_authorService.getAuthorsOfArticle(articleToUpdate->getId());
+    EditArticleDialog edit(authors, this);
+    connect(&edit, &EditArticleDialog::newAuthorPendingCreation, this, &MainWindow::onPendingAuthorCreation);
+    edit.setArticleData(articleToUpdate, current);
+    if (edit.exec() == QDialog::Accepted) {
+        // update via service
+        QMessageBox::information(this, "Success", "Article updated.");
+        showViewAllArticles();
+    }
+}
+
+void MainWindow::onDeleteArticleFromView(Article* articleToDelete)
+{
+    if (!articleToDelete) return;
+    auto reply = QMessageBox::question(this, "Confirm Delete", "Are you sure?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        m_articleService.deleteArticle(articleToDelete->getId());
+        QMessageBox::information(this, "Success", "Article deleted.");
+        showViewAllArticles();
+    }
+}
+
+void MainWindow::onUpdateAuthorFromView(Author authorToUpdate)
+{
+    EditAuthorDialog edit(this);
+    edit.setAuthorData(authorToUpdate);
+    if (edit.exec() == QDialog::Accepted) {
+        Author updated = edit.getAuthorData();
+        m_authorService.updateAuthor(updated);
+        QMessageBox::information(this, "Success", "Author updated.");
+        showViewAllAuthors();
+    }
+}
+
+void MainWindow::onDeleteAuthorFromView(Author authorToDelete)
+{
+    auto reply = QMessageBox::question(this, "Confirm Delete", QString("Delete '%1'?").arg(QString::fromStdString(authorToDelete.getFullName())), QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        m_authorService.deleteAuthor(authorToDelete.getId());
+        QMessageBox::information(this, "Success", "Author deleted.");
+        showViewAllAuthors();
+    }
+}
+
+// Pending author creation from Add/Edit dialogs
+void MainWindow::onPendingAuthorCreation(const Author &newAuthor)
+{
     try {
-        m_authorService.createAuthor(newAuthor); 
-        // (Không cần thông báo, vì dialog kia sẽ tự xử lý)
+        m_authorService.createAuthor(newAuthor);
     } catch (const std::exception &e) {
-        QMessageBox::critical(this, "Error", 
-            QString("Failed to create new author: %1").arg(e.what()));
+        QMessageBox::critical(this, "Error", QString("Failed to create new author: %1").arg(e.what()));
     }
 }

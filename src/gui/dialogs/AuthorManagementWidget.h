@@ -7,32 +7,25 @@ namespace Ui {
 class AuthorManagementWidget;
 }
 
-/**
- * @brief Widget Giao diện Quản lý Tác giả
- *
- * Hiển thị các tùy chọn để quản lý tác giả (thêm, xem, sửa, xóa...).
- * Phát ra tín hiệu cho MainWindow để xử lý các hành động này.
- */
 class AuthorManagementWidget : public QWidget
 {
-    Q_OBJECT // Bắt buộc cho signals/slots
+    Q_OBJECT
 
 public:
     explicit AuthorManagementWidget(QWidget *parent = nullptr);
     ~AuthorManagementWidget();
 
 signals:
-    // Tín hiệu cho từng hành động quản lý tác giả
     void createAuthorRequested();
     void viewAllAuthorsRequested();
     void updateAuthorRequested();
     void deleteAuthorRequested();
     void searchAuthorsRequested();
     void showStatisticsRequested();
-    void backToMainMenuRequested(); // Tín hiệu để quay lại menu chính
+    void backToMainMenuRequested();
 
 private:
-    Ui::AuthorManagementWidget *ui; // Con trỏ tới các thành phần UI
+    Ui::AuthorManagementWidget *ui;
 };
 
 #endif // AUTHORMANAGEMENTWIDGET_H
