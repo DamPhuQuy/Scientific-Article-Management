@@ -25,7 +25,7 @@ public:
         const vector<string>& aus = {},
         const double& rank = 0.0,
         const int& index = 0
-    );
+        );
     explicit SCOPUS_Article(const Article& other);
 
     ~SCOPUS_Article();

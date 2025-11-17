@@ -13,12 +13,12 @@ Article::Article(const string &abstract,
                  const ArticleStatus st,
                  const vector<string> &r,
                  const vector<string> &aus)
-    : abstract(abstract),
+    : id(id),
+    abstract(abstract),
     n_citation(n_citation),
     title(title),
     venue(venue),
     year(year),
-    id(id),
     type(t),
     status(st),
     refs(r),
@@ -27,12 +27,12 @@ Article::Article(const string &abstract,
 
 
 Article::Article(const Article &other)
-    : abstract(other.abstract),
+    : id(other.id),
+    abstract(other.abstract),
     n_citation(other.n_citation),
     title(other.title),
     venue(other.venue),
     year(other.year),
-    id(other.id),
     type(other.type),
     status(other.status),
     refs(other.refs),
@@ -85,20 +85,20 @@ string Article::getTypeInString() const {
 
 string Article::getStatusInString() const {
     switch (status) {
-        case ArticleStatus::SUBMITTED:
-            return "SUBMITTED";
-        case ArticleStatus::UNDER_REVIEW:
-            return "UNDER_REVIEW";
-        case ArticleStatus::REVISIONS:
-            return "REVISIONS";
-        case ArticleStatus::ACCEPTED:
-            return "ACCEPTED";
-        case ArticleStatus::REJECTED:
-            return "REJECTED";
-        case ArticleStatus::PUBLISHED:
-            return "PUBLISHED";
-        default:
-            return "DRAFT";
+    case ArticleStatus::SUBMITTED:
+        return "SUBMITTED";
+    case ArticleStatus::UNDER_REVIEW:
+        return "UNDER_REVIEW";
+    case ArticleStatus::REVISIONS:
+        return "REVISIONS";
+    case ArticleStatus::ACCEPTED:
+        return "ACCEPTED";
+    case ArticleStatus::REJECTED:
+        return "REJECTED";
+    case ArticleStatus::PUBLISHED:
+        return "PUBLISHED";
+    default:
+        return "DRAFT";
     }
 }
 
@@ -108,11 +108,11 @@ void Article::setType(const any& t) {
         transform(s.begin(), s.end(), s.begin(), ::tolower);
 
         static const unordered_map<string, Type> map = {
-            {"scie", Type::SCIE},
-            {"scopus", Type::SCOPUS},
-            {"conference", Type::CONFERENCE},
-            {"other", Type::OTHER},
-        };
+                                                        {"scie", Type::SCIE},
+                                                        {"scopus", Type::SCOPUS},
+                                                        {"conference", Type::CONFERENCE},
+                                                        {"other", Type::OTHER},
+                                                        };
 
         auto it = map.find(s);
         if (it != map.end()) {

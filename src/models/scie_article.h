@@ -25,7 +25,7 @@ public:
         const vector<string>& aus = {},
         const double& iftor = 0.0,
         const int& rank = 0
-    );
+        );
 
     explicit SCIE_Article(const Article& other);
 

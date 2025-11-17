@@ -1,4 +1,5 @@
 #include "scie_article.h"
+#include "src/models/article.h"
 
 
 SCIE_Article::SCIE_Article(
@@ -23,13 +24,14 @@ SCIE_Article::SCIE_Article(
           id.empty() ? UUID_Generator::generateUUID() : id,
           t,
           st,
-          r), impactFactor(iftor), qRank(rank) {}
+          r,
+          aus), impactFactor(iftor), qRank(rank) {}
 
 SCIE_Article::SCIE_Article(const Article &other) : Article(other) {}
 
 unique_ptr<Article> SCIE_Article::clone() const
 {
-   return make_unique<SCIE_Article>(*this);
+    return make_unique<SCIE_Article>(*this);
 }
 
 json SCIE_Article::to_json() const {

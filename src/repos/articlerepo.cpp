@@ -110,7 +110,7 @@ void ArticleRepo::load() {
                 item.value("q_rank", 0),
                 item.value("sjr", 0.0),
                 item.value("hIndex", 0)
-            );
+                );
 
             // Lưu vào map
             if (article && !id.empty()) {
@@ -249,12 +249,12 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) co
     }
 
     sort(filtered.begin(), filtered.end(),
-              [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
-                  auto* ja = static_cast<SCIE_Article*>(a.get());
-                  auto* jb = static_cast<SCIE_Article*>(b.get());
-                  return ascending ? ja->getImpactFactor() < jb->getImpactFactor()
-                                   : ja->getImpactFactor() > jb->getImpactFactor();
-              });
+         [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
+             auto* ja = static_cast<SCIE_Article*>(a.get());
+             auto* jb = static_cast<SCIE_Article*>(b.get());
+             return ascending ? ja->getImpactFactor() < jb->getImpactFactor()
+                              : ja->getImpactFactor() > jb->getImpactFactor();
+         });
 
     return filtered;
 }

@@ -27,7 +27,7 @@ public:
         const string& rank = "",
         const string& l = "",
         const double& ar = 0.0
-    );
+        );
     explicit CONFERENCE_Article(const Article& other);
 
     ~CONFERENCE_Article();
