@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QStackedWidget>
 
+class MainWindow;
 class LoginForm;
 class SignUpForm;
 class ArticleForm;
@@ -18,16 +19,22 @@ public:
     RepositoryManager& repo;
 
     enum Page {
+        MainPage,
         LoginPage,
         SignupPage,
         ArticleFormPage
     };
 
+    void goToHelper(Page page);
     void goTo(Page page);
+
+    void back();
 
 private:
     QStackedWidget* stack;
+    std::vector<Page> history;
 
+    MainWindow* mainform;
     LoginForm* login;
     SignUpForm* signup;
     ArticleForm* articleform;

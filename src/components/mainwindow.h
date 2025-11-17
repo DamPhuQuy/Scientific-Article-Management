@@ -17,6 +17,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void requestStart();
+    void requestEnd();
+
+private slots:
+    void on_btnStart_clicked();
+    void on_btnEnd_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

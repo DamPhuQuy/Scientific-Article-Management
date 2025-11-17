@@ -16,6 +16,11 @@ public:
     explicit SignUpForm(RepositoryManager& repo, QWidget *parent = nullptr);
     ~SignUpForm();
 
+signals:
+    // signal to back
+    void requestBack();
+    void signupSuccess();
+
 private:
     RepositoryManager& repo;
     Ui::SignUpForm *ui;

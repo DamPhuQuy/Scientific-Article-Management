@@ -18,6 +18,11 @@ ArticleRepo &RepositoryManager::getArticles()
 AuthorRepo &RepositoryManager::getAuthors()
 { return au_repo; }
 
+void RepositoryManager::load() {
+    a_repo.load();
+    au_repo.load();
+}
+
 // bool RepositoryManager::validateDataConsistency() const {
 //     bool isConsistent = true;
 //     const auto& relations = au_ar.getRelations();

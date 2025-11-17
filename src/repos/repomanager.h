@@ -22,6 +22,9 @@ public:
     ArticleRepo& getArticles();
     AuthorRepo& getAuthors();
 
+    void load();
+    void save();
+
     // search
     // void liveSearchReferences
 

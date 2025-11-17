@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
+    src/components/mainwindow.cpp \
     src/components/appnav.cpp \
     src/components/dialogs/article/articledescription.cpp \
     src/components/dialogs/articleinput.cpp \
@@ -21,7 +21,7 @@ SOURCES += \
     src/components/dialogs/author/authorinput.cpp \
     src/components/dialogs/author/authorremove.cpp \
     src/components/dialogs/author/authorupdate.cpp \
-    src/components/dialogs/message/inform.cpp \
+    src/components/dialogs/msg/inform.cpp \
     src/components/widgets/article/articleform.cpp \
     src/components/widgets/author/authorform.cpp \
     src/components/widgets/login/loginform.cpp \
@@ -39,7 +39,7 @@ SOURCES += \
     src/utils/uuid_generator.cpp
 
 HEADERS += \
-    mainwindow.h \
+    src/components/mainwindow.h \
     src/components/appnav.h \
     src/components/dialogs/article/articledescription.h \
     src/components/dialogs/articleinput.h \
@@ -50,7 +50,7 @@ HEADERS += \
     src/components/dialogs/author/authorinput.h \
     src/components/dialogs/author/authorremove.h \
     src/components/dialogs/author/authorupdate.h \
-    src/components/dialogs/message/inform.h \
+    src/components/dialogs/msg/inform.h \
     src/components/widgets/article/articleform.h \
     src/components/widgets/author/authorform.h \
     src/components/widgets/login/loginform.h \
@@ -72,9 +72,9 @@ HEADERS += \
     src/utils/uuid_generator.h
 
 FORMS += \
-    mainwindow.ui \
+    src/components/mainwindow.ui \
     src/components/dialogs/article/articledescription.ui \
-    src/components/dialogs/article/articlestatistics.ui \
+    src/components/dialogs/articles/articlestatistics.ui \
     src/components/dialogs/articleinput.ui \
     src/components/dialogs/articleremove.ui \
     src/components/dialogs/articlestatistics.ui \

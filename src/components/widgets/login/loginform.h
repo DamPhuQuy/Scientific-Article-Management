@@ -16,6 +16,11 @@ public:
     explicit LoginForm(RepositoryManager& repo, QWidget *parent = nullptr);
     ~LoginForm();
 
+signals:
+    // signal to back
+    void requestBack();
+    void loginSuccess();
+
 private:
     RepositoryManager& repo;
     Ui::LoginForm *ui;
