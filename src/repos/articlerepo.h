@@ -1,5 +1,6 @@
 #pragma once
 #include "../models/article.h"
+#include "../lib/hashmap.h"
 #include <memory>
 #include <string>
 
@@ -7,18 +8,18 @@ using namespace std;
 
 class ArticleRepo {
 private:
-    unordered_map<string, unique_ptr<Article>> articles_container;
+    HashMap<string, unique_ptr<Article>> articles_container;
 public:
     ArticleRepo() = default;
-    explicit ArticleRepo(unordered_map<string, unique_ptr<Article>>& ar_con);
+    explicit ArticleRepo(const HashMap<string, unique_ptr<Article>>& ar_con);
 
     ~ArticleRepo() = default;
 
     void add(unique_ptr<Article> a);
     void remove(const string& articleId);
 
-    unordered_map<string, unique_ptr<Article>>& getContainer();
-    const unordered_map<string, unique_ptr<Article>>& getContainer() const; // for read
+    HashMap<string, unique_ptr<Article>>& getContainer();
+    const HashMap<string, unique_ptr<Article>>& getContainer() const; // for read
 
     vector<unique_ptr<Article>> getCopyAsVector() const;
 

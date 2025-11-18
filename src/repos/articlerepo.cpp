@@ -14,7 +14,7 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-ArticleRepo::ArticleRepo(unordered_map<string, unique_ptr<Article>>& ar_con)
+ArticleRepo::ArticleRepo(const HashMap<string, unique_ptr<Article>>& ar_con)
     : articles_container(std::move(ar_con)) {}
 
 void ArticleRepo::add(unique_ptr<Article> a) {
@@ -23,26 +23,28 @@ void ArticleRepo::add(unique_ptr<Article> a) {
 }
 
 void ArticleRepo::remove(const string& articleId) {
-    articles_container.erase(articleId);
+    articles_container.remove(articleId);
 }
 
-unordered_map<string, unique_ptr<Article>>& ArticleRepo::getContainer() {
+HashMap<string, unique_ptr<Article>>& ArticleRepo::getContainer() {
     return articles_container;
 }
 
-const unordered_map<string, unique_ptr<Article>>& ArticleRepo::getContainer() const {
+const HashMap<string, unique_ptr<Article>>& ArticleRepo::getContainer() const {
     return articles_container;
 }
 
 vector<unique_ptr<Article>> ArticleRepo::getCopyAsVector() const {
     vector<unique_ptr<Article>> res;
     res.reserve(articles_container.size());
-    for (const auto& pair : articles_container) {
-        // make copy
-        res.push_back(pair.second->clone());
-    }
+
+    articles_container.forEach([&res](const unique_ptr<Article>& article) {
+        res.push_back(article->clone());
+    });
+
     return res;
 }
+
 
 // need more fix
 void ArticleRepo::load() {

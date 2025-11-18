@@ -55,6 +55,8 @@ HEADERS += \
     src/components/widgets/author/authorform.h \
     src/components/widgets/login/loginform.h \
     src/components/widgets/login/signupform.h \
+    src/lib/HashMap \
+    src/lib/hashmap.h \
     src/models/article.h \
     src/models/author.h \
     src/models/conference_article.h \
