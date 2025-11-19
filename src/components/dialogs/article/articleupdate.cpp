@@ -12,3 +12,17 @@ ArticleUpdate::~ArticleUpdate()
 {
     delete ui;
 }
+
+void ArticleUpdate::on_btnCancel_clicked()
+{
+    emit requestBack();
+}
+
+
+void ArticleUpdate::on_btnUpdate_clicked()
+{
+    // update
+
+    emit updateSuccess;
+}
+

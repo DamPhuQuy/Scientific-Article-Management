@@ -54,3 +54,4 @@ void LoginForm::on_signInButton_clicked()
         ui->passwordEdit->setFocus();
     }
 }
+

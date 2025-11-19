@@ -21,9 +21,18 @@ signals:
     void requestBack();
     void signupSuccess();
 
+private slots:
+    void on_signUpLabel_linkActivated(const QString &link);
+
+    void on_loginLabel_linkActivated(const QString &link);
+
+    void on_signUpButton_clicked();
+
 private:
     RepositoryManager& repo;
     Ui::SignUpForm *ui;
+
+    void applyStyles();
 };
 
 #endif // SIGNUPFORM_H

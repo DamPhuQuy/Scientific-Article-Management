@@ -18,6 +18,21 @@ public:
 
 signals:
     void requestBack();
+    void openArticleInputDialog();
+    void openArtilceStatisticsDialog();
+    void openArticleUpdateArticDialog();
+    void openArticleRemoveArticleDialog();
+
+private slots:
+    void on_newArticleBtn_clicked();
+
+    void on_statsBtn_clicked();
+
+    void on_updateArtticleBtn_clicked();
+
+    void on_RemoveArticleBtn_clicked();
+
+    void on_searchBtn_clicked();
 
 private:
     RepositoryManager& repo;
