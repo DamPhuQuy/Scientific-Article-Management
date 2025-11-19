@@ -14,6 +14,8 @@ public:
         return MODELS_PATH / file;
     }
 
+    inline static fs::path AccountsData = getModelsPath("accounts.json");
+
     inline static fs::path DataSetJson = getModelsPath("dataset.json");
 
     inline static fs::path AuInfoJson = getModelsPath("authors_dataset.json");

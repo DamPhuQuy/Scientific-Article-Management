@@ -13,7 +13,7 @@
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
-AuthorRepo::AuthorRepo(unordered_map<string, Author> au_con)
+AuthorRepo::AuthorRepo(HashMap<string, Author> au_con)
     : authors_container(std::move(au_con)) {}
 
 // Thêm tác giả
@@ -25,11 +25,11 @@ void AuthorRepo::add(const Author& au) {
 
 // Xóa tác giả
 void AuthorRepo::remove(const string& id) {
-    authors_container.erase(id);
+    authors_container.remove(id);
 }
 
 // Lấy container (non-const)
-unordered_map<string, Author>& AuthorRepo::getAuthorContainer() {
+HashMap<string, Author>& AuthorRepo::getAuthorContainer() {
     return authors_container;
 }
 
@@ -71,10 +71,7 @@ void AuthorRepo::load()
                 continue;
 
             // emplace trực tiếp, không copy tạm
-            authors_container.emplace(
-                id,
-                Author(id, name, country, field, pubs)
-            );
+            authors_container.put(id, Author(id, name, country, field, pubs));
         }
 
         qInfo() << "Loaded" << authors_container.size()
@@ -95,15 +92,15 @@ void AuthorRepo::save() {
     try {
         json data = json::array();
 
-        for (const auto& [id, author] : authors_container) {
+        authors_container.forEach([&](const Author& author) {
             data.push_back({
-                {"id", author.getId()},
-                {"fullName", author.getFullName()},
-                {"country", author.getCountry()},
-                {"fieldOfStudy", author.getFieldOfStudy()},
+                {"id",                author.getId()},
+                {"fullName",          author.getFullName()},
+                {"country",           author.getCountry()},
+                {"fieldOfStudy",      author.getFieldOfStudy()},
                 {"totalPublications", author.getTotalPublications()}
             });
-        }
+        });
 
         const fs::path file_path = Constants::AuInfoJson;
 
@@ -120,6 +117,7 @@ void AuthorRepo::save() {
         qInfo() << "Saved" << authors_container.size()
                 << "authors to"
                 << QString::fromStdString(file_path.filename().string());
+
     } catch (const json::exception& e) {
         qCritical() << "JSON serialization error:" << e.what();
     }
@@ -132,61 +130,81 @@ void AuthorRepo::save() {
 }
 
 
+
 // === Search ===
 
 Author AuthorRepo::findById(const string& id) const {
-    auto it = authors_container.find(id);
-    return (it != authors_container.end()) ? it->second : Author();
+    if (authors_container.containsKey(id)) {
+        return authors_container.getOrDefault(id, Author());   // hoặc operator[](id)
+    }
+    return Author();
 }
 
 Author AuthorRepo::findByName(const string& name) const {
-    for (const auto& [id, au] : authors_container) {
-        if (au.getFullName() == name) {
-            return au;
+    Author result;
+    bool found = false;
+
+    authors_container.forEach([&](const string&, const Author& au) {
+        if (!found && au.getFullName() == name) {
+            result = au;
+            found = true;
         }
-    }
-    return Author(); // default empty
+    });
+
+    return result;
 }
 
 Author AuthorRepo::findByCountry(const string& country) const {
-    for (const auto& [id, au] : authors_container) {
-        if (au.getCountry() == country) {
-            return au;
+    Author result;
+    bool found = false;
+
+    authors_container.forEach([&](const string&, const Author& au) {
+        if (!found && au.getCountry() == country) {
+            result = au;
+            found = true;
         }
-    }
-    return Author();
+    });
+
+    return result;
 }
 
 // === Filter ===
 
 vector<Author> AuthorRepo::filterByField(const string& field) const {
     vector<Author> res;
-    for (const auto& [id, au] : authors_container) {
+
+    authors_container.forEach([&](const Author& au) {
         if (au.getFieldOfStudy() == field) {
             res.push_back(au);
         }
-    }
+    });
+
     return res;
 }
 
+
 vector<Author> AuthorRepo::filterByMinPublications(int minPubs) const {
     vector<Author> res;
-    for (const auto& [id, au] : authors_container) {
+
+    authors_container.forEach([&](const Author& au) {
         if (au.getTotalPublications() >= minPubs) {
             res.push_back(au);
         }
-    }
+    });
+
     return res;
 }
+
 
 // === Sort ===
 
 vector<Author> AuthorRepo::sortedByName(bool ascending) const {
     vector<Author> vec;
     vec.reserve(authors_container.size());
-    for (const auto& [id, au] : authors_container) {
-        vec.push_back(au);
-    }
+
+    authors_container.forEach([&](const string&, const Author& au) {
+        vec.push_back(au);  // copy Author
+    });
 
     std::sort(vec.begin(), vec.end(),
               [ascending](const Author& a, const Author& b) {
@@ -197,12 +215,14 @@ vector<Author> AuthorRepo::sortedByName(bool ascending) const {
     return vec;
 }
 
+
 vector<Author> AuthorRepo::sortedByPublications(bool ascending) const {
     vector<Author> vec;
     vec.reserve(authors_container.size());
-    for (const auto& [id, au] : authors_container) {
-        vec.push_back(au);
-    }
+
+    authors_container.forEach([&](const string&, const Author& au) {
+        vec.push_back(au);  // copy Author
+    });
 
     std::sort(vec.begin(), vec.end(),
               [ascending](const Author& a, const Author& b) {
@@ -213,38 +233,47 @@ vector<Author> AuthorRepo::sortedByPublications(bool ascending) const {
     return vec;
 }
 
+
 // === Update ===
 
 void AuthorRepo::updateName(const string& id, const string& name) {
-    auto it = authors_container.find(id);
-    if (it != authors_container.end()) {
-        it->second.setFullName(name);
-    }
+    authors_container.forEach([&](const string& key, Author& au) {
+        if (key == id) {
+            au.setFullName(name);
+        }
+    });
 }
+
 
 void AuthorRepo::updateCountry(const string& id, const string& country) {
-    auto it = authors_container.find(id);
-    if (it != authors_container.end()) {
-        it->second.setCountry(country);
-    }
+    authors_container.forEach([&](const string& key, Author& au) {
+        if (key == id) {
+            au.setCountry(country);
+        }
+    });
 }
+
 
 void AuthorRepo::updateFieldOfStudy(const string& id, const string& field) {
-    auto it = authors_container.find(id);
-    if (it != authors_container.end()) {
-        it->second.setFieldOfStudy(field);
-    }
+    authors_container.forEach([&](const string& key, Author& au) {
+        if (key == id) {
+            au.setFieldOfStudy(field);
+        }
+    });
 }
 
+
 void AuthorRepo::updateTotalOfPublications(const string& id, const int& pubs) {
-    auto it = authors_container.find(id);
-    if (it != authors_container.end()) {
-        it->second.setTotalPublications(pubs);
-    }
+    authors_container.forEach([&](const string& key, Author& au) {
+        if (key == id) {
+            au.setTotalPublications(pubs);
+        }
+    });
 }
+
 
 // === Statistics ===
 
-int AuthorRepo::count() const {
-    return static_cast<int>(authors_container.size());
+unsigned int AuthorRepo::count() const {
+    return authors_container.size();
 }

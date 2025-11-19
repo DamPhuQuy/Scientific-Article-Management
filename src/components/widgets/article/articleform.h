@@ -16,6 +16,9 @@ public:
     explicit ArticleForm(RepositoryManager& repo, QWidget *parent = nullptr);
     ~ArticleForm();
 
+signals:
+    void requestBack();
+
 private:
     RepositoryManager& repo;
     Ui::ArticleForm *ui;

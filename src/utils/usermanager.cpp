@@ -1,114 +1,104 @@
-// usermanager.cpp
-#include "usermanager.h"
-#include <iostream>
+// UserManager.cpp
+#include "UserManager.h"
 #include <fstream>
-#include <cctype>
+#include <QDir>
+#include "src/utils/nlohmann/json.hpp"
+#include "src/utils/constants.h"
 
-using json = nlohmann::json;
 using namespace std;
+using json = nlohmann::json;
 
-bool UserManager::loadUsers(json& users)
-{
-    ifstream file("../../data/accounts.json");
-    if (!file.is_open()) {
-        users = json::object();
-        return true;
-    }
+vector<UserManager::User> UserManager::userList;
+HashMap<string, size_t> UserManager::usernameToIndex;
+
+bool UserManager::loadFromFile() {
+    ifstream file(Constants::AccountsData);
+    if (!file.is_open()) return false;
+
+    json j;
     try {
-        file >> users;
-        return true;
-    } catch (...) {
-        users = json::object();
-        return false;
-    }
-}
+        file >> j;
+        userList.clear();
+        usernameToIndex.clear();
 
-bool UserManager::saveUsers(const json& users) {
-    ofstream file("../../data/accounts.json");
-    if (!file.is_open()) {
-        // std::cerr << "Không thể mở file accounts.json để ghi!\n";
+        for (size_t i = 0; i < j.size(); ++i) {
+            User u;
+            u.username = j[i]["username"].get<string>();
+            u.password = j[i]["password"].get<string>();
+            userList.push_back(u);
+            usernameToIndex.put(u.username, i);
+        }
+    } catch (...) {
         return false;
     }
-    file << users.dump(4);
     return true;
 }
 
-bool UserManager::verifyLogin(const std::string& username, const std::string& password) {
-    if (username.empty() || password.empty()) return false;
-
-    json users;
-    bool isWorked = loadUsers(users);
-    for (const auto& user : users) {
-        if (user.contains("username") && user.contains("password") &&
-            user["username"] == username && user["password"] == password) {
-
-            // saveSession(username);  // Lưu session
-            return true;
-        }
+bool UserManager::saveToFile() {
+    json j = json::array();
+    for (const auto& user : userList) {
+        j.push_back({
+            {"username", user.username},
+            {"password", user.password}
+        });
     }
-    return false;
+
+    QDir().mkpath("../../data");
+    ofstream file(Constants::AccountsData);
+    if (!file.is_open()) return false;
+    file << j.dump(4);
+    return true;
 }
 
 bool UserManager::registerUser(const string& username, const string& password) {
-    if (username.empty() || password.empty()) {
-        cout << "Tên đăng nhập và mật khẩu không được để trống!\n";
-        return false;
-    }
-    json users;
-    bool isWorked = loadUsers(users);
-    for (const auto& user : users) {
-        if (user["username"] == username) {
-            cout << "Tên đăng nhập đã tồn tại!\n";
-            return false;
-        }
-    }
-    json newUser = { {"username", username}, {"password", password} };
-    users.push_back(newUser);
-    saveUsers(users);
-    cout << "Đăng ký thành công!\n";
-    return true;
+    if (username.empty() || password.empty()) return false;
+
+    loadFromFile();
+    if (usernameToIndex.containsKey(username)) return false;
+
+    User newUser{username, password};
+    userList.push_back(newUser);
+    usernameToIndex.put(username, userList.size() - 1);
+    return saveToFile();
+}
+
+bool UserManager::registerUser(const QString& u, const QString& p) {
+    return registerUser(u.toStdString(), p.toStdString());
 }
 
 bool UserManager::login(const string& username, const string& password) {
-    json users;
-    bool isWorked = loadUsers(users);
-    for (const auto& user : users) {
-        if (user["username"] == username && user["password"] == password) {
-            cout << "Đăng nhập thành công! Chào " << username << "!\n";
-            return true;
-        }
-    }
-    cout << "Sai tên đăng nhập hoặc mật khẩu!\n";
-    return false;
+    loadFromFile();
+
+    size_t index = usernameToIndex.getOrDefault(username, SIZE_MAX);
+    if (index == SIZE_MAX) return false;
+
+    return userList[index].password == password;
 }
 
-string UserManager::getPassword() {
-    string password;
-    char ch;
-    cout << "Nhập mật khẩu: ";
-    while ((ch = getchar()) != '\n' && ch != EOF) {
-        if (ch == 127 || ch == 8) {
-            if (!password.empty()) {
-                password.pop_back();
-                cout << "\b \b";
-            }
-        } else if (isprint(ch)) {
-            password += ch;
-            cout << '*';
-        }
-    }
-    cout << endl;
-    return password;
+bool UserManager::login(const QString& u, const QString& p) {
+    return login(u.toStdString(), p.toStdString());
 }
 
-bool UserManager::addUser(const QString& username, const QString& password)
-{
-    json users;
-    if (!loadUsers(users)) return false;
+bool UserManager::userExists(const string& username) {
+    loadFromFile();
+    return usernameToIndex.containsKey(username);
+}
 
-    std::string user = username.toStdString();
-    if (users.contains(user)) return false;
+bool UserManager::userExists(const QString& u) { // overload
+    return userExists(u.toStdString());
+}
 
-    users[user] = password.toStdString();
-    return saveUsers(users);
+bool UserManager::changePassword(const string& username, const string& newPass) {
+    loadFromFile();
+    size_t index = usernameToIndex.getOrDefault(username, SIZE_MAX);
+    if (index == SIZE_MAX) return false;
+
+    userList[index].password = newPass;
+
+    return saveToFile();
+}
+
+int UserManager::getUserCount() {
+    loadFromFile();
+    return userList.size();
 }

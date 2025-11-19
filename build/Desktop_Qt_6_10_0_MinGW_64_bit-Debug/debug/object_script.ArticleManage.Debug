@@ -4,7 +4,6 @@ debug/appnav.o
 debug/articledescription.o
 debug/articleinput.o
 debug/articleremove.o
-debug/articlestatistics.o
 debug/articleupdate.o
 debug/authordescription.o
 debug/authorinput.o

@@ -133,12 +133,11 @@ void ArticleRepo::save() {
     try {
         json data = json::array();
 
-        for (const auto& pair : articles_container) {
-            const auto& article = pair.second;     // unique_ptr<Article>
+        articles_container.forEach([&data](const unique_ptr<Article>& article) -> void {
             if (article) {
-                data.push_back(article->to_json()); // gọi hàm ảo
+                data.push_back(article->to_json());
             }
-        }
+        });
 
         const fs::path file_path = Constants::DataSetJson;
         ofstream out(file_path, ios::trunc);
@@ -164,10 +163,12 @@ void ArticleRepo::save() {
 
 
 unique_ptr<Article> ArticleRepo::findById(const string& id) const {
-    auto it = articles_container.find(id);
-    if (it != articles_container.end()) {
-        return it->second->clone();
+    bool isContained = articles_container.containsKey(id);
+
+    if (isContained) {
+        return articles_container.getOrDefault(id, nullptr);
     }
+
     return nullptr;
 }
 
@@ -177,13 +178,13 @@ vector<unique_ptr<Article>> ArticleRepo::findByTitle(const string& titlePattern)
     try {
         const regex pattern(titlePattern, regex::icase);
 
-        for (const auto& pair : articles_container) {
-            const string& title = pair.second->getTitle();
+        articles_container.forEach([&pattern, &res](const unique_ptr<Article>& article) -> void {
+            const string& title = article->getTitle();
 
             if (regex_search(title, pattern)) {
-                res.push_back(pair.second->clone());
+                res.push_back(article->clone());
             }
-        }
+        });
     }
     catch (const regex_error& e) {
         qCritical() << "Invalid regex pattern:" << e.what();
@@ -194,31 +195,37 @@ vector<unique_ptr<Article>> ArticleRepo::findByTitle(const string& titlePattern)
 
 vector<unique_ptr<Article>> ArticleRepo::filterByYear(Type t) const {
     vector<unique_ptr<Article>> res;
-    for (const auto& pair : articles_container) {
-        if (pair.second->getType() == t) {
-            res.push_back(pair.second->clone());
+
+    articles_container.forEach([&res, &t](const unique_ptr<Article>& article) -> void {
+        if (article->getType() == t) {
+            res.push_back(article->clone());
         }
-    }
+    });
+
     return res;
 }
 
 vector<unique_ptr<Article>> ArticleRepo::filterByYear(int year) const {
     vector<unique_ptr<Article>> res;
-    for (const auto& pair : articles_container) {
-        if (pair.second->getYear() == year) {
-            res.push_back(pair.second->clone());
+
+    articles_container.forEach([&res, &year](const unique_ptr<Article>& article) -> void {
+        if (article->getYear() == year) {
+            res.push_back(article->clone());
         }
-    }
+    });
+
     return res;
 }
 
 vector<unique_ptr<Article>> ArticleRepo::filterByCitation(int minCitations) const {
     vector<unique_ptr<Article>> res;
-    for (const auto& pair : articles_container) {
-        if (pair.second->getCitation() >= minCitations) {
-            res.push_back(pair.second->clone());
+
+    articles_container.forEach([&res, &minCitations](const unique_ptr<Article>& article) -> void {
+        if (article->getCitation() == minCitations) {
+            res.push_back(article->clone());
         }
-    }
+    });
+
     return res;
 }
 
@@ -244,22 +251,26 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) co
     vector<unique_ptr<Article>> filtered;
     filtered.reserve(vec.size());
 
+    // Lọc ra những bài báo SCIE
     for (auto& ptr : vec) {
-        if (auto* journal = dynamic_cast<SCIE_Article*>(ptr.get())) {
-            filtered.push_back(std::move(ptr));
+        if (dynamic_cast<SCIE_Article*>(ptr.get())) {
+            filtered.push_back(ptr->clone());
         }
     }
 
+    // Sắp xếp theo ImpactFactor
     sort(filtered.begin(), filtered.end(),
          [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
-             auto* ja = static_cast<SCIE_Article*>(a.get());
-             auto* jb = static_cast<SCIE_Article*>(b.get());
-             return ascending ? ja->getImpactFactor() < jb->getImpactFactor()
-                              : ja->getImpactFactor() > jb->getImpactFactor();
+             const auto* ja = static_cast<const SCIE_Article*>(a.get());
+             const auto* jb = static_cast<const SCIE_Article*>(b.get());
+             return ascending ?
+                        (ja->getImpactFactor() < jb->getImpactFactor()) :
+                        (ja->getImpactFactor() > jb->getImpactFactor());
          });
 
     return filtered;
 }
+
 
 vector<unique_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
     vector<unique_ptr<Article>> vec = getCopyAsVector();
@@ -268,7 +279,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
     filtered.reserve(vec.size());
 
     for (auto& ptr : vec) {
-        if (auto* journal = dynamic_cast<SCOPUS_Article*>(ptr.get())) {
+        if (dynamic_cast<SCOPUS_Article*>(ptr.get())) {
             filtered.push_back(ptr->clone());
         }
     }
@@ -291,7 +302,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
     filtered.reserve(vec.size());
 
     for (auto& ptr : vec) {
-        if (auto* journal = dynamic_cast<SCOPUS_Article*>(ptr.get())) {
+        if (dynamic_cast<SCOPUS_Article*>(ptr.get())) {
             filtered.push_back(ptr->clone());
         }
     }
@@ -309,55 +320,76 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
 
 vector<unique_ptr<Article>> ArticleRepo::updateTitle(const string& id, const string& title) {
     vector<unique_ptr<Article>> affected;
-    auto it = articles_container.find(id);
-    if (it != articles_container.end()) {
-        it->second->setTitle(title);
-        affected.push_back(it->second->clone());
-    }
+    bool found = false;
+
+    articles_container.forEach([&](const string& key, unique_ptr<Article>& article) {
+        if (!found && key == id) {
+            found = true;
+            article->setTitle(title);
+            affected.push_back(article->clone());
+        }
+    });
+
     return affected;
 }
 
 
 vector<unique_ptr<Article>> ArticleRepo::updateVenue(const string& id, const string& venue) {
     vector<unique_ptr<Article>> affected;
-    auto it = articles_container.find(id);
-    if (it != articles_container.end()) {
-        it->second->setVenue(venue);
-        affected.push_back(it->second->clone());
-    }
+    affected.reserve(1);
+
+    bool found = false;
+    articles_container.forEach([&](const string& key, unique_ptr<Article>& article) {
+        if (!found && key == id) {
+            found = true;
+            article->setVenue(venue);
+            affected.push_back(article->clone());
+        }
+    });
+
     return affected;
 }
+
 
 
 vector<unique_ptr<Article>> ArticleRepo::updateYear(const string& id, const int& year) {
     vector<unique_ptr<Article>> affected;
-    auto it = articles_container.find(id);
-    if (it != articles_container.end()) {
-        it->second->setYear(year);
-        affected.push_back(it->second->clone());
-    }
+    affected.reserve(1);
+    bool found = false;
+
+    articles_container.forEach([&](const string& key, unique_ptr<Article>& article) {
+        if (!found && key == id) {
+            found = true;
+            article->setYear(year);
+            affected.push_back(article->clone());
+        }
+    });
+
     return affected;
 }
 
 
-int ArticleRepo::count() const {
-    return static_cast<int>(articles_container.size());
+
+unsigned int ArticleRepo::count() const {
+    return articles_container.size();
 }
 
 
 int ArticleRepo::countByType(Type t) const {
     int cnt = 0;
-    for (const auto& pair : articles_container) {
-        if (pair.second->getType() == t) ++cnt;
-    }
+
+    articles_container.forEach([&](const unique_ptr<Article> article) -> void {
+        if (article->getType() == t) ++cnt;
+    });
     return cnt;
 }
 
 double ArticleRepo::averageCitations() const {
-    if (articles_container.empty()) return 0.0;
+    if (articles_container.isEmpty()) return 0.0;
     long long sum = 0;
-    for (const auto& pair : articles_container) {
-        sum += pair.second->getCitation();
-    }
+
+    articles_container.forEach([&](const unique_ptr<Article> article) -> void {
+        sum += article->getCitation();
+    });
     return static_cast<double>(sum) / articles_container.size();
 }

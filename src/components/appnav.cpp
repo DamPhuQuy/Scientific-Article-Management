@@ -27,6 +27,7 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
     setLayout(layout);
 
     /* connect(sender, &SenderClass::signalName, receiver, &ReceiverClass::slotName); */ // slotName ở đó là callback
+    QString currentUser;
 
     /* Main Page */
     // start
@@ -35,16 +36,25 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
     connect(mainform, &MainWindow::requestEnd, this, [this]() -> void { this->history.clear(); qApp->quit(); });
 
     /* Login Page */
+    // requestSignUp
+    connect(login, &LoginForm::requestSignUp, this, [this]() -> void { goTo(Page::SignupPage); });
     // login success (loginForm success, go to ArticleForm)
-    connect(login, &LoginForm::loginSuccess, this, [this]() -> void { goTo(Page::ArticleFormPage); });
+    connect(login, &LoginForm::loginSuccess, this, [this, &currentUser](const QString& username) -> void {
+        currentUser = username;
+        goTo(Page::ArticleFormPage);
+    });
     // request back (loginForm back to mainmenu)
     connect(login, &LoginForm::requestBack, this, [this]() -> void { goTo(Page::MainPage); });
 
-
+    /* Sign up */
     // sign up success (signUp success, go back to login to login again)
     connect(signup, &SignUpForm::signupSuccess, this, [this]() -> void { goTo(Page::LoginPage); });
+    // request back (signupForm back to loginForm)
+    connect(signup, &SignUpForm::requestBack, this, [this]() -> void { goTo(Page::LoginPage); });
 
-
+    /* ArticleForm */
+    // request back (articleform back to loginForm)
+    connect(articleform, &ArticleForm::requestBack, this, [this]() -> void { goTo(Page::ArticleFormPage); });
 }
 
 void AppNav::goToHelper(Page page) {

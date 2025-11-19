@@ -1,14 +1,15 @@
 #pragma once
 #include "../models/author.h"
+#include "../lib/hashmap.h"
 
 using namespace std;
 
 class AuthorRepo {
 private:
-    unordered_map<string, Author> authors_container;
+    HashMap<string, Author> authors_container;
 public:
     AuthorRepo() = default;
-    explicit AuthorRepo(unordered_map<string, Author> au_con);
+    explicit AuthorRepo(HashMap<string, Author> au_con);
 
     ~AuthorRepo() = default;
 
@@ -16,7 +17,7 @@ public:
     void add(const Author& au);
     void remove(const string& id);
 
-    unordered_map<string, Author>& getAuthorContainer();
+    HashMap<string, Author>& getAuthorContainer();
 
     // Import and Export
     void load();
@@ -42,5 +43,5 @@ public:
     void updateTotalOfPublications(const string& id, const int& pubs);
 
     // statistics
-    int count() const;
+    unsigned int count() const;
 };

@@ -19,7 +19,13 @@ public:
 signals:
     // signal to back
     void requestBack();
-    void loginSuccess();
+    void requestSignUp();
+    void loginSuccess(const QString& username);
+
+private slots:
+    void on_signUpLabel_linkActivated(const QString &link);
+
+    void on_signInButton_clicked();
 
 private:
     RepositoryManager& repo;
@@ -29,3 +35,4 @@ private:
 };
 
 #endif // LOGINFORM_H
+

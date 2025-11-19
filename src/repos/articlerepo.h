@@ -49,7 +49,7 @@ public:
     vector<unique_ptr<Article>>updateYear(const string& id, const int& year);
 
     // Statistics
-    int count() const;
+    unsigned int count() const;
     int countByType(Type t) const;
     double averageCitations() const;
 };

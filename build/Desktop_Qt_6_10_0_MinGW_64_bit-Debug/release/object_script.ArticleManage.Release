@@ -4,7 +4,6 @@ release/appnav.o
 release/articledescription.o
 release/articleinput.o
 release/articleremove.o
-release/articlestatistics.o
 release/articleupdate.o
 release/authordescription.o
 release/authorinput.o
