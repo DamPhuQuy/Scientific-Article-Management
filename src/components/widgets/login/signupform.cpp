@@ -16,7 +16,7 @@ SignUpForm::~SignUpForm()
     delete ui;
 }
 
-void SignUpForm::on_loginLabel_linkActivated(const QString &_)
+void SignUpForm::on_loginLabel_linkActivated()
 {
     emit requestBack();
 }
@@ -24,8 +24,9 @@ void SignUpForm::on_loginLabel_linkActivated(const QString &_)
 
 void SignUpForm::on_signUpButton_clicked()
 {
-    QString username = ui->usernameEdit->text();
+    QString username = ui->usernameEdit->text().trimmed();
     QString password = ui->passwordEdit->text();
+    QString confirmPass = ui->confirmPassEdit->text();
 
     if (username.isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập!", "Lỗi đăng kí");
@@ -38,7 +39,12 @@ void SignUpForm::on_signUpButton_clicked()
     }
 
     if (UserManager::userExists(username)) {
-        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập đã tồn tại!", "Lỗi đăng ");
+        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập đã tồn tại!", "Lỗi đăng kí");
+        return;
+    }
+
+    if (password != confirmPass) {
+        Inform::showMessage(this, MessageType::Warning, "Mật khẩu không trùng!", "Lỗi đăng kí");
         return;
     }
 

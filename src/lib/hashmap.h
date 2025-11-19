@@ -23,7 +23,7 @@ private:
 
 private:
     unsigned int hashKey(const K& key) const {
-        return std::hash<K>(key) % capacity;
+        return std::hash<K>{}(key) % capacity;
     }
 
     void rehash() {
@@ -33,7 +33,7 @@ private:
         for (auto& head : containers) {
             Node* current = head.get();
             while (current != nullptr) {
-                unsigned int newI = std::hash<K>(current->key) % newCap;
+                unsigned int newI = std::hash<K>{}(current->key) % newCap;
 
                 auto newNode = std::make_unique<Node>(current->key, current->value);
                 newNode->next = std::move(newContainers[newI]);
@@ -48,8 +48,12 @@ private:
     }
 
 public:
-    HashMap(unsigned int initCap = 10) : capacity(initCap), numElements(0) { containers.resize(capacity, nullptr); }
+    HashMap(unsigned int initCap = 10) : capacity(initCap), numElements(0) { containers.resize(capacity); }
     ~HashMap() = default;
+    HashMap(const HashMap&) = delete;
+    HashMap& operator=(const HashMap&) = delete;
+    HashMap(HashMap&&) noexcept = default;
+    HashMap& operator=(HashMap&&) noexcept = default;
     unsigned int size() const { return numElements; }
     bool isEmpty() const { return numElements == 0; }
 
@@ -60,7 +64,6 @@ public:
         numElements = 0;
     }
 
-    // java methods stimulate (and ~ python dict methods)
     void put(const K& key, const V& value) {
         unsigned int index = hashKey(key); // index to key
 
@@ -72,7 +75,7 @@ public:
                 current->value = value;
                 return;
             }
-            current = current->next;
+            current = current->next.get();
         }
 
         // else append
@@ -109,7 +112,7 @@ public:
     } // ~ [] operator d[key] or d.get[key]
 
     V getOrDefault(const K& key, const V& defaultVal) const {
-        unsigned int index = hash(key);
+        unsigned int index = hashKey(key);
         Node* curr = containers[index].get();
 
         while (curr) {
@@ -128,7 +131,7 @@ public:
 
         while (current != nullptr) {
             if (current->key == key) return true;
-            current = current->next;
+            current = current->next.get();
         }
         return false;
     } // key in d
@@ -142,7 +145,7 @@ public:
             if (current->key == key) {
                 return current->value == value;
             }
-            current = current->next;
+            current = current->next.get();
         }
     } // value in d.values()
 
@@ -198,7 +201,7 @@ public:
         res.reserve(numElements);
 
         forEach([&res](const K& k, const V& v) -> void {
-            res.push_back(k, v);
+            res.emplace_back(k, v);
         });
 
         return res;
@@ -212,7 +215,19 @@ public:
             Node* current = head.get();
             while (current != nullptr) {
 
-                if constexpr (std::is_invocable_v<Func, const V&>) {
+                // mutable
+                if constexpr (std::is_invocable_v<Func, V&>) {
+                    f(current->value);
+                }
+                else if constexpr (std::is_invocable_v<Func, const K&, V&>) {
+                    f(current->key, current->value);
+                }
+                else if constexpr (std::is_invocable_v<Func, const K&, V&, size_t>) {
+                    f(current->key, current->value, index);
+                }
+
+                // read only
+                else if constexpr (std::is_invocable_v<Func, const V&>) {
                     f(current->value);
                 }
                 else if constexpr (std::is_invocable_v<Func, const K&, const V&>) {
@@ -237,7 +252,7 @@ public:
 
     // [] operator overload
     V& operator[](const K& key) {
-        unsigned int index = hash(key);
+        unsigned int index = hashKey(key);
         Node* curr = containers[index].get();
 
         while (curr) {

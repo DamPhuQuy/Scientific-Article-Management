@@ -22,9 +22,7 @@ signals:
     void signupSuccess();
 
 private slots:
-    void on_signUpLabel_linkActivated(const QString &link);
-
-    void on_loginLabel_linkActivated(const QString &link);
+    void on_loginLabel_linkActivated();
 
     void on_signUpButton_clicked();
 

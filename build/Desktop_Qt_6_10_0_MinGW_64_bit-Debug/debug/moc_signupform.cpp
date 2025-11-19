@@ -38,10 +38,23 @@ template <> constexpr inline auto SignUpForm::qt_create_metaobjectdata<qt_meta_t
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "SignUpForm"
+        "SignUpForm",
+        "requestBack",
+        "",
+        "signupSuccess",
+        "on_loginLabel_linkActivated",
+        "on_signUpButton_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'requestBack'
+        QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'signupSuccess'
+        QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'on_loginLabel_linkActivated'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_signUpButton_clicked'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +76,21 @@ Q_CONSTINIT const QMetaObject SignUpForm::staticMetaObject = { {
 void SignUpForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<SignUpForm *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->requestBack(); break;
+        case 1: _t->signupSuccess(); break;
+        case 2: _t->on_loginLabel_linkActivated(); break;
+        case 3: _t->on_signUpButton_clicked(); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (SignUpForm::*)()>(_a, &SignUpForm::requestBack, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SignUpForm::*)()>(_a, &SignUpForm::signupSuccess, 1))
+            return;
+    }
 }
 
 const QMetaObject *SignUpForm::metaObject() const
@@ -85,6 +109,30 @@ void *SignUpForm::qt_metacast(const char *_clname)
 int SignUpForm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 4)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 4;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 4)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 4;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void SignUpForm::requestBack()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+}
+
+// SIGNAL 1
+void SignUpForm::signupSuccess()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP

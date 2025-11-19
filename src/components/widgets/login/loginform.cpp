@@ -21,7 +21,6 @@ void LoginForm::on_signUpLabel_linkActivated(const QString &_)
     emit requestSignUp();
 }
 
-
 void LoginForm::on_signInButton_clicked()
 {
     QString username = ui->usernameEdit->text().trimmed();
@@ -51,6 +50,8 @@ void LoginForm::on_signInButton_clicked()
         Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập hoặc mật khẩu không đúng!", "Đăng nhập thất bại");
 
         ui->usernameEdit->clear();
+        ui->passwordEdit->clear();
+        ui->usernameEdit->setFocus();
         ui->passwordEdit->setFocus();
     }
 }

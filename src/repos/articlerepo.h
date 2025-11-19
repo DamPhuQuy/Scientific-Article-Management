@@ -8,45 +8,45 @@ using namespace std;
 
 class ArticleRepo {
 private:
-    HashMap<string, unique_ptr<Article>> articles_container;
+    HashMap<string, shared_ptr<Article>> articles_container;
 public:
     ArticleRepo() = default;
-    explicit ArticleRepo(const HashMap<string, unique_ptr<Article>>& ar_con);
+    explicit ArticleRepo(HashMap<string, shared_ptr<Article>>&& ar_con);
 
     ~ArticleRepo() = default;
 
-    void add(unique_ptr<Article> a);
+    void add(shared_ptr<Article> a);
     void remove(const string& articleId);
 
-    HashMap<string, unique_ptr<Article>>& getContainer();
-    const HashMap<string, unique_ptr<Article>>& getContainer() const; // for read
+    HashMap<string, shared_ptr<Article>>& getContainer();
+    const HashMap<string, shared_ptr<Article>>& getContainer() const; // for read
 
-    vector<unique_ptr<Article>> getCopyAsVector() const;
+    vector<shared_ptr<Article>> getCopyAsVector() const;
 
     // Import and export data
     void load();
     void save();
 
     // Search
-    unique_ptr<Article> findById(const string& id) const;
-    vector<unique_ptr<Article>> findByTitle(const string& title) const;
+    shared_ptr<Article> findById(const string& id);
+    vector<shared_ptr<Article>> findByTitle(const string& title) const;
 
     // Filter
-    vector<unique_ptr<Article>> filterByYear(Type t) const;
-    vector<unique_ptr<Article>> filterByYear(int year) const;
-    vector<unique_ptr<Article>> filterByCitation(int minCitations) const;
+    vector<shared_ptr<Article>> filterByYear(Type t) const;
+    vector<shared_ptr<Article>> filterByYear(int year) const;
+    vector<shared_ptr<Article>> filterByCitation(int minCitations) const;
 
     // Sort
-    vector<unique_ptr<Article>> sortedByCitations(bool ascending=true) const;
-    vector<unique_ptr<Article>> sortedByYear(bool ascending=true) const;
-    vector<unique_ptr<Article>> sortedByImpactFactor(bool ascending=true) const;
-    vector<unique_ptr<Article>> sortedBySJR(bool ascending=true) const;
-    vector<unique_ptr<Article>> sortedByHIndex(bool ascending=true) const;
+    vector<shared_ptr<Article>> sortedByCitations(bool ascending=true) const;
+    vector<shared_ptr<Article>> sortedByYear(bool ascending=true) const;
+    vector<shared_ptr<Article>> sortedByImpactFactor(bool ascending=true) const;
+    vector<shared_ptr<Article>> sortedBySJR(bool ascending=true) const;
+    vector<shared_ptr<Article>> sortedByHIndex(bool ascending=true) const;
 
     // Update
-    vector<unique_ptr<Article>>updateTitle(const string& id, const string& title);
-    vector<unique_ptr<Article>>updateVenue(const string& id, const string& venue);
-    vector<unique_ptr<Article>>updateYear(const string& id, const int& year);
+    vector<shared_ptr<Article>>updateTitle(const string& id, const string& title);
+    vector<shared_ptr<Article>>updateVenue(const string& id, const string& venue);
+    vector<shared_ptr<Article>>updateYear(const string& id, const int& year);
 
     // Statistics
     unsigned int count() const;

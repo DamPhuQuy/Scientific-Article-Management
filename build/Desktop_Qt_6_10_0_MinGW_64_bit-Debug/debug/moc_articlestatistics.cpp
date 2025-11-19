@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../src/components/dialogs/articlestatistics.h"
+#include "../../../src/components/dialogs/article/articlestatistics.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

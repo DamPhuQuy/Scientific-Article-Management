@@ -14,10 +14,10 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-ArticleRepo::ArticleRepo(const HashMap<string, unique_ptr<Article>>& ar_con)
+ArticleRepo::ArticleRepo(HashMap<string, shared_ptr<Article>>&& ar_con)
     : articles_container(std::move(ar_con)) {}
 
-void ArticleRepo::add(unique_ptr<Article> a) {
+void ArticleRepo::add(shared_ptr<Article> a) {
     if (!a || a->getId().empty()) return;
     articles_container[a->getId()] = std::move(a);
 }
@@ -26,19 +26,19 @@ void ArticleRepo::remove(const string& articleId) {
     articles_container.remove(articleId);
 }
 
-HashMap<string, unique_ptr<Article>>& ArticleRepo::getContainer() {
+HashMap<string, shared_ptr<Article>>& ArticleRepo::getContainer() {
     return articles_container;
 }
 
-const HashMap<string, unique_ptr<Article>>& ArticleRepo::getContainer() const {
+const HashMap<string, shared_ptr<Article>>& ArticleRepo::getContainer() const {
     return articles_container;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::getCopyAsVector() const {
-    vector<unique_ptr<Article>> res;
+vector<shared_ptr<Article>> ArticleRepo::getCopyAsVector() const {
+    vector<shared_ptr<Article>> res;
     res.reserve(articles_container.size());
 
-    articles_container.forEach([&res](const unique_ptr<Article>& article) {
+    articles_container.forEach([&res](const shared_ptr<Article>& article) {
         res.push_back(article->clone());
     });
 
@@ -94,7 +94,7 @@ void ArticleRepo::load() {
             }
 
             // ---- Tạo Article đúng loại ----
-            unique_ptr<Article> article = DataUtils::createArticle(
+            shared_ptr<Article> article = DataUtils::createArticle(
                 abstract,
                 n_citation,
                 title,
@@ -133,7 +133,7 @@ void ArticleRepo::save() {
     try {
         json data = json::array();
 
-        articles_container.forEach([&data](const unique_ptr<Article>& article) -> void {
+        articles_container.forEach([&data](const shared_ptr<Article>& article) -> void {
             if (article) {
                 data.push_back(article->to_json());
             }
@@ -162,7 +162,7 @@ void ArticleRepo::save() {
 }
 
 
-unique_ptr<Article> ArticleRepo::findById(const string& id) const {
+shared_ptr<Article> ArticleRepo::findById(const string& id) {
     bool isContained = articles_container.containsKey(id);
 
     if (isContained) {
@@ -172,13 +172,13 @@ unique_ptr<Article> ArticleRepo::findById(const string& id) const {
     return nullptr;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::findByTitle(const string& titlePattern) const {
-    vector<unique_ptr<Article>> res;
+vector<shared_ptr<Article>> ArticleRepo::findByTitle(const string& titlePattern) const {
+    vector<shared_ptr<Article>> res;
 
     try {
         const regex pattern(titlePattern, regex::icase);
 
-        articles_container.forEach([&pattern, &res](const unique_ptr<Article>& article) -> void {
+        articles_container.forEach([&pattern, &res](const shared_ptr<Article>& article) -> void {
             const string& title = article->getTitle();
 
             if (regex_search(title, pattern)) {
@@ -193,10 +193,10 @@ vector<unique_ptr<Article>> ArticleRepo::findByTitle(const string& titlePattern)
     return res;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::filterByYear(Type t) const {
-    vector<unique_ptr<Article>> res;
+vector<shared_ptr<Article>> ArticleRepo::filterByYear(Type t) const {
+    vector<shared_ptr<Article>> res;
 
-    articles_container.forEach([&res, &t](const unique_ptr<Article>& article) -> void {
+    articles_container.forEach([&res, &t](const shared_ptr<Article>& article) -> void {
         if (article->getType() == t) {
             res.push_back(article->clone());
         }
@@ -205,10 +205,10 @@ vector<unique_ptr<Article>> ArticleRepo::filterByYear(Type t) const {
     return res;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::filterByYear(int year) const {
-    vector<unique_ptr<Article>> res;
+vector<shared_ptr<Article>> ArticleRepo::filterByYear(int year) const {
+    vector<shared_ptr<Article>> res;
 
-    articles_container.forEach([&res, &year](const unique_ptr<Article>& article) -> void {
+    articles_container.forEach([&res, &year](const shared_ptr<Article>& article) -> void {
         if (article->getYear() == year) {
             res.push_back(article->clone());
         }
@@ -217,10 +217,10 @@ vector<unique_ptr<Article>> ArticleRepo::filterByYear(int year) const {
     return res;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::filterByCitation(int minCitations) const {
-    vector<unique_ptr<Article>> res;
+vector<shared_ptr<Article>> ArticleRepo::filterByCitation(int minCitations) const {
+    vector<shared_ptr<Article>> res;
 
-    articles_container.forEach([&res, &minCitations](const unique_ptr<Article>& article) -> void {
+    articles_container.forEach([&res, &minCitations](const shared_ptr<Article>& article) -> void {
         if (article->getCitation() == minCitations) {
             res.push_back(article->clone());
         }
@@ -229,26 +229,26 @@ vector<unique_ptr<Article>> ArticleRepo::filterByCitation(int minCitations) cons
     return res;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::sortedByCitations(bool ascending) const {
+vector<shared_ptr<Article>> ArticleRepo::sortedByCitations(bool ascending) const {
     auto vec = getCopyAsVector();
-    sort(vec.begin(), vec.end(), [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
+    sort(vec.begin(), vec.end(), [ascending](const shared_ptr<Article>& a, const shared_ptr<Article>& b) {
         return ascending ? a->getCitation() < b->getCitation() : a->getCitation() > b->getCitation();
     });
     return vec;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::sortedByYear(bool ascending) const {
+vector<shared_ptr<Article>> ArticleRepo::sortedByYear(bool ascending) const {
     auto vec = getCopyAsVector();
-    sort(vec.begin(), vec.end(), [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
+    sort(vec.begin(), vec.end(), [ascending](const shared_ptr<Article>& a, const shared_ptr<Article>& b) {
         return ascending ? a->getYear() < b->getYear() : a->getYear() > b->getYear();
     });
     return vec;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) const {
-    vector<unique_ptr<Article>> vec = getCopyAsVector();
+vector<shared_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) const {
+    vector<shared_ptr<Article>> vec = getCopyAsVector();
 
-    vector<unique_ptr<Article>> filtered;
+    vector<shared_ptr<Article>> filtered;
     filtered.reserve(vec.size());
 
     // Lọc ra những bài báo SCIE
@@ -260,7 +260,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) co
 
     // Sắp xếp theo ImpactFactor
     sort(filtered.begin(), filtered.end(),
-         [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
+         [ascending](const shared_ptr<Article>& a, const shared_ptr<Article>& b) {
              const auto* ja = static_cast<const SCIE_Article*>(a.get());
              const auto* jb = static_cast<const SCIE_Article*>(b.get());
              return ascending ?
@@ -272,10 +272,10 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByImpactFactor(bool ascending) co
 }
 
 
-vector<unique_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
-    vector<unique_ptr<Article>> vec = getCopyAsVector();
+vector<shared_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
+    vector<shared_ptr<Article>> vec = getCopyAsVector();
 
-    vector<unique_ptr<Article>> filtered;
+    vector<shared_ptr<Article>> filtered;
     filtered.reserve(vec.size());
 
     for (auto& ptr : vec) {
@@ -285,7 +285,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
     }
 
     sort(filtered.begin(), filtered.end(),
-         [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
+         [ascending](const shared_ptr<Article>& a, const shared_ptr<Article>& b) {
              auto* ja = static_cast<SCOPUS_Article*>(a.get());
              auto* jb = static_cast<SCOPUS_Article*>(b.get());
              return ascending ? ja->getSJR() < jb->getSJR()
@@ -295,10 +295,10 @@ vector<unique_ptr<Article>> ArticleRepo::sortedBySJR(bool ascending) const {
     return filtered;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
-    vector<unique_ptr<Article>> vec = getCopyAsVector();
+vector<shared_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
+    vector<shared_ptr<Article>> vec = getCopyAsVector();
 
-    vector<unique_ptr<Article>> filtered;
+    vector<shared_ptr<Article>> filtered;
     filtered.reserve(vec.size());
 
     for (auto& ptr : vec) {
@@ -308,7 +308,7 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
     }
 
     sort(filtered.begin(), filtered.end(),
-         [ascending](const unique_ptr<Article>& a, const unique_ptr<Article>& b) {
+         [ascending](const shared_ptr<Article>& a, const shared_ptr<Article>& b) {
              auto* ja = static_cast<SCOPUS_Article*>(a.get());
              auto* jb = static_cast<SCOPUS_Article*>(b.get());
              return ascending ? ja->getHIndex() < jb->getHIndex()
@@ -318,11 +318,11 @@ vector<unique_ptr<Article>> ArticleRepo::sortedByHIndex(bool ascending) const {
     return filtered;
 }
 
-vector<unique_ptr<Article>> ArticleRepo::updateTitle(const string& id, const string& title) {
-    vector<unique_ptr<Article>> affected;
+vector<shared_ptr<Article>> ArticleRepo::updateTitle(const string& id, const string& title) {
+    vector<shared_ptr<Article>> affected;
     bool found = false;
 
-    articles_container.forEach([&](const string& key, unique_ptr<Article>& article) {
+    articles_container.forEach([&](const string& key, shared_ptr<Article>& article) {
         if (!found && key == id) {
             found = true;
             article->setTitle(title);
@@ -334,12 +334,12 @@ vector<unique_ptr<Article>> ArticleRepo::updateTitle(const string& id, const str
 }
 
 
-vector<unique_ptr<Article>> ArticleRepo::updateVenue(const string& id, const string& venue) {
-    vector<unique_ptr<Article>> affected;
+vector<shared_ptr<Article>> ArticleRepo::updateVenue(const string& id, const string& venue) {
+    vector<shared_ptr<Article>> affected;
     affected.reserve(1);
 
     bool found = false;
-    articles_container.forEach([&](const string& key, unique_ptr<Article>& article) {
+    articles_container.forEach([&](const string& key, shared_ptr<Article>& article) {
         if (!found && key == id) {
             found = true;
             article->setVenue(venue);
@@ -352,12 +352,12 @@ vector<unique_ptr<Article>> ArticleRepo::updateVenue(const string& id, const str
 
 
 
-vector<unique_ptr<Article>> ArticleRepo::updateYear(const string& id, const int& year) {
-    vector<unique_ptr<Article>> affected;
+vector<shared_ptr<Article>> ArticleRepo::updateYear(const string& id, const int& year) {
+    vector<shared_ptr<Article>> affected;
     affected.reserve(1);
     bool found = false;
 
-    articles_container.forEach([&](const string& key, unique_ptr<Article>& article) {
+    articles_container.forEach([&](const string& key, shared_ptr<Article>& article) {
         if (!found && key == id) {
             found = true;
             article->setYear(year);
@@ -378,7 +378,7 @@ unsigned int ArticleRepo::count() const {
 int ArticleRepo::countByType(Type t) const {
     int cnt = 0;
 
-    articles_container.forEach([&](const unique_ptr<Article> article) -> void {
+    articles_container.forEach([&](const shared_ptr<Article> article) -> void {
         if (article->getType() == t) ++cnt;
     });
     return cnt;
@@ -388,7 +388,7 @@ double ArticleRepo::averageCitations() const {
     if (articles_container.isEmpty()) return 0.0;
     long long sum = 0;
 
-    articles_container.forEach([&](const unique_ptr<Article> article) -> void {
+    articles_container.forEach([&](const shared_ptr<Article> article) -> void {
         sum += article->getCitation();
     });
     return static_cast<double>(sum) / articles_container.size();

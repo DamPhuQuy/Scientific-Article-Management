@@ -13,14 +13,6 @@
   <property name="windowTitle">
    <string>Quản lý bài báo khoa học - PBL2</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QMainWindow {
-        background-color: #f0f0f0;
-}
-QLabel {
-        font-family: &quot;Segoe UI&quot;;
-}</string>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -29,7 +21,6 @@ QLabel {
        <font>
         <family>Segoe UI</family>
         <pointsize>14</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -40,7 +31,7 @@ QLabel {
        <string>TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐẠI HỌC ĐÀ NẴNG</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -56,24 +47,10 @@ QLabel {
        <string>Thông tin đồ án</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_PBL">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>PBL2: Dự án cơ sở lập trình</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QLabel" name="label_ProjectName">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -84,31 +61,7 @@ QLabel {
           <string>Xây dựng ứng dụng quản lý bài báo khoa học</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_StudentsTitle">
-         <property name="text">
-          <string>Sinh viên thực hiện:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_Teacher">
-         <property name="text">
-          <string>GVHD: Đỗ Thị Tuyết Hoa</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
          </property>
         </widget>
        </item>
@@ -122,6 +75,35 @@ QLabel {
          </property>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_PBL">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>PBL2: Dự án cơ sở lập trình</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_Teacher">
+         <property name="text">
+          <string>GVHD: Đỗ Thị Tuyết Hoa</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_Student2">
          <property name="text">
@@ -132,13 +114,20 @@ QLabel {
          </property>
         </widget>
        </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_StudentsTitle">
+         <property name="text">
+          <string>Sinh viên thực hiện:</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>
     <item>
      <spacer name="verticalSpacer">
       <property name="orientation">
-       <enum>Qt::Vertical</enum>
+       <enum>Qt::Orientation::Vertical</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>
@@ -156,20 +145,8 @@ QLabel {
          <font>
           <family>Segoe UI</family>
           <pointsize>10</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-}
-QPushButton:hover {
-        background-color: #45a049;
-}</string>
         </property>
         <property name="text">
          <string>START</string>
@@ -182,20 +159,8 @@ QPushButton:hover {
          <font>
           <family>Segoe UI</family>
           <pointsize>10</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-        background-color: #f44336;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-}
-QPushButton:hover {
-        background-color: #d32f2f;
-}</string>
         </property>
         <property name="text">
          <string>STOP</string>
