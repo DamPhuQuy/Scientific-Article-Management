@@ -1,0 +1,82 @@
+[
+  {
+    "id": "db4ec36e-324a-477b-87f2-0dd4aabb048d",
+    "fullName": "S. Ben Jabra",
+    "country": "Tunisia",
+    "fieldOfStudy": "Computer Graphics",
+    "totalPublications": 32,
+    "articleId": ["4ab3735c-80f1-472d-b953-fa0557fed28b"]
+  },
+  {
+    "id": "eff2ad8f-b5e1-4339-867b-e7e87d3e7651",
+    "fullName": "Ezzeddine Zagrouba",
+    "country": "Tunisia",
+    "fieldOfStudy": "Computer Vision",
+    "totalPublications": 45,
+    "articleId": ["4ab3735c-80f1-472d-b953-fa0557fed28b"]
+  },
+  {
+    "id": "3195b257-0ab1-45be-91e2-e88ba6c62827",
+    "fullName": "Joaquin J. Torres",
+    "country": "Spain",
+    "fieldOfStudy": "Computational Neuroscience",
+    "totalPublications": 58,
+    "articleId": ["68932f33-728b-4580-af19-8b58853c9ad9"]
+  },
+  {
+    "id": "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
+    "fullName": "Jesus M. Cortes",
+    "country": "Spain",
+    "fieldOfStudy": "Neural Networks",
+    "totalPublications": 41,
+    "articleId": ["68932f33-728b-4580-af19-8b58853c9ad9"]
+  },
+  {
+    "id": "82844d84-2425-4017-8670-0f1e354e517a",
+    "fullName": "Joaquin Marro",
+    "country": "Spain",
+    "fieldOfStudy": "Statistical Physics",
+    "totalPublications": 76,
+    "articleId": ["68932f33-728b-4580-af19-8b58853c9ad9"]
+  },
+  {
+    "id": "2b94573f-5146-4b66-9016-310494fe9170",
+    "fullName": "Hilbert J. Kappen",
+    "country": "Netherlands",
+    "fieldOfStudy": "Machine Learning",
+    "totalPublications": 89,
+    "articleId": ["68932f33-728b-4580-af19-8b58853c9ad9"]
+  },
+  {
+    "id": "836a5c98-1418-4c1c-a580-c42d7bc51420",
+    "fullName": "Bo Tan",
+    "country": "China",
+    "fieldOfStudy": "Theoretical Computer Science",
+    "totalPublications": 25,
+    "articleId": ["e40e52c8-c3da-46fe-9cdd-1c2815222c99"]
+  },
+  {
+    "id": "b3585b46-d22b-4b2c-9317-dec3b72a3159",
+    "fullName": "Xiaojing Zheng",
+    "country": "China",
+    "fieldOfStudy": "Algorithms and Complexity",
+    "totalPublications": 34,
+    "articleId": ["e40e52c8-c3da-46fe-9cdd-1c2815222c99"]
+  },
+  {
+    "id": "8e907521-6e0d-4472-bb75-8968e541d262",
+    "fullName": "Maxime Crochemore",
+    "country": "France",
+    "fieldOfStudy": "Word Combinatorics",
+    "totalPublications": 110,
+    "articleId": ["cd85b889-63c9-4bab-9294-8fc8daccb7fc"]
+  },
+  {
+    "id": "c9fa938b-48a3-4841-996f-3a01697ee222",
+    "fullName": "Lucian Ilie",
+    "country": "Canada",
+    "fieldOfStudy": "String Algorithms",
+    "totalPublicPublications": 74,
+    "articleId": ["cd85b889-63c9-4bab-9294-8fc8daccb7fc"]
+  }
+]

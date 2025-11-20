@@ -12,7 +12,7 @@ vector<UserManager::User> UserManager::userList;
 HashMap<string, size_t> UserManager::usernameToIndex;
 
 bool UserManager::loadFromFile() {
-    ifstream file(Constants::AccountsData);
+    ifstream file(Constants::accountsData().toStdString());
     if (!file.is_open()) return false;
 
     json j;
@@ -44,7 +44,7 @@ bool UserManager::saveToFile() {
     }
 
     QDir().mkpath("../../data");
-    ofstream file(Constants::AccountsData);
+    ofstream file(Constants::accountsData().toStdString());
     if (!file.is_open()) return false;
     file << j.dump(4);
     return true;

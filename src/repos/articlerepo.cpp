@@ -6,7 +6,6 @@
 #include <regex>
 #include "../utils/nlohmann/json.hpp"
 #include <QDebug>
-#include <filesystem>
 #include <fstream>
 #include <algorithm>
 #include <exception>
@@ -48,11 +47,11 @@ vector<shared_ptr<Article>> ArticleRepo::getCopyAsVector() const {
 
 // need more fix
 void ArticleRepo::load() {
-    const fs::path file_path = Constants::DataSetJson;
+    string file_path = Constants::dataSetJson().toStdString();
     ifstream in(file_path);
 
     if (!in.is_open()) {
-        qCritical() << "Cannot open file for loading:" << QString::fromStdString(file_path.string());
+        qCritical() << "Cannot open file for loading:" << QString::fromStdString(file_path);
         return;
     }
 
@@ -94,7 +93,7 @@ void ArticleRepo::load() {
             }
 
             // ---- Tạo Article đúng loại ----
-            shared_ptr<Article> article = DataUtils::createArticle(
+            unique_ptr<Article> article = DataUtils::createArticle(
                 abstract,
                 n_citation,
                 title,
@@ -139,11 +138,11 @@ void ArticleRepo::save() {
             }
         });
 
-        const fs::path file_path = Constants::DataSetJson;
-        ofstream out(file_path, ios::trunc);
+        string file_path = Constants::dataSetJson().toStdString();
+        ofstream out(file_path);
 
         if (!out.is_open()) {
-            qCritical() << "Cannot open file for saving:" << QString::fromStdString(file_path.string());
+            qCritical() << "Cannot open file for saving:" << QString::fromStdString(file_path);
             return;
         }
 

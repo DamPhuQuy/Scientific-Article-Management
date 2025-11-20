@@ -33,12 +33,20 @@ HashMap<string, Author>& AuthorRepo::getAuthorContainer() {
     return authors_container;
 }
 
+vector<Author> AuthorRepo::getCopyAsVector() {
+    vector<Author> res;
+    authors_container.forEach([&res](const Author& author) -> void {
+        res.push_back(author);
+    });
+    return res;
+}
+
 // === Import & Export ===
 
 // Tải dữ liệu từ file JSON
 void AuthorRepo::load()
 {
-    const fs::path file_path = Constants::AuInfoJson;
+    string file_path = Constants::auInfoJson().toStdString();
     ifstream in(file_path);
 
     if (!in.is_open()) {
@@ -76,7 +84,7 @@ void AuthorRepo::load()
 
         qInfo() << "Loaded" << authors_container.size()
                 << "authors from"
-                << QString::fromStdString(file_path.filename().string());
+                << QString::fromStdString(file_path);
     }
     catch (const json::exception& e) {
         qCritical() << "JSON parse error:" << e.what();
@@ -102,9 +110,9 @@ void AuthorRepo::save() {
             });
         });
 
-        const fs::path file_path = Constants::AuInfoJson;
+        string file_path = Constants::auInfoJson().toStdString();
 
-        std::ofstream out(file_path, ios::trunc);
+        std::ofstream out(file_path);
         if (!out.is_open()) {
             qCritical() << "ERROR: Cannot open file: "
                         << QString::fromStdString(fs::absolute(file_path).string());
@@ -116,7 +124,7 @@ void AuthorRepo::save() {
 
         qInfo() << "Saved" << authors_container.size()
                 << "authors to"
-                << QString::fromStdString(file_path.filename().string());
+                << QString::fromStdString(file_path);
 
     } catch (const json::exception& e) {
         qCritical() << "JSON serialization error:" << e.what();

@@ -1,22 +1,24 @@
 #pragma once
 
-#include <filesystem>
-#include <string>
-
-namespace fs = std::filesystem;
-using namespace std;
+#include <QString>
+#include <QCoreApplication>
+#include <QDir>
 
 class Constants {
-private:
-    inline static const fs::path MODELS_PATH = "../../data";
 public:
-    static fs::path getModelsPath(const std::string &file) {
-        return MODELS_PATH / file;
+    static QString dataFolder() {
+        return QCoreApplication::applicationDirPath() + QDir::separator() + "data";
     }
 
-    inline static fs::path AccountsData = getModelsPath("accounts.json");
+    static QString accountsData() {
+        return dataFolder() + QDir::separator() + "accounts.json";
+    }
 
-    inline static fs::path DataSetJson = getModelsPath("dataset.json");
+    static QString dataSetJson() {
+        return dataFolder() + QDir::separator() + "dataset.json";
+    }
 
-    inline static fs::path AuInfoJson = getModelsPath("authors_dataset.json");
+    static QString auInfoJson() {
+        return dataFolder() + QDir::separator() + "authors_dataset.json";
+    }
 };

@@ -19,7 +19,7 @@ void MainWindow::on_btnStart_clicked() {
     emit requestStart();
 }
 
-void MainWindow::on_btnEnd_clicked() {
+void MainWindow::on_btnStop_clicked() {
     emit requestEnd();
 }
 

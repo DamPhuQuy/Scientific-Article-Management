@@ -1,0 +1,171 @@
+#include "articleinputdialog.h"
+#include "ui_articleinputdialog.h"
+#include "src/components/dialogs/msg/inform.h"
+#include "src/utils/datautils.h"
+#include "src/components/dialogs/author/listofauthorsdialog.h"
+
+ArticleInputDialog::ArticleInputDialog(RepositoryManager& repo, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::ArticleInputDialog)
+    , repo(repo)
+{
+    ui->setupUi(this);
+
+    connect(ui->inputType, SIGNAL(currentIndexChanged(int)),
+            ui->stackType, SLOT(setCurrentIndex(int)));
+
+    ui->stackType->setCurrentIndex(ui->inputType->currentIndex());
+}
+
+ArticleInputDialog::~ArticleInputDialog()
+{
+    delete ui;
+}
+
+void ArticleInputDialog::on_btnSave_clicked()
+{
+    if (ui->inputTitle->toPlainText().trimmed().isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập title", "Lỗi");
+        return;
+    }
+    if (ui->inputVenue->toPlainText().trimmed().isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập venue", "Lỗi");
+        return;
+    }
+
+    QString title = ui->inputTitle->toPlainText();
+    QString abstract = ui->inputAbstract->toPlainText();
+    QString venue = ui->inputVenue->toPlainText();
+    int year = ui->inputYear->value();
+    int n_citation = ui->inputCitations->value();
+
+    ArticleStatus status;
+    int statusIndex = ui->inputStatus->currentIndex();
+    switch (statusIndex) {
+        case 0: status = ArticleStatus::DRAFT; break;
+        case 1: status = ArticleStatus::SUBMITTED; break;
+        case 2: status = ArticleStatus::UNDER_REVIEW; break;
+        case 3: status = ArticleStatus::REVISIONS; break;
+        case 4: status = ArticleStatus::ACCEPTED; break;
+        case 5: status = ArticleStatus::REJECTED; break;
+        case 6: status = ArticleStatus::PUBLISHED; break;
+        default: status = ArticleStatus::DRAFT; break;
+    }
+
+    QString refsText = ui->inputRefs->toPlainText();
+    QStringList refList = refsText.split('\n', Qt::SkipEmptyParts);
+    vector<string> refs;
+    refs.reserve(refList.size());
+    for (const QString &line : refList) {
+        refs.push_back(line.trimmed().toStdString());
+    }
+
+    Type type;
+    int typeIndex = ui->inputType->currentIndex();
+
+    double impactFactor = 0.0;
+    int qRank = 0;
+    double sjr = 0.0;
+    int hIndex = 0;
+    QString confRank = "";
+    QString location = "";
+    double acceptRate = 0.0;
+
+    switch (typeIndex) {
+    case 0: // SCIE
+        type = Type::SCIE;
+        impactFactor = ui->inputIF->value();
+        qRank = ui->inputQRank->value();
+        qDebug() << "Type: SCIE | IF:" << impactFactor << "| Q:" << qRank;
+        break;
+
+    case 1: // SCOPUS
+        type = Type::SCOPUS;
+        sjr = ui->inputSJR->value();
+        hIndex = ui->inputHIndex->value();
+        qDebug() << "Type: SCOPUS | SJR:" << sjr << "| H-Index:" << hIndex;
+        break;
+
+    case 2: // CONFERENCE
+        type = Type::CONFERENCE;
+        confRank = ui->inputConfRank->text();
+        location = ui->inputLocation->text();
+        acceptRate = ui->inputAcceptRate->value();
+        qDebug() << "Type: CONFERENCE |ed Rank:" << confRank << "| Loc:" << location;
+        break;
+
+    case 3: // OTHER
+        type = Type::OTHER;
+
+        qDebug() << "Type: OTHER";
+        break;
+    }
+
+    if (m_selectedAuthorIds.empty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng chọn ít nhất một tác giả!", "Thiếu thông tin");
+        return;
+    }
+
+    unique_ptr<Article> article = DataUtils::createArticle(
+        abstract.toStdString(),
+        n_citation,
+        title.toStdString(),
+        venue.toStdString(),
+        year,
+        "",
+        type,
+        status,
+        refs,
+        m_selectedAuthorIds,
+        confRank.toStdString(),
+        location.toStdString(),
+        acceptRate,
+        impactFactor,
+        qRank,
+        sjr,
+        hIndex
+    );
+
+    qDebug() << "Saved Article:" << title << "Year:" << year;
+    accepted();
+}
+
+
+void ArticleInputDialog::on_btnCancel_clicked()
+{
+    rejected();
+}
+
+
+void ArticleInputDialog::on_inputType_currentIndexChanged(int index)
+{
+    ui->stackType->setCurrentIndex(index);
+}
+
+void ArticleInputDialog::on_AuthorBtn_clicked()
+{
+    ListOfAuthorsDialog authorDialog(repo, this);
+
+    // (Tùy chọn) Nếu bạn muốn truyền danh sách các tác giả ĐÃ CHỌN trước đó vào
+    // để dialog tick sẵn, bạn cần viết thêm hàm setCheckedIds cho ListOfAuthorsDialog.
+    // Ví dụ: authorDialog.setCheckedIds(m_selectedAuthorIds);
+
+    // 2. Hiển thị Dialog và chờ kết quả (Modal)
+    if (authorDialog.exec() == QDialog::Accepted) {
+
+        // 3. Lấy dữ liệu về khi người dùng bấm "Close" hoặc "OK" (Accepted)
+        m_selectedAuthorIds = authorDialog.getSelectedAuthorIds();
+
+        // 4. Cập nhật giao diện để người dùng biết đã chọn bao nhiêu người
+        if (m_selectedAuthorIds.empty()) {
+            ui->AuthorBtn->setText("Chọn tác giả (Chưa chọn ai)");
+        } else {
+            QString label = QString("Đã chọn %1 tác giả").arg(m_selectedAuthorIds.size());
+            ui->AuthorBtn->setText(label);
+        }
+
+        // Debug log để kiểm tra
+        qDebug() << "Selected Authors Count:" << m_selectedAuthorIds.size();
+    }
+}
+

@@ -23,7 +23,7 @@ signals:
 
 private slots:
     void on_btnStart_clicked();
-    void on_btnEnd_clicked();
+    void on_btnStop_clicked();
 
 private:
     Ui::MainWindow *ui;

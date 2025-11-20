@@ -1,5 +1,6 @@
 #include "src/components/appnav.h"
 #include "src/repos/repomanager.h"
+#include "src/utils/constants.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -18,6 +18,7 @@ public:
     void remove(const string& id);
 
     HashMap<string, Author>& getAuthorContainer();
+    vector<Author> getCopyAsVector();
 
     // Import and Export
     void load();

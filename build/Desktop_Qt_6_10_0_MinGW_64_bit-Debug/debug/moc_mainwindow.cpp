@@ -43,7 +43,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "",
         "requestEnd",
         "on_btnStart_clicked",
-        "on_btnEnd_clicked"
+        "on_btnStop_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -53,7 +53,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'on_btnStart_clicked'
         QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnEnd_clicked'
+        // Slot 'on_btnStop_clicked'
         QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
@@ -81,7 +81,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->requestStart(); break;
         case 1: _t->requestEnd(); break;
         case 2: _t->on_btnStart_clicked(); break;
-        case 3: _t->on_btnEnd_clicked(); break;
+        case 3: _t->on_btnStop_clicked(); break;
         default: ;
         }
     }

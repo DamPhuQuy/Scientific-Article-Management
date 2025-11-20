@@ -2,6 +2,7 @@
 #include "ui_loginform.h"
 #include "src/components/dialogs/msg/inform.h"
 #include "src/utils/usermanager.h"
+#include <QDebug>
 
 LoginForm::LoginForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -37,6 +38,15 @@ void LoginForm::on_signInButton_clicked()
         ui->passwordEdit->setFocus();
         return;
     }
+
+    if (username.isEmpty() && password.isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng điền thông tin đầy đủ", "Lỗi đăng nhập");
+        ui->usernameEdit->setFocus();
+        ui->passwordEdit->setFocus();
+        return;
+    }
+
+    qDebug() << "Username: " << username << " - " << "Password: " << password;
 
     bool isValid = UserManager::login(username, password);
 

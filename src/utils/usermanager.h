@@ -6,11 +6,10 @@
 
 class UserManager {
 private:
-    // Dữ liệu thật: vector các user (dễ mở rộng)
     struct User {
         std::string username;
         std::string password;
-        // Sau này thêm: std::string email, role, etc.
+        // std::string email, role, etc.
     };
 
     static std::vector<User> userList;

@@ -10,17 +10,11 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    src/components/dialogs/article/articlestatistics.cpp \
+    src/components/dialogs/article/articleinputdialog.cpp \
+    src/components/dialogs/author/authordetailsdialog.cpp \
+    src/components/dialogs/author/listofauthorsdialog.cpp \
     src/components/mainwindow.cpp \
     src/components/appnav.cpp \
-    # src/components/dialogs/article/articledescription.cpp \
-    # src/components/dialogs/articleinput.cpp \
-    # src/components/dialogs/articleremove.cpp \
-    # src/components/dialogs/articleupdate.cpp \
-    # src/components/dialogs/author/authordescription.cpp \
-    # src/components/dialogs/author/authorinput.cpp \
-    # src/components/dialogs/author/authorremove.cpp \
-    # src/components/dialogs/author/authorupdate.cpp \
     src/components/dialogs/msg/inform.cpp \
     src/components/widgets/article/articleform.cpp \
     src/components/widgets/author/authorform.cpp \
@@ -39,17 +33,11 @@ SOURCES += \
     src/utils/uuid_generator.cpp
 
 HEADERS += \
-    src/components/dialogs/article/articlestatistics.h \
+    src/components/dialogs/article/articleinputdialog.h \
+    src/components/dialogs/author/authordetailsdialog.h \
+    src/components/dialogs/author/listofauthorsdialog.h \
     src/components/mainwindow.h \
     src/components/appnav.h \
-    # src/components/dialogs/article/articledescription.h \
-    # src/components/dialogs/articleinput.h \
-    # src/components/dialogs/articleremove.h \
-    # src/components/dialogs/articleupdate.h \
-    # src/components/dialogs/author/authordescription.h \
-    # src/components/dialogs/author/authorinput.h \
-    # src/components/dialogs/author/authorremove.h \
-    # src/components/dialogs/author/authorupdate.h \
     src/components/dialogs/msg/inform.h \
     src/components/widgets/article/articleform.h \
     src/components/widgets/author/authorform.h \
@@ -73,17 +61,10 @@ HEADERS += \
     src/utils/uuid_generator.h
 
 FORMS += \
-    src/components/dialogs/article/articlestatistics.ui \
+    src/components/dialogs/article/articleinputdialog.ui \
+    src/components/dialogs/author/authordetailsdialog.ui \
+    src/components/dialogs/author/listofauthorsdialog.ui \
     src/components/mainwindow.ui \
-    # src/components/dialogs/article/articledescription.ui \
-    # src/components/dialogs/articleinput.ui \
-    # src/components/dialogs/articleremove.ui \
-    # src/components/dialogs/articlestatistics.ui \
-    # src/components/dialogs/articleupdate.ui \
-    # src/components/dialogs/author/authordescription.ui \
-    # src/components/dialogs/author/authorinput.ui \
-    # src/components/dialogs/author/authorremove.ui \
-    # src/components/dialogs/author/authorupdate.ui \
     src/components/widgets/article/articleform.ui \
     src/components/widgets/author/authorform.ui \
     src/components/widgets/login/loginform.ui \
@@ -95,9 +76,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    data/dataset.json
-    data/author_data.json
-    data/accounts.json
+    # data/dataset.json
+    # data/author_data.json
+    # data/accounts.json
 
 RESOURCES += \
     resources.qrc
