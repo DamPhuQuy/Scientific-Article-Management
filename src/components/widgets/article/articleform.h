@@ -33,6 +33,12 @@ private slots:
 
     void on_backBtn_clicked();
 
+    void on_searchLineEdit_textChanged(const QString &arg1);
+
+    void on_yearFilterComboBox_currentTextChanged(const QString &arg1);
+
+    void on_typeFilterComboBox_currentTextChanged(const QString &arg1);
+
 private:
     RepositoryManager& repo;
     Ui::ArticleForm *ui;
@@ -46,9 +52,10 @@ private:
 
     QString filterTitle;
     QString filterYear;
-    QString Type;
+    QString filterType;
 
     bool passesAllFilters(int row) const;
+    void applyYearSorting();
     void applyAllFilters();
 };
 

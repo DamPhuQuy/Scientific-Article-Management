@@ -72,7 +72,7 @@
       <item>
        <widget class="QLabel" name="welcomeLabel">
         <property name="text">
-         <string>Xin chào!</string>
+         <string>Welcome!</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
