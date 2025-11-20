@@ -133,7 +133,7 @@ void ArticleInputDialog::on_btnSave_clicked()
 
 void ArticleInputDialog::on_btnCancel_clicked()
 {
-    rejected();
+    reject();
 }
 
 
@@ -146,11 +146,6 @@ void ArticleInputDialog::on_AuthorBtn_clicked()
 {
     ListOfAuthorsDialog authorDialog(repo, this);
 
-    // (Tùy chọn) Nếu bạn muốn truyền danh sách các tác giả ĐÃ CHỌN trước đó vào
-    // để dialog tick sẵn, bạn cần viết thêm hàm setCheckedIds cho ListOfAuthorsDialog.
-    // Ví dụ: authorDialog.setCheckedIds(m_selectedAuthorIds);
-
-    // 2. Hiển thị Dialog và chờ kết quả (Modal)
     if (authorDialog.exec() == QDialog::Accepted) {
 
         // 3. Lấy dữ liệu về khi người dùng bấm "Close" hoặc "OK" (Accepted)

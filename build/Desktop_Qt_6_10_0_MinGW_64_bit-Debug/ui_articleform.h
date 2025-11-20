@@ -30,10 +30,8 @@ public:
     QGridLayout *gridLayout_2;
     QWidget *widget_6;
     QGridLayout *gridLayout;
-    QPushButton *newArticleBtn;
-    QPushButton *updateArtticleBtn;
     QPushButton *RemoveArticleBtn;
-    QPushButton *statsBtn;
+    QPushButton *newArticleBtn;
     QListView *articleListView;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout;
@@ -67,25 +65,17 @@ public:
         widget_6->setObjectName("widget_6");
         gridLayout = new QGridLayout(widget_6);
         gridLayout->setObjectName("gridLayout");
-        newArticleBtn = new QPushButton(widget_6);
-        newArticleBtn->setObjectName("newArticleBtn");
-
-        gridLayout->addWidget(newArticleBtn, 0, 0, 1, 1);
-
-        updateArtticleBtn = new QPushButton(widget_6);
-        updateArtticleBtn->setObjectName("updateArtticleBtn");
-
-        gridLayout->addWidget(updateArtticleBtn, 0, 1, 1, 2);
-
         RemoveArticleBtn = new QPushButton(widget_6);
         RemoveArticleBtn->setObjectName("RemoveArticleBtn");
+        RemoveArticleBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         gridLayout->addWidget(RemoveArticleBtn, 1, 0, 1, 2);
 
-        statsBtn = new QPushButton(widget_6);
-        statsBtn->setObjectName("statsBtn");
+        newArticleBtn = new QPushButton(widget_6);
+        newArticleBtn->setObjectName("newArticleBtn");
+        newArticleBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
-        gridLayout->addWidget(statsBtn, 1, 2, 1, 1);
+        gridLayout->addWidget(newArticleBtn, 0, 0, 1, 1);
 
 
         gridLayout_2->addWidget(widget_6, 0, 3, 1, 1);
@@ -96,7 +86,7 @@ public:
         articleListView->setFlow(QListView::Flow::LeftToRight);
         articleListView->setResizeMode(QListView::ResizeMode::Adjust);
         articleListView->setSpacing(16);
-        articleListView->setViewMode(QListView::ViewMode::IconMode);
+        articleListView->setViewMode(QListView::ViewMode::ListMode);
         articleListView->setWordWrap(true);
 
         gridLayout_2->addWidget(articleListView, 1, 0, 1, 4);
@@ -120,6 +110,7 @@ public:
         yearFilterComboBox->addItem(QString());
         yearFilterComboBox->addItem(QString());
         yearFilterComboBox->setObjectName("yearFilterComboBox");
+        yearFilterComboBox->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_4->addWidget(yearFilterComboBox);
 
@@ -130,6 +121,7 @@ public:
         typeFilterComboBox->addItem(QString());
         typeFilterComboBox->addItem(QString());
         typeFilterComboBox->setObjectName("typeFilterComboBox");
+        typeFilterComboBox->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_4->addWidget(typeFilterComboBox);
 
@@ -208,10 +200,8 @@ public:
     void retranslateUi(QWidget *ArticleForm)
     {
         ArticleForm->setWindowTitle(QCoreApplication::translate("ArticleForm", "Article Menu", nullptr));
-        newArticleBtn->setText(QCoreApplication::translate("ArticleForm", "New Article", nullptr));
-        updateArtticleBtn->setText(QCoreApplication::translate("ArticleForm", "Update Article", nullptr));
         RemoveArticleBtn->setText(QCoreApplication::translate("ArticleForm", "Remove Article", nullptr));
-        statsBtn->setText(QCoreApplication::translate("ArticleForm", "Statistics", nullptr));
+        newArticleBtn->setText(QCoreApplication::translate("ArticleForm", "New Article", nullptr));
         label->setText(QCoreApplication::translate("ArticleForm", "Filter", nullptr));
         yearFilterComboBox->setItemText(0, QCoreApplication::translate("ArticleForm", "All years", nullptr));
         yearFilterComboBox->setItemText(1, QCoreApplication::translate("ArticleForm", "Newest first", nullptr));

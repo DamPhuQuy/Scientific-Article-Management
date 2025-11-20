@@ -96,6 +96,9 @@ public:
     void setRefs(const vector<string>& r) {
         this->refs = r;
     }
+    void setAuthors(const vector<string>& aus) {
+        this->authors = aus;
+    }
 
     // workflow
     string submit();

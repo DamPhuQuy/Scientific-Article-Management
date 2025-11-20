@@ -39,14 +39,12 @@ vector<shared_ptr<Article>> ArticleRepo::getCopyAsVector() const {
     res.reserve(articles_container.size());
 
     articles_container.forEach([&res](const shared_ptr<Article>& article) {
-        res.push_back(article->clone());
+        res.push_back(article);
     });
 
     return res;
 }
 
-
-// need more fix
 void ArticleRepo::load() {
     string file_path = Constants::dataSetJson();
     QDir().mkpath("../../../data");
@@ -113,7 +111,8 @@ void ArticleRepo::load() {
                 item.value("q_rank", 0),
                 item.value("sjr", 0.0),
                 item.value("hIndex", 0)
-                );
+            );
+
 
             // Lưu vào map
             if (article && !id.empty()) {
@@ -396,4 +395,24 @@ double ArticleRepo::averageCitations() const {
         sum += article->getCitation();
     });
     return static_cast<double>(sum) / articles_container.size();
+}
+
+void ArticleRepo::update(shared_ptr<Article> article) {
+    if (!article || article->getId().empty()) {
+        qWarning() << "update(): Invalid article or empty ID";
+        return;
+    }
+
+    string id = article->getId();
+
+    bool isExists = this->articles_container.containsKey(id);
+
+    if (isExists) {
+        articles_container[id] = std::move(article);
+        qDebug() << "Article updated successfully:" << QString::fromStdString(id);
+    }
+    else {
+        qWarning() << "update(): Article not found:" << QString::fromStdString(id);
+        return;
+    }
 }

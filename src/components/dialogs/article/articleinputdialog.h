@@ -2,6 +2,7 @@
 #define ARTICLEINPUTDIALOG_H
 
 #include <QDialog>
+#include <QStandardItem>
 #include "src/repos/repomanager.h"
 
 namespace Ui {

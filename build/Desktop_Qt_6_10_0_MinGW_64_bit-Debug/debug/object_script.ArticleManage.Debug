@@ -1,6 +1,8 @@
 debug/main.o
 debug/appnav.o
+debug/articledetailsdialog.o
 debug/articleinputdialog.o
+debug/articleupdatedialog.o
 debug/authordetailsdialog.o
 debug/listofauthorsdialog.o
 debug/inform.o
@@ -22,7 +24,9 @@ debug/usermanager.o
 debug/uuid_generator.o
 debug/qrc_resources.o
 debug/moc_appnav.o
+debug/moc_articledetailsdialog.o
 debug/moc_articleinputdialog.o
+debug/moc_articleupdatedialog.o
 debug/moc_authordetailsdialog.o
 debug/moc_listofauthorsdialog.o
 debug/moc_mainwindow.o

@@ -11,7 +11,9 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     src/components/appnav.cpp \
+    src/components/dialogs/article/articledetailsdialog.cpp \
     src/components/dialogs/article/articleinputdialog.cpp \
+    src/components/dialogs/article/articleupdatedialog.cpp \
     src/components/dialogs/author/authordetailsdialog.cpp \
     src/components/dialogs/author/listofauthorsdialog.cpp \
     src/components/dialogs/msg/inform.cpp \
@@ -34,7 +36,9 @@ SOURCES += \
 
 HEADERS += \
     src/components/appnav.h \
+    src/components/dialogs/article/articledetailsdialog.h \
     src/components/dialogs/article/articleinputdialog.h \
+    src/components/dialogs/article/articleupdatedialog.h \
     src/components/dialogs/author/authordetailsdialog.h \
     src/components/dialogs/author/listofauthorsdialog.h \
     src/components/dialogs/msg/inform.h \
@@ -61,7 +65,9 @@ HEADERS += \
     src/utils/uuid_generator.h
 
 FORMS += \
+    src/components/dialogs/article/articledetailsdialog.ui \
     src/components/dialogs/article/articleinputdialog.ui \
+    src/components/dialogs/article/articleupdatedialog.ui \
     src/components/dialogs/author/authordetailsdialog.ui \
     src/components/dialogs/author/listofauthorsdialog.ui \
     src/components/mainwindow.ui \

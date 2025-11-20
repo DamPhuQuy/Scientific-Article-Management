@@ -2,6 +2,7 @@
 #define ARTICLEFORM_H
 
 #include <QWidget>
+#include <QStandardItem>
 #include "src/repos/repomanager.h"
 
 namespace Ui {
@@ -19,24 +20,36 @@ public:
 signals:
     void requestBack();
     void openArticleInputDialog();
-    void openArtilceStatisticsDialog();
-    void openArticleUpdateArticDialog();
     void openArticleRemoveArticleDialog();
 
 private slots:
+    void on_articleListView_doubleClicked(const QModelIndex &index);
+
     void on_newArticleBtn_clicked();
-
-    void on_statsBtn_clicked();
-
-    void on_updateArtticleBtn_clicked();
 
     void on_RemoveArticleBtn_clicked();
 
     void on_searchBtn_clicked();
 
+    void on_backBtn_clicked();
+
 private:
     RepositoryManager& repo;
     Ui::ArticleForm *ui;
+
+    QStandardItemModel* model;
+
+    vector<shared_ptr<Article>> articleList;
+
+    void initData();
+    void loadArticlesToView();
+
+    QString filterTitle;
+    QString filterYear;
+    QString Type;
+
+    bool passesAllFilters(int row) const;
+    void applyAllFilters();
 };
 
 #endif // ARTICLEFORM_H

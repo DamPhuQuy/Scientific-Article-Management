@@ -42,14 +42,14 @@ template <> constexpr inline auto ArticleForm::qt_create_metaobjectdata<qt_meta_
         "requestBack",
         "",
         "openArticleInputDialog",
-        "openArtilceStatisticsDialog",
-        "openArticleUpdateArticDialog",
         "openArticleRemoveArticleDialog",
+        "on_articleListView_doubleClicked",
+        "QModelIndex",
+        "index",
         "on_newArticleBtn_clicked",
-        "on_statsBtn_clicked",
-        "on_updateArtticleBtn_clicked",
         "on_RemoveArticleBtn_clicked",
-        "on_searchBtn_clicked"
+        "on_searchBtn_clicked",
+        "on_backBtn_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -57,21 +57,19 @@ template <> constexpr inline auto ArticleForm::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'openArticleInputDialog'
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'openArtilceStatisticsDialog'
-        QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'openArticleUpdateArticDialog'
-        QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'openArticleRemoveArticleDialog'
-        QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'on_articleListView_doubleClicked'
+        QtMocHelpers::SlotData<void(const QModelIndex &)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 6, 7 },
+        }}),
         // Slot 'on_newArticleBtn_clicked'
-        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_statsBtn_clicked'
         QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_updateArtticleBtn_clicked'
-        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_RemoveArticleBtn_clicked'
-        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_searchBtn_clicked'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_backBtn_clicked'
         QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
@@ -98,14 +96,12 @@ void ArticleForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         switch (_id) {
         case 0: _t->requestBack(); break;
         case 1: _t->openArticleInputDialog(); break;
-        case 2: _t->openArtilceStatisticsDialog(); break;
-        case 3: _t->openArticleUpdateArticDialog(); break;
-        case 4: _t->openArticleRemoveArticleDialog(); break;
-        case 5: _t->on_newArticleBtn_clicked(); break;
-        case 6: _t->on_statsBtn_clicked(); break;
-        case 7: _t->on_updateArtticleBtn_clicked(); break;
-        case 8: _t->on_RemoveArticleBtn_clicked(); break;
-        case 9: _t->on_searchBtn_clicked(); break;
+        case 2: _t->openArticleRemoveArticleDialog(); break;
+        case 3: _t->on_articleListView_doubleClicked((*reinterpret_cast<std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 4: _t->on_newArticleBtn_clicked(); break;
+        case 5: _t->on_RemoveArticleBtn_clicked(); break;
+        case 6: _t->on_searchBtn_clicked(); break;
+        case 7: _t->on_backBtn_clicked(); break;
         default: ;
         }
     }
@@ -114,11 +110,7 @@ void ArticleForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             return;
         if (QtMocHelpers::indexOfMethod<void (ArticleForm::*)()>(_a, &ArticleForm::openArticleInputDialog, 1))
             return;
-        if (QtMocHelpers::indexOfMethod<void (ArticleForm::*)()>(_a, &ArticleForm::openArtilceStatisticsDialog, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (ArticleForm::*)()>(_a, &ArticleForm::openArticleUpdateArticDialog, 3))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (ArticleForm::*)()>(_a, &ArticleForm::openArticleRemoveArticleDialog, 4))
+        if (QtMocHelpers::indexOfMethod<void (ArticleForm::*)()>(_a, &ArticleForm::openArticleRemoveArticleDialog, 2))
             return;
     }
 }
@@ -142,14 +134,14 @@ int ArticleForm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 8;
     }
     return _id;
 }
@@ -167,20 +159,8 @@ void ArticleForm::openArticleInputDialog()
 }
 
 // SIGNAL 2
-void ArticleForm::openArtilceStatisticsDialog()
-{
-    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
-}
-
-// SIGNAL 3
-void ArticleForm::openArticleUpdateArticDialog()
-{
-    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
-}
-
-// SIGNAL 4
 void ArticleForm::openArticleRemoveArticleDialog()
 {
-    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 QT_WARNING_POP

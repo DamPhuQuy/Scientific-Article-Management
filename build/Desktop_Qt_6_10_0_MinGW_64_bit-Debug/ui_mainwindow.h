@@ -76,6 +76,8 @@ public:
         label_ProjectName = new QLabel(groupBoxInfo);
         label_ProjectName->setObjectName("label_ProjectName");
         QFont font2;
+        font2.setFamilies({QString::fromUtf8("Segoe UI")});
+        font2.setPointSize(10);
         font2.setBold(true);
         label_ProjectName->setFont(font2);
         label_ProjectName->setStyleSheet(QString::fromUtf8("color: #800000;"));
@@ -130,17 +132,15 @@ public:
         horizontalLayout_Buttons->setObjectName("horizontalLayout_Buttons");
         btnStart = new QPushButton(centralwidget);
         btnStart->setObjectName("btnStart");
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Segoe UI")});
-        font3.setPointSize(10);
-        font3.setBold(true);
-        btnStart->setFont(font3);
+        btnStart->setFont(font2);
+        btnStart->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_Buttons->addWidget(btnStart);
 
         btnStop = new QPushButton(centralwidget);
         btnStop->setObjectName("btnStop");
-        btnStop->setFont(font3);
+        btnStop->setFont(font2);
+        btnStop->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_Buttons->addWidget(btnStop);
 

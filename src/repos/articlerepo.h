@@ -44,6 +44,8 @@ public:
     vector<shared_ptr<Article>> sortedByHIndex(bool ascending=true) const;
 
     // Update
+    void update(shared_ptr<Article> article);
+
     vector<shared_ptr<Article>>updateTitle(const string& id, const string& title);
     vector<shared_ptr<Article>>updateVenue(const string& id, const string& venue);
     vector<shared_ptr<Article>>updateYear(const string& id, const int& year);

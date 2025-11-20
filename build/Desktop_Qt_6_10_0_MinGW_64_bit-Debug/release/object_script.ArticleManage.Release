@@ -1,6 +1,8 @@
 release/main.o
 release/appnav.o
+release/articledetailsdialog.o
 release/articleinputdialog.o
+release/articleupdatedialog.o
 release/authordetailsdialog.o
 release/listofauthorsdialog.o
 release/inform.o
@@ -22,7 +24,9 @@ release/usermanager.o
 release/uuid_generator.o
 release/qrc_resources.o
 release/moc_appnav.o
+release/moc_articledetailsdialog.o
 release/moc_articleinputdialog.o
+release/moc_articleupdatedialog.o
 release/moc_authordetailsdialog.o
 release/moc_listofauthorsdialog.o
 release/moc_mainwindow.o

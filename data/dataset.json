@@ -1,7 +1,7 @@
 [
   {
     "id": "4ab3735c-80f1-472d-b953-fa0557fed28b",
-    "type": 2,
+    "type": 3,
     "title": "A new approach of 3D watermarking based on image segmentation",
     "abstract": "In this paper, a robust 3D triangular mesh watermarking algorithm based on 3D segmentation is proposed. In this algorithm three classes of watermarking are combined. First, we segment the original image to many different regions. Then we mark every type of region with the corresponding algorithm based on their curvature value. The experiments show that our watermarking is robust against numerous attacks including RST transformations, smoothing, additive random noise, cropping, simplification and remeshing.",
     "venue": "International Symposium on Computers and Communications",
@@ -47,7 +47,7 @@
   },
   {
     "id": "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
-    "type": 3,
+    "type": 2,
     "title": "Efficient Construction of Balanced Ternary Sequences",
     "abstract": "We present an efficient algorithm for constructing balanced sequences over 3 letters using continued fraction expansions. The method runs in O(n log n) and generates sequences with minimal imbalance.",
     "venue": "WORDS 2023",

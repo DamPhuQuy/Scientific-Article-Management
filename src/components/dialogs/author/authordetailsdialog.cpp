@@ -3,9 +3,10 @@
 
 using namespace std;
 
-AuthorDetailsDialog::AuthorDetailsDialog(QWidget *parent)
+AuthorDetailsDialog::AuthorDetailsDialog(RepositoryManager& repo, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AuthorDetailsDialog)
+    , repo(repo)
 {
     ui->setupUi(this);
 }
@@ -17,10 +18,8 @@ AuthorDetailsDialog::~AuthorDetailsDialog()
 
 void AuthorDetailsDialog::setAuthorInfo(QString id, QString name, QString country, QString field, int pubCount)
 {
-    // Gán dữ liệu vào các Label tương ứng trong UI
     ui->labelDetailName->setText(name);
 
-    // Chuyển số sang chuỗi bằng QString::number
     ui->labelDetailId->setText(id);
 
     ui->labelDetailCountry->setText(country);

@@ -54,7 +54,7 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
 
     /* ArticleForm */
     // request back (articleform back to loginForm)
-    connect(articleform, &ArticleForm::requestBack, this, [this]() -> void { goTo(Page::ArticleFormPage); });
+    connect(articleform, &ArticleForm::requestBack, this, [this]() -> void { goTo(Page::LoginPage); });
 }
 
 void AppNav::goToHelper(Page page) {

@@ -71,6 +71,7 @@ public:
 
         btnApplyFilter = new QPushButton(groupFilter);
         btnApplyFilter->setObjectName("btnApplyFilter");
+        btnApplyFilter->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         hboxLayout->addWidget(btnApplyFilter);
 
@@ -96,6 +97,7 @@ public:
         comboCountry = new QComboBox(groupFilter);
         comboCountry->addItem(QString());
         comboCountry->setObjectName("comboCountry");
+        comboCountry->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         comboCountry->setEditable(true);
         comboCountry->setInsertPolicy(QComboBox::InsertPolicy::NoInsert);
 
@@ -104,6 +106,7 @@ public:
         comboField = new QComboBox(groupFilter);
         comboField->addItem(QString());
         comboField->setObjectName("comboField");
+        comboField->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         comboField->setEditable(true);
 
         gridLayout->addWidget(comboField, 2, 1, 1, 1);
@@ -116,6 +119,7 @@ public:
         QFont font;
         font.setPointSize(10);
         listViewAuthors->setFont(font);
+        listViewAuthors->viewport()->setProperty("cursor", QVariant(QCursor(Qt::CursorShape::PointingHandCursor)));
         listViewAuthors->setAlternatingRowColors(true);
         listViewAuthors->setSelectionMode(QAbstractItemView::SelectionMode::ExtendedSelection);
         listViewAuthors->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);

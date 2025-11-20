@@ -86,7 +86,6 @@ void ListOfAuthorsDialog::loadAuthorsToView() {
     model->clear();
 
     for (const auto& author : authorList) {
-        // Tạo Item hiển thị Tên
         QStandardItem *item = new QStandardItem(QString::fromStdString(author.getFullName()));
 
         // SELECT BOX
@@ -108,7 +107,6 @@ void ListOfAuthorsDialog::on_listViewAuthors_doubleClicked(const QModelIndex &in
 {
     string authorId = index.data(Qt::UserRole).toString().toStdString();
 
-    // 2. Tìm thông tin tác giả từ list gốc dựa trên ID
     Author selectedAuthor;
     bool found = false;
     for(const auto& auth : authorList) {
@@ -121,8 +119,7 @@ void ListOfAuthorsDialog::on_listViewAuthors_doubleClicked(const QModelIndex &in
 
     if (!found) return;
 
-    // 3. Khởi tạo Dialog Chi tiết
-    AuthorDetailsDialog detailDlg(this);
+    AuthorDetailsDialog detailDlg(repo, this);
 
     detailDlg.setAuthorInfo(
         QString::fromStdString(selectedAuthor.getId()),
@@ -132,7 +129,7 @@ void ListOfAuthorsDialog::on_listViewAuthors_doubleClicked(const QModelIndex &in
         selectedAuthor.getTotalPublications()
     );
 
-    detailDlg.exec(); // Hiển thị Dialog dạng Modal
+    detailDlg.exec();
 }
 
 void ListOfAuthorsDialog::setCheckedAuthorIds(const vector<Author> &authors)
@@ -206,7 +203,6 @@ bool ListOfAuthorsDialog::passesAllFilters(int row) const
 
     // line search
     if (!filterText.isEmpty()) {
-        // tinh caseInsensitive
         if (!name.contains(filterText, Qt::CaseInsensitive)) {
             return false;
         }
@@ -231,6 +227,8 @@ bool ListOfAuthorsDialog::passesAllFilters(int row) const
 
 void ListOfAuthorsDialog::applyAllFilters()
 {
+    // each row is each author
+    // hide author which is not statisfied
     for (int row = 0; row < model->rowCount(); ++row) {
         bool visible = passesAllFilters(row);
         ui->listViewAuthors->setRowHidden(row, !visible);

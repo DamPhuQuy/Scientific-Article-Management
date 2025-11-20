@@ -118,6 +118,7 @@ public:
 
         okBtn = new QPushButton(AuthorDetailsDialog);
         okBtn->setObjectName("okBtn");
+        okBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
         horizontalLayout_2->addWidget(okBtn);
 
