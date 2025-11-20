@@ -10,12 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    src/components/appnav.cpp \
     src/components/dialogs/article/articleinputdialog.cpp \
     src/components/dialogs/author/authordetailsdialog.cpp \
     src/components/dialogs/author/listofauthorsdialog.cpp \
-    src/components/mainwindow.cpp \
-    src/components/appnav.cpp \
     src/components/dialogs/msg/inform.cpp \
+    src/components/mainwindow.cpp \
     src/components/widgets/article/articleform.cpp \
     src/components/widgets/author/authorform.cpp \
     src/components/widgets/login/loginform.cpp \
@@ -33,12 +33,12 @@ SOURCES += \
     src/utils/uuid_generator.cpp
 
 HEADERS += \
+    src/components/appnav.h \
     src/components/dialogs/article/articleinputdialog.h \
     src/components/dialogs/author/authordetailsdialog.h \
     src/components/dialogs/author/listofauthorsdialog.h \
-    src/components/mainwindow.h \
-    src/components/appnav.h \
     src/components/dialogs/msg/inform.h \
+    src/components/mainwindow.h \
     src/components/widgets/article/articleform.h \
     src/components/widgets/author/authorform.h \
     src/components/widgets/login/loginform.h \
@@ -53,8 +53,8 @@ HEADERS += \
     src/repos/articlerepo.h \
     src/repos/authorrepo.h \
     src/repos/repomanager.h \
-    src/utils/datautils.h \
     src/utils/constants.h \
+    src/utils/datautils.h \
     src/utils/exception/ArticleException.h \
     src/utils/nlohmann/json.hpp \
     src/utils/usermanager.h \

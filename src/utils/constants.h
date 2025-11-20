@@ -1,24 +1,21 @@
 #pragma once
 
-#include <QString>
-#include <QCoreApplication>
-#include <QDir>
+#include <string>
+
+const std::string DATA_FOLDER = "../../../data";
 
 class Constants {
 public:
-    static QString dataFolder() {
-        return QCoreApplication::applicationDirPath() + QDir::separator() + "data";
+    static std::string accountsData() {
+        // 3. Now valid because we are adding std::string + char*
+        return DATA_FOLDER + "/accounts.json";
     }
 
-    static QString accountsData() {
-        return dataFolder() + QDir::separator() + "accounts.json";
+    static std::string dataSetJson() {
+        return DATA_FOLDER + "/dataset.json";
     }
 
-    static QString dataSetJson() {
-        return dataFolder() + QDir::separator() + "dataset.json";
-    }
-
-    static QString auInfoJson() {
-        return dataFolder() + QDir::separator() + "authors_dataset.json";
+    static std::string auInfoJson() {
+        return DATA_FOLDER + "/authors_dataset.json";
     }
 };

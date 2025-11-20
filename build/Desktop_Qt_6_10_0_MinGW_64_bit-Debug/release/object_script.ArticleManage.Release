@@ -1,10 +1,10 @@
 release/main.o
+release/appnav.o
 release/articleinputdialog.o
 release/authordetailsdialog.o
 release/listofauthorsdialog.o
-release/mainwindow.o
-release/appnav.o
 release/inform.o
+release/mainwindow.o
 release/articleform.o
 release/authorform.o
 release/loginform.o
@@ -21,11 +21,11 @@ release/repomanager.o
 release/usermanager.o
 release/uuid_generator.o
 release/qrc_resources.o
+release/moc_appnav.o
 release/moc_articleinputdialog.o
 release/moc_authordetailsdialog.o
 release/moc_listofauthorsdialog.o
 release/moc_mainwindow.o
-release/moc_appnav.o
 release/moc_articleform.o
 release/moc_authorform.o
 release/moc_loginform.o

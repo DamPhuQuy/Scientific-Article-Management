@@ -1,6 +1,7 @@
 #include "authorrepo.h"
 #include "../utils/nlohmann/json.hpp"
 #include "../utils/constants.h"
+#include "qdir.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -46,7 +47,8 @@ vector<Author> AuthorRepo::getCopyAsVector() {
 // Tải dữ liệu từ file JSON
 void AuthorRepo::load()
 {
-    string file_path = Constants::auInfoJson().toStdString();
+    QDir().mkpath("../../../data");
+    string file_path = Constants::auInfoJson();
     ifstream in(file_path);
 
     if (!in.is_open()) {
@@ -110,8 +112,9 @@ void AuthorRepo::save() {
             });
         });
 
-        string file_path = Constants::auInfoJson().toStdString();
+        string file_path = Constants::auInfoJson();
 
+        QDir().mkpath("../../../data");
         std::ofstream out(file_path);
         if (!out.is_open()) {
             qCritical() << "ERROR: Cannot open file: "

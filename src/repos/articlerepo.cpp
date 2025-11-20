@@ -5,6 +5,7 @@
 #include "../utils/constants.h"
 #include <regex>
 #include "../utils/nlohmann/json.hpp"
+#include "qdir.h"
 #include <QDebug>
 #include <fstream>
 #include <algorithm>
@@ -47,7 +48,8 @@ vector<shared_ptr<Article>> ArticleRepo::getCopyAsVector() const {
 
 // need more fix
 void ArticleRepo::load() {
-    string file_path = Constants::dataSetJson().toStdString();
+    string file_path = Constants::dataSetJson();
+    QDir().mkpath("../../../data");
     ifstream in(file_path);
 
     if (!in.is_open()) {
@@ -118,6 +120,8 @@ void ArticleRepo::load() {
                 articles_container[id] = std::move(article);
             }
         }
+
+        qInfo() << "Load" << QString::number(articles_container.size()) << "articles from " << file_path;
         in.close();
     }
     catch (const json::exception& e) {
@@ -138,7 +142,8 @@ void ArticleRepo::save() {
             }
         });
 
-        string file_path = Constants::dataSetJson().toStdString();
+        QDir().mkpath("../../../data");
+        string file_path = Constants::dataSetJson();
         ofstream out(file_path);
 
         if (!out.is_open()) {

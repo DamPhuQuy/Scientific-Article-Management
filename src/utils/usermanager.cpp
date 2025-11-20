@@ -4,6 +4,7 @@
 #include <QDir>
 #include "src/utils/nlohmann/json.hpp"
 #include "src/utils/constants.h"
+#include <QDebug>
 
 using namespace std;
 using json = nlohmann::json;
@@ -12,8 +13,11 @@ vector<UserManager::User> UserManager::userList;
 HashMap<string, size_t> UserManager::usernameToIndex;
 
 bool UserManager::loadFromFile() {
-    ifstream file(Constants::accountsData().toStdString());
-    if (!file.is_open()) return false;
+    ifstream file(Constants::accountsData());
+    if (!file.is_open()) {
+        qCritical() << "Cannot open file for loading: " << Constants::accountsData();
+        return false;
+    }
 
     json j;
     try {
@@ -43,8 +47,8 @@ bool UserManager::saveToFile() {
         });
     }
 
-    QDir().mkpath("../../data");
-    ofstream file(Constants::accountsData().toStdString());
+    QDir().mkpath("../../../data");
+    ofstream file(Constants::accountsData());
     if (!file.is_open()) return false;
     file << j.dump(4);
     return true;

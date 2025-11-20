@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/images">
-        <file>data/resources/background.png</file>
-        <file>data/resources/logo.png</file>
+        <file>public/resources/background.png</file>
     </qresource>
     <qresource prefix="/icons">
-        <file>data/resources/hide.png</file>
-        <file>data/resources/view.png</file>
-        <file>data/resources/checkbox.png</file>
+        <file>public/resources/checkbox.png</file>
+        <file>public/resources/hide.png</file>
+        <file>public/resources/logo.png</file>
+        <file>public/resources/view.png</file>
     </qresource>
 </RCC>
