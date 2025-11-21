@@ -35,7 +35,7 @@ void Inform::showMessage(QWidget* parent,
         }
         QMessageBox QLabel {
             min-width:  240px;
-            max-width:  380px;   /* giới hạn để box không quá rộng */
+            max-width:  380px;
             font-size: 14px;
             color: #2c3e50;
             padding: 4px;

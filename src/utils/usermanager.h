@@ -9,7 +9,10 @@ private:
     struct User {
         std::string username;
         std::string password;
-        // std::string email, role, etc.
+        std::string role;
+        std::string fullname;
+        std::string email;
+        std::string phone;
     };
 
     static std::vector<User> userList;
@@ -34,4 +37,16 @@ public:
     static bool changePassword(const std::string& username, const std::string& newPassword);
 
     static int getUserCount();
+
+    // Fullname
+    static std::string getFullName(const std::string& username);
+    static QString getFullName(const QString& username);
+
+    // Email
+    static std::string getEmail(const std::string& username);
+    static QString getEmail(const QString& username);
+
+    // Phone
+    static std::string getPhone(const std::string& username);
+    static QString getPhone(const QString& username);
 };

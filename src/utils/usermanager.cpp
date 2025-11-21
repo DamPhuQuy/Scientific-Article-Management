@@ -29,6 +29,10 @@ bool UserManager::loadFromFile() {
             User u;
             u.username = j[i]["username"].get<string>();
             u.password = j[i]["password"].get<string>();
+            u.role = j[i]["role"].get<string>();
+            u.fullname = j[i]["fullname"].get<string>();
+            u.email = j[i]["email"].get<string>();
+            u.phone = j[i]["phone"].get<string>();
             userList.push_back(u);
             usernameToIndex.put(u.username, i);
         }
@@ -43,7 +47,8 @@ bool UserManager::saveToFile() {
     for (const auto& user : userList) {
         j.push_back({
             {"username", user.username},
-            {"password", user.password}
+            {"password", user.password},
+            {"role", user.role}
         });
     }
 
@@ -105,4 +110,44 @@ bool UserManager::changePassword(const string& username, const string& newPass) 
 int UserManager::getUserCount() {
     loadFromFile();
     return userList.size();
+}
+
+// fullname
+std::string UserManager::getFullName(const std::string& username) {
+    // Kiểm tra user có tồn tại trong Hashmap không
+    if (usernameToIndex.containsKey(username)) {
+        size_t index = usernameToIndex.get(username); // Lấy index từ map
+        return userList[index].fullname;              // Trả về dữ liệu từ vector
+    }
+    return ""; // Trả về rỗng nếu không tìm thấy
+}
+
+QString UserManager::getFullName(const QString& username) {
+    return QString::fromStdString(getFullName(username.toStdString()));
+}
+
+// email
+std::string UserManager::getEmail(const std::string& username) {
+    if (usernameToIndex.containsKey(username)) {
+        size_t index = usernameToIndex.get(username);
+        return userList[index].email;
+    }
+    return "";
+}
+
+QString UserManager::getEmail(const QString& username) {
+    return QString::fromStdString(getEmail(username.toStdString()));
+}
+
+// phone
+std::string UserManager::getPhone(const std::string& username) {
+    if (usernameToIndex.containsKey(username)) {
+        size_t index = usernameToIndex.get(username);
+        return userList[index].phone;
+    }
+    return "";
+}
+
+QString UserManager::getPhone(const QString& username) {
+    return QString::fromStdString(getPhone(username.toStdString()));
 }

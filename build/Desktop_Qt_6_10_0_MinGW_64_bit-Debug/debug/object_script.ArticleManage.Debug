@@ -6,6 +6,7 @@ debug/articleupdatedialog.o
 debug/authordetailsdialog.o
 debug/listofauthorsdialog.o
 debug/inform.o
+debug/userdetailsdialog.o
 debug/mainwindow.o
 debug/articleform.o
 debug/authorform.o
@@ -29,6 +30,7 @@ debug/moc_articleinputdialog.o
 debug/moc_articleupdatedialog.o
 debug/moc_authordetailsdialog.o
 debug/moc_listofauthorsdialog.o
+debug/moc_userdetailsdialog.o
 debug/moc_mainwindow.o
 debug/moc_articleform.o
 debug/moc_authorform.o

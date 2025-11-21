@@ -17,6 +17,7 @@ SOURCES += \
     src/components/dialogs/author/authordetailsdialog.cpp \
     src/components/dialogs/author/listofauthorsdialog.cpp \
     src/components/dialogs/msg/inform.cpp \
+    src/components/dialogs/user/userdetailsdialog.cpp \
     src/components/mainwindow.cpp \
     src/components/widgets/article/articleform.cpp \
     src/components/widgets/author/authorform.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     src/components/dialogs/author/authordetailsdialog.h \
     src/components/dialogs/author/listofauthorsdialog.h \
     src/components/dialogs/msg/inform.h \
+    src/components/dialogs/user/userdetailsdialog.h \
     src/components/mainwindow.h \
     src/components/widgets/article/articleform.h \
     src/components/widgets/author/authorform.h \
@@ -70,6 +72,7 @@ FORMS += \
     src/components/dialogs/article/articleupdatedialog.ui \
     src/components/dialogs/author/authordetailsdialog.ui \
     src/components/dialogs/author/listofauthorsdialog.ui \
+    src/components/dialogs/user/userdetailsdialog.ui \
     src/components/mainwindow.ui \
     src/components/widgets/article/articleform.ui \
     src/components/widgets/author/authorform.ui \

@@ -20,7 +20,7 @@ signals:
     // signal to back
     void requestBack();
     void requestSignUp();
-    void loginSuccess(const QString& username);
+    void loginSuccess(const QString& username, const QString& role = "User");
 
 private slots:
     void on_signUpLabel_linkActivated(const QString &link);

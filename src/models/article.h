@@ -68,7 +68,6 @@ public:
     string typeToString(Type t);
 
     Type getType() const { return this->type; }
-    string getTypeInString() const;
 
     ArticleStatus getStatus() const { return this->status; }
     string getStatusInString() const;

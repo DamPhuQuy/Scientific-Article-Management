@@ -28,11 +28,11 @@ class Ui_ArticleForm
 {
 public:
     QGridLayout *gridLayout_2;
-    QWidget *widget_6;
-    QGridLayout *gridLayout;
-    QPushButton *RemoveArticleBtn;
-    QPushButton *newArticleBtn;
+    QPushButton *backBtn;
     QListView *articleListView;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout;
     QLabel *label;
@@ -41,18 +41,16 @@ public:
     QComboBox *yearFilterComboBox;
     QComboBox *typeFilterComboBox;
     QHBoxLayout *paginationLayout;
-    QSpacerItem *topBarSpacer;
     QWidget *widget_5;
-    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout_3;
     QLabel *searchLabel;
-    QWidget *widget_2;
-    QHBoxLayout *horizontalLayout_3;
     QLineEdit *searchLineEdit;
-    QPushButton *searchBtn;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout_2;
-    QSpacerItem *horizontalSpacer;
-    QPushButton *backBtn;
+    QWidget *widget_6;
+    QGridLayout *gridLayout;
+    QPushButton *RemoveArticleBtn;
+    QPushButton *userLb;
+    QPushButton *newArticleBtn;
+    QSpacerItem *topBarSpacer;
 
     void setupUi(QWidget *ArticleForm)
     {
@@ -61,24 +59,10 @@ public:
         ArticleForm->resize(950, 743);
         gridLayout_2 = new QGridLayout(ArticleForm);
         gridLayout_2->setObjectName("gridLayout_2");
-        widget_6 = new QWidget(ArticleForm);
-        widget_6->setObjectName("widget_6");
-        gridLayout = new QGridLayout(widget_6);
-        gridLayout->setObjectName("gridLayout");
-        RemoveArticleBtn = new QPushButton(widget_6);
-        RemoveArticleBtn->setObjectName("RemoveArticleBtn");
-        RemoveArticleBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        backBtn = new QPushButton(ArticleForm);
+        backBtn->setObjectName("backBtn");
 
-        gridLayout->addWidget(RemoveArticleBtn, 1, 0, 1, 2);
-
-        newArticleBtn = new QPushButton(widget_6);
-        newArticleBtn->setObjectName("newArticleBtn");
-        newArticleBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-
-        gridLayout->addWidget(newArticleBtn, 0, 0, 1, 1);
-
-
-        gridLayout_2->addWidget(widget_6, 0, 3, 1, 1);
+        gridLayout_2->addWidget(backBtn, 2, 3, 1, 1);
 
         articleListView = new QListView(ArticleForm);
         articleListView->setObjectName("articleListView");
@@ -90,6 +74,17 @@ public:
         articleListView->setWordWrap(true);
 
         gridLayout_2->addWidget(articleListView, 1, 0, 1, 4);
+
+        widget = new QWidget(ArticleForm);
+        widget->setObjectName("widget");
+        horizontalLayout_2 = new QHBoxLayout(widget);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+
+        gridLayout_2->addWidget(widget, 2, 0, 1, 3);
 
         widget_4 = new QWidget(ArticleForm);
         widget_4->setObjectName("widget_4");
@@ -138,58 +133,52 @@ public:
 
         gridLayout_2->addLayout(paginationLayout, 3, 0, 1, 1);
 
-        topBarSpacer = new QSpacerItem(106, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        gridLayout_2->addItem(topBarSpacer, 0, 2, 1, 1);
-
         widget_5 = new QWidget(ArticleForm);
         widget_5->setObjectName("widget_5");
-        verticalLayout_2 = new QVBoxLayout(widget_5);
-        verticalLayout_2->setObjectName("verticalLayout_2");
+        gridLayout_3 = new QGridLayout(widget_5);
+        gridLayout_3->setObjectName("gridLayout_3");
         searchLabel = new QLabel(widget_5);
         searchLabel->setObjectName("searchLabel");
         searchLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        verticalLayout_2->addWidget(searchLabel);
+        gridLayout_3->addWidget(searchLabel, 0, 0, 1, 1);
 
-        widget_2 = new QWidget(widget_5);
-        widget_2->setObjectName("widget_2");
-        horizontalLayout_3 = new QHBoxLayout(widget_2);
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
-        searchLineEdit = new QLineEdit(widget_2);
+        searchLineEdit = new QLineEdit(widget_5);
         searchLineEdit->setObjectName("searchLineEdit");
         searchLineEdit->setMinimumSize(QSize(250, 0));
 
-        horizontalLayout_3->addWidget(searchLineEdit);
-
-        searchBtn = new QPushButton(widget_2);
-        searchBtn->setObjectName("searchBtn");
-        searchBtn->setMinimumSize(QSize(0, 0));
-        searchBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-
-        horizontalLayout_3->addWidget(searchBtn);
-
-
-        verticalLayout_2->addWidget(widget_2);
+        gridLayout_3->addWidget(searchLineEdit, 1, 0, 1, 1);
 
 
         gridLayout_2->addWidget(widget_5, 0, 0, 1, 1);
 
-        widget = new QWidget(ArticleForm);
-        widget->setObjectName("widget");
-        horizontalLayout_2 = new QHBoxLayout(widget);
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        widget_6 = new QWidget(ArticleForm);
+        widget_6->setObjectName("widget_6");
+        gridLayout = new QGridLayout(widget_6);
+        gridLayout->setObjectName("gridLayout");
+        RemoveArticleBtn = new QPushButton(widget_6);
+        RemoveArticleBtn->setObjectName("RemoveArticleBtn");
+        RemoveArticleBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
-        horizontalLayout_2->addItem(horizontalSpacer);
+        gridLayout->addWidget(RemoveArticleBtn, 2, 0, 1, 2);
+
+        userLb = new QPushButton(widget_6);
+        userLb->setObjectName("userLb");
+
+        gridLayout->addWidget(userLb, 0, 0, 1, 1);
+
+        newArticleBtn = new QPushButton(widget_6);
+        newArticleBtn->setObjectName("newArticleBtn");
+        newArticleBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+
+        gridLayout->addWidget(newArticleBtn, 1, 0, 1, 1);
 
 
-        gridLayout_2->addWidget(widget, 2, 0, 1, 3);
+        gridLayout_2->addWidget(widget_6, 0, 3, 1, 1);
 
-        backBtn = new QPushButton(ArticleForm);
-        backBtn->setObjectName("backBtn");
+        topBarSpacer = new QSpacerItem(200, 20, QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
 
-        gridLayout_2->addWidget(backBtn, 2, 3, 1, 1);
+        gridLayout_2->addItem(topBarSpacer, 0, 2, 1, 1);
 
 
         retranslateUi(ArticleForm);
@@ -200,14 +189,13 @@ public:
     void retranslateUi(QWidget *ArticleForm)
     {
         ArticleForm->setWindowTitle(QCoreApplication::translate("ArticleForm", "Article Menu", nullptr));
-        RemoveArticleBtn->setText(QCoreApplication::translate("ArticleForm", "Remove Article", nullptr));
-        newArticleBtn->setText(QCoreApplication::translate("ArticleForm", "New Article", nullptr));
+        backBtn->setText(QCoreApplication::translate("ArticleForm", "Back", nullptr));
         label->setText(QCoreApplication::translate("ArticleForm", "Filter", nullptr));
         yearFilterComboBox->setItemText(0, QCoreApplication::translate("ArticleForm", "All years", nullptr));
         yearFilterComboBox->setItemText(1, QCoreApplication::translate("ArticleForm", "Newest first", nullptr));
         yearFilterComboBox->setItemText(2, QCoreApplication::translate("ArticleForm", "Oldest first", nullptr));
 
-        typeFilterComboBox->setItemText(0, QCoreApplication::translate("ArticleForm", "Types", nullptr));
+        typeFilterComboBox->setItemText(0, QCoreApplication::translate("ArticleForm", "All types", nullptr));
         typeFilterComboBox->setItemText(1, QCoreApplication::translate("ArticleForm", "SCOPUS", nullptr));
         typeFilterComboBox->setItemText(2, QCoreApplication::translate("ArticleForm", "CONFERENCE", nullptr));
         typeFilterComboBox->setItemText(3, QCoreApplication::translate("ArticleForm", "OTHER", nullptr));
@@ -215,8 +203,9 @@ public:
 
         searchLabel->setText(QCoreApplication::translate("ArticleForm", "Search", nullptr));
         searchLineEdit->setPlaceholderText(QCoreApplication::translate("ArticleForm", "Search articles by title...", nullptr));
-        searchBtn->setText(QCoreApplication::translate("ArticleForm", "Enter", nullptr));
-        backBtn->setText(QCoreApplication::translate("ArticleForm", "Back", nullptr));
+        RemoveArticleBtn->setText(QCoreApplication::translate("ArticleForm", "Remove Article", nullptr));
+        userLb->setText(QCoreApplication::translate("ArticleForm", "User", nullptr));
+        newArticleBtn->setText(QCoreApplication::translate("ArticleForm", "New Article", nullptr));
     } // retranslateUi
 
 };

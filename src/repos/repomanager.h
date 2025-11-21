@@ -14,7 +14,7 @@ public:
     RepositoryManager(
         ArticleRepo& a_repo,
         AuthorRepo& au_repo
-        );
+    );
 
     ~RepositoryManager() = default;
 

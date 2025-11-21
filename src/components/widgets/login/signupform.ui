@@ -152,6 +152,9 @@
       </item>
       <item>
        <widget class="QLineEdit" name="confirmPassEdit">
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
         <property name="placeholderText">
          <string>Password@123</string>
         </property>

@@ -17,10 +17,10 @@ public:
     explicit ArticleForm(RepositoryManager& repo, QWidget *parent = nullptr);
     ~ArticleForm();
 
+    void setCurrentUser(const std::pair<QString, QString>& user);
+    void updateUIAfterLogin();
 signals:
     void requestBack();
-    void openArticleInputDialog();
-    void openArticleRemoveArticleDialog();
 
 private slots:
     void on_articleListView_doubleClicked(const QModelIndex &index);
@@ -28,8 +28,6 @@ private slots:
     void on_newArticleBtn_clicked();
 
     void on_RemoveArticleBtn_clicked();
-
-    void on_searchBtn_clicked();
 
     void on_backBtn_clicked();
 
@@ -39,9 +37,13 @@ private slots:
 
     void on_typeFilterComboBox_currentTextChanged(const QString &arg1);
 
+    void on_userLb_clicked();
+
 private:
     RepositoryManager& repo;
     Ui::ArticleForm *ui;
+
+    std::pair<QString, QString> currentUser;
 
     QStandardItemModel* model;
 

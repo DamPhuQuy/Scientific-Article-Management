@@ -2,6 +2,8 @@
 #include "ui_articleform.h"
 #include "src/components/dialogs/article/articleinputdialog.h"
 #include "src/components/dialogs/article/articledetailsdialog.h"
+#include "src/components/dialogs/user/userdetailsdialog.h"
+#include "src/utils/usermanager.h"
 
 ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -18,11 +20,25 @@ ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
 
     ui->articleListView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->articleListView->setFlow(QListView::TopToBottom);
+
 }
 
 ArticleForm::~ArticleForm()
 {
     delete ui;
+}
+
+void ArticleForm::updateUIAfterLogin() {
+    qDebug() << currentUser.first << currentUser.second;
+
+    ui->userLb->setText(currentUser.first);
+    qDebug() << "Set label to:" << currentUser.first << "| Actual label:" << ui->userLb->text();
+
+    ui->RemoveArticleBtn->setHidden(currentUser.second == "Admin");
+}
+
+void ArticleForm::setCurrentUser(const std::pair<QString, QString>& user) {
+    currentUser = user;
 }
 
 void ArticleForm::on_newArticleBtn_clicked()
@@ -34,15 +50,10 @@ void ArticleForm::on_newArticleBtn_clicked()
 
 void ArticleForm::on_RemoveArticleBtn_clicked()
 {
-    emit openArticleRemoveArticleDialog();
+    // ArticleRemoveDialog removeDialog(repo, this);
+
+    // removeDialog.exec();
 }
-
-
-void ArticleForm::on_searchBtn_clicked()
-{
-
-}
-
 
 void ArticleForm::on_backBtn_clicked()
 {
@@ -137,7 +148,7 @@ bool ArticleForm::passesAllFilters(int row) const { // check with each row (each
 
     // data to filter
     QString title = QString::fromStdString(foundArticle->getTitle());
-    QString type = QString::fromStdString(foundArticle->getTypeInString());
+    QString type = QString::fromStdString(foundArticle->typeToString(foundArticle->getType()));
 
     // line search
     if (!filterTitle.isEmpty()) {
@@ -180,9 +191,26 @@ void ArticleForm::applyYearSorting() {
 
 void ArticleForm::applyAllFilters() { // apply to all rows of element
     if (!model) return;
-    for (unsigned int row = 0; model->rowCount(); ++row) {
+    for (int row = 0; row < model->rowCount(); ++row) {
         bool isVisible = passesAllFilters(row);
 
         ui->articleListView->setRowHidden(row, !isVisible);
     }
 }
+
+void ArticleForm::on_userLb_clicked()
+{
+    UserDetailsDialog userdialog(repo, this);
+
+    QString username = currentUser.first;
+
+    userdialog.setUserInfo(
+        username,
+        UserManager::getFullName(username),
+        UserManager::getEmail(username),
+        UserManager::getPhone(username)
+        );
+
+    userdialog.exec();
+}
+

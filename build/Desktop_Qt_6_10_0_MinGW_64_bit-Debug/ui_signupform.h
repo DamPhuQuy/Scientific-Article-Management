@@ -129,6 +129,7 @@ public:
 
         confirmPassEdit = new QLineEdit(widget);
         confirmPassEdit->setObjectName("confirmPassEdit");
+        confirmPassEdit->setEchoMode(QLineEdit::EchoMode::Password);
 
         verticalLayout->addWidget(confirmPassEdit);
 
@@ -185,7 +186,7 @@ public:
     void retranslateUi(QWidget *SignUpForm)
     {
         SignUpForm->setWindowTitle(QCoreApplication::translate("SignUpForm", "Form", nullptr));
-        welcomeLabel->setText(QCoreApplication::translate("SignUpForm", "Xin ch\303\240o!", nullptr));
+        welcomeLabel->setText(QCoreApplication::translate("SignUpForm", "Welcome!", nullptr));
         logoLabel->setText(QCoreApplication::translate("SignUpForm", "(Logo here)", nullptr));
         subtitleLabel->setText(QCoreApplication::translate("SignUpForm", "Please enter your detail to sign in", nullptr));
         usernameLabel->setText(QCoreApplication::translate("SignUpForm", "Username", nullptr));

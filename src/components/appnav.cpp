@@ -12,6 +12,8 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
 {
     this->stack = new QStackedWidget(this);
 
+    std::pair<QString, QString> currentUser;
+
     mainform = new MainWindow(this);
     login = new LoginForm(repo, this);
     signup = new SignUpForm(repo, this);
@@ -27,7 +29,6 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
     setLayout(layout);
 
     /* connect(sender, &SenderClass::signalName, receiver, &ReceiverClass::slotName); */ // slotName ở đó là callback
-    QString currentUser;
 
     /* Main Page */
     // start
@@ -39,8 +40,13 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
     // requestSignUp
     connect(login, &LoginForm::requestSignUp, this, [this]() -> void { goTo(Page::SignupPage); });
     // login success (loginForm success, go to ArticleForm)
-    connect(login, &LoginForm::loginSuccess, this, [this, &currentUser](const QString& username) -> void {
-        currentUser = username;
+    connect(login, &LoginForm::loginSuccess, this, [this, &currentUser](const QString& username, const QString& role) -> void {
+        currentUser.first = username;
+        currentUser.second = role;
+
+        qDebug() << currentUser.first << "-" << currentUser.second;
+        articleform->setCurrentUser(currentUser);
+        articleform->updateUIAfterLogin();
         goTo(Page::ArticleFormPage);
     });
     // request back (loginForm back to mainmenu)

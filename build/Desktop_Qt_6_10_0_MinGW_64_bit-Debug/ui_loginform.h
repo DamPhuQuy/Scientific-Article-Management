@@ -164,7 +164,7 @@ public:
     void retranslateUi(QWidget *LoginForm)
     {
         LoginForm->setWindowTitle(QCoreApplication::translate("LoginForm", "Form", nullptr));
-        welcomeLabel->setText(QCoreApplication::translate("LoginForm", "Xin ch\303\240o!", nullptr));
+        welcomeLabel->setText(QCoreApplication::translate("LoginForm", "Welcome!", nullptr));
         logoLabel->setText(QCoreApplication::translate("LoginForm", "(Logo here)", nullptr));
         subtitleLabel->setText(QCoreApplication::translate("LoginForm", "Please enter your detail to sign in", nullptr));
         usernameLabel->setText(QCoreApplication::translate("LoginForm", "Username", nullptr));

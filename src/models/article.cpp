@@ -63,26 +63,6 @@ string Article::statusToString(ArticleStatus st) {
     return map.count(st) ? map.at(st) : "DRAFT";
 }
 
-string Article::getTypeInString() const {
-    switch (status)
-    {
-    case ArticleStatus::SUBMITTED:
-        return "SUBMITTED";
-    case ArticleStatus::UNDER_REVIEW:
-        return "UNDER_REVIEW";
-    case ArticleStatus::REVISIONS:
-        return "REVISIONS";
-    case ArticleStatus::ACCEPTED:
-        return "ACCEPTED";
-    case ArticleStatus::REJECTED:
-        return "REJECTED";
-    case ArticleStatus::PUBLISHED:
-        return "PUBLISHED";
-    default:
-        return "DRAFT";
-    }
-}
-
 string Article::getStatusInString() const {
     switch (status) {
     case ArticleStatus::SUBMITTED:
@@ -182,7 +162,7 @@ string Article::submit()
     }
     else
     {
-        return "Lỗi: Không thể nộp bài từ trạng thái " + getTypeInString() + ".";
+        return "Lỗi: Không thể nộp bài từ trạng thái " + typeToString(type) + ".";
     }
 }
 
