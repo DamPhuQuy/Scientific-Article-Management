@@ -49,7 +49,11 @@ template <> constexpr inline auto ArticleForm::qt_create_metaobjectdata<qt_meta_
         "on_newArticleBtn_clicked",
         "on_RemoveArticleBtn_clicked",
         "on_searchBtn_clicked",
-        "on_backBtn_clicked"
+        "on_backBtn_clicked",
+        "on_searchLineEdit_textChanged",
+        "arg1",
+        "on_yearFilterComboBox_currentTextChanged",
+        "on_typeFilterComboBox_currentTextChanged"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -71,6 +75,18 @@ template <> constexpr inline auto ArticleForm::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_backBtn_clicked'
         QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_searchLineEdit_textChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Slot 'on_yearFilterComboBox_currentTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Slot 'on_typeFilterComboBox_currentTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -102,6 +118,9 @@ void ArticleForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 5: _t->on_RemoveArticleBtn_clicked(); break;
         case 6: _t->on_searchBtn_clicked(); break;
         case 7: _t->on_backBtn_clicked(); break;
+        case 8: _t->on_searchLineEdit_textChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->on_yearFilterComboBox_currentTextChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->on_typeFilterComboBox_currentTextChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -134,14 +153,14 @@ int ArticleForm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 11;
     }
     return _id;
 }

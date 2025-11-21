@@ -6,22 +6,92 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
+    <width>600</width>
     <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Update Article Information</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="1">
-    <widget class="QPushButton" name="saveBtn">
-     <property name="text">
-      <string>Save</string>
+  
+  <property name="styleSheet">
+   <string notr="true">/* --- MAIN DIALOG --- */
+QDialog#ArticleUpdateDialog { 
+    background-color: #f4f7f6; 
+    border: 4px solid #FFC085; /* Viền cam dịu */
+}
+
+QWidget { font-family: &quot;Segoe UI&quot;, Arial, sans-serif; font-size: 14px; }
+
+/* --- HEADER --- */
+QWidget#headerContainer { 
+    background-color: #00264d; 
+    border-bottom: 5px solid #4169E1; 
+}
+QLabel#lblHeaderTitle { color: #ffffff; font-size: 22px; font-weight: 900; padding-left: 10px; background: transparent; }
+
+/* --- SCROLL AREA --- */
+QScrollArea { border: 1px solid #20B2AA; border-radius: 8px; background-color: white; }
+
+/* --- INPUTS --- */
+QLineEdit, QPlainTextEdit, QComboBox, QSpinBox, QDoubleSpinBox { 
+  background-color: #f9f9f9; 
+  border: 1px solid #cccccc; 
+  border-radius: 6px; 
+  padding: 8px; 
+  color: #333; 
+}
+QLineEdit:focus, QPlainTextEdit:focus, QComboBox:focus, QSpinBox:focus { 
+  background-color: #ffffff; 
+  border: 2px solid #20B2AA; 
+}
+
+/* --- LABELS --- */
+QLabel { font-weight: bold; color: #555; }
+</string>
+  </property>
+
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   
+   <item>
+    <widget class="QWidget" name="headerContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>70</height>
+      </size>
      </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Header">
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lblHeaderTitle">
+        <property name="text">
+         <string>CẬP NHẬT BÀI BÁO</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2">
+
+   <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
@@ -31,21 +101,29 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>536</width>
-        <height>764</height>
+        <width>596</width>
+        <height>1000</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Content">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_ID"/>
-       </item>
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       
        <item>
         <widget class="QLabel" name="label_Title">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="text">
           <string>Title</string>
          </property>
@@ -53,25 +131,30 @@
        </item>
        <item>
         <widget class="QPlainTextEdit" name="editTitle">
-         <property name="cursor" stdset="0">
-          <cursorShape>IBeamCursor</cursorShape>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>80</height>
+          </size>
          </property>
          <property name="placeholderText">
           <string>Enter article title here...</string>
          </property>
         </widget>
        </item>
+
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_VenueYear">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_Venue">
            <item>
             <widget class="QLabel" name="label_Venue">
-             <property name="font">
-              <font>
-               <bold>true</bold>
-              </font>
-             </property>
              <property name="text">
               <string>Venue</string>
              </property>
@@ -88,36 +171,70 @@
          </item>
         </layout>
        </item>
+
        <item>
         <layout class="QGridLayout" name="gridLayout_Meta">
+         <property name="verticalSpacing">
+          <number>15</number>
+         </property>
+         
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_Type">
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QComboBox" name="comboType">
+           <item>
+            <property name="text">
+             <string>SCIE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SCOPUS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CONFERENCE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>OTHER</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_Year">
+           <property name="text">
+            <string>Year</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="spinYear">
+           <property name="minimum">
+            <number>1900</number>
+           </property>
+           <property name="maximum">
+            <number>2100</number>
+           </property>
+           <property name="value">
+            <number>2024</number>
+           </property>
+          </widget>
+         </item>
+
          <item row="0" column="2">
           <widget class="QLabel" name="label_Status">
-           <property name="font">
-            <font>
-             <bold>true</bold>
-            </font>
-           </property>
            <property name="text">
             <string>Status</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_Cit">
-           <property name="font">
-            <font>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Citations</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QSpinBox" name="spinCitation">
-           <property name="maximum">
-            <number>999999</number>
            </property>
           </widget>
          </item>
@@ -160,78 +277,24 @@
            </item>
           </widget>
          </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_Type">
-           <property name="font">
-            <font>
-             <bold>true</bold>
-            </font>
-           </property>
+
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_Cit">
            <property name="text">
-            <string>Type</string>
+            <string>Citations</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <layout class="QVBoxLayout" name="verticalLayout_Year">
-           <item>
-            <widget class="QSpinBox" name="spinYear">
-             <property name="minimum">
-              <number>1900</number>
-             </property>
-             <property name="maximum">
-              <number>2100</number>
-             </property>
-             <property name="value">
-              <number>2024</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_Year">
-           <property name="font">
-            <font>
-             <bold>true</bold>
-            </font>
+         <item row="1" column="3">
+          <widget class="QSpinBox" name="spinCitation">
+           <property name="maximum">
+            <number>999999</number>
            </property>
-           <property name="text">
-            <string>Year</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QComboBox" name="comboType">
-           <item>
-            <property name="text">
-             <string>SCIE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SCOPUS</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CONFERENCE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>OTHER</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
           </widget>
          </item>
         </layout>
        </item>
+
        <item>
         <widget class="Line" name="line1">
          <property name="orientation">
@@ -239,14 +302,19 @@
          </property>
         </widget>
        </item>
+
        <item>
         <widget class="QStackedWidget" name="stackInputs">
-         <property name="frameShape">
-          <enum>QFrame::Shape::StyledPanel</enum>
-         </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
+         
          <widget class="QWidget" name="pageInputSCIE">
           <layout class="QHBoxLayout" name="hl_InputSCIE">
            <item>
@@ -257,11 +325,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="spinIF">
-             <property name="singleStep">
-              <double>0.100000000000000</double>
-             </property>
-            </widget>
+            <widget class="QDoubleSpinBox" name="spinIF"/>
            </item>
            <item>
             <spacer name="hs1">
@@ -270,8 +334,8 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>0</width>
-               <height>0</height>
+               <width>20</width>
+               <height>20</height>
               </size>
              </property>
             </spacer>
@@ -279,7 +343,7 @@
            <item>
             <widget class="QLabel" name="lbl_Q">
              <property name="text">
-              <string>Q-Rank (1-4):</string>
+              <string>Q-Rank:</string>
              </property>
             </widget>
            </item>
@@ -295,6 +359,7 @@
            </item>
           </layout>
          </widget>
+
          <widget class="QWidget" name="pageInputSCOPUS">
           <layout class="QHBoxLayout" name="hl_InputSCOPUS">
            <item>
@@ -314,8 +379,8 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>0</width>
-               <height>0</height>
+               <width>20</width>
+               <height>20</height>
               </size>
              </property>
             </spacer>
@@ -332,6 +397,7 @@
            </item>
           </layout>
          </widget>
+
          <widget class="QWidget" name="pageInputCONF">
           <layout class="QGridLayout" name="gl_InputCONF">
            <item row="0" column="0">
@@ -342,11 +408,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="editConfRank">
-             <property name="placeholderText">
-              <string>e.g. A*, A</string>
-             </property>
-            </widget>
+            <widget class="QLineEdit" name="editConfRank"/>
            </item>
            <item row="0" column="2">
             <widget class="QLabel" name="lbl_AR">
@@ -356,14 +418,7 @@
             </widget>
            </item>
            <item row="0" column="3">
-            <widget class="QDoubleSpinBox" name="spinAcceptRate">
-             <property name="suffix">
-              <string>%</string>
-             </property>
-             <property name="maximum">
-              <double>100.000000000000000</double>
-             </property>
-            </widget>
+            <widget class="QDoubleSpinBox" name="spinAcceptRate"/>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="lbl_Loc">
@@ -377,9 +432,11 @@
            </item>
           </layout>
          </widget>
+
          <widget class="QWidget" name="pageInputOTHER"/>
         </widget>
        </item>
+
        <item>
         <widget class="Line" name="line2">
          <property name="orientation">
@@ -387,13 +444,9 @@
          </property>
         </widget>
        </item>
+
        <item>
         <widget class="QLabel" name="label_Authors">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="text">
           <string>Authors (One per line)</string>
          </property>
@@ -401,35 +454,38 @@
        </item>
        <item>
         <widget class="QPlainTextEdit" name="editAuthors">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
          <property name="placeholderText">
-          <string>Author 1
-Author 2
-Author 3</string>
+          <string>Enter authors here...</string>
          </property>
         </widget>
        </item>
+
        <item>
         <widget class="QLabel" name="label_Abstract">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="text">
           <string>Abstract</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="editAbstract"/>
+        <widget class="QPlainTextEdit" name="editAbstract">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
+        </widget>
        </item>
+
        <item>
         <widget class="QLabel" name="label_Refs">
-         <property name="font">
-          <font>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="text">
           <string>References (One per line)</string>
          </property>
@@ -437,23 +493,112 @@ Author 3</string>
        </item>
        <item>
         <widget class="QPlainTextEdit" name="editRefs">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
          <property name="placeholderText">
           <string>Ref 1...
 Ref 2...</string>
          </property>
         </widget>
        </item>
+
       </layout>
      </widget>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="closeBtn">
-     <property name="text">
-      <string>Close</string>
+
+   <item>
+    <widget class="QWidget" name="footerContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>70</height>
+      </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #ffffff; border-top: 1px solid #ddd;</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Footer">
+      <property name="rightMargin">
+       <number>30</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      
+      <item>
+       <widget class="QPushButton" name="closeBtn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Hủy</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+          QPushButton {
+           background-color: #da3e36; 
+           border: 2px solid #da3e36; 
+           border-radius: 6px; 
+           color: white; 
+           font-weight: bold;
+           font-size: 14px;
+          }
+          QPushButton:hover { background-color: #c0392b; }
+          QPushButton:pressed { background-color: #922b21; }
+         </string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="saveBtn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Lưu</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+          QPushButton {
+           background-color: #20B2AA; 
+           border: 2px solid #20B2AA; 
+           border-radius: 6px; 
+           color: white; 
+           font-weight: bold;
+           font-size: 14px;
+          }
+          QPushButton:hover { background-color: #17a098; }
+          QPushButton:pressed { background-color: #0e6b65; }
+         </string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
+
   </layout>
  </widget>
  <resources/>

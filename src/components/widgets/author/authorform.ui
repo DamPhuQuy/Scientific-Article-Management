@@ -6,91 +6,304 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1000</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Author Management</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_4">
-   <item row="0" column="0">
-    <widget class="QWidget" name="widget_2" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QPushButton" name="UpdateButton_3">
-        <property name="text">
-         <string>Update Article</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="RemoveButton_3">
-        <property name="text">
-         <string>Remove Article</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Statistics_3">
-        <property name="text">
-         <string>Statistics</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Back_3">
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QWidget" name="widget" native="true">
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QWidget" name="widget_5" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLineEdit" name="EnterButton_3"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="EnterBox_3">
-           <property name="text">
-            <string>Enter</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QTableView" name="tableView_3"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QScrollBar" name="verticalScrollBar">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
+  <property name="styleSheet">
+   <string notr="true">QWidget#AuthorForm { background-color: #f4f7f6; }
+QWidget { font-family: &quot;Segoe UI&quot;, Arial, sans-serif; }
+
+/* HEADER */
+QWidget#headerContainer { background-color: #00264d; border-left: 10px solid #FFD700; border-bottom: 5px solid #4169E1; }
+QLabel#lblPageTitle { color: #ffffff; font-size: 24px; font-weight: 900; background-color: transparent; padding-left: 10px; }
+
+/* BODY */
+QWidget#bodyContainer { background-color: #ffffff; border: 2px solid #20B2AA; border-radius: 8px; }
+
+/* INPUTS */
+QLineEdit { background-color: #f9f9f9; border: 1px solid #cccccc; border-radius: 6px; padding: 8px 12px; font-size: 14px; color: #333; min-height: 25px; }
+QLineEdit:focus { background-color: #ffffff; border: 2px solid #20B2AA; color: #000; }
+
+QLabel { font-weight: bold; color: #555; font-size: 14px; }
+
+/* BUTTONS CHUNG */
+QPushButton { border-radius: 6px; font-weight: bold; padding: 8px 16px; min-height: 25px; font-size: 14px; color: white; }
+
+/* === NHÓM MÀU XANH NGỌC (TÍCH CỰC) === */
+QPushButton#searchBtn, QPushButton#newAuthorBtn, QPushButton#updateAuthorBtn, QPushButton#statsBtn { background-color: #20B2AA; border: 2px solid #20B2AA; }
+QPushButton#searchBtn:hover, QPushButton#newAuthorBtn:hover, QPushButton#updateAuthorBtn:hover, QPushButton#statsBtn:hover { background-color: #17a098; border-color: #17a098; }
+
+/* === NHÓM MÀU ĐỎ (TIÊU CỰC/THOÁT) === */
+QPushButton#removeAuthorBtn, QPushButton#backBtn { background-color: #da3e36; border: 2px solid #da3e36; }
+QPushButton#removeAuthorBtn:hover, QPushButton#backBtn:hover { background-color: #c0392b; border-color: #c0392b; }
+
+/* TABLE VIEW */
+QTableView { border: 1px solid #e0e0e0; border-radius: 6px; padding: 5px; background-color: #fff; font-size: 14px; gridline-color: #eee; }
+QTableView::item { padding: 5px; }
+QTableView::item:selected { background-color: #e0f2f1; color: #000; }
+QHeaderView::section { background-color: #f0f0f0; padding: 5px; border: none; border-bottom: 1px solid #ccc; font-weight: bold; }
+
+/* LINE SEPARATOR */
+QFrame#lineSeparator { min-height: 3px; max-height: 3px; background-color: #20B2AA; border: none; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   
+   <item>
+    <widget class="QWidget" name="headerContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
      </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Header">
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lblPageTitle">
+        <property name="text">
+         <string>QUẢN LÝ TÁC GIẢ</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   
+   <item>
+    <widget class="QWidget" name="bodyContainer" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_Body">
+      <property name="spacing">
+       <number>20</number>
+      </property>
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="topMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
+      <property name="bottomMargin">
+       <number>20</number>
+      </property>
+      
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_Tools">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="searchLabel">
+          <property name="text">
+           <string>Tìm kiếm:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="searchLineEdit">
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="placeholderText">
+           <string>Nhập tên tác giả...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="searchBtn">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Tìm</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_Tool">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      
+      <item>
+       <widget class="QFrame" name="lineSeparator">
+        <property name="frameShape">
+         <enum>QFrame::HLine</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+       </widget>
+      </item>
+      
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_Actions">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="newAuthorBtn">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>+ Thêm mới</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="updateAuthorBtn">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Cập nhật</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="statsBtn">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Thống kê</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeAuthorBtn">
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Xóa</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_Action">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      
+      <item>
+       <widget class="QTableView" name="authorTableView">
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+       </widget>
+      </item>
+      
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_Footer">
+        <item>
+         <spacer name="horizontalSpacer_Footer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="backBtn">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Quay lại</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

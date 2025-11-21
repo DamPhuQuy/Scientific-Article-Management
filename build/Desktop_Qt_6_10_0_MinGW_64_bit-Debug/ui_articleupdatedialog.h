@@ -33,12 +33,13 @@ QT_BEGIN_NAMESPACE
 class Ui_ArticleUpdateDialog
 {
 public:
-    QGridLayout *gridLayout;
-    QPushButton *saveBtn;
+    QVBoxLayout *mainLayout;
+    QWidget *headerContainer;
+    QHBoxLayout *horizontalLayout_Header;
+    QLabel *lblHeaderTitle;
     QScrollArea *scrollArea;
     QWidget *scrollContent;
     QVBoxLayout *verticalLayout_Content;
-    QHBoxLayout *horizontalLayout_ID;
     QLabel *label_Title;
     QPlainTextEdit *editTitle;
     QHBoxLayout *horizontalLayout_VenueYear;
@@ -46,15 +47,14 @@ public:
     QLabel *label_Venue;
     QLineEdit *editVenue;
     QGridLayout *gridLayout_Meta;
+    QLabel *label_Type;
+    QComboBox *comboType;
+    QLabel *label_Year;
+    QSpinBox *spinYear;
     QLabel *label_Status;
+    QComboBox *comboStatus;
     QLabel *label_Cit;
     QSpinBox *spinCitation;
-    QComboBox *comboStatus;
-    QLabel *label_Type;
-    QVBoxLayout *verticalLayout_Year;
-    QSpinBox *spinYear;
-    QLabel *label_Year;
-    QComboBox *comboType;
     QFrame *line1;
     QStackedWidget *stackInputs;
     QWidget *pageInputSCIE;
@@ -87,44 +87,89 @@ public:
     QPlainTextEdit *editAbstract;
     QLabel *label_Refs;
     QPlainTextEdit *editRefs;
+    QWidget *footerContainer;
+    QHBoxLayout *horizontalLayout_Footer;
+    QSpacerItem *horizontalSpacer;
     QPushButton *closeBtn;
+    QPushButton *saveBtn;
 
     void setupUi(QDialog *ArticleUpdateDialog)
     {
         if (ArticleUpdateDialog->objectName().isEmpty())
             ArticleUpdateDialog->setObjectName("ArticleUpdateDialog");
-        ArticleUpdateDialog->resize(550, 800);
-        gridLayout = new QGridLayout(ArticleUpdateDialog);
-        gridLayout->setObjectName("gridLayout");
-        saveBtn = new QPushButton(ArticleUpdateDialog);
-        saveBtn->setObjectName("saveBtn");
+        ArticleUpdateDialog->resize(600, 800);
+        ArticleUpdateDialog->setStyleSheet(QString::fromUtf8("/* --- MAIN DIALOG --- */\n"
+"QDialog#ArticleUpdateDialog { \n"
+"    background-color: #f4f7f6; \n"
+"    border: 4px solid #FFC085; /* Vi\341\273\201n cam d\341\273\213u */\n"
+"}\n"
+"\n"
+"QWidget { font-family: \"Segoe UI\", Arial, sans-serif; font-size: 14px; }\n"
+"\n"
+"/* --- HEADER --- */\n"
+"QWidget#headerContainer { \n"
+"    background-color: #00264d; \n"
+"    border-bottom: 5px solid #4169E1; \n"
+"}\n"
+"QLabel#lblHeaderTitle { color: #ffffff; font-size: 22px; font-weight: 900; padding-left: 10px; background: transparent; }\n"
+"\n"
+"/* --- SCROLL AREA --- */\n"
+"QScrollArea { border: 1px solid #20B2AA; border-radius: 8px; background-color: white; }\n"
+"\n"
+"/* --- INPUTS --- */\n"
+"QLineEdit, QPlainTextEdit, QComboBox, QSpinBox, QDoubleSpinBox { \n"
+"  background-color: #f9f9f9; \n"
+"  border: 1px solid #cccccc; \n"
+"  border-radius: 6px; \n"
+"  padding: 8px; \n"
+"  color: #333; \n"
+"}\n"
+"QLineEdit:focus, QPlainTextEdit:focus, QComboBox:focus, QSpinBox:focus { \n"
+"  background-color: #ffffff; \n"
+"  bor"
+                        "der: 2px solid #20B2AA; \n"
+"}\n"
+"\n"
+"/* --- LABELS --- */\n"
+"QLabel { font-weight: bold; color: #555; }\n"
+""));
+        mainLayout = new QVBoxLayout(ArticleUpdateDialog);
+        mainLayout->setSpacing(0);
+        mainLayout->setObjectName("mainLayout");
+        mainLayout->setContentsMargins(0, 0, 0, 20);
+        headerContainer = new QWidget(ArticleUpdateDialog);
+        headerContainer->setObjectName("headerContainer");
+        headerContainer->setMinimumSize(QSize(0, 70));
+        horizontalLayout_Header = new QHBoxLayout(headerContainer);
+        horizontalLayout_Header->setObjectName("horizontalLayout_Header");
+        horizontalLayout_Header->setContentsMargins(20, -1, -1, -1);
+        lblHeaderTitle = new QLabel(headerContainer);
+        lblHeaderTitle->setObjectName("lblHeaderTitle");
 
-        gridLayout->addWidget(saveBtn, 1, 1, 1, 1);
+        horizontalLayout_Header->addWidget(lblHeaderTitle);
+
+
+        mainLayout->addWidget(headerContainer);
 
         scrollArea = new QScrollArea(ArticleUpdateDialog);
         scrollArea->setObjectName("scrollArea");
         scrollArea->setWidgetResizable(true);
         scrollContent = new QWidget();
         scrollContent->setObjectName("scrollContent");
-        scrollContent->setGeometry(QRect(0, 0, 536, 764));
+        scrollContent->setGeometry(QRect(0, 0, 596, 1000));
         verticalLayout_Content = new QVBoxLayout(scrollContent);
+        verticalLayout_Content->setSpacing(15);
         verticalLayout_Content->setObjectName("verticalLayout_Content");
-        horizontalLayout_ID = new QHBoxLayout();
-        horizontalLayout_ID->setObjectName("horizontalLayout_ID");
-
-        verticalLayout_Content->addLayout(horizontalLayout_ID);
-
+        verticalLayout_Content->setContentsMargins(20, 20, 20, 20);
         label_Title = new QLabel(scrollContent);
         label_Title->setObjectName("label_Title");
-        QFont font;
-        font.setBold(true);
-        label_Title->setFont(font);
 
         verticalLayout_Content->addWidget(label_Title);
 
         editTitle = new QPlainTextEdit(scrollContent);
         editTitle->setObjectName("editTitle");
-        editTitle->viewport()->setProperty("cursor", QVariant(QCursor(Qt::CursorShape::IBeamCursor)));
+        editTitle->setMinimumSize(QSize(0, 60));
+        editTitle->setMaximumSize(QSize(16777215, 80));
 
         verticalLayout_Content->addWidget(editTitle);
 
@@ -134,7 +179,6 @@ public:
         verticalLayout_Venue->setObjectName("verticalLayout_Venue");
         label_Venue = new QLabel(scrollContent);
         label_Venue->setObjectName("label_Venue");
-        label_Venue->setFont(font);
 
         verticalLayout_Venue->addWidget(label_Venue);
 
@@ -151,23 +195,38 @@ public:
 
         gridLayout_Meta = new QGridLayout();
         gridLayout_Meta->setObjectName("gridLayout_Meta");
+        gridLayout_Meta->setVerticalSpacing(15);
+        label_Type = new QLabel(scrollContent);
+        label_Type->setObjectName("label_Type");
+
+        gridLayout_Meta->addWidget(label_Type, 0, 0, 1, 1);
+
+        comboType = new QComboBox(scrollContent);
+        comboType->addItem(QString());
+        comboType->addItem(QString());
+        comboType->addItem(QString());
+        comboType->addItem(QString());
+        comboType->setObjectName("comboType");
+
+        gridLayout_Meta->addWidget(comboType, 1, 0, 1, 1);
+
+        label_Year = new QLabel(scrollContent);
+        label_Year->setObjectName("label_Year");
+
+        gridLayout_Meta->addWidget(label_Year, 0, 1, 1, 1);
+
+        spinYear = new QSpinBox(scrollContent);
+        spinYear->setObjectName("spinYear");
+        spinYear->setMinimum(1900);
+        spinYear->setMaximum(2100);
+        spinYear->setValue(2024);
+
+        gridLayout_Meta->addWidget(spinYear, 1, 1, 1, 1);
+
         label_Status = new QLabel(scrollContent);
         label_Status->setObjectName("label_Status");
-        label_Status->setFont(font);
 
         gridLayout_Meta->addWidget(label_Status, 0, 2, 1, 1);
-
-        label_Cit = new QLabel(scrollContent);
-        label_Cit->setObjectName("label_Cit");
-        label_Cit->setFont(font);
-
-        gridLayout_Meta->addWidget(label_Cit, 0, 3, 1, 1);
-
-        spinCitation = new QSpinBox(scrollContent);
-        spinCitation->setObjectName("spinCitation");
-        spinCitation->setMaximum(999999);
-
-        gridLayout_Meta->addWidget(spinCitation, 1, 3, 1, 1);
 
         comboStatus = new QComboBox(scrollContent);
         comboStatus->addItem(QString());
@@ -181,40 +240,16 @@ public:
 
         gridLayout_Meta->addWidget(comboStatus, 1, 2, 1, 1);
 
-        label_Type = new QLabel(scrollContent);
-        label_Type->setObjectName("label_Type");
-        label_Type->setFont(font);
+        label_Cit = new QLabel(scrollContent);
+        label_Cit->setObjectName("label_Cit");
 
-        gridLayout_Meta->addWidget(label_Type, 0, 0, 1, 1);
+        gridLayout_Meta->addWidget(label_Cit, 0, 3, 1, 1);
 
-        verticalLayout_Year = new QVBoxLayout();
-        verticalLayout_Year->setObjectName("verticalLayout_Year");
-        spinYear = new QSpinBox(scrollContent);
-        spinYear->setObjectName("spinYear");
-        spinYear->setMinimum(1900);
-        spinYear->setMaximum(2100);
-        spinYear->setValue(2024);
+        spinCitation = new QSpinBox(scrollContent);
+        spinCitation->setObjectName("spinCitation");
+        spinCitation->setMaximum(999999);
 
-        verticalLayout_Year->addWidget(spinYear);
-
-
-        gridLayout_Meta->addLayout(verticalLayout_Year, 1, 1, 1, 1);
-
-        label_Year = new QLabel(scrollContent);
-        label_Year->setObjectName("label_Year");
-        label_Year->setFont(font);
-
-        gridLayout_Meta->addWidget(label_Year, 0, 1, 1, 1);
-
-        comboType = new QComboBox(scrollContent);
-        comboType->addItem(QString());
-        comboType->addItem(QString());
-        comboType->addItem(QString());
-        comboType->addItem(QString());
-        comboType->addItem(QString());
-        comboType->setObjectName("comboType");
-
-        gridLayout_Meta->addWidget(comboType, 1, 0, 1, 1);
+        gridLayout_Meta->addWidget(spinCitation, 1, 3, 1, 1);
 
 
         verticalLayout_Content->addLayout(gridLayout_Meta);
@@ -228,7 +263,7 @@ public:
 
         stackInputs = new QStackedWidget(scrollContent);
         stackInputs->setObjectName("stackInputs");
-        stackInputs->setFrameShape(QFrame::Shape::StyledPanel);
+        stackInputs->setMinimumSize(QSize(0, 80));
         pageInputSCIE = new QWidget();
         pageInputSCIE->setObjectName("pageInputSCIE");
         hl_InputSCIE = new QHBoxLayout(pageInputSCIE);
@@ -240,11 +275,10 @@ public:
 
         spinIF = new QDoubleSpinBox(pageInputSCIE);
         spinIF->setObjectName("spinIF");
-        spinIF->setSingleStep(0.100000000000000);
 
         hl_InputSCIE->addWidget(spinIF);
 
-        hs1 = new QSpacerItem(0, 0, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        hs1 = new QSpacerItem(20, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         hl_InputSCIE->addItem(hs1);
 
@@ -275,7 +309,7 @@ public:
 
         hl_InputSCOPUS->addWidget(spinSJR);
 
-        hs2 = new QSpacerItem(0, 0, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        hs2 = new QSpacerItem(20, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         hl_InputSCOPUS->addItem(hs2);
 
@@ -311,7 +345,6 @@ public:
 
         spinAcceptRate = new QDoubleSpinBox(pageInputCONF);
         spinAcceptRate->setObjectName("spinAcceptRate");
-        spinAcceptRate->setMaximum(100.000000000000000);
 
         gl_InputCONF->addWidget(spinAcceptRate, 0, 3, 1, 1);
 
@@ -341,50 +374,95 @@ public:
 
         label_Authors = new QLabel(scrollContent);
         label_Authors->setObjectName("label_Authors");
-        label_Authors->setFont(font);
 
         verticalLayout_Content->addWidget(label_Authors);
 
         editAuthors = new QPlainTextEdit(scrollContent);
         editAuthors->setObjectName("editAuthors");
+        editAuthors->setMinimumSize(QSize(0, 80));
 
         verticalLayout_Content->addWidget(editAuthors);
 
         label_Abstract = new QLabel(scrollContent);
         label_Abstract->setObjectName("label_Abstract");
-        label_Abstract->setFont(font);
 
         verticalLayout_Content->addWidget(label_Abstract);
 
         editAbstract = new QPlainTextEdit(scrollContent);
         editAbstract->setObjectName("editAbstract");
+        editAbstract->setMinimumSize(QSize(0, 80));
 
         verticalLayout_Content->addWidget(editAbstract);
 
         label_Refs = new QLabel(scrollContent);
         label_Refs->setObjectName("label_Refs");
-        label_Refs->setFont(font);
 
         verticalLayout_Content->addWidget(label_Refs);
 
         editRefs = new QPlainTextEdit(scrollContent);
         editRefs->setObjectName("editRefs");
+        editRefs->setMinimumSize(QSize(0, 80));
 
         verticalLayout_Content->addWidget(editRefs);
 
         scrollArea->setWidget(scrollContent);
 
-        gridLayout->addWidget(scrollArea, 0, 0, 1, 2);
+        mainLayout->addWidget(scrollArea);
 
-        closeBtn = new QPushButton(ArticleUpdateDialog);
+        footerContainer = new QWidget(ArticleUpdateDialog);
+        footerContainer->setObjectName("footerContainer");
+        footerContainer->setMinimumSize(QSize(0, 70));
+        footerContainer->setStyleSheet(QString::fromUtf8("background-color: #ffffff; border-top: 1px solid #ddd;"));
+        horizontalLayout_Footer = new QHBoxLayout(footerContainer);
+        horizontalLayout_Footer->setObjectName("horizontalLayout_Footer");
+        horizontalLayout_Footer->setContentsMargins(-1, -1, 30, -1);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_Footer->addItem(horizontalSpacer);
+
+        closeBtn = new QPushButton(footerContainer);
         closeBtn->setObjectName("closeBtn");
+        closeBtn->setMinimumSize(QSize(100, 35));
+        closeBtn->setStyleSheet(QString::fromUtf8("\n"
+"          QPushButton {\n"
+"           background-color: #da3e36; \n"
+"           border: 2px solid #da3e36; \n"
+"           border-radius: 6px; \n"
+"           color: white; \n"
+"           font-weight: bold;\n"
+"           font-size: 14px;\n"
+"          }\n"
+"          QPushButton:hover { background-color: #c0392b; }\n"
+"          QPushButton:pressed { background-color: #922b21; }\n"
+"         "));
 
-        gridLayout->addWidget(closeBtn, 1, 0, 1, 1);
+        horizontalLayout_Footer->addWidget(closeBtn);
+
+        saveBtn = new QPushButton(footerContainer);
+        saveBtn->setObjectName("saveBtn");
+        saveBtn->setMinimumSize(QSize(100, 35));
+        saveBtn->setStyleSheet(QString::fromUtf8("\n"
+"          QPushButton {\n"
+"           background-color: #20B2AA; \n"
+"           border: 2px solid #20B2AA; \n"
+"           border-radius: 6px; \n"
+"           color: white; \n"
+"           font-weight: bold;\n"
+"           font-size: 14px;\n"
+"          }\n"
+"          QPushButton:hover { background-color: #17a098; }\n"
+"          QPushButton:pressed { background-color: #0e6b65; }\n"
+"         "));
+
+        horizontalLayout_Footer->addWidget(saveBtn);
+
+
+        mainLayout->addWidget(footerContainer);
 
 
         retranslateUi(ArticleUpdateDialog);
 
-        stackInputs->setCurrentIndex(3);
+        stackInputs->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ArticleUpdateDialog);
@@ -393,13 +471,19 @@ public:
     void retranslateUi(QDialog *ArticleUpdateDialog)
     {
         ArticleUpdateDialog->setWindowTitle(QCoreApplication::translate("ArticleUpdateDialog", "Update Article Information", nullptr));
-        saveBtn->setText(QCoreApplication::translate("ArticleUpdateDialog", "Save", nullptr));
+        lblHeaderTitle->setText(QCoreApplication::translate("ArticleUpdateDialog", "C\341\272\254P NH\341\272\254T B\303\200I B\303\201O", nullptr));
         label_Title->setText(QCoreApplication::translate("ArticleUpdateDialog", "Title", nullptr));
         editTitle->setPlaceholderText(QCoreApplication::translate("ArticleUpdateDialog", "Enter article title here...", nullptr));
         label_Venue->setText(QCoreApplication::translate("ArticleUpdateDialog", "Venue", nullptr));
         editVenue->setPlaceholderText(QCoreApplication::translate("ArticleUpdateDialog", "Conference or Journal Name", nullptr));
+        label_Type->setText(QCoreApplication::translate("ArticleUpdateDialog", "Type", nullptr));
+        comboType->setItemText(0, QCoreApplication::translate("ArticleUpdateDialog", "SCIE", nullptr));
+        comboType->setItemText(1, QCoreApplication::translate("ArticleUpdateDialog", "SCOPUS", nullptr));
+        comboType->setItemText(2, QCoreApplication::translate("ArticleUpdateDialog", "CONFERENCE", nullptr));
+        comboType->setItemText(3, QCoreApplication::translate("ArticleUpdateDialog", "OTHER", nullptr));
+
+        label_Year->setText(QCoreApplication::translate("ArticleUpdateDialog", "Year", nullptr));
         label_Status->setText(QCoreApplication::translate("ArticleUpdateDialog", "Status", nullptr));
-        label_Cit->setText(QCoreApplication::translate("ArticleUpdateDialog", "Citations", nullptr));
         comboStatus->setItemText(0, QCoreApplication::translate("ArticleUpdateDialog", "DRAFT", nullptr));
         comboStatus->setItemText(1, QCoreApplication::translate("ArticleUpdateDialog", "SUBMITTED", nullptr));
         comboStatus->setItemText(2, QCoreApplication::translate("ArticleUpdateDialog", "UNDER_REVIEW", nullptr));
@@ -408,32 +492,22 @@ public:
         comboStatus->setItemText(5, QCoreApplication::translate("ArticleUpdateDialog", "REJECTED", nullptr));
         comboStatus->setItemText(6, QCoreApplication::translate("ArticleUpdateDialog", "PUBLISHED", nullptr));
 
-        label_Type->setText(QCoreApplication::translate("ArticleUpdateDialog", "Type", nullptr));
-        label_Year->setText(QCoreApplication::translate("ArticleUpdateDialog", "Year", nullptr));
-        comboType->setItemText(0, QCoreApplication::translate("ArticleUpdateDialog", "SCIE", nullptr));
-        comboType->setItemText(1, QCoreApplication::translate("ArticleUpdateDialog", "SCOPUS", nullptr));
-        comboType->setItemText(2, QCoreApplication::translate("ArticleUpdateDialog", "CONFERENCE", nullptr));
-        comboType->setItemText(3, QCoreApplication::translate("ArticleUpdateDialog", "OTHER", nullptr));
-        comboType->setItemText(4, QString());
-
+        label_Cit->setText(QCoreApplication::translate("ArticleUpdateDialog", "Citations", nullptr));
         lbl_IF->setText(QCoreApplication::translate("ArticleUpdateDialog", "Impact Factor:", nullptr));
-        lbl_Q->setText(QCoreApplication::translate("ArticleUpdateDialog", "Q-Rank (1-4):", nullptr));
+        lbl_Q->setText(QCoreApplication::translate("ArticleUpdateDialog", "Q-Rank:", nullptr));
         lbl_SJR->setText(QCoreApplication::translate("ArticleUpdateDialog", "SJR:", nullptr));
         lbl_H->setText(QCoreApplication::translate("ArticleUpdateDialog", "H-Index:", nullptr));
         lbl_CR->setText(QCoreApplication::translate("ArticleUpdateDialog", "Rank:", nullptr));
-        editConfRank->setPlaceholderText(QCoreApplication::translate("ArticleUpdateDialog", "e.g. A*, A", nullptr));
         lbl_AR->setText(QCoreApplication::translate("ArticleUpdateDialog", "Accept Rate (%):", nullptr));
-        spinAcceptRate->setSuffix(QCoreApplication::translate("ArticleUpdateDialog", "%", nullptr));
         lbl_Loc->setText(QCoreApplication::translate("ArticleUpdateDialog", "Location:", nullptr));
         label_Authors->setText(QCoreApplication::translate("ArticleUpdateDialog", "Authors (One per line)", nullptr));
-        editAuthors->setPlaceholderText(QCoreApplication::translate("ArticleUpdateDialog", "Author 1\n"
-"Author 2\n"
-"Author 3", nullptr));
+        editAuthors->setPlaceholderText(QCoreApplication::translate("ArticleUpdateDialog", "Enter authors here...", nullptr));
         label_Abstract->setText(QCoreApplication::translate("ArticleUpdateDialog", "Abstract", nullptr));
         label_Refs->setText(QCoreApplication::translate("ArticleUpdateDialog", "References (One per line)", nullptr));
         editRefs->setPlaceholderText(QCoreApplication::translate("ArticleUpdateDialog", "Ref 1...\n"
 "Ref 2...", nullptr));
-        closeBtn->setText(QCoreApplication::translate("ArticleUpdateDialog", "Close", nullptr));
+        closeBtn->setText(QCoreApplication::translate("ArticleUpdateDialog", "H\341\273\247y", nullptr));
+        saveBtn->setText(QCoreApplication::translate("ArticleUpdateDialog", "L\306\260u", nullptr));
     } // retranslateUi
 
 };
