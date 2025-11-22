@@ -110,7 +110,7 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         lblTitle = new QLabel(headerContainer);
         lblTitle->setObjectName("lblTitle");
-        lblTitle->setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
+        lblTitle->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout->addWidget(lblTitle);
 
@@ -119,12 +119,12 @@ public:
 
         scrollArea = new QScrollArea(ArticleInputDialog);
         scrollArea->setObjectName("scrollArea");
-        scrollArea->setWidgetResizable(true);
-        scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setStyleSheet(QString::fromUtf8("margin: 15px;"));
+        scrollArea->setFrameShape(QFrame::Shape::NoFrame);
+        scrollArea->setWidgetResizable(true);
         scrollContent = new QWidget();
         scrollContent->setObjectName("scrollContent");
-        scrollContent->setGeometry(QRect(0, 0, 618, 1250));
+        scrollContent->setGeometry(QRect(0, -620, 606, 1326));
         verticalLayout_Scroll = new QVBoxLayout(scrollContent);
         verticalLayout_Scroll->setSpacing(20);
         verticalLayout_Scroll->setObjectName("verticalLayout_Scroll");
@@ -139,20 +139,20 @@ public:
 
         inputTitle = new QPlainTextEdit(scrollContent);
         inputTitle->setObjectName("inputTitle");
-        inputTitle->setMinimumSize(QSize(0, 60));
+        inputTitle->setMinimumSize(QSize(0, 84));
         inputTitle->setMaximumSize(QSize(16777215, 80));
 
         gridLayout->addWidget(inputTitle, 0, 1, 1, 1);
 
         lblAbstract = new QLabel(scrollContent);
         lblAbstract->setObjectName("lblAbstract");
-        lblAbstract->setAlignment(Qt::AlignTop);
+        lblAbstract->setAlignment(Qt::AlignmentFlag::AlignTop);
 
         gridLayout->addWidget(lblAbstract, 1, 0, 1, 1);
 
         inputAbstract = new QPlainTextEdit(scrollContent);
         inputAbstract->setObjectName("inputAbstract");
-        inputAbstract->setMinimumSize(QSize(0, 80));
+        inputAbstract->setMinimumSize(QSize(0, 84));
 
         gridLayout->addWidget(inputAbstract, 1, 1, 1, 1);
 
@@ -163,7 +163,7 @@ public:
 
         inputVenue = new QPlainTextEdit(scrollContent);
         inputVenue->setObjectName("inputVenue");
-        inputVenue->setMinimumSize(QSize(0, 60));
+        inputVenue->setMinimumSize(QSize(0, 84));
         inputVenue->setMaximumSize(QSize(16777215, 70));
 
         gridLayout->addWidget(inputVenue, 2, 1, 1, 1);
@@ -175,7 +175,7 @@ public:
 
         inputYear = new QSpinBox(scrollContent);
         inputYear->setObjectName("inputYear");
-        inputYear->setMinimumSize(QSize(0, 40));
+        inputYear->setMinimumSize(QSize(0, 84));
         inputYear->setMinimum(1900);
         inputYear->setMaximum(2100);
         inputYear->setValue(2025);
@@ -189,7 +189,7 @@ public:
 
         inputCitations = new QSpinBox(scrollContent);
         inputCitations->setObjectName("inputCitations");
-        inputCitations->setMinimumSize(QSize(0, 40));
+        inputCitations->setMinimumSize(QSize(0, 84));
         inputCitations->setMaximum(1000000);
 
         gridLayout->addWidget(inputCitations, 4, 1, 1, 1);
@@ -208,19 +208,19 @@ public:
         inputStatus->addItem(QString());
         inputStatus->addItem(QString());
         inputStatus->setObjectName("inputStatus");
-        inputStatus->setMinimumSize(QSize(0, 40));
+        inputStatus->setMinimumSize(QSize(0, 84));
 
         gridLayout->addWidget(inputStatus, 5, 1, 1, 1);
 
         lblRefs = new QLabel(scrollContent);
         lblRefs->setObjectName("lblRefs");
-        lblRefs->setAlignment(Qt::AlignTop);
+        lblRefs->setAlignment(Qt::AlignmentFlag::AlignTop);
 
         gridLayout->addWidget(lblRefs, 6, 0, 1, 1);
 
         inputRefs = new QPlainTextEdit(scrollContent);
         inputRefs->setObjectName("inputRefs");
-        inputRefs->setMinimumSize(QSize(0, 80));
+        inputRefs->setMinimumSize(QSize(0, 84));
 
         gridLayout->addWidget(inputRefs, 6, 1, 1, 1);
 
@@ -235,7 +235,7 @@ public:
         inputType->addItem(QString());
         inputType->addItem(QString());
         inputType->setObjectName("inputType");
-        inputType->setMinimumSize(QSize(0, 40));
+        inputType->setMinimumSize(QSize(0, 84));
 
         gridLayout->addWidget(inputType, 7, 1, 1, 1);
 
@@ -256,7 +256,7 @@ public:
 
         inputIF = new QDoubleSpinBox(pageScie);
         inputIF->setObjectName("inputIF");
-        inputIF->setMinimumSize(QSize(0, 40));
+        inputIF->setMinimumSize(QSize(0, 84));
 
         formLayout->setWidget(0, QFormLayout::ItemRole::FieldRole, inputIF);
 
@@ -267,9 +267,9 @@ public:
 
         inputQRank = new QSpinBox(pageScie);
         inputQRank->setObjectName("inputQRank");
+        inputQRank->setMinimumSize(QSize(0, 84));
         inputQRank->setMinimum(1);
         inputQRank->setMaximum(4);
-        inputQRank->setMinimumSize(QSize(0, 40));
 
         formLayout->setWidget(1, QFormLayout::ItemRole::FieldRole, inputQRank);
 
@@ -285,7 +285,7 @@ public:
 
         inputSJR = new QDoubleSpinBox(pageScopus);
         inputSJR->setObjectName("inputSJR");
-        inputSJR->setMinimumSize(QSize(0, 40));
+        inputSJR->setMinimumSize(QSize(0, 84));
 
         formLayout_2->setWidget(0, QFormLayout::ItemRole::FieldRole, inputSJR);
 
@@ -296,7 +296,7 @@ public:
 
         inputHIndex = new QSpinBox(pageScopus);
         inputHIndex->setObjectName("inputHIndex");
-        inputHIndex->setMinimumSize(QSize(0, 40));
+        inputHIndex->setMinimumSize(QSize(0, 84));
 
         formLayout_2->setWidget(1, QFormLayout::ItemRole::FieldRole, inputHIndex);
 
@@ -312,7 +312,7 @@ public:
 
         inputConfRank = new QLineEdit(pageConference);
         inputConfRank->setObjectName("inputConfRank");
-        inputConfRank->setMinimumSize(QSize(0, 40));
+        inputConfRank->setMinimumSize(QSize(0, 84));
 
         formLayout_3->setWidget(0, QFormLayout::ItemRole::FieldRole, inputConfRank);
 
@@ -323,7 +323,7 @@ public:
 
         inputLocation = new QLineEdit(pageConference);
         inputLocation->setObjectName("inputLocation");
-        inputLocation->setMinimumSize(QSize(0, 40));
+        inputLocation->setMinimumSize(QSize(0, 84));
 
         formLayout_3->setWidget(1, QFormLayout::ItemRole::FieldRole, inputLocation);
 
@@ -334,7 +334,7 @@ public:
 
         inputAcceptRate = new QDoubleSpinBox(pageConference);
         inputAcceptRate->setObjectName("inputAcceptRate");
-        inputAcceptRate->setMinimumSize(QSize(0, 40));
+        inputAcceptRate->setMinimumSize(QSize(0, 84));
 
         formLayout_3->setWidget(2, QFormLayout::ItemRole::FieldRole, inputAcceptRate);
 
@@ -360,6 +360,8 @@ public:
         listAuthors = new QListView(scrollContent);
         listAuthors->setObjectName("listAuthors");
         listAuthors->setMinimumSize(QSize(0, 150));
+        listAuthors->setFrameShadow(QFrame::Shadow::Raised);
+        listAuthors->setProperty("isWrapping", QVariant(false));
 
         verticalLayout_Scroll->addWidget(listAuthors);
 

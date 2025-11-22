@@ -145,7 +145,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollContent = new QWidget();
         scrollContent->setObjectName("scrollContent");
-        scrollContent->setGeometry(QRect(0, 0, 718, 728));
+        scrollContent->setGeometry(QRect(0, 0, 710, 987));
         verticalLayout_Content = new QVBoxLayout(scrollContent);
         verticalLayout_Content->setSpacing(20);
         verticalLayout_Content->setObjectName("verticalLayout_Content");
@@ -168,7 +168,7 @@ public:
 
         lblYear = new QLabel(grpGeneral);
         lblYear->setObjectName("lblYear");
-        lblYear->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lblYear->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         gridLayout->addWidget(lblYear, 1, 1, 1, 1);
 
@@ -179,7 +179,7 @@ public:
 
         lblCitation = new QLabel(grpGeneral);
         lblCitation->setObjectName("lblCitation");
-        lblCitation->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lblCitation->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         gridLayout->addWidget(lblCitation, 2, 1, 1, 1);
 
