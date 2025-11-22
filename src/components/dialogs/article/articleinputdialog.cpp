@@ -126,8 +126,10 @@ void ArticleInputDialog::on_btnSave_clicked()
         hIndex
     );
 
+    repo.getArticles().save(std::move(article));
+
     qDebug() << "Saved Article:" << title << "Year:" << year;
-    accepted();
+    accept();
 }
 
 

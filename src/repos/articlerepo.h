@@ -26,6 +26,7 @@ public:
     // Import and export data
     void load();
     void save();
+    void save(const shared_ptr<Article>& article);
 
     // Search
     shared_ptr<Article> findById(const string& id);

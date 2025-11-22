@@ -56,11 +56,14 @@ void ListOfAuthorsDialog::on_okBtn_clicked()
 
 vector<string> ListOfAuthorsDialog::getSelectedAuthorIds() const {
     vector<string> selectedIds;
-    auto selectedRows = ui->listViewAuthors->selectionModel()->selectedRows();
 
-    for (const QModelIndex &index : selectedRows) {
-        string id = index.data(Qt::UserRole).toString().toStdString();
-        selectedIds.push_back(id);
+    for (int i = 0; i < model->rowCount(); ++i) {
+        QStandardItem *item = model->item(i);
+
+        if (item->checkState() == Qt::Checked) {
+            string id = item->data(Qt::UserRole).toString().toStdString();
+            selectedIds.push_back(id);
+        }
     }
     return selectedIds;
 }

@@ -27,6 +27,9 @@ void SignUpForm::on_signUpButton_clicked()
     QString username = ui->usernameEdit->text().trimmed();
     QString password = ui->passwordEdit->text();
     QString confirmPass = ui->confirmPassEdit->text();
+    QString fullname = ui->fullnameEdit->text();
+    QString email = ui->emailEdit->text();
+    QString phone = ui->phoneEdit->text();
 
     if (username.isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập!", "Lỗi đăng kí");
@@ -48,7 +51,7 @@ void SignUpForm::on_signUpButton_clicked()
         return;
     }
 
-    UserManager::registerUser(username, password);
+    UserManager::registerUser(username, password, fullname, email, phone);
     emit signupSuccess();
 }
 

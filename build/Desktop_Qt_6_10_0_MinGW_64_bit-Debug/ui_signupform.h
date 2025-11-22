@@ -38,6 +38,12 @@ public:
     QSpacerItem *verticalSpacer_3;
     QLabel *usernameLabel;
     QLineEdit *usernameEdit;
+    QLabel *fullnameLabel;
+    QLineEdit *fullnameEdit;
+    QLabel *emailLabel;
+    QLineEdit *emailEdit;
+    QLabel *phoneLabel;
+    QLineEdit *phoneEdit;
     QLabel *passwordLabel;
     QLineEdit *passwordEdit;
     QLabel *confirmPassLabel;
@@ -110,6 +116,36 @@ public:
         usernameEdit->setObjectName("usernameEdit");
 
         verticalLayout->addWidget(usernameEdit);
+
+        fullnameLabel = new QLabel(widget);
+        fullnameLabel->setObjectName("fullnameLabel");
+
+        verticalLayout->addWidget(fullnameLabel);
+
+        fullnameEdit = new QLineEdit(widget);
+        fullnameEdit->setObjectName("fullnameEdit");
+
+        verticalLayout->addWidget(fullnameEdit);
+
+        emailLabel = new QLabel(widget);
+        emailLabel->setObjectName("emailLabel");
+
+        verticalLayout->addWidget(emailLabel);
+
+        emailEdit = new QLineEdit(widget);
+        emailEdit->setObjectName("emailEdit");
+
+        verticalLayout->addWidget(emailEdit);
+
+        phoneLabel = new QLabel(widget);
+        phoneLabel->setObjectName("phoneLabel");
+
+        verticalLayout->addWidget(phoneLabel);
+
+        phoneEdit = new QLineEdit(widget);
+        phoneEdit->setObjectName("phoneEdit");
+
+        verticalLayout->addWidget(phoneEdit);
 
         passwordLabel = new QLabel(widget);
         passwordLabel->setObjectName("passwordLabel");
@@ -191,6 +227,12 @@ public:
         subtitleLabel->setText(QCoreApplication::translate("SignUpForm", "Please enter your detail to sign in", nullptr));
         usernameLabel->setText(QCoreApplication::translate("SignUpForm", "Username", nullptr));
         usernameEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your username...", nullptr));
+        fullnameLabel->setText(QCoreApplication::translate("SignUpForm", "Full Name", nullptr));
+        fullnameEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your Full Name", nullptr));
+        emailLabel->setText(QCoreApplication::translate("SignUpForm", "Email", nullptr));
+        emailEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your email", nullptr));
+        phoneLabel->setText(QCoreApplication::translate("SignUpForm", "Phone", nullptr));
+        phoneEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your phone", nullptr));
         passwordLabel->setText(QCoreApplication::translate("SignUpForm", "Password", nullptr));
         passwordEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Password@123", nullptr));
         confirmPassLabel->setText(QCoreApplication::translate("SignUpForm", "Password again", nullptr));

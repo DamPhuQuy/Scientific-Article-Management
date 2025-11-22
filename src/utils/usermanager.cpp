@@ -48,7 +48,10 @@ bool UserManager::saveToFile() {
         j.push_back({
             {"username", user.username},
             {"password", user.password},
-            {"role", user.role}
+            {"role", user.role},
+            {"fullname", user.fullname},
+            {"email", user.email},
+            {"phone", user.phone}
         });
     }
 
@@ -59,20 +62,20 @@ bool UserManager::saveToFile() {
     return true;
 }
 
-bool UserManager::registerUser(const string& username, const string& password) {
+bool UserManager::registerUser(const std::string& username, const std::string& password, const std::string& fullname, const std::string& email, const std::string& phone, const std::string& role) {
     if (username.empty() || password.empty()) return false;
 
     loadFromFile();
     if (usernameToIndex.containsKey(username)) return false;
 
-    User newUser{username, password};
+    User newUser{username, password, role, fullname, email, phone};
     userList.push_back(newUser);
     usernameToIndex.put(username, userList.size() - 1);
     return saveToFile();
 }
 
-bool UserManager::registerUser(const QString& u, const QString& p) {
-    return registerUser(u.toStdString(), p.toStdString());
+bool UserManager::registerUser(const QString& u, const QString& p, const QString& f, const QString& e, const QString& ph, const QString& r) {
+    return registerUser(u.toStdString(), p.toStdString(), f.toStdString(), e.toStdString(), ph.toStdString(), r.toStdString());
 }
 
 bool UserManager::login(const string& username, const string& password) {

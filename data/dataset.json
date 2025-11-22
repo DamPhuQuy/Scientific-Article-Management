@@ -1,360 +1,30 @@
 [
   {
-    "id": "4ab3735c-80f1-472d-b953-fa0557fed28b",
-    "type": 3,
-    "title": "A new approach of 3D watermarking based on image segmentation",
-    "abstract": "In this paper, a robust 3D triangular mesh watermarking algorithm based on 3D segmentation is proposed. In this algorithm three classes of watermarking are combined. First, we segment the original image to many different regions. Then we mark every type of region with the corresponding algorithm based on their curvature value. The experiments show that our watermarking is robust against numerous attacks including RST transformations, smoothing, additive random noise, cropping, simplification and remeshing.",
-    "venue": "International Symposium on Computers and Communications",
-    "year": 2008,
-    "n_citation": 50,
+    "abstract": "This paper proposes a intelligent system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
     "authors": [
-      "db4ec36e-324a-477b-87f2-0dd4aabb048d",
-      "eff2ad8f-b5e1-4339-867b-e7e87d3e7651"
-    ],
-    "references": [
-      "Advances in 3D Mesh Segmentation Techniques",
-      "Robust Watermarking for 3D Models",
-      "Curvature-Based Analysis for Digital Watermarking"
-    ],
-    "status": "PUBLISHED",
-    "conference_rank": "A",
-    "location": "Tokyo, Japan",
-    "acceptance_rate": 18.5
-  },
-  {
-    "id": "68932f33-728b-4580-af19-8b58853c9ad9",
-    "type": 1,
-    "title": "Attractor neural networks with activity-dependent synapses: The role of synaptic facilitation",
-    "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase...",
-    "venue": "Neurocomputing",
-    "year": 2007,
-    "n_citation": 50,
-    "authors": [
-      "3195b257-0ab1-45be-91e2-e88ba6c62827",
-      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
-      "82844d84-2425-4017-8670-0f1e354e517a",
-      "2b94573f-5146-4b66-9016-310494fe9170"
-    ],
-    "references": [
-      "Dynamic Synapses in Neural Networks: A Review",
-      "Mean-Field Theory for Neural Network Dynamics",
-      "Monte Carlo Methods in Neural Network Analysis",
-      "Synaptic Facilitation and Memory Retrieval"
-    ],
-    "status": "PUBLISHED",
-    "impact_factor": 5.67,
-    "q_rank": 1
-  },
-  {
-    "id": "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
-    "type": 2,
-    "title": "Efficient Construction of Balanced Ternary Sequences",
-    "abstract": "We present an efficient algorithm for constructing balanced sequences over 3 letters using continued fraction expansions. The method runs in O(n log n) and generates sequences with minimal imbalance.",
-    "venue": "WORDS 2023",
-    "year": 2023,
-    "n_citation": 28,
-    "authors": [
-      "836a5c98-1418-4c1c-a580-c42d7bc51420",
-      "b3585b46-d22b-4b2c-9317-dec3b72a3159"
-    ],
-    "references": [
-      "Continued Fractions and Balanced Words",
-      "Efficient Generation of Morphic Sequences",
-      "Imbalance Bounds for Ternary Alphabets"
-    ],
-    "status": "PUBLISHED",
-    "sjr": 0.85,
-    "hIndex": 47
-  },
-  {
-    "id": "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
-    "type": 4,
-    "title": "Balanced Sequences in Data Compression: A Survey",
-    "abstract": "This technical report surveys recent results on balanced sequences over non-integer alphabets and their applications in data compression.",
-    "venue": "arXiv Technical Report",
-    "year": 2023,
-    "n_citation": 15,
-    "authors": [
-      "8e907521-6e0d-4472-bb75-8968e541d262",
-      "c9fa938b-48a3-4841-996f-3a01697ee222"
-    ],
-    "references": [
-      "Balanced Sequences in Compression",
-      "Non-integer Alphabets",
-      "Survey of Word Combinatorics"
-    ],
-    "status": "PUBLISHED"
-  },
-  {
-    "id": "6dde2a54-e499-463f-92bd-5c91e232279f",
-    "type": 4,
-    "title": "Intelligent Model for Blockchain",
-    "abstract": "This paper proposes a intelligent model for blockchain. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "KDD",
-    "year": 2018,
-    "n_citation": 111,
-    "authors": [
-      "836a5c98-1418-4c1c-a580-c42d7bc51420",
-      "3195b257-0ab1-45be-91e2-e88ba6c62827"
-    ],
-    "references": [
-      "Efficient Framework for Big Data",
-      "Novel Architecture for Big Data",
-      "Robust Methodology for Big Data",
-      "Intelligent Mechanism for Neural Networks"
-    ],
-    "status": "PUBLISHED"
-  },
-  {
-    "id": "eae4c163-13fa-41c3-a940-af666285327c",
-    "type": 1,
-    "title": "Robust Protocol for Data Mining",
-    "abstract": "This paper proposes a robust protocol for data mining. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "ICML",
-    "year": 2019,
-    "n_citation": 223,
-    "authors": [
-      "3195b257-0ab1-45be-91e2-e88ba6c62827",
-      "c9fa938b-48a3-4841-996f-3a01697ee222"
-    ],
-    "references": [
-      "Robust System for Blockchain",
-      "Adaptive Model for Big Data",
-      "Secure Protocol for Machine Learning",
-      "Advanced Algorithm for Cloud Computing"
-    ],
-    "status": "PUBLISHED",
-    "impact_factor": 9.98
-  },
-  {
-    "id": "6d941f48-3f08-48ac-bcd1-4868b6acbdf4",
-    "type": 1,
-    "title": "Distributed Model for Cloud Computing",
-    "abstract": "This paper proposes a distributed model for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "NeurIPS",
-    "year": 2023,
-    "n_citation": 117,
-    "authors": ["db4ec36e-324a-477b-87f2-0dd4aabb048d"],
-    "references": [
-      "Advanced System for Big Data",
-      "Distributed Framework for IoT",
-      "Adaptive Methodology for Cybersecurity",
-      "Adaptive Mechanism for Neural Networks"
-    ],
-    "status": "PUBLISHED",
-    "conference_rank": "A"
-  },
-  {
-    "id": "c4fbbb79-8ba6-427b-8696-1480533e8e4b",
-    "type": 2,
-    "title": "Dynamic Model for Cybersecurity",
-    "abstract": "This paper proposes a dynamic model for cybersecurity. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "IJCAI",
-    "year": 2023,
-    "n_citation": 302,
-    "authors": [
-      "3195b257-0ab1-45be-91e2-e88ba6c62827",
-      "eff2ad8f-b5e1-4339-867b-e7e87d3e7651",
-      "8e907521-6e0d-4472-bb75-8968e541d262"
-    ],
-    "references": ["Intelligent Approach for Machine Learning"],
-    "status": "PUBLISHED",
-    "conference_rank": "C"
-  },
-  {
-    "id": "df0da247-7783-4784-a24f-18324c8a5838",
-    "type": 1,
-    "title": "Advanced Architecture for Cloud Computing",
-    "abstract": "This paper proposes a advanced architecture for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "NeurIPS",
-    "year": 2019,
-    "n_citation": 410,
-    "authors": [
-      "7e7d59ce-b735-4bde-accf-db5c682af1cf",
-      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
       "6ec56653-9e6f-4522-a7af-ffeebf346f61"
     ],
-    "references": [
-      "Intelligent Network for Data Mining",
-      "Novel Protocol for Cloud Computing",
-      "Secure Approach for Blockchain",
-      "Novel Methodology for Machine Learning"
-    ],
-    "status": "PUBLISHED",
-    "conference_rank": "A"
-  },
-  {
-    "id": "b5937956-cf2e-4421-b650-6027374dffc6",
-    "type": 2,
-    "title": "Advanced Network for Machine Learning",
-    "abstract": "This paper proposes a advanced network for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "SIGMOD",
-    "year": 2016,
-    "n_citation": 235,
-    "authors": [
-      "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
-      "c9fa938b-48a3-4841-996f-3a01697ee222"
-    ],
-    "references": ["Dynamic Methodology for Machine Learning"],
-    "status": "PUBLISHED",
-    "conference_rank": "A",
-    "impact_factor": 8.58
-  },
-  {
     "id": "634523ca-072e-476c-a0b9-accde2af6066",
-    "type": 4,
-    "title": "Intelligent System for Cloud Computing",
-    "abstract": "This paper proposes a intelligent system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "IJCAI",
-    "year": 2021,
     "n_citation": 51,
-    "authors": ["6ec56653-9e6f-4522-a7af-ffeebf346f61"],
-    "references": ["Distributed Protocol for IoT"],
-    "status": "PUBLISHED",
-    "impact_factor": 6.6
-  },
-  {
-    "id": "1cbb488a-80a5-4eb7-88a8-f4915acbd348",
-    "type": 2,
-    "title": "Distributed Framework for Machine Learning",
-    "abstract": "This paper proposes a distributed framework for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "NeurIPS",
-    "year": 2022,
-    "n_citation": 60,
-    "authors": [
-      "c9fa938b-48a3-4841-996f-3a01697ee222",
-      "06407807-b267-439b-938e-9d8db5a152b3"
-    ],
     "references": [
-      "Adaptive Network for Neural Networks",
-      "Novel Model for Cloud Computing",
-      "Advanced Model for IoT"
+      "Distributed Protocol for IoT"
     ],
     "status": "PUBLISHED",
-    "impact_factor": 1.65
-  },
-  {
-    "id": "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
+    "title": "Intelligent System for Cloud Computing",
     "type": 4,
-    "title": "Efficient Model for IoT",
-    "abstract": "This paper proposes a efficient model for iot. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "NeurIPS",
-    "year": 2024,
-    "n_citation": 186,
-    "authors": [
-      "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
-      "836a5c98-1418-4c1c-a580-c42d7bc51420",
-      "06407807-b267-439b-938e-9d8db5a152b3"
-    ],
-    "references": [
-      "Secure Methodology for Blockchain",
-      "Scalable Mechanism for Artificial Intelligence",
-      "Dynamic Methodology for Computer Vision"
-    ],
-    "status": "PUBLISHED"
-  },
-  {
-    "id": "b72b3013-9aed-46b3-8380-4693f3825b10",
-    "type": 2,
-    "title": "Robust Protocol for Machine Learning",
-    "abstract": "This paper proposes a robust protocol for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "SIGMOD",
-    "year": 2017,
-    "n_citation": 113,
-    "authors": ["d585bf29-31ef-40e0-a81c-e9ddf81bcdff"],
-    "references": [
-      "Robust Architecture for Cybersecurity",
-      "Dynamic System for Cloud Computing",
-      "Intelligent Protocol for Blockchain"
-    ],
-    "status": "PUBLISHED"
-  },
-  {
-    "id": "cbafcb6a-3e0c-43f1-bd27-e07bd95e4ab0",
-    "type": 2,
-    "title": "Novel Network for Blockchain",
-    "abstract": "This paper proposes a novel network for blockchain. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "CVPR",
-    "year": 2024,
-    "n_citation": 196,
-    "authors": [
-      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
-      "a95890c4-1022-4da6-9334-76bc68f1f9a2"
-    ],
-    "references": [
-      "Efficient Architecture for Cybersecurity",
-      "Robust System for Cloud Computing"
-    ],
-    "status": "PUBLISHED",
-    "conference_rank": "B",
-    "impact_factor": 7.17
-  },
-  {
-    "id": "fc86d8f1-d1c3-4580-9913-619d1485f82d",
-    "type": 1,
-    "title": "Distributed Framework for Computer Vision",
-    "abstract": "This paper proposes a distributed framework for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "AAAI",
-    "year": 2023,
-    "n_citation": 439,
-    "authors": [
-      "a95890c4-1022-4da6-9334-76bc68f1f9a2",
-      "b5d3466c-ca54-461b-b03d-d86c0468c0ad"
-    ],
-    "references": [
-      "Scalable Network for Cybersecurity",
-      "Distributed System for Machine Learning",
-      "Robust Network for Data Mining",
-      "Advanced Algorithm for Artificial Intelligence"
-    ],
-    "status": "PUBLISHED",
-    "impact_factor": 4.62
-  },
-  {
-    "id": "7b36d782-4117-473b-9a76-bacd5be7fa55",
-    "type": 4,
-    "title": "Distributed System for Cloud Computing",
-    "abstract": "This paper proposes a distributed system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "ICML",
-    "year": 2021,
-    "n_citation": 306,
-    "authors": ["06407807-b267-439b-938e-9d8db5a152b3"],
-    "references": ["Distributed Approach for Blockchain"],
-    "status": "PUBLISHED"
-  },
-  {
-    "id": "382f4a22-e247-4c35-af10-fe9ac057b5e5",
-    "type": 3,
-    "title": "Intelligent Methodology for Blockchain",
-    "abstract": "This paper proposes a intelligent methodology for blockchain. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "KDD",
-    "year": 2024,
-    "n_citation": 393,
-    "authors": [
-      "6ec56653-9e6f-4522-a7af-ffeebf346f61",
-      "8e907521-6e0d-4472-bb75-8968e541d262"
-    ],
-    "references": [
-      "Adaptive Architecture for Cybersecurity",
-      "Adaptive Network for Blockchain",
-      "Efficient Methodology for Neural Networks"
-    ],
-    "status": "PUBLISHED",
-    "conference_rank": "A"
-  },
-  {
-    "id": "0a30b967-4028-4900-bd8f-8140e02edf87",
-    "type": 2,
-    "title": "Scalable Model for IoT",
-    "abstract": "This paper proposes a scalable model for iot. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
     "venue": "IJCAI",
-    "year": 2022,
-    "n_citation": 194,
+    "year": 2021
+  },
+  {
+    "abstract": "This paper proposes a scalable model for iot. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
     "authors": [
       "06407807-b267-439b-938e-9d8db5a152b3",
       "a0cf6f02-3f43-4552-81fc-bfed5768b7f3",
       "406e480c-07b5-4882-8339-19f80e072efb"
     ],
+    "hIndex": 0,
+    "id": "0a30b967-4028-4900-bd8f-8140e02edf87",
+    "n_citation": 194,
     "references": [
       "Secure Framework for Cloud Computing",
       "Distributed Network for Machine Learning",
@@ -362,94 +32,392 @@
       "Novel System for IoT",
       "Secure Model for Blockchain"
     ],
+    "sjr": 0.0,
     "status": "PUBLISHED",
-    "impact_factor": 4.43
+    "title": "Scalable Model for IoT",
+    "type": 2,
+    "venue": "IJCAI",
+    "year": 2022
   },
   {
-    "id": "d72df6ac-587c-4a6f-a01f-0a9315236925",
+    "abstract": "This paper proposes a distributed model for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "db4ec36e-324a-477b-87f2-0dd4aabb048d"
+    ],
+    "id": "6d941f48-3f08-48ac-bcd1-4868b6acbdf4",
+    "impact_factor": 0.0,
+    "n_citation": 117,
+    "q_rank": 0,
+    "references": [
+      "Advanced System for Big Data",
+      "Distributed Framework for IoT",
+      "Adaptive Methodology for Cybersecurity",
+      "Adaptive Mechanism for Neural Networks"
+    ],
+    "status": "PUBLISHED",
+    "title": "Distributed Model for Cloud Computing",
+    "type": 1,
+    "venue": "NeurIPS",
+    "year": 2023
+  },
+  {
+    "abstract": "This paper proposes a intelligent methodology for blockchain. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "acceptance_rate": 0.0,
+    "authors": [
+      "6ec56653-9e6f-4522-a7af-ffeebf346f61",
+      "8e907521-6e0d-4472-bb75-8968e541d262"
+    ],
+    "conference_rank": "A",
+    "id": "382f4a22-e247-4c35-af10-fe9ac057b5e5",
+    "location": "",
+    "n_citation": 393,
+    "references": [
+      "Adaptive Architecture for Cybersecurity",
+      "Adaptive Network for Blockchain",
+      "Efficient Methodology for Neural Networks"
+    ],
+    "status": "PUBLISHED",
+    "title": "Intelligent Methodology for Blockchain",
+    "type": 3,
+    "venue": "KDD",
+    "year": 2024
+  },
+  {
+    "abstract": "This paper proposes a distributed framework for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "a95890c4-1022-4da6-9334-76bc68f1f9a2",
+      "b5d3466c-ca54-461b-b03d-d86c0468c0ad"
+    ],
+    "id": "fc86d8f1-d1c3-4580-9913-619d1485f82d",
+    "impact_factor": 4.62,
+    "n_citation": 439,
+    "q_rank": 0,
+    "references": [
+      "Scalable Network for Cybersecurity",
+      "Distributed System for Machine Learning",
+      "Robust Network for Data Mining",
+      "Advanced Algorithm for Artificial Intelligence"
+    ],
+    "status": "PUBLISHED",
+    "title": "Distributed Framework for Computer Vision",
+    "type": 1,
+    "venue": "AAAI",
+    "year": 2023
+  },
+  {
+    "abstract": "This paper proposes a advanced network for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
+      "c9fa938b-48a3-4841-996f-3a01697ee222"
+    ],
+    "hIndex": 0,
+    "id": "b5937956-cf2e-4421-b650-6027374dffc6",
+    "n_citation": 235,
+    "references": [
+      "Dynamic Methodology for Machine Learning"
+    ],
+    "sjr": 0.0,
+    "status": "PUBLISHED",
+    "title": "Advanced Network for Machine Learning",
+    "type": 2,
+    "venue": "SIGMOD",
+    "year": 2016
+  },
+  {
+    "abstract": "This paper proposes a dynamic model for cybersecurity. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "3195b257-0ab1-45be-91e2-e88ba6c62827",
+      "eff2ad8f-b5e1-4339-867b-e7e87d3e7651",
+      "8e907521-6e0d-4472-bb75-8968e541d262"
+    ],
+    "hIndex": 0,
+    "id": "c4fbbb79-8ba6-427b-8696-1480533e8e4b",
+    "n_citation": 302,
+    "references": [
+      "Intelligent Approach for Machine Learning"
+    ],
+    "sjr": 0.0,
+    "status": "PUBLISHED",
+    "title": "Dynamic Model for Cybersecurity",
+    "type": 2,
+    "venue": "IJCAI",
+    "year": 2023
+  },
+  {
+    "abstract": "This paper proposes a robust protocol for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff"
+    ],
+    "hIndex": 0,
+    "id": "b72b3013-9aed-46b3-8380-4693f3825b10",
+    "n_citation": 113,
+    "references": [
+      "Robust Architecture for Cybersecurity",
+      "Dynamic System for Cloud Computing",
+      "Intelligent Protocol for Blockchain"
+    ],
+    "sjr": 0.0,
+    "status": "PUBLISHED",
+    "title": "Robust Protocol for Machine Learning",
+    "type": 2,
+    "venue": "SIGMOD",
+    "year": 2017
+  },
+  {
+    "abstract": "This paper proposes a distributed system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "06407807-b267-439b-938e-9d8db5a152b3"
+    ],
+    "id": "7b36d782-4117-473b-9a76-bacd5be7fa55",
+    "n_citation": 306,
+    "references": [
+      "Distributed Approach for Blockchain"
+    ],
+    "status": "PUBLISHED",
+    "title": "Distributed System for Cloud Computing",
     "type": 4,
-    "title": "Scalable Model for Cloud Computing",
+    "venue": "ICML",
+    "year": 2021
+  },
+  {
+    "abstract": "In this paper, a robust 3D triangular mesh watermarking algorithm based on 3D segmentation is proposed. In this algorithm three classes of watermarking are combined. First, we segment the original image to many different regions. Then we mark every type of region with the corresponding algorithm based on their curvature value. The experiments show that our watermarking is robust against numerous attacks including RST transformations, smoothing, additive random noise, cropping, simplification and remeshing.",
+    "acceptance_rate": 18.5,
+    "authors": [
+      "db4ec36e-324a-477b-87f2-0dd4aabb048d",
+      "eff2ad8f-b5e1-4339-867b-e7e87d3e7651"
+    ],
+    "conference_rank": "A",
+    "id": "4ab3735c-80f1-472d-b953-fa0557fed28b",
+    "location": "Tokyo, Japan",
+    "n_citation": 50,
+    "references": [
+      "Advances in 3D Mesh Segmentation Techniques",
+      "Robust Watermarking for 3D Models",
+      "Curvature-Based Analysis for Digital Watermarking"
+    ],
+    "status": "PUBLISHED",
+    "title": "A new approach of 3D watermarking based on image segmentation",
+    "type": 3,
+    "venue": "International Symposium on Computers and Communications",
+    "year": 2008
+  },
+  {
     "abstract": "This paper proposes a scalable model for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "CVPR",
-    "year": 2015,
-    "n_citation": 334,
     "authors": [
       "db4ec36e-324a-477b-87f2-0dd4aabb048d",
       "06407807-b267-439b-938e-9d8db5a152b3"
     ],
+    "id": "d72df6ac-587c-4a6f-a01f-0a9315236925",
+    "n_citation": 334,
     "references": [
       "Secure System for Artificial Intelligence",
       "Efficient Network for Cloud Computing",
       "Robust Model for Cloud Computing"
     ],
     "status": "PUBLISHED",
-    "conference_rank": "C",
-    "impact_factor": 3.03
+    "title": "Scalable Model for Cloud Computing",
+    "type": 4,
+    "venue": "CVPR",
+    "year": 2015
   },
   {
-    "id": "daa965dd-2840-4bb1-ba64-0d3535a3dad7",
-    "type": 1,
-    "title": "Efficient System for Data Mining",
     "abstract": "This paper proposes a efficient system for data mining. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "IJCAI",
-    "year": 2022,
-    "n_citation": 445,
     "authors": [
       "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
       "82844d84-2425-4017-8670-0f1e354e517a"
     ],
+    "id": "daa965dd-2840-4bb1-ba64-0d3535a3dad7",
+    "impact_factor": 9.01,
+    "n_citation": 445,
+    "q_rank": 0,
     "references": [
       "Robust Architecture for Cloud Computing",
       "Distributed Model for IoT"
     ],
     "status": "PUBLISHED",
-    "conference_rank": "C",
-    "impact_factor": 9.01
+    "title": "Efficient System for Data Mining",
+    "type": 1,
+    "venue": "IJCAI",
+    "year": 2022
   },
   {
-    "id": "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c",
-    "type": 3,
-    "title": "Advanced Framework for Machine Learning",
-    "abstract": "This paper proposes a advanced framework for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "SIGMOD",
-    "year": 2016,
-    "n_citation": 159,
+    "abstract": "This paper proposes a efficient model for iot. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
     "authors": [
-      "6ec56653-9e6f-4522-a7af-ffeebf346f61",
-      "415e2446-d5f7-46fd-88f4-3037ff2f77c2",
-      "836a5c98-1418-4c1c-a580-c42d7bc51420"
+      "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
+      "836a5c98-1418-4c1c-a580-c42d7bc51420",
+      "06407807-b267-439b-938e-9d8db5a152b3"
     ],
+    "id": "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
+    "n_citation": 186,
     "references": [
-      "Distributed System for Computer Vision",
-      "Efficient Mechanism for Machine Learning",
-      "Advanced Protocol for Computer Vision",
-      "Distributed Network for Neural Networks"
+      "Secure Methodology for Blockchain",
+      "Scalable Mechanism for Artificial Intelligence",
+      "Dynamic Methodology for Computer Vision"
     ],
     "status": "PUBLISHED",
-    "conference_rank": "B"
+    "title": "Efficient Model for IoT",
+    "type": 4,
+    "venue": "NeurIPS",
+    "year": 2024
   },
   {
-    "id": "97f6b34f-5459-4af1-9463-ac96034e2443",
-    "type": 4,
-    "title": "Dynamic Architecture for Computer Vision",
-    "abstract": "This paper proposes a dynamic architecture for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "venue": "ICML",
-    "year": 2021,
-    "n_citation": 156,
-    "authors": ["d585bf29-31ef-40e0-a81c-e9ddf81bcdff"],
-    "references": ["Intelligent Approach for Machine Learning"],
+    "abstract": "We present an efficient algorithm for constructing balanced sequences over 3 letters using continued fraction expansions. The method runs in O(n log n) and generates sequences with minimal imbalance.",
+    "authors": [
+      "836a5c98-1418-4c1c-a580-c42d7bc51420",
+      "b3585b46-d22b-4b2c-9317-dec3b72a3159"
+    ],
+    "hIndex": 47,
+    "id": "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
+    "n_citation": 28,
+    "references": [
+      "Continued Fractions and Balanced Words",
+      "Efficient Generation of Morphic Sequences",
+      "Imbalance Bounds for Ternary Alphabets"
+    ],
+    "sjr": 0.85,
     "status": "PUBLISHED",
-    "impact_factor": 5.06
+    "title": "Efficient Construction of Balanced Ternary Sequences",
+    "type": 2,
+    "venue": "WORDS 2023",
+    "year": 2023
   },
   {
-    "id": "be8d8aa7-92c9-4274-a99d-cd7c43b9594f",
+    "abstract": "This paper proposes a intelligent model for blockchain. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "836a5c98-1418-4c1c-a580-c42d7bc51420",
+      "3195b257-0ab1-45be-91e2-e88ba6c62827"
+    ],
+    "id": "6dde2a54-e499-463f-92bd-5c91e232279f",
+    "n_citation": 111,
+    "references": [
+      "Efficient Framework for Big Data",
+      "Novel Architecture for Big Data",
+      "Robust Methodology for Big Data",
+      "Intelligent Mechanism for Neural Networks"
+    ],
+    "status": "PUBLISHED",
+    "title": "Intelligent Model for Blockchain",
     "type": 4,
-    "title": "Novel System for Computer Vision",
-    "abstract": "This paper proposes a novel system for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "venue": "KDD",
+    "year": 2018
+  },
+  {
+    "abstract": "This paper proposes a robust protocol for data mining. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "3195b257-0ab1-45be-91e2-e88ba6c62827",
+      "c9fa938b-48a3-4841-996f-3a01697ee222"
+    ],
+    "id": "eae4c163-13fa-41c3-a940-af666285327c",
+    "impact_factor": 9.98,
+    "n_citation": 223,
+    "q_rank": 0,
+    "references": [
+      "Robust System for Blockchain",
+      "Adaptive Model for Big Data",
+      "Secure Protocol for Machine Learning",
+      "Advanced Algorithm for Cloud Computing"
+    ],
+    "status": "PUBLISHED",
+    "title": "Robust Protocol for Data Mining",
+    "type": 1,
     "venue": "ICML",
-    "year": 2015,
+    "year": 2019
+  },
+  {
+    "abstract": "This paper proposes a distributed framework for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "c9fa938b-48a3-4841-996f-3a01697ee222",
+      "06407807-b267-439b-938e-9d8db5a152b3"
+    ],
+    "hIndex": 0,
+    "id": "1cbb488a-80a5-4eb7-88a8-f4915acbd348",
+    "n_citation": 60,
+    "references": [
+      "Adaptive Network for Neural Networks",
+      "Novel Model for Cloud Computing",
+      "Advanced Model for IoT"
+    ],
+    "sjr": 0.0,
+    "status": "PUBLISHED",
+    "title": "Distributed Framework for Machine Learning",
+    "type": 2,
+    "venue": "NeurIPS",
+    "year": 2022
+  },
+  {
+    "abstract": "We studied an autoassociative neural network with dynamic synapses which include a facilitating mechanism. We have developed a general mean-field framework to study the relevance of the different parameters defining the dynamics of the synapses and their influence on the collective properties of the network. Depending on these parameters, the network shows different types of behaviour including a retrieval phase, an oscillatory regime, and a non-retrieval phase...",
+    "authors": [
+      "3195b257-0ab1-45be-91e2-e88ba6c62827",
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
+      "82844d84-2425-4017-8670-0f1e354e517a",
+      "2b94573f-5146-4b66-9016-310494fe9170"
+    ],
+    "id": "68932f33-728b-4580-af19-8b58853c9ad9",
+    "impact_factor": 5.67,
+    "n_citation": 50,
+    "q_rank": 1,
+    "references": [
+      "Dynamic Synapses in Neural Networks: A Review",
+      "Mean-Field Theory for Neural Network Dynamics",
+      "Monte Carlo Methods in Neural Network Analysis",
+      "Synaptic Facilitation and Memory Retrieval"
+    ],
+    "status": "PUBLISHED",
+    "title": "Attractor neural networks with activity-dependent synapses: The role of synaptic facilitation",
+    "type": 1,
+    "venue": "Neurocomputing",
+    "year": 2007
+  },
+  {
+    "abstract": "This paper proposes a advanced architecture for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "7e7d59ce-b735-4bde-accf-db5c682af1cf",
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
+      "6ec56653-9e6f-4522-a7af-ffeebf346f61"
+    ],
+    "id": "df0da247-7783-4784-a24f-18324c8a5838",
+    "impact_factor": 0.0,
+    "n_citation": 410,
+    "q_rank": 0,
+    "references": [
+      "Intelligent Network for Data Mining",
+      "Novel Protocol for Cloud Computing",
+      "Secure Approach for Blockchain",
+      "Novel Methodology for Machine Learning"
+    ],
+    "status": "PUBLISHED",
+    "title": "Advanced Architecture for Cloud Computing",
+    "type": 1,
+    "venue": "NeurIPS",
+    "year": 2019
+  },
+  {
+    "abstract": "This paper proposes a novel network for blockchain. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
+      "a95890c4-1022-4da6-9334-76bc68f1f9a2"
+    ],
+    "hIndex": 0,
+    "id": "cbafcb6a-3e0c-43f1-bd27-e07bd95e4ab0",
+    "n_citation": 196,
+    "references": [
+      "Efficient Architecture for Cybersecurity",
+      "Robust System for Cloud Computing"
+    ],
+    "sjr": 0.0,
+    "status": "PUBLISHED",
+    "title": "Novel Network for Blockchain",
+    "type": 2,
+    "venue": "CVPR",
+    "year": 2024
+  },
+  {
+    "abstract": "This paper proposes a novel system for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "db4ec36e-324a-477b-87f2-0dd4aabb048d"
+    ],
+    "id": "be8d8aa7-92c9-4274-a99d-cd7c43b9594f",
     "n_citation": 276,
-    "authors": ["db4ec36e-324a-477b-87f2-0dd4aabb048d"],
     "references": [
       "Novel Model for Artificial Intelligence",
       "Secure Approach for Artificial Intelligence",
@@ -457,6 +425,69 @@
       "Dynamic Framework for Computer Vision",
       "Scalable Approach for Big Data"
     ],
-    "status": "PUBLISHED"
+    "status": "PUBLISHED",
+    "title": "Novel System for Computer Vision",
+    "type": 4,
+    "venue": "ICML",
+    "year": 2015
+  },
+  {
+    "abstract": "This paper proposes a advanced framework for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "acceptance_rate": 0.0,
+    "authors": [
+      "6ec56653-9e6f-4522-a7af-ffeebf346f61",
+      "415e2446-d5f7-46fd-88f4-3037ff2f77c2",
+      "836a5c98-1418-4c1c-a580-c42d7bc51420"
+    ],
+    "conference_rank": "B",
+    "id": "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c",
+    "location": "",
+    "n_citation": 159,
+    "references": [
+      "Distributed System for Computer Vision",
+      "Efficient Mechanism for Machine Learning",
+      "Advanced Protocol for Computer Vision",
+      "Distributed Network for Neural Networks"
+    ],
+    "status": "PUBLISHED",
+    "title": "Advanced Framework for Machine Learning",
+    "type": 3,
+    "venue": "SIGMOD",
+    "year": 2016
+  },
+  {
+    "abstract": "This technical report surveys recent results on balanced sequences over non-integer alphabets and their applications in data compression.",
+    "authors": [
+      "8e907521-6e0d-4472-bb75-8968e541d262",
+      "c9fa938b-48a3-4841-996f-3a01697ee222"
+    ],
+    "id": "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
+    "n_citation": 15,
+    "references": [
+      "Balanced Sequences in Compression",
+      "Non-integer Alphabets",
+      "Survey of Word Combinatorics"
+    ],
+    "status": "PUBLISHED",
+    "title": "Balanced Sequences in Data Compression: A Survey",
+    "type": 4,
+    "venue": "arXiv Technical Report",
+    "year": 2023
+  },
+  {
+    "abstract": "This paper proposes a dynamic architecture for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
+    "authors": [
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff"
+    ],
+    "id": "97f6b34f-5459-4af1-9463-ac96034e2443",
+    "n_citation": 156,
+    "references": [
+      "Intelligent Approach for Machine Learning"
+    ],
+    "status": "PUBLISHED",
+    "title": "Dynamic Architecture for Computer Vision",
+    "type": 4,
+    "venue": "ICML",
+    "year": 2021
   }
 ]

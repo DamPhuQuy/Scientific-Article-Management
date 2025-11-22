@@ -164,6 +164,26 @@ void ArticleRepo::save() {
     }
 }
 
+// Hàm overload: Nhận vào 1 article -> Cập nhật vào list -> Ghi ra file
+void ArticleRepo::save(const shared_ptr<Article>& article) {
+    if (!article) {
+        qWarning() << "Attempted to save a null article pointer.";
+        return;
+    }
+
+    try {
+        articles_container.put(article->getId(), article);
+
+        this->save();
+
+        qDebug() << "Successfully saved article: " << QString::fromStdString(article->getTitle());
+
+    } catch (const std::exception& e) {
+        qCritical() << "Error in save(article) overload:" << e.what();
+    } catch (...) {
+        qCritical() << "Unknown error occurred while saving a single article.";
+    }
+}
 
 shared_ptr<Article> ArticleRepo::findById(const string& id) {
     bool isContained = articles_container.containsKey(id);

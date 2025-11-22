@@ -53,27 +53,28 @@ public:
     QSpinBox *inputYear;
     QStackedWidget *stackType;
     QWidget *pageScie;
-    QLabel *label;
+    QFormLayout *formLayoutScie;
+    QLabel *labelIF;
     QDoubleSpinBox *inputIF;
-    QLabel *label1;
+    QLabel *labelQRank;
     QSpinBox *inputQRank;
     QWidget *pageScopus;
     QFormLayout *formLayout;
-    QLabel *label2;
+    QLabel *label;
     QDoubleSpinBox *inputSJR;
-    QLabel *label3;
+    QLabel *label1;
     QSpinBox *inputHIndex;
     QWidget *pageConference;
     QFormLayout *formLayout1;
-    QLabel *label4;
-    QLabel *label5;
+    QLabel *label2;
+    QLabel *label3;
     QLineEdit *inputLocation;
-    QLabel *label6;
+    QLabel *label4;
     QDoubleSpinBox *inputAcceptRate;
     QLineEdit *inputConfRank;
     QWidget *pageOther;
     QVBoxLayout *vboxLayout;
-    QLabel *label7;
+    QLabel *label5;
     QPushButton *AuthorBtn;
     QSpacerItem *verticalSpacer;
     QHBoxLayout *hboxLayout;
@@ -196,31 +197,41 @@ public:
         stackType->setObjectName("stackType");
         pageScie = new QWidget();
         pageScie->setObjectName("pageScie");
-        label = new QLabel(pageScie);
-        label->setObjectName("label");
-        label->setGeometry(QRect(9, 9, 72, 16));
+        formLayoutScie = new QFormLayout(pageScie);
+        formLayoutScie->setObjectName("formLayoutScie");
+        labelIF = new QLabel(pageScie);
+        labelIF->setObjectName("labelIF");
+
+        formLayoutScie->setWidget(0, QFormLayout::ItemRole::LabelRole, labelIF);
+
         inputIF = new QDoubleSpinBox(pageScie);
         inputIF->setObjectName("inputIF");
-        inputIF->setGeometry(QRect(87, 9, 70, 25));
         inputIF->setDecimals(3);
         inputIF->setMaximum(100.000000000000000);
-        label1 = new QLabel(pageScie);
-        label1->setObjectName("label1");
-        label1->setGeometry(QRect(9, 40, 40, 16));
+
+        formLayoutScie->setWidget(0, QFormLayout::ItemRole::FieldRole, inputIF);
+
+        labelQRank = new QLabel(pageScie);
+        labelQRank->setObjectName("labelQRank");
+
+        formLayoutScie->setWidget(1, QFormLayout::ItemRole::LabelRole, labelQRank);
+
         inputQRank = new QSpinBox(pageScie);
         inputQRank->setObjectName("inputQRank");
-        inputQRank->setGeometry(QRect(87, 40, 34, 25));
         inputQRank->setMinimum(1);
         inputQRank->setMaximum(4);
+
+        formLayoutScie->setWidget(1, QFormLayout::ItemRole::FieldRole, inputQRank);
+
         stackType->addWidget(pageScie);
         pageScopus = new QWidget();
         pageScopus->setObjectName("pageScopus");
         formLayout = new QFormLayout(pageScopus);
         formLayout->setObjectName("formLayout");
-        label2 = new QLabel(pageScopus);
-        label2->setObjectName("label2");
+        label = new QLabel(pageScopus);
+        label->setObjectName("label");
 
-        formLayout->setWidget(0, QFormLayout::ItemRole::LabelRole, label2);
+        formLayout->setWidget(0, QFormLayout::ItemRole::LabelRole, label);
 
         inputSJR = new QDoubleSpinBox(pageScopus);
         inputSJR->setObjectName("inputSJR");
@@ -229,10 +240,10 @@ public:
 
         formLayout->setWidget(0, QFormLayout::ItemRole::FieldRole, inputSJR);
 
-        label3 = new QLabel(pageScopus);
-        label3->setObjectName("label3");
+        label1 = new QLabel(pageScopus);
+        label1->setObjectName("label1");
 
-        formLayout->setWidget(1, QFormLayout::ItemRole::LabelRole, label3);
+        formLayout->setWidget(1, QFormLayout::ItemRole::LabelRole, label1);
 
         inputHIndex = new QSpinBox(pageScopus);
         inputHIndex->setObjectName("inputHIndex");
@@ -245,25 +256,25 @@ public:
         pageConference->setObjectName("pageConference");
         formLayout1 = new QFormLayout(pageConference);
         formLayout1->setObjectName("formLayout1");
-        label4 = new QLabel(pageConference);
-        label4->setObjectName("label4");
+        label2 = new QLabel(pageConference);
+        label2->setObjectName("label2");
 
-        formLayout1->setWidget(0, QFormLayout::ItemRole::LabelRole, label4);
+        formLayout1->setWidget(0, QFormLayout::ItemRole::LabelRole, label2);
 
-        label5 = new QLabel(pageConference);
-        label5->setObjectName("label5");
+        label3 = new QLabel(pageConference);
+        label3->setObjectName("label3");
 
-        formLayout1->setWidget(1, QFormLayout::ItemRole::LabelRole, label5);
+        formLayout1->setWidget(1, QFormLayout::ItemRole::LabelRole, label3);
 
         inputLocation = new QLineEdit(pageConference);
         inputLocation->setObjectName("inputLocation");
 
         formLayout1->setWidget(1, QFormLayout::ItemRole::FieldRole, inputLocation);
 
-        label6 = new QLabel(pageConference);
-        label6->setObjectName("label6");
+        label4 = new QLabel(pageConference);
+        label4->setObjectName("label4");
 
-        formLayout1->setWidget(2, QFormLayout::ItemRole::LabelRole, label6);
+        formLayout1->setWidget(2, QFormLayout::ItemRole::LabelRole, label4);
 
         inputAcceptRate = new QDoubleSpinBox(pageConference);
         inputAcceptRate->setObjectName("inputAcceptRate");
@@ -282,10 +293,10 @@ public:
         pageOther->setObjectName("pageOther");
         vboxLayout = new QVBoxLayout(pageOther);
         vboxLayout->setObjectName("vboxLayout");
-        label7 = new QLabel(pageOther);
-        label7->setObjectName("label7");
+        label5 = new QLabel(pageOther);
+        label5->setObjectName("label5");
 
-        vboxLayout->addWidget(label7);
+        vboxLayout->addWidget(label5);
 
         stackType->addWidget(pageOther);
 
@@ -318,7 +329,7 @@ public:
 
         retranslateUi(ArticleInputDialog);
 
-        stackType->setCurrentIndex(2);
+        stackType->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ArticleInputDialog);
@@ -353,15 +364,15 @@ public:
         inputAbstract->setPlaceholderText(QCoreApplication::translate("ArticleInputDialog", "Nh\341\272\255p m\303\264 t\341\272\243 c\306\241 b\341\272\243n c\341\273\247a b\303\240i b\303\241o...", nullptr));
         labelAbstract->setText(QCoreApplication::translate("ArticleInputDialog", "Abstract", nullptr));
         inputTitle->setPlaceholderText(QCoreApplication::translate("ArticleInputDialog", "Nh\341\272\255p ti\303\252u \304\221\341\273\201 c\341\273\247a b\303\240i b\303\241o...", nullptr));
-        label->setText(QCoreApplication::translate("ArticleInputDialog", "Impact Factor", nullptr));
-        label1->setText(QCoreApplication::translate("ArticleInputDialog", "Q-Rank", nullptr));
-        label2->setText(QCoreApplication::translate("ArticleInputDialog", "SJR", nullptr));
-        label3->setText(QCoreApplication::translate("ArticleInputDialog", "H-Index", nullptr));
-        label4->setText(QCoreApplication::translate("ArticleInputDialog", "Conference Rank", nullptr));
-        label5->setText(QCoreApplication::translate("ArticleInputDialog", "Location", nullptr));
-        label6->setText(QCoreApplication::translate("ArticleInputDialog", "Acceptance Rate (%)", nullptr));
+        labelIF->setText(QCoreApplication::translate("ArticleInputDialog", "Impact Factor", nullptr));
+        labelQRank->setText(QCoreApplication::translate("ArticleInputDialog", "Q-Rank", nullptr));
+        label->setText(QCoreApplication::translate("ArticleInputDialog", "SJR", nullptr));
+        label1->setText(QCoreApplication::translate("ArticleInputDialog", "H-Index", nullptr));
+        label2->setText(QCoreApplication::translate("ArticleInputDialog", "Conference Rank", nullptr));
+        label3->setText(QCoreApplication::translate("ArticleInputDialog", "Location", nullptr));
+        label4->setText(QCoreApplication::translate("ArticleInputDialog", "Acceptance Rate (%)", nullptr));
         inputAcceptRate->setSuffix(QCoreApplication::translate("ArticleInputDialog", "%", nullptr));
-        label7->setText(QCoreApplication::translate("ArticleInputDialog", "No extra fields for OTHER type.", nullptr));
+        label5->setText(QCoreApplication::translate("ArticleInputDialog", "No extra fields for OTHER type.", nullptr));
         AuthorBtn->setText(QCoreApplication::translate("ArticleInputDialog", "Ch\341\273\215n t\303\241c gi\341\272\243 c\303\263 s\341\272\265n ho\341\272\267c th\303\252m m\341\273\233i t\303\241c gi\341\272\243", nullptr));
         btnCancel->setText(QCoreApplication::translate("ArticleInputDialog", "Cancel", nullptr));
         btnSave->setText(QCoreApplication::translate("ArticleInputDialog", "Save", nullptr));

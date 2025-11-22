@@ -11,6 +11,7 @@ ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
     , ui(new Ui::ArticleForm)
 {
     ui->setupUi(this);
+    ui->RemoveArticleBtn->hide();
 
     model = new QStandardItemModel(this);
     ui->articleListView->setModel(model);
@@ -34,7 +35,7 @@ void ArticleForm::updateUIAfterLogin() {
     ui->userLb->setText(currentUser.first);
     qDebug() << "Set label to:" << currentUser.first << "| Actual label:" << ui->userLb->text();
 
-    ui->RemoveArticleBtn->setHidden(currentUser.second == "Admin");
+    ui->RemoveArticleBtn->setVisible(currentUser.second == "Admin");
 }
 
 void ArticleForm::setCurrentUser(const std::pair<QString, QString>& user) {
@@ -45,7 +46,16 @@ void ArticleForm::on_newArticleBtn_clicked()
 {
     ArticleInputDialog inputDialog(repo, this);
 
-    inputDialog.exec();
+    if (inputDialog.exec() == QDialog::Accepted) {
+        articleList.clear();
+
+        // reload data and show the view again
+        initData();
+
+        loadArticlesToView();
+
+        applyAllFilters();
+    }
 }
 
 void ArticleForm::on_RemoveArticleBtn_clicked()

@@ -25,8 +25,8 @@ private:
 
 public:
 
-    static bool registerUser(const std::string& username, const std::string& password);
-    static bool registerUser(const QString& username, const QString& password);
+    static bool registerUser(const std::string& username="", const std::string& password="", const std::string& fullname="", const std::string& email="", const std::string& phone="", const std::string& role="User");
+    static bool registerUser(const QString& u="", const QString& p="", const QString& f="", const QString& e="", const QString& ph="", const QString& r="User");
 
     static bool login(const std::string& username, const std::string& password);
     static bool login(const QString& username, const QString& password);

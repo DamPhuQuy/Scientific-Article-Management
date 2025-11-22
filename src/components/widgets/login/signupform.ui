@@ -127,6 +127,48 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="fullnameLabel">
+        <property name="text">
+         <string>Full Name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="fullnameEdit">
+        <property name="placeholderText">
+         <string>Enter your Full Name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="emailLabel">
+        <property name="text">
+         <string>Email</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="emailEdit">
+        <property name="placeholderText">
+         <string>Enter your email</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="phoneLabel">
+        <property name="text">
+         <string>Phone</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="phoneEdit">
+        <property name="placeholderText">
+         <string>Enter your phone</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="passwordLabel">
         <property name="text">
          <string>Password</string>

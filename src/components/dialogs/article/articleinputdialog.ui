@@ -194,68 +194,46 @@
    <item>
     <widget class="QStackedWidget" name="stackType">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageScie">
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>72</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Impact Factor</string>
-       </property>
-      </widget>
-      <widget class="QDoubleSpinBox" name="inputIF">
-       <property name="geometry">
-        <rect>
-         <x>87</x>
-         <y>9</y>
-         <width>70</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>100.000000000000000</double>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>40</y>
-         <width>40</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Q-Rank</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="inputQRank">
-       <property name="geometry">
-        <rect>
-         <x>87</x>
-         <y>40</y>
-         <width>34</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>4</number>
-       </property>
-      </widget>
-     </widget>
+           <layout class="QFormLayout" name="formLayoutScie">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelIF">
+              <property name="text">
+               <string>Impact Factor</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="inputIF">
+              <property name="decimals">
+               <number>3</number>
+              </property>
+              <property name="maximum">
+               <double>100.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelQRank">
+              <property name="text">
+               <string>Q-Rank</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSpinBox" name="inputQRank">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>4</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
      <widget class="QWidget" name="pageScopus">
       <layout class="QFormLayout">
        <item row="0" column="0">
