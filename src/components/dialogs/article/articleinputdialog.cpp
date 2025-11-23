@@ -11,6 +11,16 @@ ArticleInputDialog::ArticleInputDialog(RepositoryManager& repo, QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Add CUSTOM type
+    ui->inputType->addItem("CUSTOM");
+
+    // Create page for CUSTOM type
+    QWidget* pageCustom = new QWidget();
+    QFormLayout* layoutCustom = new QFormLayout(pageCustom);
+    inputCustomTypeName = new QLineEdit(pageCustom);
+    layoutCustom->addRow("Custom Type Name:", inputCustomTypeName);
+    ui->stackType->addWidget(pageCustom);
+
     connect(ui->inputType, SIGNAL(currentIndexChanged(int)),
             ui->stackType, SLOT(setCurrentIndex(int)));
 
@@ -70,6 +80,7 @@ void ArticleInputDialog::on_btnSave_clicked()
     QString confRank = "";
     QString location = "";
     double acceptRate = 0.0;
+    QString customTypeName = "";
 
     switch (typeIndex) {
     case 0: // SCIE
@@ -96,8 +107,17 @@ void ArticleInputDialog::on_btnSave_clicked()
 
     case 3: // OTHER
         type = Type::OTHER;
-
         qDebug() << "Type: OTHER";
+        break;
+
+    case 4: // CUSTOM
+        type = Type::CUSTOM;
+        customTypeName = inputCustomTypeName->text().trimmed();
+        if (customTypeName.isEmpty()) {
+            Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên loại bài báo tùy chỉnh", "Lỗi");
+            return;
+        }
+        qDebug() << "Type: CUSTOM | Name:" << customTypeName;
         break;
     }
 
@@ -123,7 +143,8 @@ void ArticleInputDialog::on_btnSave_clicked()
         impactFactor,
         qRank,
         sjr,
-        hIndex
+        hIndex,
+        customTypeName.toStdString()
     );
 
     repo.getArticles().save(std::move(article));

@@ -14,7 +14,8 @@ enum class Type
     SCIE = 1,
     SCOPUS = 2,
     CONFERENCE = 3,
-    OTHER = 4
+    OTHER = 4,
+    CUSTOM = 5
 };
 
 enum class ArticleStatus

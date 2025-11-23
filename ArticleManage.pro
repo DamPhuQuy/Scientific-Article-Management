@@ -26,6 +26,7 @@ SOURCES += \
     src/models/article.cpp \
     src/models/author.cpp \
     src/models/conference_article.cpp \
+    src/models/customarticle.cpp \
     src/models/other_article.cpp \
     src/models/scie_article.cpp \
     src/models/scopus_article.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     src/models/article.h \
     src/models/author.h \
     src/models/conference_article.h \
+    src/models/customarticle.h \
     src/models/other_article.h \
     src/models/scie_article.h \
     src/models/scopus_article.h \

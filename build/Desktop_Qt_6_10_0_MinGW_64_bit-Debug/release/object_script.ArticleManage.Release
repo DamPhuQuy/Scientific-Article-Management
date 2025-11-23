@@ -15,6 +15,7 @@ release/signupform.o
 release/article.o
 release/author.o
 release/conference_article.o
+release/customarticle.o
 release/other_article.o
 release/scie_article.o
 release/scopus_article.o

@@ -5,6 +5,7 @@
 #include "../models/scie_article.h"
 #include "../models/scopus_article.h"
 #include "../models/other_article.h"
+#include "src/models/customarticle.h"
 
 class DataUtils {
 public:
@@ -25,7 +26,8 @@ public:
         double impact_factor = 0.0,
         int q_rank = 0,
         double sjr = 0.0,
-        int hIndex = 0
+        int hIndex = 0,
+        const string& customTypeName = ""
         ) {
         switch (t) {
         case Type::CONFERENCE:
@@ -42,6 +44,11 @@ public:
             return std::make_unique<SCOPUS_Article>(
                 abstract, n_citation, title, venue, year, id,
                 t, st, refs, aus, sjr, hIndex);
+
+        case Type::CUSTOM:
+            return std::make_unique<CUSTOM_Article>(
+                abstract, n_citation, title, venue, year, id,
+                t, st, refs, aus, customTypeName);
 
         default:
             return std::make_unique<OTHER_Article>(

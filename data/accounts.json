@@ -403,7 +403,15 @@
     "password": "pass123",
     "username": "phuquy",
     "role": "User",
-    "fullname": "Phuquy",
+    "fullname": "Phu Quy",
+    "email": "phuquy@gmail.com",
+    "phone": "0324313621"
+  },
+  {
+    "password": "pass123",
+    "username": "phuquy2",
+    "role": "Admin",
+    "fullname": "Phu Quy",
     "email": "phuquy@gmail.com",
     "phone": "0324313621"
   }

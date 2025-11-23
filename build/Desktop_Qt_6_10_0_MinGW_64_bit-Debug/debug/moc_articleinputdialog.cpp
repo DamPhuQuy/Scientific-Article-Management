@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../src/components/dialogs/article/articleinputdialog.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

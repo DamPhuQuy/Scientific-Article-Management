@@ -59,6 +59,7 @@ private:
     bool passesAllFilters(int row) const;
     void applyYearSorting();
     void applyAllFilters();
+    void updateTypeComboBox();
 };
 
 #endif // ARTICLEFORM_H

@@ -45,7 +45,8 @@ string Article::typeToString(Type t) {
         {Type::SCIE,       "SCIE"},
         {Type::SCOPUS,     "SCOPUS"},
         {Type::CONFERENCE, "CONFERENCE"},
-        {Type::OTHER,      "OTHER"}
+        {Type::OTHER,      "OTHER"},
+        {Type::CUSTOM,     "CUSTOM"}
     };
     return map.count(t) ? map.at(t) : "OTHER";
 }
@@ -92,6 +93,7 @@ void Article::setType(const any& t) {
                                                         {"scopus", Type::SCOPUS},
                                                         {"conference", Type::CONFERENCE},
                                                         {"other", Type::OTHER},
+                                                        {"custom", Type::CUSTOM}
                                                         };
 
         auto it = map.find(s);
@@ -102,7 +104,7 @@ void Article::setType(const any& t) {
         }
     } else if (t.type() == typeid(int)) {
         int temp = any_cast<int>(t);
-        if (temp >= 1 && temp <= 4) {
+        if (temp >= 1 && temp <= 5) {
             this->type = static_cast<Type>(temp);
         } else {
             throw ArticleException("Giá trị type không hợp lệ: " + to_string(temp));

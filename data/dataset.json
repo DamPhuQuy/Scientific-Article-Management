@@ -1,14 +1,10 @@
 [
   {
     "abstract": "This paper proposes a intelligent system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": [
-      "6ec56653-9e6f-4522-a7af-ffeebf346f61"
-    ],
+    "authors": ["6ec56653-9e6f-4522-a7af-ffeebf346f61"],
     "id": "634523ca-072e-476c-a0b9-accde2af6066",
     "n_citation": 51,
-    "references": [
-      "Distributed Protocol for IoT"
-    ],
+    "references": ["Distributed Protocol for IoT"],
     "status": "PUBLISHED",
     "title": "Intelligent System for Cloud Computing",
     "type": 4,
@@ -41,9 +37,7 @@
   },
   {
     "abstract": "This paper proposes a distributed model for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": [
-      "db4ec36e-324a-477b-87f2-0dd4aabb048d"
-    ],
+    "authors": ["db4ec36e-324a-477b-87f2-0dd4aabb048d"],
     "id": "6d941f48-3f08-48ac-bcd1-4868b6acbdf4",
     "impact_factor": 0.0,
     "n_citation": 117,
@@ -113,9 +107,7 @@
     "hIndex": 0,
     "id": "b5937956-cf2e-4421-b650-6027374dffc6",
     "n_citation": 235,
-    "references": [
-      "Dynamic Methodology for Machine Learning"
-    ],
+    "references": ["Dynamic Methodology for Machine Learning"],
     "sjr": 0.0,
     "status": "PUBLISHED",
     "title": "Advanced Network for Machine Learning",
@@ -133,9 +125,7 @@
     "hIndex": 0,
     "id": "c4fbbb79-8ba6-427b-8696-1480533e8e4b",
     "n_citation": 302,
-    "references": [
-      "Intelligent Approach for Machine Learning"
-    ],
+    "references": ["Intelligent Approach for Machine Learning"],
     "sjr": 0.0,
     "status": "PUBLISHED",
     "title": "Dynamic Model for Cybersecurity",
@@ -145,9 +135,7 @@
   },
   {
     "abstract": "This paper proposes a robust protocol for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": [
-      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff"
-    ],
+    "authors": ["d585bf29-31ef-40e0-a81c-e9ddf81bcdff"],
     "hIndex": 0,
     "id": "b72b3013-9aed-46b3-8380-4693f3825b10",
     "n_citation": 113,
@@ -165,14 +153,10 @@
   },
   {
     "abstract": "This paper proposes a distributed system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": [
-      "06407807-b267-439b-938e-9d8db5a152b3"
-    ],
+    "authors": ["06407807-b267-439b-938e-9d8db5a152b3"],
     "id": "7b36d782-4117-473b-9a76-bacd5be7fa55",
     "n_citation": 306,
-    "references": [
-      "Distributed Approach for Blockchain"
-    ],
+    "references": ["Distributed Approach for Blockchain"],
     "status": "PUBLISHED",
     "title": "Distributed System for Cloud Computing",
     "type": 4,
@@ -413,9 +397,7 @@
   },
   {
     "abstract": "This paper proposes a novel system for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": [
-      "db4ec36e-324a-477b-87f2-0dd4aabb048d"
-    ],
+    "authors": ["db4ec36e-324a-477b-87f2-0dd4aabb048d"],
     "id": "be8d8aa7-92c9-4274-a99d-cd7c43b9594f",
     "n_citation": 276,
     "references": [
@@ -476,14 +458,10 @@
   },
   {
     "abstract": "This paper proposes a dynamic architecture for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": [
-      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff"
-    ],
+    "authors": ["d585bf29-31ef-40e0-a81c-e9ddf81bcdff"],
     "id": "97f6b34f-5459-4af1-9463-ac96034e2443",
     "n_citation": 156,
-    "references": [
-      "Intelligent Approach for Machine Learning"
-    ],
+    "references": ["Intelligent Approach for Machine Learning"],
     "status": "PUBLISHED",
     "title": "Dynamic Architecture for Computer Vision",
     "type": 4,

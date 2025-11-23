@@ -4,6 +4,8 @@
 #include "src/components/dialogs/article/articledetailsdialog.h"
 #include "src/components/dialogs/user/userdetailsdialog.h"
 #include "src/utils/usermanager.h"
+#include "src/models/customarticle.h"
+#include <set>
 
 ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -22,6 +24,7 @@ ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
     ui->articleListView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->articleListView->setFlow(QListView::TopToBottom);
 
+    updateTypeComboBox();
 }
 
 ArticleForm::~ArticleForm()
@@ -53,6 +56,8 @@ void ArticleForm::on_newArticleBtn_clicked()
         initData();
 
         loadArticlesToView();
+
+        updateTypeComboBox();
 
         applyAllFilters();
     }
@@ -169,8 +174,19 @@ bool ArticleForm::passesAllFilters(int row) const { // check with each row (each
 
     // field
     if (!filterType.isEmpty() && filterType != "All types") {
-        if (type != filterType) {
-            return false;
+        if (foundArticle->getType() == Type::CUSTOM) {
+             CUSTOM_Article* customArticle = dynamic_cast<CUSTOM_Article*>(foundArticle.get());
+             if (customArticle) {
+                 if (QString::fromStdString(customArticle->getCustomTypeName()) != filterType) {
+                     return false;
+                 }
+             } else {
+                 return false;
+             }
+        } else {
+            if (type != filterType) {
+                return false;
+            }
         }
     }
 
@@ -219,8 +235,31 @@ void ArticleForm::on_userLb_clicked()
         UserManager::getFullName(username),
         UserManager::getEmail(username),
         UserManager::getPhone(username)
-        );
+    );
 
     userdialog.exec();
+}
+
+void ArticleForm::updateTypeComboBox() {
+    ui->typeFilterComboBox->clear();
+    ui->typeFilterComboBox->addItem("All types");
+    ui->typeFilterComboBox->addItem("SCIE");
+    ui->typeFilterComboBox->addItem("SCOPUS");
+    ui->typeFilterComboBox->addItem("CONFERENCE");
+    ui->typeFilterComboBox->addItem("OTHER");
+
+    std::set<std::string> customTypes;
+    repo.getArticles().getContainer().forEach([&](const shared_ptr<Article>& article) {
+        if (article->getType() == Type::CUSTOM) {
+            CUSTOM_Article* customArticle = dynamic_cast<CUSTOM_Article*>(article.get());
+            if (customArticle) {
+                customTypes.insert(customArticle->getCustomTypeName());
+            }
+        }
+    });
+
+    for (const auto& typeName : customTypes) {
+        ui->typeFilterComboBox->addItem(QString::fromStdString(typeName));
+    }
 }
 

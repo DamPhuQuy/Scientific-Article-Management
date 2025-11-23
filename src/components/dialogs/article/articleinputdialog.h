@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QStandardItem>
+#include <QLineEdit>
 #include "src/repos/repomanager.h"
 
 namespace Ui {
@@ -31,6 +32,7 @@ private:
 
     RepositoryManager& repo;
     std::vector<std::string> m_selectedAuthorIds;
+    QLineEdit* inputCustomTypeName;
 };
 
 #endif // ARTICLEINPUTDIALOG_H

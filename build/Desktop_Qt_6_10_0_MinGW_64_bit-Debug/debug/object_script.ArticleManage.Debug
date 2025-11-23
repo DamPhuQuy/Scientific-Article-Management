@@ -15,6 +15,7 @@ debug/signupform.o
 debug/article.o
 debug/author.o
 debug/conference_article.o
+debug/customarticle.o
 debug/other_article.o
 debug/scie_article.o
 debug/scopus_article.o

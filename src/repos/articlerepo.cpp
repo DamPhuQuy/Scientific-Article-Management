@@ -93,7 +93,9 @@ void ArticleRepo::load() {
             }
 
             // ---- Tạo Article đúng loại ----
-            unique_ptr<Article> article = DataUtils::createArticle(
+            unique_ptr<Article> article;
+
+            article = DataUtils::createArticle(
                 abstract,
                 n_citation,
                 title,
@@ -110,9 +112,9 @@ void ArticleRepo::load() {
                 item.value("impact_factor", 0.0),
                 item.value("q_rank", 0),
                 item.value("sjr", 0.0),
-                item.value("hIndex", 0)
+                item.value("hIndex", 0),
+                item.value("customTypeName", "")
             );
-
 
             // Lưu vào map
             if (article && !id.empty()) {
