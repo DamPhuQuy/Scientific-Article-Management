@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ArticleDetailsDialog</class>
+ <widget class="QDialog" name="ArticleDetailsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Article Details</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollContent">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>476</width>
+        <height>862</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_Content">
+       <item>
+        <widget class="QLabel" name="lblTitle">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>18</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Article Title Placeholder</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblId">
+         <property name="styleSheet">
+          <string notr="true">color: gray;</string>
+         </property>
+         <property name="text">
+          <string>ID: 00000</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblVenue">
+         <property name="text">
+          <string>Venue Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_Meta">
+         <item>
+          <widget class="QLabel" name="lblYear">
+           <property name="font">
+            <font>
+             <italic>true</italic>
+            </font>
+           </property>
+           <property name="text">
+            <string>2024</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="lblCitation">
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #d35400;</string>
+           </property>
+           <property name="text">
+            <string>0 Citations</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_Tags">
+         <item>
+          <widget class="QLabel" name="lblType">
+           <property name="styleSheet">
+            <string notr="true">background-color: #e0f7fa; color: #006064; padding: 4px; border-radius: 4px;</string>
+           </property>
+           <property name="text">
+            <string>Type</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="typeBox">
+           <item>
+            <property name="text">
+             <string>SCIE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SCOPUS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>CONFERENCE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>OTHER</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lblStatus">
+           <property name="styleSheet">
+            <string notr="true">background-color: #e8f5e9; color: #2e7d32; padding: 4px; border-radius: 4px;</string>
+           </property>
+           <property name="text">
+            <string>Status</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="statusBox">
+           <item>
+            <property name="text">
+             <string>DRAFT</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SUBMITTED</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>UNDER_REVIEW</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>REVISIONS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ACCEPTED</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>REJECTED</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PUBLISHED</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="stackedSpecificInfo">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <property name="currentIndex">
+          <number>3</number>
+         </property>
+         <widget class="QWidget" name="pageSCIE">
+          <layout class="QHBoxLayout" name="horizontalLayout_SCIE">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_IF">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>Impact Factor:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="valIF">
+             <property name="styleSheet">
+              <string>color: #d32f2f; font-weight: bold;</string>
+             </property>
+             <property name="text">
+              <string>0.0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="spacer_scie">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_Q">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>Q-Rank:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="valQRank">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>Q1</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pageSCOPUS">
+          <layout class="QHBoxLayout" name="horizontalLayout_SCOPUS">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_SJR">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>SJR:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="valSJR">
+             <property name="text">
+              <string>0.0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="spacer_scopus">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_H">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>H-Index:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="valHIndex">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pageCONF">
+          <layout class="QGridLayout" name="gridLayout_CONF">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_ConfRank">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>Rank:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="valConfRank">
+             <property name="text">
+              <string>A*</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_Rate">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>Accept Rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="valAcceptRate">
+             <property name="text">
+              <string>20%</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_Loc">
+             <property name="styleSheet">
+              <string>font-weight: bold; color: #555;</string>
+             </property>
+             <property name="text">
+              <string>Loc:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="3">
+            <widget class="QLabel" name="valLocation">
+             <property name="text">
+              <string>Paris, France</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pageOTHER">
+          <layout class="QVBoxLayout" name="verticalLayout_Other"/>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpAuthors">
+         <property name="title">
+          <string>Authors</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_Authors">
+          <item>
+           <widget class="QListWidget" name="listAuthors"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpAbstract">
+         <property name="title">
+          <string>Abstract</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_Abstract">
+          <item>
+           <widget class="QTextBrowser" name="txtAbstract"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="grpRefs">
+         <property name="title">
+          <string>References</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_Refs">
+          <item>
+           <widget class="QListWidget" name="listRefs"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btnUpdate">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Update Article</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-edit"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="closeBtn">
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

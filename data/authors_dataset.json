@@ -1,352 +1,223 @@
 [
   {
-    "id": "c768d660-53c4-4661-a475-8582607b70e3",
+    "id": "db4ec36e-324a-477b-87f2-0dd4aabb048d",
     "fullName": "S. Ben Jabra",
     "country": "Tunisia",
-    "fieldOfStudy": "Computer Vision",
-    "totalPublications": 115
+    "fieldOfStudy": "Computer Graphics",
+    "totalPublications": 4,
+    "articleId": [
+      "4ab3735c-80f1-472d-b953-fa0557fed28b",
+      "6d941f48-3f08-48ac-bcd1-4868b6acbdf4",
+      "d72df6ac-587c-4a6f-a01f-0a9315236925",
+      "be8d8aa7-92c9-4274-a99d-cd7c43b9594f"
+    ]
   },
   {
-    "id": "1bf09ef4-0328-45b9-b915-0ba88d38c191",
+    "id": "eff2ad8f-b5e1-4339-867b-e7e87d3e7651",
     "fullName": "Ezzeddine Zagrouba",
     "country": "Tunisia",
-    "fieldOfStudy": "Artificial Intelligence",
-    "totalPublications": 52
+    "fieldOfStudy": "Computer Vision",
+    "totalPublications": 2,
+    "articleId": [
+      "4ab3735c-80f1-472d-b953-fa0557fed28b",
+      "c4fbbb79-8ba6-427b-8696-1480533e8e4b"
+    ]
   },
   {
-    "id": "a0443ccb-e562-4210-ac4a-97261a8ad703",
+    "id": "3195b257-0ab1-45be-91e2-e88ba6c62827",
     "fullName": "Joaquin J. Torres",
     "country": "Spain",
     "fieldOfStudy": "Computational Neuroscience",
-    "totalPublications": 115
+    "totalPublications": 4,
+    "articleId": [
+      "68932f33-728b-4580-af19-8b58853c9ad9",
+      "6dde2a54-e499-463f-92bd-5c91e232279f",
+      "eae4c163-13fa-41c3-a940-af666285327c",
+      "c4fbbb79-8ba6-427b-8696-1480533e8e4b"
+    ]
   },
   {
-    "id": "ef14abb9-6dcb-415b-875f-c986ab1bfa80",
+    "id": "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
     "fullName": "Jesus M. Cortes",
     "country": "Spain",
     "fieldOfStudy": "Neural Networks",
-    "totalPublications": 143
+    "totalPublications": 5,
+    "articleId": [
+      "68932f33-728b-4580-af19-8b58853c9ad9",
+      "df0da247-7783-4784-a24f-18324c8a5838",
+      "b72b3013-9aed-46b3-8380-4693f3825b10",
+      "cbafcb6a-3e0c-43f1-bd27-e07bd95e4ab0",
+      "97f6b34f-5459-4af1-9463-ac96034e2443"
+    ]
   },
   {
-    "id": "a91d89e8-dccd-4752-9ef1-19ac7c65135b",
+    "id": "82844d84-2425-4017-8670-0f1e354e517a",
     "fullName": "Joaquin Marro",
     "country": "Spain",
     "fieldOfStudy": "Statistical Physics",
-    "totalPublications": 193
+    "totalPublications": 2,
+    "articleId": [
+      "68932f33-728b-4580-af19-8b58853c9ad9",
+      "daa965dd-2840-4bb1-ba64-0d3535a3dad7"
+    ]
   },
   {
-    "id": "5d0ebc4c-d931-4772-9a2f-2cf7816448ea",
+    "id": "2b94573f-5146-4b66-9016-310494fe9170",
     "fullName": "Hilbert J. Kappen",
     "country": "Netherlands",
     "fieldOfStudy": "Machine Learning",
-    "totalPublications": 142
+    "totalPublications": 89,
+    "articleId": [
+      "68932f33-728b-4580-af19-8b58853c9ad9"
+    ]
   },
   {
-    "id": "b310c85e-644c-420e-a2ff-46af58d86b89",
-    "fullName": "Genevieve Paquin",
-    "country": "France",
-    "fieldOfStudy": "Bioinformatics",
-    "totalPublications": 173
-  },
-  {
-    "id": "0208d74f-2167-46aa-ad3a-e3504ee72d5b",
-    "fullName": "Yaser Sheikh",
-    "country": "Pakistan",
-    "fieldOfStudy": "Computer Vision",
-    "totalPublications": 136
-  },
-  {
-    "id": "798b30f9-eedf-408b-bcc9-86d8f48f53d7",
-    "fullName": "Mumtaz Sheikh",
-    "country": "UAE",
-    "fieldOfStudy": "Data Science",
-    "totalPublications": 187
-  },
-  {
-    "id": "ad277471-59d7-469a-8b07-fac79835aec2",
-    "fullName": "Mubarak Shah",
-    "country": "USA",
-    "fieldOfStudy": "Computer Vision",
-    "totalPublications": 49
-  },
-  {
-    "id": "38aa38a8-a906-423f-9667-ff8a3e29f576",
-    "fullName": "Laurent Vuillon",
-    "country": "France",
-    "fieldOfStudy": "Mathematical Modeling",
-    "totalPublications": 183
-  },
-  {
-    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "fullName": "Alessandro De Luca",
-    "country": "Italy",
-    "fieldOfStudy": "Combinatorics on Words",
-    "totalPublications": 112
-  },
-  {
-    "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
-    "fullName": "Gabriele Fici",
-    "country": "Italy",
-    "fieldOfStudy": "Algorithmics on Words",
-    "totalPublications": 89
-  },
-  {
-    "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
-    "fullName": "Jean-Paul Allouche",
-    "country": "France",
-    "fieldOfStudy": "Automatic Sequences",
-    "totalPublications": 245
-  },
-  {
-    "id": "d4e5f6a7-b8c9-0123-def0-456789012345",
-    "fullName": "Narad Rampersad",
-    "country": "Canada",
-    "fieldOfStudy": "Theoretical Computer Science",
-    "totalPublications": 76
-  },
-  {
-    "id": "e5f6a7b8-c9d0-1234-ef01-567890123456",
-    "fullName": "Jeffrey Shallit",
-    "country": "Canada",
-    "fieldOfStudy": "Formal Languages",
-    "totalPublications": 298
-  },
-  {
-    "id": "f6a7b8c9-d0e1-2345-f012-678901234567",
-    "fullName": "James Currie",
-    "country": "Canada",
-    "fieldOfStudy": "Combinatorics",
-    "totalPublications": 134
-  },
-  {
-    "id": "a7b8c9d0-e1f2-3456-0123-789012345678",
-    "fullName": "Svetlana Puzynina",
-    "country": "Russia",
-    "fieldOfStudy": "Discrete Mathematics",
-    "totalPublications": 68
-  },
-  {
-    "id": "b8c9d0e1-f2a3-4567-1234-890123456789",
-    "fullName": "Luca Q. Zamboni",
-    "country": "France",
-    "fieldOfStudy": "Dynamical Systems on Words",
-    "totalPublications": 156
-  },
-  {
-    "id": "c9d0e1f2-a3b4-5678-2345-901234567890",
-    "fullName": "Gwenael Richomme",
-    "country": "France",
-    "fieldOfStudy": "Algorithmics",
-    "totalPublications": 97
-  },
-  {
-    "id": "d0e1f2a3-b4c5-6789-3456-012345678901",
-    "fullName": "Patrice Seébold",
-    "country": "France",
-    "fieldOfStudy": "Combinatorics",
-    "totalPublications": 82
-  },
-  {
-    "id": "e1f2a3b4-c5d6-7890-4567-123456789012",
-    "fullName": "Jörg Thuswaldner",
-    "country": "Austria",
-    "fieldOfStudy": "Number Theory",
-    "totalPublications": 143
-  },
-  {
-    "id": "f2a3b4c5-d6e7-8901-5678-234567890123",
-    "fullName": "Tanja Schlemmer",
-    "country": "Austria",
-    "fieldOfStudy": "Discrete Geometry",
-    "totalPublications": 59
-  },
-  {
-    "id": "a3b4c5d6-e7f8-9012-6789-345678901234",
-    "fullName": "Michel Rigo",
-    "country": "Belgium",
-    "fieldOfStudy": "Automatic Sequences",
-    "totalPublications": 128
-  },
-  {
-    "id": "b4c5d6e7-f8a9-0123-7890-456789012345",
-    "fullName": "Émilie Charlier",
-    "country": "Belgium",
-    "fieldOfStudy": "Logic in Computer Science",
-    "totalPublications": 71
-  },
-  {
-    "id": "c5d6e7f8-a9b0-1234-8901-567890123456",
-    "fullName": "Arturas Dubickas",
-    "country": "Lithuania",
-    "fieldOfStudy": "Number Theory",
-    "totalPublications": 165
-  },
-  {
-    "id": "d6e7f8a9-b0c1-2345-9012-678901234567",
-    "fullName": "Jonas Šiurys",
-    "country": "Lithuania",
-    "fieldOfStudy": "Combinatorics",
-    "totalPublications": 48
-  },
-  {
-    "id": "e7f8a9b0-c1d2-3456-0123-789012345678",
-    "fullName": "Francesco Dolce",
-    "country": "Italy",
-    "fieldOfStudy": "Automata Theory",
-    "totalPublications": 63
-  },
-  {
-    "id": "f8a9b0c1-d2e3-4567-1234-890123456789",
-    "fullName": "Dominique Perrin",
-    "country": "France",
-    "fieldOfStudy": "Theoretical Computer Science",
-    "totalPublications": 212
-  },
-  {
-    "id": "a9b0c1d2-e3f4-5678-2345-901234567890",
-    "fullName": "Jarosław Grytczuk",
-    "country": "Poland",
-    "fieldOfStudy": "Graph Theory",
-    "totalPublications": 178
-  },
-  {
-    "id": "b0c1d2e3-f4a5-6789-3456-012345678901",
-    "fullName": "Anna Nenca",
-    "country": "Poland",
-    "fieldOfStudy": "Combinatorial Optimization",
-    "totalPublications": 54
-  },
-  {
-    "id": "11111111-aaaa-2222-bbbb-333333333301",
+    "id": "836a5c98-1418-4c1c-a580-c42d7bc51420",
     "fullName": "Bo Tan",
     "country": "China",
-    "fieldOfStudy": "Combinatorics",
-    "totalPublications": 87
+    "fieldOfStudy": "Theoretical Computer Science",
+    "totalPublications": 4,
+    "articleId": [
+      "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
+      "6dde2a54-e499-463f-92bd-5c91e232279f",
+      "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
+      "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c"
+    ]
   },
   {
-    "id": "22222222-bbbb-3333-cccc-444444444402",
+    "id": "b3585b46-d22b-4b2c-9317-dec3b72a3159",
     "fullName": "Xiaojing Zheng",
     "country": "China",
-    "fieldOfStudy": "Algorithm Design",
-    "totalPublications": 62
+    "fieldOfStudy": "Algorithms and Complexity",
+    "totalPublications": 34,
+    "articleId": [
+      "e40e52c8-c3da-46fe-9cdd-1c2815222c99"
+    ]
   },
   {
-    "id": "33333333-cccc-4444-dddd-555555555503",
-    "fullName": "Pierre Arnoux",
-    "country": "France",
-    "fieldOfStudy": "Dynamical Systems",
-    "totalPublications": 198
-  },
-  {
-    "id": "44444444-dddd-5555-eeee-666666666604",
-    "fullName": "Shigeki Akiyama",
-    "country": "Japan",
-    "fieldOfStudy": "Number Theory",
-    "totalPublications": 145
-  },
-  {
-    "id": "55555555-eeee-6666-ffff-777777777705",
-    "fullName": "Valérie Berthé",
-    "country": "France",
-    "fieldOfStudy": "Ergodic Theory",
-    "totalPublications": 176
-  },
-  {
-    "id": "66666666-ffff-7777-aaaa-888888888806",
-    "fullName": "Sébastien Labbé",
-    "country": "Canada",
-    "fieldOfStudy": "Computational Geometry",
-    "totalPublications": 93
-  },
-  {
-    "id": "77777777-aaaa-8888-bbbb-999999999907",
-    "fullName": "Anna Frid",
-    "country": "Russia",
-    "fieldOfStudy": "Combinatorics on Words",
-    "totalPublications": 108
-  },
-  {
-    "id": "88888888-bbbb-9999-cccc-aaaaaaaaa008",
-    "fullName": "Sergey Puzynin",
-    "country": "Russia",
-    "fieldOfStudy": "Theoretical Physics",
-    "totalPublications": 71
-  },
-  {
-    "id": "99999999-cccc-aaaa-dddd-bbbbbbbbb009",
-    "fullName": "Aseem L. Sharma",
-    "country": "India",
-    "fieldOfStudy": "Automatic Sequences",
-    "totalPublications": 56
-  },
-  {
-    "id": "aaaaaaaa-dddd-bbbb-eeee-ccccccccc010",
+    "id": "8e907521-6e0d-4472-bb75-8968e541d262",
     "fullName": "Maxime Crochemore",
     "country": "France",
-    "fieldOfStudy": "String Algorithms",
-    "totalPublications": 312
+    "fieldOfStudy": "Word Combinatorics",
+    "totalPublications": 3,
+    "articleId": [
+      "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
+      "c4fbbb79-8ba6-427b-8696-1480533e8e4b",
+      "382f4a22-e247-4c35-af10-fe9ac057b5e5"
+    ]
   },
   {
-    "id": "bbbbbbbb-eeee-cccc-ffff-dddddddd011",
+    "id": "c9fa938b-48a3-4841-996f-3a01697ee222",
     "fullName": "Lucian Ilie",
     "country": "Canada",
-    "fieldOfStudy": "Bioinformatics",
-    "totalPublications": 124
+    "fieldOfStudy": "String Algorithms",
+    "totalPublicPublications": 74,
+    "articleId": [
+      "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
+      "eae4c163-13fa-41c3-a940-af666285327c",
+      "b5937956-cf2e-4421-b650-6027374dffc6",
+      "1cbb488a-80a5-4eb7-88a8-f4915acbd348"
+    ],
+    "totalPublications": 4
   },
   {
-    "id": "cccccccc-ffff-dddd-aaaa-eeeeeeee012",
-    "fullName": "Tero Harju",
-    "country": "Finland",
-    "fieldOfStudy": "Formal Languages",
-    "totalPublications": 189
+    "id": "7e7d59ce-b735-4bde-accf-db5c682af1cf",
+    "fullName": "New Author 405",
+    "country": "Canada",
+    "fieldOfStudy": "Cloud Computing",
+    "totalPublications": 1,
+    "articleId": [
+      "df0da247-7783-4784-a24f-18324c8a5838"
+    ]
   },
   {
-    "id": "dddddddd-aaaa-eeee-bbbb-ffffffff013",
-    "fullName": "Dirk Nowotka",
+    "id": "6ec56653-9e6f-4522-a7af-ffeebf346f61",
+    "fullName": "New Author 466",
+    "country": "Canada",
+    "fieldOfStudy": "IoT",
+    "totalPublications": 4,
+    "articleId": [
+      "df0da247-7783-4784-a24f-18324c8a5838",
+      "634523ca-072e-476c-a0b9-accde2af6066",
+      "382f4a22-e247-4c35-af10-fe9ac057b5e5",
+      "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c"
+    ]
+  },
+  {
+    "id": "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
+    "fullName": "New Author 495",
+    "country": "Canada",
+    "fieldOfStudy": "Machine Learning",
+    "totalPublications": 3,
+    "articleId": [
+      "b5937956-cf2e-4421-b650-6027374dffc6",
+      "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
+      "daa965dd-2840-4bb1-ba64-0d3535a3dad7"
+    ]
+  },
+  {
+    "id": "06407807-b267-439b-938e-9d8db5a152b3",
+    "fullName": "New Author 637",
     "country": "Germany",
-    "fieldOfStudy": "Automata Theory",
-    "totalPublications": 102
+    "fieldOfStudy": "IoT",
+    "totalPublications": 5,
+    "articleId": [
+      "1cbb488a-80a5-4eb7-88a8-f4915acbd348",
+      "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
+      "7b36d782-4117-473b-9a76-bacd5be7fa55",
+      "0a30b967-4028-4900-bd8f-8140e02edf87",
+      "d72df6ac-587c-4a6f-a01f-0a9315236925"
+    ]
   },
   {
-    "id": "eeeeeeee-bbbb-ffff-cccc-aaaaaaaa014",
-    "fullName": "Michel Dekking",
-    "country": "Netherlands",
-    "fieldOfStudy": "Fractal Geometry",
-    "totalPublications": 167
+    "id": "a95890c4-1022-4da6-9334-76bc68f1f9a2",
+    "fullName": "New Author 188",
+    "country": "Germany",
+    "fieldOfStudy": "IoT",
+    "totalPublications": 2,
+    "articleId": [
+      "cbafcb6a-3e0c-43f1-bd27-e07bd95e4ab0",
+      "fc86d8f1-d1c3-4580-9913-619d1485f82d"
+    ]
   },
   {
-    "id": "ffffffff-cccc-aaaa-dddd-bbbbbbbb015",
-    "fullName": "Christian Mauduit",
+    "id": "b5d3466c-ca54-461b-b03d-d86c0468c0ad",
+    "fullName": "New Author 453",
+    "country": "Japan",
+    "fieldOfStudy": "IoT",
+    "totalPublications": 1,
+    "articleId": [
+      "fc86d8f1-d1c3-4580-9913-619d1485f82d"
+    ]
+  },
+  {
+    "id": "a0cf6f02-3f43-4552-81fc-bfed5768b7f3",
+    "fullName": "New Author 973",
     "country": "France",
-    "fieldOfStudy": "Analytic Number Theory",
-    "totalPublications": 134
+    "fieldOfStudy": "Cloud Computing",
+    "totalPublications": 1,
+    "articleId": [
+      "0a30b967-4028-4900-bd8f-8140e02edf87"
+    ]
   },
   {
-    "id": "11111111-dddd-bbbb-eeee-cccccccc016",
-    "fullName": "Hengjia Wei",
-    "country": "China",
-    "fieldOfStudy": "Information Theory",
-    "totalPublications": 78
+    "id": "406e480c-07b5-4882-8339-19f80e072efb",
+    "fullName": "New Author 223",
+    "country": "Vietnam",
+    "fieldOfStudy": "Cloud Computing",
+    "totalPublications": 1,
+    "articleId": [
+      "0a30b967-4028-4900-bd8f-8140e02edf87"
+    ]
   },
   {
-    "id": "22222222-eeee-cccc-ffff-dddddddd017",
-    "fullName": "Moshe Schwartz",
-    "country": "Israel",
-    "fieldOfStudy": "Coding Theory",
-    "totalPublications": 156
-  },
-  {
-    "id": "33333333-ffff-dddd-aaaa-eeeeeeee018",
-    "fullName": "Amy Glen",
-    "country": "Australia",
-    "fieldOfStudy": "Combinatorics",
-    "totalPublications": 95
-  },
-  {
-    "id": "44444444-aaaa-eeee-bbbb-ffffffff019",
-    "fullName": "Bjarni Jensson",
-    "country": "Iceland",
-    "fieldOfStudy": "Discrete Mathematics",
-    "totalPublications": 61
+    "id": "415e2446-d5f7-46fd-88f4-3037ff2f77c2",
+    "fullName": "New Author 752",
+    "country": "Japan",
+    "fieldOfStudy": "Cybersecurity",
+    "totalPublications": 1,
+    "articleId": [
+      "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c"
+    ]
   }
 ]

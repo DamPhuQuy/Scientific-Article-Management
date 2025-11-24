@@ -44,7 +44,7 @@
 *.idea
 
 # folder
-build/
 cmake-build-debug/
 .cache
 .idea
+.qtcreator

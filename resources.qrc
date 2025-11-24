@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>public/resources/background.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>public/resources/checkbox.png</file>
+        <file>public/resources/hide.png</file>
+        <file>public/resources/logo.png</file>
+        <file>public/resources/view.png</file>
+    </qresource>
+</RCC>
