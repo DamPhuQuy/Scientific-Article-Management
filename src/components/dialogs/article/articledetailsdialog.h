@@ -2,6 +2,7 @@
 #define ARTICLEDETAILSDIALOG_H
 
 #include <QDialog>
+#include "qlabel.h"
 #include "src/models/article.h"
 #include "src/repos/repomanager.h"
 
@@ -30,6 +31,8 @@ private:
     RepositoryManager& repo;
 
     Article* currentArticle = nullptr;
+
+    QLabel *custom = nullptr;
 };
 
 #endif // ARTICLEDETAILSDIALOG_H

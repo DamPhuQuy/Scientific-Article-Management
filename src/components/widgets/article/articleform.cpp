@@ -5,6 +5,7 @@
 #include "src/components/dialogs/user/userdetailsdialog.h"
 #include "src/utils/usermanager.h"
 #include "src/models/customarticle.h"
+#include "src/components/dialogs/article/articlestatistics.h"
 #include <set>
 
 ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
@@ -13,7 +14,6 @@ ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
     , ui(new Ui::ArticleForm)
 {
     ui->setupUi(this);
-    ui->RemoveArticleBtn->hide();
 
     model = new QStandardItemModel(this);
     ui->articleListView->setModel(model);
@@ -261,5 +261,11 @@ void ArticleForm::updateTypeComboBox() {
     for (const auto& typeName : customTypes) {
         ui->typeFilterComboBox->addItem(QString::fromStdString(typeName));
     }
+}
+
+void ArticleForm::on_pushButton_clicked()
+{
+    ArticleStatistics statsDialog(repo, this);
+    statsDialog.exec();
 }
 

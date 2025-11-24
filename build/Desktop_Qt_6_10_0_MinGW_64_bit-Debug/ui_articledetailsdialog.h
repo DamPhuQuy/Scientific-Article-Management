@@ -102,7 +102,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollContent = new QWidget();
         scrollContent->setObjectName("scrollContent");
-        scrollContent->setGeometry(QRect(0, 0, 466, 950));
+        scrollContent->setGeometry(QRect(0, 0, 476, 862));
         verticalLayout_Content = new QVBoxLayout(scrollContent);
         verticalLayout_Content->setObjectName("verticalLayout_Content");
         lblTitle = new QLabel(scrollContent);
@@ -383,7 +383,7 @@ public:
 
         retranslateUi(ArticleDetailsDialog);
 
-        stackedSpecificInfo->setCurrentIndex(0);
+        stackedSpecificInfo->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(ArticleDetailsDialog);

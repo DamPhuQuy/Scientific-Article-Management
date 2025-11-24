@@ -51,7 +51,8 @@ template <> constexpr inline auto ArticleForm::qt_create_metaobjectdata<qt_meta_
         "arg1",
         "on_yearFilterComboBox_currentTextChanged",
         "on_typeFilterComboBox_currentTextChanged",
-        "on_userLb_clicked"
+        "on_userLb_clicked",
+        "on_pushButton_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -81,6 +82,8 @@ template <> constexpr inline auto ArticleForm::qt_create_metaobjectdata<qt_meta_
         }}),
         // Slot 'on_userLb_clicked'
         QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_clicked'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -113,6 +116,7 @@ void ArticleForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 6: _t->on_yearFilterComboBox_currentTextChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 7: _t->on_typeFilterComboBox_currentTextChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 8: _t->on_userLb_clicked(); break;
+        case 9: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -141,14 +145,14 @@ int ArticleForm::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

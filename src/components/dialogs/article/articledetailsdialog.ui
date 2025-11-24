@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>466</width>
-        <height>950</height>
+        <width>476</width>
+        <height>862</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Content">
@@ -240,7 +240,7 @@
           <enum>QFrame::Shadow::Raised</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="pageSCIE">
           <layout class="QHBoxLayout" name="horizontalLayout_SCIE">

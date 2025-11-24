@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,6 +13,8 @@ SOURCES += \
     src/components/appnav.cpp \
     src/components/dialogs/article/articledetailsdialog.cpp \
     src/components/dialogs/article/articleinputdialog.cpp \
+    src/components/dialogs/article/articleremovedialog.cpp \
+    src/components/dialogs/article/articlestatistics.cpp \
     src/components/dialogs/article/articleupdatedialog.cpp \
     src/components/dialogs/author/authordetailsdialog.cpp \
     src/components/dialogs/author/listofauthorsdialog.cpp \
@@ -40,6 +42,8 @@ HEADERS += \
     src/components/appnav.h \
     src/components/dialogs/article/articledetailsdialog.h \
     src/components/dialogs/article/articleinputdialog.h \
+    src/components/dialogs/article/articleremovedialog.h \
+    src/components/dialogs/article/articlestatistics.h \
     src/components/dialogs/article/articleupdatedialog.h \
     src/components/dialogs/author/authordetailsdialog.h \
     src/components/dialogs/author/listofauthorsdialog.h \
@@ -71,6 +75,8 @@ HEADERS += \
 FORMS += \
     src/components/dialogs/article/articledetailsdialog.ui \
     src/components/dialogs/article/articleinputdialog.ui \
+    src/components/dialogs/article/articleremovedialog.ui \
+    src/components/dialogs/article/articlestatistics.ui \
     src/components/dialogs/article/articleupdatedialog.ui \
     src/components/dialogs/author/authordetailsdialog.ui \
     src/components/dialogs/author/listofauthorsdialog.ui \

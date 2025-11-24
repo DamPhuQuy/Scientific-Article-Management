@@ -8,6 +8,10 @@
 #include "src/models/conference_article.h"
 #include "src/models/scopus_article.h"
 #include "src/models/other_article.h"
+#include "src/models/customarticle.h"
+#include <set>
+
+using namespace std;
 
 ArticleDetailsDialog::ArticleDetailsDialog(RepositoryManager& repo, QWidget *parent)
     : QDialog(parent)
@@ -18,6 +22,20 @@ ArticleDetailsDialog::ArticleDetailsDialog(RepositoryManager& repo, QWidget *par
 
     ui->statusBox->setEnabled(false);
     ui->typeBox->setEnabled(false);
+
+    set<string> customTypes;
+    repo.getArticles().getContainer().forEach([&](const shared_ptr<Article>& article) {
+        if (article->getType() == Type::CUSTOM) {
+            CUSTOM_Article* customArticle = dynamic_cast<CUSTOM_Article*>(article.get());
+            if (customArticle) {
+                customTypes.insert(customArticle->getCustomTypeName());
+            }
+        }
+    });
+
+    for (const auto& typeName : customTypes) {
+        ui->typeBox->addItem(QString::fromStdString(typeName));
+    }
 }
 
 ArticleDetailsDialog::~ArticleDetailsDialog()
@@ -49,6 +67,7 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
         case Type::SCIE: ui->typeBox->setCurrentIndex(0); break;
         case Type::SCOPUS: ui->typeBox->setCurrentIndex(1); break;
         case Type::CONFERENCE: ui->typeBox->setCurrentIndex(2); break;
+        case Type::CUSTOM: ui->typeBox->setCurrentIndex(4); break;
         default: ui->typeBox->setCurrentIndex(3); break;
     }
 
@@ -92,7 +111,6 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
         ui->valAcceptRate->setText(QString::number(conf->getAcceptanceRate()) + "%");
     }
     else {
-        qDebug() << "Run-time type:" << typeid(*currentArticle).name();
         ui->stackedSpecificInfo->setCurrentWidget(ui->pageOTHER);
     }
 }
