@@ -6,14 +6,60 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>800</height>
+    <width>600</width>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Article Details</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#ArticleDetailsDialog{background-color:#f4f7f6;border:4px solid #FFC085;}QWidget{font-family:&quot;Segoe UI&quot;,Arial,sans-serif;font-size:14px;}QScrollArea{border:none;background-color:transparent;}QGroupBox{background-color:#ffffff;border:1px solid #e0e0e0;border-radius:8px;margin-top:20px;font-size:14px;}QGroupBox::title{subcontrol-origin:margin;subcontrol-position:top left;padding:0 5px;color:#20B2AA;font-weight:bold;left:10px;}QListWidget,QTextBrowser{border:none;background-color:transparent;}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_Main">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="headerContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>70</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget#headerContainer{background-color:#00264d;border-bottom:5px solid #4169E1;border-left:10px solid #FFD700;}</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Header">
+      <item>
+       <widget class="QLabel" name="lblHeaderTitle">
+        <property name="styleSheet">
+         <string notr="true">color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;</string>
+        </property>
+        <property name="text">
+         <string>CHI TIẾT BÀI BÁO</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
@@ -24,11 +70,26 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>476</width>
-        <height>862</height>
+        <width>592</width>
+        <height>798</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Content">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
        <item>
         <widget class="QLabel" name="lblTitle">
          <property name="sizePolicy">
@@ -39,9 +100,13 @@
          </property>
          <property name="font">
           <font>
+           <family>Segoe UI</family>
            <pointsize>18</pointsize>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#00264d;</string>
          </property>
          <property name="text">
           <string>Article Title Placeholder</string>
@@ -52,15 +117,12 @@
          <property name="wordWrap">
           <bool>true</bool>
          </property>
-         <property name="textInteractionFlags">
-          <set>Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse</set>
-         </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="lblId">
          <property name="styleSheet">
-          <string notr="true">color: gray;</string>
+          <string notr="true">color:gray;font-style:italic;</string>
          </property>
          <property name="text">
           <string>ID: 00000</string>
@@ -69,6 +131,16 @@
        </item>
        <item>
         <widget class="QLabel" name="lblVenue">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>14</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:#333333;</string>
+         </property>
          <property name="text">
           <string>Venue Name</string>
          </property>
@@ -80,8 +152,14 @@
           <widget class="QLabel" name="lblYear">
            <property name="font">
             <font>
-             <italic>true</italic>
+             <family>Segoe UI</family>
+             <pointsize>14</pointsize>
+             <italic>false</italic>
+             <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#555555;</string>
            </property>
            <property name="text">
             <string>2024</string>
@@ -105,11 +183,13 @@
           <widget class="QLabel" name="lblCitation">
            <property name="font">
             <font>
+             <family>Segoe UI</family>
+             <pointsize>14</pointsize>
              <bold>true</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: #d35400;</string>
+            <string notr="true">color:#d35400;</string>
            </property>
            <property name="text">
             <string>0 Citations</string>
@@ -123,7 +203,7 @@
          <item>
           <widget class="QLabel" name="lblType">
            <property name="styleSheet">
-            <string notr="true">background-color: #e0f7fa; color: #006064; padding: 4px; border-radius: 4px;</string>
+            <string notr="true">background-color:#e0f7fa;color:#006064;padding:6px;border-radius:4px;font-weight:bold;</string>
            </property>
            <property name="text">
             <string>Type</string>
@@ -135,6 +215,9 @@
          </item>
          <item>
           <widget class="QComboBox" name="typeBox">
+           <property name="styleSheet">
+            <string notr="true">background-color:#ffffff;border:1px solid #cccccc;border-radius:4px;padding:4px;</string>
+           </property>
            <item>
             <property name="text">
              <string>SCIE</string>
@@ -160,7 +243,7 @@
          <item>
           <widget class="QLabel" name="lblStatus">
            <property name="styleSheet">
-            <string notr="true">background-color: #e8f5e9; color: #2e7d32; padding: 4px; border-radius: 4px;</string>
+            <string notr="true">background-color:#e8f5e9;color:#2e7d32;padding:6px;border-radius:4px;font-weight:bold;</string>
            </property>
            <property name="text">
             <string>Status</string>
@@ -172,6 +255,9 @@
          </item>
          <item>
           <widget class="QComboBox" name="statusBox">
+           <property name="styleSheet">
+            <string notr="true">background-color:#ffffff;border:1px solid #cccccc;border-radius:4px;padding:4px;</string>
+           </property>
            <item>
             <property name="text">
              <string>DRAFT</string>
@@ -233,27 +319,15 @@
        </item>
        <item>
         <widget class="QStackedWidget" name="stackedSpecificInfo">
-         <property name="frameShape">
-          <enum>QFrame::Shape::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Raised</enum>
-         </property>
          <property name="currentIndex">
           <number>3</number>
          </property>
          <widget class="QWidget" name="pageSCIE">
           <layout class="QHBoxLayout" name="horizontalLayout_SCIE">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
            <item>
             <widget class="QLabel" name="label_IF">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>Impact Factor:</string>
@@ -263,7 +337,7 @@
            <item>
             <widget class="QLabel" name="valIF">
              <property name="styleSheet">
-              <string>color: #d32f2f; font-weight: bold;</string>
+              <string notr="true">color:#d32f2f;font-weight:bold;</string>
              </property>
              <property name="text">
               <string>0.0</string>
@@ -277,8 +351,8 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>0</width>
-               <height>0</height>
+               <width>40</width>
+               <height>20</height>
               </size>
              </property>
             </spacer>
@@ -286,7 +360,7 @@
            <item>
             <widget class="QLabel" name="label_Q">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>Q-Rank:</string>
@@ -296,7 +370,7 @@
            <item>
             <widget class="QLabel" name="valQRank">
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">font-weight:bold;</string>
              </property>
              <property name="text">
               <string>Q1</string>
@@ -307,16 +381,10 @@
          </widget>
          <widget class="QWidget" name="pageSCOPUS">
           <layout class="QHBoxLayout" name="horizontalLayout_SCOPUS">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
            <item>
             <widget class="QLabel" name="label_SJR">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>SJR:</string>
@@ -325,6 +393,9 @@
            </item>
            <item>
             <widget class="QLabel" name="valSJR">
+             <property name="styleSheet">
+              <string notr="true">font-weight:bold;</string>
+             </property>
              <property name="text">
               <string>0.0</string>
              </property>
@@ -337,8 +408,8 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>0</width>
-               <height>0</height>
+               <width>40</width>
+               <height>20</height>
               </size>
              </property>
             </spacer>
@@ -346,7 +417,7 @@
            <item>
             <widget class="QLabel" name="label_H">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>H-Index:</string>
@@ -355,6 +426,9 @@
            </item>
            <item>
             <widget class="QLabel" name="valHIndex">
+             <property name="styleSheet">
+              <string notr="true">font-weight:bold;</string>
+             </property>
              <property name="text">
               <string>0</string>
              </property>
@@ -364,16 +438,10 @@
          </widget>
          <widget class="QWidget" name="pageCONF">
           <layout class="QGridLayout" name="gridLayout_CONF">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
            <item row="0" column="0">
             <widget class="QLabel" name="label_ConfRank">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>Rank:</string>
@@ -382,6 +450,9 @@
            </item>
            <item row="0" column="1">
             <widget class="QLabel" name="valConfRank">
+             <property name="styleSheet">
+              <string notr="true">font-weight:bold;</string>
+             </property>
              <property name="text">
               <string>A*</string>
              </property>
@@ -390,7 +461,7 @@
            <item row="0" column="2">
             <widget class="QLabel" name="label_Rate">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>Accept Rate:</string>
@@ -399,6 +470,9 @@
            </item>
            <item row="0" column="3">
             <widget class="QLabel" name="valAcceptRate">
+             <property name="styleSheet">
+              <string notr="true">font-weight:bold;</string>
+             </property>
              <property name="text">
               <string>20%</string>
              </property>
@@ -407,7 +481,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="label_Loc">
              <property name="styleSheet">
-              <string>font-weight: bold; color: #555;</string>
+              <string notr="true">font-weight:bold;color:#555555;</string>
              </property>
              <property name="text">
               <string>Loc:</string>
@@ -426,15 +500,13 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="pageOTHER">
-          <layout class="QVBoxLayout" name="verticalLayout_Other"/>
-         </widget>
+         <widget class="QWidget" name="pageOTHER"/>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="grpAuthors">
          <property name="title">
-          <string>Authors</string>
+          <string>AUTHORS</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_Authors">
           <item>
@@ -446,7 +518,7 @@
        <item>
         <widget class="QGroupBox" name="grpAbstract">
          <property name="title">
-          <string>Abstract</string>
+          <string>ABSTRACT</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_Abstract">
           <item>
@@ -458,7 +530,7 @@
        <item>
         <widget class="QGroupBox" name="grpRefs">
          <property name="title">
-          <string>References</string>
+          <string>REFERENCES</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_Refs">
           <item>
@@ -472,23 +544,63 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout">
+    <widget class="QWidget" name="footerContainer" native="true">
+     <property name="styleSheet">
+      <string notr="true">background-color:#ffffff;border-top:1px solid #dddddd;</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Footer">
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <spacer name="footerSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item>
        <widget class="QPushButton" name="btnUpdate">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QPushButton{background-color:#20B2AA;border:2px solid #20B2AA;border-radius:6px;color:white;font-weight:bold;}QPushButton:hover{background-color:#17a098;}QPushButton:pressed{background-color:#0e6b65;}</string>
         </property>
         <property name="text">
          <string>Update Article</string>
-        </property>
-        <property name="icon">
-         <iconset theme="document-edit"/>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="closeBtn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{background-color:#e74c3c;border:2px solid #e74c3c;border-radius:6px;color:white;font-weight:bold;}QPushButton:hover{background-color:#c0392b;}QPushButton:pressed{background-color:#922b21;}</string>
+        </property>
         <property name="text">
          <string>Close</string>
         </property>
@@ -500,5 +612,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>closeBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>ArticleDetailsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>800</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>400</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

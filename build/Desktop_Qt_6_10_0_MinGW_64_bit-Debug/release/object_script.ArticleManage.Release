@@ -2,6 +2,7 @@ release/main.o
 release/appnav.o
 release/articledetailsdialog.o
 release/articleinputdialog.o
+release/articleremovedialog.o
 release/articlestatistics.o
 release/articleupdatedialog.o
 release/authordetailsdialog.o
@@ -29,6 +30,7 @@ release/qrc_resources.o
 release/moc_appnav.o
 release/moc_articledetailsdialog.o
 release/moc_articleinputdialog.o
+release/moc_articleremovedialog.o
 release/moc_articlestatistics.o
 release/moc_articleupdatedialog.o
 release/moc_authordetailsdialog.o

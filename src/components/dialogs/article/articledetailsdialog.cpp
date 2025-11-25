@@ -117,8 +117,16 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
 
 void ArticleDetailsDialog::on_btnUpdate_clicked()
 {
-    ArticleUpdateDialog updateDialog(repo, this);
+    if (!currentArticle) return;
+    auto articlePtr = repo.getArticles().findById(currentArticle->getId());
+    if (!articlePtr) {
+        qDebug() << "[ERROR] Không tìm thấy article!";
+        return;
+    }
 
+    ArticleUpdateDialog updateDialog(repo, this);
+    updateDialog.setCurrentArticle(articlePtr.get());
+    updateDialog.loadData(articlePtr.get());
     updateDialog.exec();
 }
 

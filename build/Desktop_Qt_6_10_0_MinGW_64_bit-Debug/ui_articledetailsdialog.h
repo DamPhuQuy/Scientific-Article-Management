@@ -10,7 +10,6 @@
 #define UI_ARTICLEDETAILSDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
@@ -34,6 +33,9 @@ class Ui_ArticleDetailsDialog
 {
 public:
     QVBoxLayout *verticalLayout_Main;
+    QWidget *headerContainer;
+    QHBoxLayout *horizontalLayout_Header;
+    QLabel *lblHeaderTitle;
     QScrollArea *scrollArea;
     QWidget *scrollContent;
     QVBoxLayout *verticalLayout_Content;
@@ -75,7 +77,6 @@ public:
     QLabel *label_Loc;
     QLabel *valLocation;
     QWidget *pageOTHER;
-    QVBoxLayout *verticalLayout_Other;
     QGroupBox *grpAuthors;
     QVBoxLayout *verticalLayout_Authors;
     QListWidget *listAuthors;
@@ -85,8 +86,9 @@ public:
     QGroupBox *grpRefs;
     QVBoxLayout *verticalLayout_Refs;
     QListWidget *listRefs;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout;
+    QWidget *footerContainer;
+    QHBoxLayout *horizontalLayout_Footer;
+    QSpacerItem *footerSpacer;
     QPushButton *btnUpdate;
     QPushButton *closeBtn;
 
@@ -94,17 +96,38 @@ public:
     {
         if (ArticleDetailsDialog->objectName().isEmpty())
             ArticleDetailsDialog->setObjectName("ArticleDetailsDialog");
-        ArticleDetailsDialog->resize(500, 800);
+        ArticleDetailsDialog->resize(600, 850);
+        ArticleDetailsDialog->setStyleSheet(QString::fromUtf8("QDialog#ArticleDetailsDialog{background-color:#f4f7f6;border:4px solid #FFC085;}QWidget{font-family:\"Segoe UI\",Arial,sans-serif;font-size:14px;}QScrollArea{border:none;background-color:transparent;}QGroupBox{background-color:#ffffff;border:1px solid #e0e0e0;border-radius:8px;margin-top:20px;font-size:14px;}QGroupBox::title{subcontrol-origin:margin;subcontrol-position:top left;padding:0 5px;color:#20B2AA;font-weight:bold;left:10px;}QListWidget,QTextBrowser{border:none;background-color:transparent;}"));
         verticalLayout_Main = new QVBoxLayout(ArticleDetailsDialog);
+        verticalLayout_Main->setSpacing(0);
         verticalLayout_Main->setObjectName("verticalLayout_Main");
+        verticalLayout_Main->setContentsMargins(0, 0, 0, 20);
+        headerContainer = new QWidget(ArticleDetailsDialog);
+        headerContainer->setObjectName("headerContainer");
+        headerContainer->setMinimumSize(QSize(0, 70));
+        headerContainer->setStyleSheet(QString::fromUtf8("QWidget#headerContainer{background-color:#00264d;border-bottom:5px solid #4169E1;border-left:10px solid #FFD700;}"));
+        horizontalLayout_Header = new QHBoxLayout(headerContainer);
+        horizontalLayout_Header->setObjectName("horizontalLayout_Header");
+        lblHeaderTitle = new QLabel(headerContainer);
+        lblHeaderTitle->setObjectName("lblHeaderTitle");
+        lblHeaderTitle->setStyleSheet(QString::fromUtf8("color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;"));
+        lblHeaderTitle->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
+
+        horizontalLayout_Header->addWidget(lblHeaderTitle);
+
+
+        verticalLayout_Main->addWidget(headerContainer);
+
         scrollArea = new QScrollArea(ArticleDetailsDialog);
         scrollArea->setObjectName("scrollArea");
         scrollArea->setWidgetResizable(true);
         scrollContent = new QWidget();
         scrollContent->setObjectName("scrollContent");
-        scrollContent->setGeometry(QRect(0, 0, 476, 862));
+        scrollContent->setGeometry(QRect(0, 0, 592, 798));
         verticalLayout_Content = new QVBoxLayout(scrollContent);
+        verticalLayout_Content->setSpacing(15);
         verticalLayout_Content->setObjectName("verticalLayout_Content");
+        verticalLayout_Content->setContentsMargins(20, 20, 20, 20);
         lblTitle = new QLabel(scrollContent);
         lblTitle->setObjectName("lblTitle");
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::MinimumExpanding);
@@ -113,23 +136,30 @@ public:
         sizePolicy.setHeightForWidth(lblTitle->sizePolicy().hasHeightForWidth());
         lblTitle->setSizePolicy(sizePolicy);
         QFont font;
+        font.setFamilies({QString::fromUtf8("Segoe UI")});
         font.setPointSize(18);
         font.setBold(true);
         lblTitle->setFont(font);
+        lblTitle->setStyleSheet(QString::fromUtf8("color:#00264d;"));
         lblTitle->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
         lblTitle->setWordWrap(true);
-        lblTitle->setTextInteractionFlags(Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextSelectableByMouse);
 
         verticalLayout_Content->addWidget(lblTitle);
 
         lblId = new QLabel(scrollContent);
         lblId->setObjectName("lblId");
-        lblId->setStyleSheet(QString::fromUtf8("color: gray;"));
+        lblId->setStyleSheet(QString::fromUtf8("color:gray;font-style:italic;"));
 
         verticalLayout_Content->addWidget(lblId);
 
         lblVenue = new QLabel(scrollContent);
         lblVenue->setObjectName("lblVenue");
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Segoe UI")});
+        font1.setPointSize(14);
+        font1.setBold(true);
+        lblVenue->setFont(font1);
+        lblVenue->setStyleSheet(QString::fromUtf8("color:#333333;"));
 
         verticalLayout_Content->addWidget(lblVenue);
 
@@ -137,9 +167,13 @@ public:
         horizontalLayout_Meta->setObjectName("horizontalLayout_Meta");
         lblYear = new QLabel(scrollContent);
         lblYear->setObjectName("lblYear");
-        QFont font1;
-        font1.setItalic(true);
-        lblYear->setFont(font1);
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Segoe UI")});
+        font2.setPointSize(14);
+        font2.setBold(true);
+        font2.setItalic(false);
+        lblYear->setFont(font2);
+        lblYear->setStyleSheet(QString::fromUtf8("color:#555555;"));
 
         horizontalLayout_Meta->addWidget(lblYear);
 
@@ -149,10 +183,8 @@ public:
 
         lblCitation = new QLabel(scrollContent);
         lblCitation->setObjectName("lblCitation");
-        QFont font2;
-        font2.setBold(true);
-        lblCitation->setFont(font2);
-        lblCitation->setStyleSheet(QString::fromUtf8("color: #d35400;"));
+        lblCitation->setFont(font1);
+        lblCitation->setStyleSheet(QString::fromUtf8("color:#d35400;"));
 
         horizontalLayout_Meta->addWidget(lblCitation);
 
@@ -163,7 +195,7 @@ public:
         horizontalLayout_Tags->setObjectName("horizontalLayout_Tags");
         lblType = new QLabel(scrollContent);
         lblType->setObjectName("lblType");
-        lblType->setStyleSheet(QString::fromUtf8("background-color: #e0f7fa; color: #006064; padding: 4px; border-radius: 4px;"));
+        lblType->setStyleSheet(QString::fromUtf8("background-color:#e0f7fa;color:#006064;padding:6px;border-radius:4px;font-weight:bold;"));
         lblType->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         horizontalLayout_Tags->addWidget(lblType);
@@ -174,12 +206,13 @@ public:
         typeBox->addItem(QString());
         typeBox->addItem(QString());
         typeBox->setObjectName("typeBox");
+        typeBox->setStyleSheet(QString::fromUtf8("background-color:#ffffff;border:1px solid #cccccc;border-radius:4px;padding:4px;"));
 
         horizontalLayout_Tags->addWidget(typeBox);
 
         lblStatus = new QLabel(scrollContent);
         lblStatus->setObjectName("lblStatus");
-        lblStatus->setStyleSheet(QString::fromUtf8("background-color: #e8f5e9; color: #2e7d32; padding: 4px; border-radius: 4px;"));
+        lblStatus->setStyleSheet(QString::fromUtf8("background-color:#e8f5e9;color:#2e7d32;padding:6px;border-radius:4px;font-weight:bold;"));
         lblStatus->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         horizontalLayout_Tags->addWidget(lblStatus);
@@ -193,6 +226,7 @@ public:
         statusBox->addItem(QString());
         statusBox->addItem(QString());
         statusBox->setObjectName("statusBox");
+        statusBox->setStyleSheet(QString::fromUtf8("background-color:#ffffff;border:1px solid #cccccc;border-radius:4px;padding:4px;"));
 
         horizontalLayout_Tags->addWidget(statusBox);
 
@@ -212,35 +246,35 @@ public:
 
         stackedSpecificInfo = new QStackedWidget(scrollContent);
         stackedSpecificInfo->setObjectName("stackedSpecificInfo");
-        stackedSpecificInfo->setFrameShape(QFrame::Shape::StyledPanel);
-        stackedSpecificInfo->setFrameShadow(QFrame::Shadow::Raised);
         pageSCIE = new QWidget();
         pageSCIE->setObjectName("pageSCIE");
         horizontalLayout_SCIE = new QHBoxLayout(pageSCIE);
         horizontalLayout_SCIE->setObjectName("horizontalLayout_SCIE");
-        horizontalLayout_SCIE->setContentsMargins(0, -1, 0, -1);
         label_IF = new QLabel(pageSCIE);
         label_IF->setObjectName("label_IF");
+        label_IF->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         horizontalLayout_SCIE->addWidget(label_IF);
 
         valIF = new QLabel(pageSCIE);
         valIF->setObjectName("valIF");
+        valIF->setStyleSheet(QString::fromUtf8("color:#d32f2f;font-weight:bold;"));
 
         horizontalLayout_SCIE->addWidget(valIF);
 
-        spacer_scie = new QSpacerItem(0, 0, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        spacer_scie = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_SCIE->addItem(spacer_scie);
 
         label_Q = new QLabel(pageSCIE);
         label_Q->setObjectName("label_Q");
+        label_Q->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         horizontalLayout_SCIE->addWidget(label_Q);
 
         valQRank = new QLabel(pageSCIE);
         valQRank->setObjectName("valQRank");
-        valQRank->setStyleSheet(QString::fromUtf8(""));
+        valQRank->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         horizontalLayout_SCIE->addWidget(valQRank);
 
@@ -249,28 +283,31 @@ public:
         pageSCOPUS->setObjectName("pageSCOPUS");
         horizontalLayout_SCOPUS = new QHBoxLayout(pageSCOPUS);
         horizontalLayout_SCOPUS->setObjectName("horizontalLayout_SCOPUS");
-        horizontalLayout_SCOPUS->setContentsMargins(0, -1, 0, -1);
         label_SJR = new QLabel(pageSCOPUS);
         label_SJR->setObjectName("label_SJR");
+        label_SJR->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         horizontalLayout_SCOPUS->addWidget(label_SJR);
 
         valSJR = new QLabel(pageSCOPUS);
         valSJR->setObjectName("valSJR");
+        valSJR->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         horizontalLayout_SCOPUS->addWidget(valSJR);
 
-        spacer_scopus = new QSpacerItem(0, 0, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        spacer_scopus = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_SCOPUS->addItem(spacer_scopus);
 
         label_H = new QLabel(pageSCOPUS);
         label_H->setObjectName("label_H");
+        label_H->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         horizontalLayout_SCOPUS->addWidget(label_H);
 
         valHIndex = new QLabel(pageSCOPUS);
         valHIndex->setObjectName("valHIndex");
+        valHIndex->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         horizontalLayout_SCOPUS->addWidget(valHIndex);
 
@@ -279,29 +316,33 @@ public:
         pageCONF->setObjectName("pageCONF");
         gridLayout_CONF = new QGridLayout(pageCONF);
         gridLayout_CONF->setObjectName("gridLayout_CONF");
-        gridLayout_CONF->setContentsMargins(0, -1, 0, -1);
         label_ConfRank = new QLabel(pageCONF);
         label_ConfRank->setObjectName("label_ConfRank");
+        label_ConfRank->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         gridLayout_CONF->addWidget(label_ConfRank, 0, 0, 1, 1);
 
         valConfRank = new QLabel(pageCONF);
         valConfRank->setObjectName("valConfRank");
+        valConfRank->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         gridLayout_CONF->addWidget(valConfRank, 0, 1, 1, 1);
 
         label_Rate = new QLabel(pageCONF);
         label_Rate->setObjectName("label_Rate");
+        label_Rate->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         gridLayout_CONF->addWidget(label_Rate, 0, 2, 1, 1);
 
         valAcceptRate = new QLabel(pageCONF);
         valAcceptRate->setObjectName("valAcceptRate");
+        valAcceptRate->setStyleSheet(QString::fromUtf8("font-weight:bold;"));
 
         gridLayout_CONF->addWidget(valAcceptRate, 0, 3, 1, 1);
 
         label_Loc = new QLabel(pageCONF);
         label_Loc->setObjectName("label_Loc");
+        label_Loc->setStyleSheet(QString::fromUtf8("font-weight:bold;color:#555555;"));
 
         gridLayout_CONF->addWidget(label_Loc, 1, 0, 1, 1);
 
@@ -314,8 +355,6 @@ public:
         stackedSpecificInfo->addWidget(pageCONF);
         pageOTHER = new QWidget();
         pageOTHER->setObjectName("pageOTHER");
-        verticalLayout_Other = new QVBoxLayout(pageOTHER);
-        verticalLayout_Other->setObjectName("verticalLayout_Other");
         stackedSpecificInfo->addWidget(pageOTHER);
 
         verticalLayout_Content->addWidget(stackedSpecificInfo);
@@ -360,28 +399,38 @@ public:
 
         verticalLayout_Main->addWidget(scrollArea);
 
-        widget = new QWidget(ArticleDetailsDialog);
-        widget->setObjectName("widget");
-        horizontalLayout = new QHBoxLayout(widget);
-        horizontalLayout->setObjectName("horizontalLayout");
-        btnUpdate = new QPushButton(widget);
+        footerContainer = new QWidget(ArticleDetailsDialog);
+        footerContainer->setObjectName("footerContainer");
+        footerContainer->setStyleSheet(QString::fromUtf8("background-color:#ffffff;border-top:1px solid #dddddd;"));
+        horizontalLayout_Footer = new QHBoxLayout(footerContainer);
+        horizontalLayout_Footer->setObjectName("horizontalLayout_Footer");
+        horizontalLayout_Footer->setContentsMargins(-1, 10, -1, 10);
+        footerSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_Footer->addItem(footerSpacer);
+
+        btnUpdate = new QPushButton(footerContainer);
         btnUpdate->setObjectName("btnUpdate");
-        btnUpdate->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon(QIcon::fromTheme(QString::fromUtf8("document-edit")));
-        btnUpdate->setIcon(icon);
+        btnUpdate->setMinimumSize(QSize(120, 40));
+        btnUpdate->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnUpdate->setStyleSheet(QString::fromUtf8("QPushButton{background-color:#20B2AA;border:2px solid #20B2AA;border-radius:6px;color:white;font-weight:bold;}QPushButton:hover{background-color:#17a098;}QPushButton:pressed{background-color:#0e6b65;}"));
 
-        horizontalLayout->addWidget(btnUpdate);
+        horizontalLayout_Footer->addWidget(btnUpdate);
 
-        closeBtn = new QPushButton(widget);
+        closeBtn = new QPushButton(footerContainer);
         closeBtn->setObjectName("closeBtn");
+        closeBtn->setMinimumSize(QSize(100, 40));
+        closeBtn->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        closeBtn->setStyleSheet(QString::fromUtf8("QPushButton{background-color:#e74c3c;border:2px solid #e74c3c;border-radius:6px;color:white;font-weight:bold;}QPushButton:hover{background-color:#c0392b;}QPushButton:pressed{background-color:#922b21;}"));
 
-        horizontalLayout->addWidget(closeBtn);
+        horizontalLayout_Footer->addWidget(closeBtn);
 
 
-        verticalLayout_Main->addWidget(widget);
+        verticalLayout_Main->addWidget(footerContainer);
 
 
         retranslateUi(ArticleDetailsDialog);
+        QObject::connect(closeBtn, &QPushButton::clicked, ArticleDetailsDialog, qOverload<>(&QDialog::accept));
 
         stackedSpecificInfo->setCurrentIndex(3);
 
@@ -392,6 +441,7 @@ public:
     void retranslateUi(QDialog *ArticleDetailsDialog)
     {
         ArticleDetailsDialog->setWindowTitle(QCoreApplication::translate("ArticleDetailsDialog", "Article Details", nullptr));
+        lblHeaderTitle->setText(QCoreApplication::translate("ArticleDetailsDialog", "CHI TI\341\272\276T B\303\200I B\303\201O", nullptr));
         lblTitle->setText(QCoreApplication::translate("ArticleDetailsDialog", "Article Title Placeholder", nullptr));
         lblId->setText(QCoreApplication::translate("ArticleDetailsDialog", "ID: 00000", nullptr));
         lblVenue->setText(QCoreApplication::translate("ArticleDetailsDialog", "Venue Name", nullptr));
@@ -412,31 +462,23 @@ public:
         statusBox->setItemText(5, QCoreApplication::translate("ArticleDetailsDialog", "REJECTED", nullptr));
         statusBox->setItemText(6, QCoreApplication::translate("ArticleDetailsDialog", "PUBLISHED", nullptr));
 
-        label_IF->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_IF->setText(QCoreApplication::translate("ArticleDetailsDialog", "Impact Factor:", nullptr));
-        valIF->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "color: #d32f2f; font-weight: bold;", nullptr));
         valIF->setText(QCoreApplication::translate("ArticleDetailsDialog", "0.0", nullptr));
-        label_Q->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_Q->setText(QCoreApplication::translate("ArticleDetailsDialog", "Q-Rank:", nullptr));
         valQRank->setText(QCoreApplication::translate("ArticleDetailsDialog", "Q1", nullptr));
-        label_SJR->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_SJR->setText(QCoreApplication::translate("ArticleDetailsDialog", "SJR:", nullptr));
         valSJR->setText(QCoreApplication::translate("ArticleDetailsDialog", "0.0", nullptr));
-        label_H->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_H->setText(QCoreApplication::translate("ArticleDetailsDialog", "H-Index:", nullptr));
         valHIndex->setText(QCoreApplication::translate("ArticleDetailsDialog", "0", nullptr));
-        label_ConfRank->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_ConfRank->setText(QCoreApplication::translate("ArticleDetailsDialog", "Rank:", nullptr));
         valConfRank->setText(QCoreApplication::translate("ArticleDetailsDialog", "A*", nullptr));
-        label_Rate->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_Rate->setText(QCoreApplication::translate("ArticleDetailsDialog", "Accept Rate:", nullptr));
         valAcceptRate->setText(QCoreApplication::translate("ArticleDetailsDialog", "20%", nullptr));
-        label_Loc->setStyleSheet(QCoreApplication::translate("ArticleDetailsDialog", "font-weight: bold; color: #555;", nullptr));
         label_Loc->setText(QCoreApplication::translate("ArticleDetailsDialog", "Loc:", nullptr));
         valLocation->setText(QCoreApplication::translate("ArticleDetailsDialog", "Paris, France", nullptr));
-        grpAuthors->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "Authors", nullptr));
-        grpAbstract->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "Abstract", nullptr));
-        grpRefs->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "References", nullptr));
+        grpAuthors->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "AUTHORS", nullptr));
+        grpAbstract->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "ABSTRACT", nullptr));
+        grpRefs->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "REFERENCES", nullptr));
         btnUpdate->setText(QCoreApplication::translate("ArticleDetailsDialog", "Update Article", nullptr));
         closeBtn->setText(QCoreApplication::translate("ArticleDetailsDialog", "Close", nullptr));
     } // retranslateUi

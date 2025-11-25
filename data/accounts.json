@@ -1,418 +1,426 @@
 [
-  {
-    "password": "Fj28kd9P",
-    "username": "khanh.linh",
-    "role": "User",
-    "fullname": "Khanh Linh",
-    "email": "khanh.linh@gmail.com",
-    "phone": "0905513665"
-  },
-  {
-    "password": "pQ92laWs",
-    "username": "minh_phong",
-    "role": "User",
-    "fullname": "Minh Phong",
-    "email": "minh_phong@gmail.com",
-    "phone": "0363147364"
-  },
-  {
-    "password": "nA72xLps",
-    "username": "hoang98",
-    "role": "Admin",
-    "fullname": "Hoang",
-    "email": "hoang98@gmail.com",
-    "phone": "0945271582"
-  },
-  {
-    "password": "Wy7pq9Dk",
-    "username": "nguyenminh",
-    "role": "User",
-    "fullname": "Nguyenminh",
-    "email": "nguyenminh@gmail.com",
-    "phone": "0342761782"
-  },
-  {
-    "password": "cK8w2LmQ",
-    "username": "bao.tran21",
-    "role": "Admin",
-    "fullname": "Bao Tran",
-    "email": "bao.tran21@gmail.com",
-    "phone": "0936512223"
-  },
-  {
-    "password": "Kf93mQp7",
-    "username": "tuan_anh",
-    "role": "Admin",
-    "fullname": "Tuan Anh",
-    "email": "tuan_anh@gmail.com",
-    "phone": "0927910283"
-  },
-  {
-    "password": "xA18Vmdp",
-    "username": "khoa.dev",
-    "role": "Admin",
-    "fullname": "Khoa Dev",
-    "email": "khoa.dev@gmail.com",
-    "phone": "0327336429"
-  },
-  {
-    "password": "Md81pQaS",
-    "username": "phuoc.le",
-    "role": "Admin",
-    "fullname": "Phuoc Le",
-    "email": "phuoc.le@gmail.com",
-    "phone": "0953876769"
-  },
-  {
-    "password": "aQ72Lmcd",
-    "username": "linhnguyen",
-    "role": "User",
-    "fullname": "Linhnguyen",
-    "email": "linhnguyen@gmail.com",
-    "phone": "0938092088"
-  },
-  {
-    "password": "Ld7a19Pm",
-    "username": "tam.hoang",
-    "role": "User",
-    "fullname": "Tam Hoang",
-    "email": "tam.hoang@gmail.com",
-    "phone": "0925080081"
-  },
-  {
-    "password": "Qk19Zdps",
-    "username": "anhkhoa07",
-    "role": "User",
-    "fullname": "Anhkhoa",
-    "email": "anhkhoa07@gmail.com",
-    "phone": "0314397324"
-  },
-  {
-    "password": "Pd82kLmA",
-    "username": "quynh.lam",
-    "role": "User",
-    "fullname": "Quynh Lam",
-    "email": "quynh.lam@gmail.com",
-    "phone": "0307758434"
-  },
-  {
-    "password": "fY71asMd",
-    "username": "longtran",
-    "role": "Admin",
-    "fullname": "Longtran",
-    "email": "longtran@gmail.com",
-    "phone": "0938226799"
-  },
-  {
-    "password": "Lp92kadM",
-    "username": "truong_02",
-    "role": "Admin",
-    "fullname": "Truong",
-    "email": "truong_02@gmail.com",
-    "phone": "0982188672"
-  },
-  {
-    "password": "Wb19asQp",
-    "username": "hoang.phu",
-    "role": "Admin",
-    "fullname": "Hoang Phu",
-    "email": "hoang.phu@gmail.com",
-    "phone": "0324740331"
-  },
-  {
-    "password": "Aa82sPzm",
-    "username": "tan.dev",
-    "role": "User",
-    "fullname": "Tan Dev",
-    "email": "tan.dev@gmail.com",
-    "phone": "0920863803"
-  },
-  {
-    "password": "Dn71Mqap",
-    "username": "minh.tuan",
-    "role": "User",
-    "fullname": "Minh Tuan",
-    "email": "minh.tuan@gmail.com",
-    "phone": "0367600969"
-  },
-  {
-    "password": "Pw61Dzka",
-    "username": "phuong09",
-    "role": "Admin",
-    "fullname": "Phuong",
-    "email": "phuong09@gmail.com",
-    "phone": "0349661102"
-  },
-  {
-    "password": "Sm72pQla",
-    "username": "giahan03",
-    "role": "Admin",
-    "fullname": "Giahan",
-    "email": "giahan03@gmail.com",
-    "phone": "0904006674"
-  },
-  {
-    "password": "Mp82wQaS",
-    "username": "an.nguyen",
-    "role": "Admin",
-    "fullname": "An Nguyen",
-    "email": "an.nguyen@gmail.com",
-    "phone": "0997613728"
-  },
-  {
-    "password": "Qs92pmLa",
-    "username": "thanh_hoang",
-    "role": "Admin",
-    "fullname": "Thanh Hoang",
-    "email": "thanh_hoang@gmail.com",
-    "phone": "0312325639"
-  },
-  {
-    "password": "Fa82qLsM",
-    "username": "phuoc.dev",
-    "role": "User",
-    "fullname": "Phuoc Dev",
-    "email": "phuoc.dev@gmail.com",
-    "phone": "0956124722"
-  },
-  {
-    "password": "fW72asLm",
-    "username": "vanlinh",
-    "role": "User",
-    "fullname": "Vanlinh",
-    "email": "vanlinh@gmail.com",
-    "phone": "0353134585"
-  },
-  {
-    "password": "Pa19Ldks",
-    "username": "khang07",
-    "role": "Admin",
-    "fullname": "Khang",
-    "email": "khang07@gmail.com",
-    "phone": "0981180944"
-  },
-  {
-    "password": "Zp92wLmA",
-    "username": "viet.hoang",
-    "role": "Admin",
-    "fullname": "Viet Hoang",
-    "email": "viet.hoang@gmail.com",
-    "phone": "0928813935"
-  },
-  {
-    "password": "Qa72xLdS",
-    "username": "khoa.tran",
-    "role": "Admin",
-    "fullname": "Khoa Tran",
-    "email": "khoa.tran@gmail.com",
-    "phone": "0908212057"
-  },
-  {
-    "password": "Lp83Qmas",
-    "username": "trungkien",
-    "role": "Admin",
-    "fullname": "Trungkien",
-    "email": "trungkien@gmail.com",
-    "phone": "0372262471"
-  },
-  {
-    "password": "Km72pzQa",
-    "username": "leminh",
-    "role": "Admin",
-    "fullname": "Leminh",
-    "email": "leminh@gmail.com",
-    "phone": "0905149434"
-  },
-  {
-    "password": "Dn83aQls",
-    "username": "tam.dev",
-    "role": "User",
-    "fullname": "Tam Dev",
-    "email": "tam.dev@gmail.com",
-    "phone": "0962120101"
-  },
-  {
-    "password": "Fj82QmaP",
-    "username": "linh.pham",
-    "role": "User",
-    "fullname": "Linh Pham",
-    "email": "linh.pham@gmail.com",
-    "phone": "0942829178"
-  },
-  {
-    "password": "Pm83wLsa",
-    "username": "giang_anh",
-    "role": "Admin",
-    "fullname": "Giang Anh",
-    "email": "giang_anh@gmail.com",
-    "phone": "0366893857"
-  },
-  {
-    "password": "Zq19apLm",
-    "username": "ngoc.tran",
-    "role": "User",
-    "fullname": "Ngoc Tran",
-    "email": "ngoc.tran@gmail.com",
-    "phone": "0931134039"
-  },
-  {
-    "password": "Qa71Kdps",
-    "username": "hoai03",
-    "role": "User",
-    "fullname": "Hoai",
-    "email": "hoai03@gmail.com",
-    "phone": "0372847373"
-  },
-  {
-    "password": "Aw72Smpq",
-    "username": "phong.dev",
-    "role": "Admin",
-    "fullname": "Phong Dev",
-    "email": "phong.dev@gmail.com",
-    "phone": "0958654569"
-  },
-  {
-    "password": "Lf73pQsa",
-    "username": "anhtuan",
-    "role": "Admin",
-    "fullname": "Anhtuan",
-    "email": "anhtuan@gmail.com",
-    "phone": "0305551428"
-  },
-  {
-    "password": "Pw81Laqs",
-    "username": "hung02",
-    "role": "Admin",
-    "fullname": "Hung",
-    "email": "hung02@gmail.com",
-    "phone": "0356005362"
-  },
-  {
-    "password": "Mf82pLqa",
-    "username": "tien_phan",
-    "role": "User",
-    "fullname": "Tien Phan",
-    "email": "tien_phan@gmail.com",
-    "phone": "0333801881"
-  },
-  {
-    "password": "Da73Lpqs",
-    "username": "nam.le",
-    "role": "Admin",
-    "fullname": "Nam Le",
-    "email": "nam.le@gmail.com",
-    "phone": "0353993916"
-  },
-  {
-    "password": "Qp91kLms",
-    "username": "quang06",
-    "role": "Admin",
-    "fullname": "Quang",
-    "email": "quang06@gmail.com",
-    "phone": "0380530278"
-  },
-  {
-    "password": "Lm83saQp",
-    "username": "nguyen.hoai",
-    "role": "Admin",
-    "fullname": "Nguyen Hoai",
-    "email": "nguyen.hoai@gmail.com",
-    "phone": "0360092841"
-  },
-  {
-    "password": "Fa71Qpms",
-    "username": "tuananh.dev",
-    "role": "User",
-    "fullname": "Tuananh Dev",
-    "email": "tuananh.dev@gmail.com",
-    "phone": "0334962121"
-  },
-  {
-    "password": "Mn72Lpqs",
-    "username": "anh.le",
-    "role": "Admin",
-    "fullname": "Anh Le",
-    "email": "anh.le@gmail.com",
-    "phone": "0341060007"
-  },
-  {
-    "password": "Qa83Lpms",
-    "username": "duy_hoang",
-    "role": "User",
-    "fullname": "Duy Hoang",
-    "email": "duy_hoang@gmail.com",
-    "phone": "0343136626"
-  },
-  {
-    "password": "Wq92Lmps",
-    "username": "khang.le",
-    "role": "User",
-    "fullname": "Khang Le",
-    "email": "khang.le@gmail.com",
-    "phone": "0376688716"
-  },
-  {
-    "password": "Lk82Qmas",
-    "username": "minh.dev",
-    "role": "User",
-    "fullname": "Minh Dev",
-    "email": "minh.dev@gmail.com",
-    "phone": "0914417949"
-  },
-  {
-    "password": "Pa72sLmA",
-    "username": "hoanglam",
-    "role": "Admin",
-    "fullname": "Hoanglam",
-    "email": "hoanglam@gmail.com",
-    "phone": "0372910040"
-  },
-  {
-    "password": "Dn71pMas",
-    "username": "truongvu",
-    "role": "User",
-    "fullname": "Truongvu",
-    "email": "truongvu@gmail.com",
-    "phone": "0963757465"
-  },
-  {
-    "password": "Qw83Lmps",
-    "username": "phuquy.dev",
-    "role": "Admin",
-    "fullname": "Phuquy Dev",
-    "email": "phuquy.dev@gmail.com",
-    "phone": "0911845067"
-  },
-  {
-    "password": "Fs91pLqa",
-    "username": "son.nguyen",
-    "role": "Admin",
-    "fullname": "Son Nguyen",
-    "email": "son.nguyen@gmail.com",
-    "phone": "0942186646"
-  },
-  {
-    "password": "Kp82Lmwa",
-    "username": "dat_tran",
-    "role": "User",
-    "fullname": "Dat Tran",
-    "email": "dat_tran@gmail.com",
-    "phone": "0983258898"
-  },
-  {
-    "password": "pass123",
-    "username": "phuquy",
-    "role": "User",
-    "fullname": "Phu Quy",
-    "email": "phuquy@gmail.com",
-    "phone": "0324313621"
-  },
-  {
-    "password": "pass123",
-    "username": "phuquy2",
-    "role": "Admin",
-    "fullname": "Phu Quy",
-    "email": "phuquy@gmail.com",
-    "phone": "0324313621"
-  }
+    {
+        "email": "khanh.linh@gmail.com",
+        "fullname": "Khanh Linh",
+        "password": "Fj28kd9P",
+        "phone": "0905513665",
+        "role": "User",
+        "username": "khanh.linh"
+    },
+    {
+        "email": "minh_phong@gmail.com",
+        "fullname": "Minh Phong",
+        "password": "pQ92laWs",
+        "phone": "0363147364",
+        "role": "User",
+        "username": "minh_phong"
+    },
+    {
+        "email": "hoang98@gmail.com",
+        "fullname": "Hoang",
+        "password": "nA72xLps",
+        "phone": "0945271582",
+        "role": "Admin",
+        "username": "hoang98"
+    },
+    {
+        "email": "nguyenminh@gmail.com",
+        "fullname": "Nguyenminh",
+        "password": "Wy7pq9Dk",
+        "phone": "0342761782",
+        "role": "User",
+        "username": "nguyenminh"
+    },
+    {
+        "email": "bao.tran21@gmail.com",
+        "fullname": "Bao Tran",
+        "password": "cK8w2LmQ",
+        "phone": "0936512223",
+        "role": "Admin",
+        "username": "bao.tran21"
+    },
+    {
+        "email": "tuan_anh@gmail.com",
+        "fullname": "Tuan Anh",
+        "password": "Kf93mQp7",
+        "phone": "0927910283",
+        "role": "Admin",
+        "username": "tuan_anh"
+    },
+    {
+        "email": "khoa.dev@gmail.com",
+        "fullname": "Khoa Dev",
+        "password": "xA18Vmdp",
+        "phone": "0327336429",
+        "role": "Admin",
+        "username": "khoa.dev"
+    },
+    {
+        "email": "phuoc.le@gmail.com",
+        "fullname": "Phuoc Le",
+        "password": "Md81pQaS",
+        "phone": "0953876769",
+        "role": "Admin",
+        "username": "phuoc.le"
+    },
+    {
+        "email": "linhnguyen@gmail.com",
+        "fullname": "Linhnguyen",
+        "password": "aQ72Lmcd",
+        "phone": "0938092088",
+        "role": "User",
+        "username": "linhnguyen"
+    },
+    {
+        "email": "tam.hoang@gmail.com",
+        "fullname": "Tam Hoang",
+        "password": "Ld7a19Pm",
+        "phone": "0925080081",
+        "role": "User",
+        "username": "tam.hoang"
+    },
+    {
+        "email": "anhkhoa07@gmail.com",
+        "fullname": "Anhkhoa",
+        "password": "Qk19Zdps",
+        "phone": "0314397324",
+        "role": "User",
+        "username": "anhkhoa07"
+    },
+    {
+        "email": "quynh.lam@gmail.com",
+        "fullname": "Quynh Lam",
+        "password": "Pd82kLmA",
+        "phone": "0307758434",
+        "role": "User",
+        "username": "quynh.lam"
+    },
+    {
+        "email": "longtran@gmail.com",
+        "fullname": "Longtran",
+        "password": "fY71asMd",
+        "phone": "0938226799",
+        "role": "Admin",
+        "username": "longtran"
+    },
+    {
+        "email": "truong_02@gmail.com",
+        "fullname": "Truong",
+        "password": "Lp92kadM",
+        "phone": "0982188672",
+        "role": "Admin",
+        "username": "truong_02"
+    },
+    {
+        "email": "hoang.phu@gmail.com",
+        "fullname": "Hoang Phu",
+        "password": "Wb19asQp",
+        "phone": "0324740331",
+        "role": "Admin",
+        "username": "hoang.phu"
+    },
+    {
+        "email": "tan.dev@gmail.com",
+        "fullname": "Tan Dev",
+        "password": "Aa82sPzm",
+        "phone": "0920863803",
+        "role": "User",
+        "username": "tan.dev"
+    },
+    {
+        "email": "minh.tuan@gmail.com",
+        "fullname": "Minh Tuan",
+        "password": "Dn71Mqap",
+        "phone": "0367600969",
+        "role": "User",
+        "username": "minh.tuan"
+    },
+    {
+        "email": "phuong09@gmail.com",
+        "fullname": "Phuong",
+        "password": "Pw61Dzka",
+        "phone": "0349661102",
+        "role": "Admin",
+        "username": "phuong09"
+    },
+    {
+        "email": "giahan03@gmail.com",
+        "fullname": "Giahan",
+        "password": "Sm72pQla",
+        "phone": "0904006674",
+        "role": "Admin",
+        "username": "giahan03"
+    },
+    {
+        "email": "an.nguyen@gmail.com",
+        "fullname": "An Nguyen",
+        "password": "Mp82wQaS",
+        "phone": "0997613728",
+        "role": "Admin",
+        "username": "an.nguyen"
+    },
+    {
+        "email": "thanh_hoang@gmail.com",
+        "fullname": "Thanh Hoang",
+        "password": "Qs92pmLa",
+        "phone": "0312325639",
+        "role": "Admin",
+        "username": "thanh_hoang"
+    },
+    {
+        "email": "phuoc.dev@gmail.com",
+        "fullname": "Phuoc Dev",
+        "password": "Fa82qLsM",
+        "phone": "0956124722",
+        "role": "User",
+        "username": "phuoc.dev"
+    },
+    {
+        "email": "vanlinh@gmail.com",
+        "fullname": "Vanlinh",
+        "password": "fW72asLm",
+        "phone": "0353134585",
+        "role": "User",
+        "username": "vanlinh"
+    },
+    {
+        "email": "khang07@gmail.com",
+        "fullname": "Khang",
+        "password": "Pa19Ldks",
+        "phone": "0981180944",
+        "role": "Admin",
+        "username": "khang07"
+    },
+    {
+        "email": "viet.hoang@gmail.com",
+        "fullname": "Viet Hoang",
+        "password": "Zp92wLmA",
+        "phone": "0928813935",
+        "role": "Admin",
+        "username": "viet.hoang"
+    },
+    {
+        "email": "khoa.tran@gmail.com",
+        "fullname": "Khoa Tran",
+        "password": "Qa72xLdS",
+        "phone": "0908212057",
+        "role": "Admin",
+        "username": "khoa.tran"
+    },
+    {
+        "email": "trungkien@gmail.com",
+        "fullname": "Trungkien",
+        "password": "Lp83Qmas",
+        "phone": "0372262471",
+        "role": "Admin",
+        "username": "trungkien"
+    },
+    {
+        "email": "leminh@gmail.com",
+        "fullname": "Leminh",
+        "password": "Km72pzQa",
+        "phone": "0905149434",
+        "role": "Admin",
+        "username": "leminh"
+    },
+    {
+        "email": "tam.dev@gmail.com",
+        "fullname": "Tam Dev",
+        "password": "Dn83aQls",
+        "phone": "0962120101",
+        "role": "User",
+        "username": "tam.dev"
+    },
+    {
+        "email": "linh.pham@gmail.com",
+        "fullname": "Linh Pham",
+        "password": "Fj82QmaP",
+        "phone": "0942829178",
+        "role": "User",
+        "username": "linh.pham"
+    },
+    {
+        "email": "giang_anh@gmail.com",
+        "fullname": "Giang Anh",
+        "password": "Pm83wLsa",
+        "phone": "0366893857",
+        "role": "Admin",
+        "username": "giang_anh"
+    },
+    {
+        "email": "ngoc.tran@gmail.com",
+        "fullname": "Ngoc Tran",
+        "password": "Zq19apLm",
+        "phone": "0931134039",
+        "role": "User",
+        "username": "ngoc.tran"
+    },
+    {
+        "email": "hoai03@gmail.com",
+        "fullname": "Hoai",
+        "password": "Qa71Kdps",
+        "phone": "0372847373",
+        "role": "User",
+        "username": "hoai03"
+    },
+    {
+        "email": "phong.dev@gmail.com",
+        "fullname": "Phong Dev",
+        "password": "Aw72Smpq",
+        "phone": "0958654569",
+        "role": "Admin",
+        "username": "phong.dev"
+    },
+    {
+        "email": "anhtuan@gmail.com",
+        "fullname": "Anhtuan",
+        "password": "Lf73pQsa",
+        "phone": "0305551428",
+        "role": "Admin",
+        "username": "anhtuan"
+    },
+    {
+        "email": "hung02@gmail.com",
+        "fullname": "Hung",
+        "password": "Pw81Laqs",
+        "phone": "0356005362",
+        "role": "Admin",
+        "username": "hung02"
+    },
+    {
+        "email": "tien_phan@gmail.com",
+        "fullname": "Tien Phan",
+        "password": "Mf82pLqa",
+        "phone": "0333801881",
+        "role": "User",
+        "username": "tien_phan"
+    },
+    {
+        "email": "nam.le@gmail.com",
+        "fullname": "Nam Le",
+        "password": "Da73Lpqs",
+        "phone": "0353993916",
+        "role": "Admin",
+        "username": "nam.le"
+    },
+    {
+        "email": "quang06@gmail.com",
+        "fullname": "Quang",
+        "password": "Qp91kLms",
+        "phone": "0380530278",
+        "role": "Admin",
+        "username": "quang06"
+    },
+    {
+        "email": "nguyen.hoai@gmail.com",
+        "fullname": "Nguyen Hoai",
+        "password": "Lm83saQp",
+        "phone": "0360092841",
+        "role": "Admin",
+        "username": "nguyen.hoai"
+    },
+    {
+        "email": "tuananh.dev@gmail.com",
+        "fullname": "Tuananh Dev",
+        "password": "Fa71Qpms",
+        "phone": "0334962121",
+        "role": "User",
+        "username": "tuananh.dev"
+    },
+    {
+        "email": "anh.le@gmail.com",
+        "fullname": "Anh Le",
+        "password": "Mn72Lpqs",
+        "phone": "0341060007",
+        "role": "Admin",
+        "username": "anh.le"
+    },
+    {
+        "email": "duy_hoang@gmail.com",
+        "fullname": "Duy Hoang",
+        "password": "Qa83Lpms",
+        "phone": "0343136626",
+        "role": "User",
+        "username": "duy_hoang"
+    },
+    {
+        "email": "khang.le@gmail.com",
+        "fullname": "Khang Le",
+        "password": "Wq92Lmps",
+        "phone": "0376688716",
+        "role": "User",
+        "username": "khang.le"
+    },
+    {
+        "email": "minh.dev@gmail.com",
+        "fullname": "Minh Dev",
+        "password": "Lk82Qmas",
+        "phone": "0914417949",
+        "role": "User",
+        "username": "minh.dev"
+    },
+    {
+        "email": "hoanglam@gmail.com",
+        "fullname": "Hoanglam",
+        "password": "Pa72sLmA",
+        "phone": "0372910040",
+        "role": "Admin",
+        "username": "hoanglam"
+    },
+    {
+        "email": "truongvu@gmail.com",
+        "fullname": "Truongvu",
+        "password": "Dn71pMas",
+        "phone": "0963757465",
+        "role": "User",
+        "username": "truongvu"
+    },
+    {
+        "email": "phuquy.dev@gmail.com",
+        "fullname": "Phuquy Dev",
+        "password": "Qw83Lmps",
+        "phone": "0911845067",
+        "role": "Admin",
+        "username": "phuquy.dev"
+    },
+    {
+        "email": "son.nguyen@gmail.com",
+        "fullname": "Son Nguyen",
+        "password": "Fs91pLqa",
+        "phone": "0942186646",
+        "role": "Admin",
+        "username": "son.nguyen"
+    },
+    {
+        "email": "dat_tran@gmail.com",
+        "fullname": "Dat Tran",
+        "password": "Kp82Lmwa",
+        "phone": "0983258898",
+        "role": "User",
+        "username": "dat_tran"
+    },
+    {
+        "email": "phuquy@gmail.com",
+        "fullname": "Phu Quy",
+        "password": "pass123",
+        "phone": "0324313621",
+        "role": "User",
+        "username": "phuquy"
+    },
+    {
+        "email": "phuquy@gmail.com",
+        "fullname": "Phu Quy",
+        "password": "pass123",
+        "phone": "0324313621",
+        "role": "Admin",
+        "username": "phuquy2"
+    },
+    {
+        "email": "anh3tobunbo@gmail.com",
+        "fullname": "BunBo",
+        "password": "BunBo69",
+        "phone": "6666666666",
+        "role": "User",
+        "username": "AnhBaTo"
+    }
 ]

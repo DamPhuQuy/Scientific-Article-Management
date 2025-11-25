@@ -134,17 +134,25 @@ void ArticleRepo::load() {
 }
 
 void ArticleRepo::save() {
+    qDebug() << "[DEBUG] ArticleRepo::save() started";
     try {
         json data = json::array();
+        qDebug() << "[DEBUG] Serializing " << articles_container.size() << " articles";
 
         articles_container.forEach([&data](const shared_ptr<Article>& article) -> void {
             if (article) {
+                // qDebug() << "[DEBUG] Serializing article ID: " << QString::fromStdString(article->getId());
                 data.push_back(article->to_json());
+            } else {
+                qWarning() << "[WARN] Null article in container";
             }
         });
 
+        qDebug() << "[DEBUG] Serialization complete. Writing to file.";
         QDir().mkpath("../../../data");
         string file_path = Constants::dataSetJson();
+        qDebug() << "[DEBUG] File path: " << QString::fromStdString(file_path);
+        
         ofstream out(file_path);
 
         if (!out.is_open()) {
@@ -154,6 +162,7 @@ void ArticleRepo::save() {
 
         out << setw(2) << data << endl;
         out.close();
+        qDebug() << "[DEBUG] File saved successfully";
     }
     catch (const json::exception& e) {
         qCritical() << "JSON serialization error:" << e.what();
@@ -426,15 +435,10 @@ void ArticleRepo::update(shared_ptr<Article> article) {
     }
 
     string id = article->getId();
-
-    bool isExists = this->articles_container.containsKey(id);
-
-    if (isExists) {
+    if (articles_container.containsKey(id)) {
         articles_container[id] = std::move(article);
         qDebug() << "Article updated successfully:" << QString::fromStdString(id);
-    }
-    else {
+    } else {
         qWarning() << "update(): Article not found:" << QString::fromStdString(id);
-        return;
     }
 }

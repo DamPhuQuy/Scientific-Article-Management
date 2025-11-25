@@ -51,7 +51,8 @@ void LoginForm::on_signInButton_clicked()
     bool isValid = UserManager::login(username, password);
 
     if (isValid) {
-        emit loginSuccess(username);
+        QString role = UserManager::getRole(username);
+        emit loginSuccess(username, role);
 
         ui->passwordEdit->clear();
 

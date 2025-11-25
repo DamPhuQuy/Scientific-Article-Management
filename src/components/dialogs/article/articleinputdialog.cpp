@@ -1,5 +1,6 @@
 #include "articleinputdialog.h"
 #include "ui_articleinputdialog.h"
+#include <QFormLayout>
 #include "src/components/dialogs/msg/inform.h"
 #include "src/utils/datautils.h"
 #include "src/components/dialogs/author/listofauthorsdialog.h"
@@ -38,14 +39,14 @@ void ArticleInputDialog::on_btnSave_clicked()
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập title", "Lỗi");
         return;
     }
-    if (ui->inputVenue->toPlainText().trimmed().isEmpty()) {
+    if (ui->inputVenue->text().trimmed().isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập venue", "Lỗi");
         return;
     }
 
     QString title = ui->inputTitle->toPlainText();
     QString abstract = ui->inputAbstract->toPlainText();
-    QString venue = ui->inputVenue->toPlainText();
+    QString venue = ui->inputVenue->text();
     int year = ui->inputYear->value();
     int n_citation = ui->inputCitations->value();
 

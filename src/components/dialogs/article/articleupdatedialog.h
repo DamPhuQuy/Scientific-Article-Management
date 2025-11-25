@@ -18,6 +18,7 @@ public:
     ~ArticleUpdateDialog();
 
     void loadData(Article* article);
+    void setCurrentArticle(Article* article) { currentArticle = article; }
 
 private slots:
     void on_saveBtn_clicked();

@@ -49,4 +49,8 @@ public:
     // Phone
     static std::string getPhone(const std::string& username);
     static QString getPhone(const QString& username);
+
+    // Role
+    static std::string getRole(const std::string& username);
+    static QString getRole(const QString& username);
 };

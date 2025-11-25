@@ -6,7 +6,9 @@
 #include "src/utils/usermanager.h"
 #include "src/models/customarticle.h"
 #include "src/components/dialogs/article/articlestatistics.h"
+#include "src/components/dialogs/msg/inform.h"
 #include <set>
+#include <QMessageBox>
 
 ArticleForm::ArticleForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -65,9 +67,34 @@ void ArticleForm::on_newArticleBtn_clicked()
 
 void ArticleForm::on_RemoveArticleBtn_clicked()
 {
-    // ArticleRemoveDialog removeDialog(repo, this);
+    QModelIndexList selectedIndexes = ui->articleListView->selectionModel()->selectedIndexes();
 
-    // removeDialog.exec();
+    if (selectedIndexes.isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng chọn bài báo để xóa", "Cảnh báo");
+        return;
+    }
+
+    // Confirm deletion
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Xác nhận xóa", "Bạn có chắc chắn muốn xóa bài báo đã chọn?",
+                                  QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::No) {
+        return;
+    }
+
+    for (const QModelIndex &index : selectedIndexes) {
+        QString articleId = index.data(Qt::UserRole).toString();
+        repo.getArticles().remove(articleId.toStdString());
+    }
+
+    // Refresh data
+    articleList.clear();
+    initData();
+    loadArticlesToView();
+    updateTypeComboBox();
+    applyAllFilters();
+
+    Inform::showMessage(this, MessageType::Info, "Đã xóa bài báo thành công", "Thành công");
 }
 
 void ArticleForm::on_backBtn_clicked()
@@ -126,7 +153,7 @@ void ArticleForm::on_searchLineEdit_textChanged(const QString &arg1)
 
 void ArticleForm::on_yearFilterComboBox_currentTextChanged(const QString &arg1)
 {
-    this->filterYear = (arg1 == "All years") ? QString() : arg1;
+    this->filterYear = (arg1 == "All Years") ? QString() : arg1;
     applyYearSorting();
 }
 
@@ -194,14 +221,14 @@ bool ArticleForm::passesAllFilters(int row) const { // check with each row (each
 }
 
 void ArticleForm::applyYearSorting() {
-    if (filterYear == "Newest first") {
+    if (filterYear == "Newest First") {
         // desc
         std::sort(articleList.begin(), articleList.end(),
                   [](const std::shared_ptr<Article>& a, const std::shared_ptr<Article>& b) {
                       return a->getYear() > b->getYear();
                   });
     }
-    else if (filterYear == "Oldest first") {
+    else if (filterYear == "Oldest First") {
         // asc
         std::sort(articleList.begin(), articleList.end(),
                   [](const std::shared_ptr<Article>& a, const std::shared_ptr<Article>& b) {

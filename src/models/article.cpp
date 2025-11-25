@@ -145,7 +145,7 @@ void Article::setStatus(const any& st) {
         //     REJECTED = 16,
         //     PUBLISHED = 17
 
-        if (s >= 11 && s <= 1)
+        if (s >= 11 && s <= 17)
             this->status = static_cast<ArticleStatus>(s);
         else {
             throw ArticleException("Giá trị status không hợp lệ: " + std::to_string(s));
