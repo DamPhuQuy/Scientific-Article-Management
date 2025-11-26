@@ -35,10 +35,13 @@ public:
     QLabel *labelDetailEmail;
     QLabel *lblPhoneNumer;
     QLabel *labelDetailPhoneNumber;
+    QLabel *label;
+    QLabel *labelDetailKey;
     QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
+    QPushButton *btnUpdate;
     QPushButton *okBtn;
 
     void setupUi(QDialog *UserDetailsDialog)
@@ -101,6 +104,16 @@ public:
 
         formLayoutDetails->setWidget(3, QFormLayout::ItemRole::FieldRole, labelDetailPhoneNumber);
 
+        label = new QLabel(UserDetailsDialog);
+        label->setObjectName("label");
+
+        formLayoutDetails->setWidget(4, QFormLayout::ItemRole::LabelRole, label);
+
+        labelDetailKey = new QLabel(UserDetailsDialog);
+        labelDetailKey->setObjectName("labelDetailKey");
+
+        formLayoutDetails->setWidget(4, QFormLayout::ItemRole::FieldRole, labelDetailKey);
+
 
         verticalLayout->addLayout(formLayoutDetails);
 
@@ -115,6 +128,12 @@ public:
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
+
+        btnUpdate = new QPushButton(UserDetailsDialog);
+        btnUpdate->setObjectName("btnUpdate");
+        btnUpdate->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+
+        horizontalLayout_2->addWidget(btnUpdate);
 
         okBtn = new QPushButton(UserDetailsDialog);
         okBtn->setObjectName("okBtn");
@@ -146,6 +165,9 @@ public:
         labelDetailEmail->setText(QString());
         lblPhoneNumer->setText(QCoreApplication::translate("UserDetailsDialog", "Phone Number:", nullptr));
         labelDetailPhoneNumber->setText(QString());
+        label->setText(QCoreApplication::translate("UserDetailsDialog", "Key", nullptr));
+        labelDetailKey->setText(QString());
+        btnUpdate->setText(QCoreApplication::translate("UserDetailsDialog", "Update Info", nullptr));
         okBtn->setText(QCoreApplication::translate("UserDetailsDialog", "OK", nullptr));
     } // retranslateUi
 

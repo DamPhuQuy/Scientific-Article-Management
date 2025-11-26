@@ -9,7 +9,7 @@
 using namespace std;
 using json = nlohmann::json;
 
-vector<UserManager::User> UserManager::userList;
+vector<User> UserManager::userList;
 HashMap<string, size_t> UserManager::usernameToIndex;
 
 bool UserManager::loadFromFile() {
@@ -89,6 +89,22 @@ bool UserManager::registerUser(const std::string& username, const std::string& p
 
 bool UserManager::registerUser(const QString& u, const QString& p, const QString& f, const QString& e, const QString& ph, const QString& r) {
     return registerUser(u.toStdString(), p.toStdString(), f.toStdString(), e.toStdString(), ph.toStdString(), r.toStdString());
+}
+
+bool UserManager::updateUserInfo(const std::string& username, const std::string& fullname, const std::string& email, const std::string& phone) {
+    loadFromFile();
+    size_t index = usernameToIndex.getOrDefault(username, SIZE_MAX);
+    if (index == SIZE_MAX) return false;
+
+    userList[index].fullname = fullname;
+    userList[index].email = email;
+    userList[index].phone = phone;
+
+    return saveToFile();
+}
+
+bool UserManager::updateUserInfo(const QString& username, const QString& fullname, const QString& email, const QString& phone) {
+    return updateUserInfo(username.toStdString(), fullname.toStdString(), email.toStdString(), phone.toStdString());
 }
 
 bool UserManager::login(const string& username, const string& password) {
