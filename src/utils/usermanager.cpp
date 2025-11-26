@@ -33,6 +33,11 @@ bool UserManager::loadFromFile() {
             u.fullname = j[i]["fullname"].get<string>();
             u.email = j[i]["email"].get<string>();
             u.phone = j[i]["phone"].get<string>();
+            if (j[i].contains("keyManipulation")) {
+                u.keyManipulation = j[i]["keyManipulation"].get<string>();
+            } else {
+                u.keyManipulation = "";
+            }
             userList.push_back(u);
             usernameToIndex.put(u.username, i);
         }
@@ -51,7 +56,8 @@ bool UserManager::saveToFile() {
             {"role", user.role},
             {"fullname", user.fullname},
             {"email", user.email},
-            {"phone", user.phone}
+            {"phone", user.phone},
+            {"keyManipulation", user.keyManipulation}
         });
     }
 
@@ -68,7 +74,14 @@ bool UserManager::registerUser(const std::string& username, const std::string& p
     loadFromFile();
     if (usernameToIndex.containsKey(username)) return false;
 
-    User newUser{username, password, role, fullname, email, phone};
+    // Generate random key
+    std::string key = "";
+    const char charset[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    for (int i = 0; i < 6; ++i) {
+        key += charset[rand() % (sizeof(charset) - 1)];
+    }
+
+    User newUser{username, password, role, fullname, email, phone, key};
     userList.push_back(newUser);
     usernameToIndex.put(username, userList.size() - 1);
     return saveToFile();
@@ -153,4 +166,17 @@ std::string UserManager::getPhone(const std::string& username) {
 
 QString UserManager::getPhone(const QString& username) {
     return QString::fromStdString(getPhone(username.toStdString()));
+}
+
+// keyManipulation
+std::string UserManager::getKeyManipulation(const std::string& username) {
+    if (usernameToIndex.containsKey(username)) {
+        size_t index = usernameToIndex.get(username);
+        return userList[index].keyManipulation;
+    }
+    return "";
+}
+
+QString UserManager::getKeyManipulation(const QString& username) {
+    return QString::fromStdString(getKeyManipulation(username.toStdString()));
 }

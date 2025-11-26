@@ -11,9 +11,9 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     src/components/appnav.cpp \
+    src/components/dialogs/article/articleconfirmremovedialog.cpp \
     src/components/dialogs/article/articledetailsdialog.cpp \
     src/components/dialogs/article/articleinputdialog.cpp \
-    src/components/dialogs/article/articleremovedialog.cpp \
     src/components/dialogs/article/articlestatistics.cpp \
     src/components/dialogs/article/articleupdatedialog.cpp \
     src/components/dialogs/author/authordetailsdialog.cpp \
@@ -40,9 +40,9 @@ SOURCES += \
 
 HEADERS += \
     src/components/appnav.h \
+    src/components/dialogs/article/articleconfirmremovedialog.h \
     src/components/dialogs/article/articledetailsdialog.h \
     src/components/dialogs/article/articleinputdialog.h \
-    src/components/dialogs/article/articleremovedialog.h \
     src/components/dialogs/article/articlestatistics.h \
     src/components/dialogs/article/articleupdatedialog.h \
     src/components/dialogs/author/authordetailsdialog.h \
@@ -73,9 +73,9 @@ HEADERS += \
     src/utils/uuid_generator.h
 
 FORMS += \
+    src/components/dialogs/article/articleconfirmremovedialog.ui \
     src/components/dialogs/article/articledetailsdialog.ui \
     src/components/dialogs/article/articleinputdialog.ui \
-    src/components/dialogs/article/articleremovedialog.ui \
     src/components/dialogs/article/articlestatistics.ui \
     src/components/dialogs/article/articleupdatedialog.ui \
     src/components/dialogs/author/authordetailsdialog.ui \

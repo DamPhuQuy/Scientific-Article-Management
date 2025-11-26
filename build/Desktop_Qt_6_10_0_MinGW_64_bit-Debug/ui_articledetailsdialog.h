@@ -88,6 +88,7 @@ public:
     QWidget *widget;
     QHBoxLayout *horizontalLayout;
     QPushButton *btnUpdate;
+    QPushButton *removeBtn;
     QPushButton *closeBtn;
 
     void setupUi(QDialog *ArticleDetailsDialog)
@@ -372,6 +373,11 @@ public:
 
         horizontalLayout->addWidget(btnUpdate);
 
+        removeBtn = new QPushButton(widget);
+        removeBtn->setObjectName("removeBtn");
+
+        horizontalLayout->addWidget(removeBtn);
+
         closeBtn = new QPushButton(widget);
         closeBtn->setObjectName("closeBtn");
 
@@ -438,6 +444,7 @@ public:
         grpAbstract->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "Abstract", nullptr));
         grpRefs->setTitle(QCoreApplication::translate("ArticleDetailsDialog", "References", nullptr));
         btnUpdate->setText(QCoreApplication::translate("ArticleDetailsDialog", "Update Article", nullptr));
+        removeBtn->setText(QCoreApplication::translate("ArticleDetailsDialog", "Remove Article", nullptr));
         closeBtn->setText(QCoreApplication::translate("ArticleDetailsDialog", "Close", nullptr));
     } // retranslateUi
 
