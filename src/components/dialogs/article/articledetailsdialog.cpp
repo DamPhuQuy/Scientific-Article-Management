@@ -9,6 +9,8 @@
 #include "src/models/scopus_article.h"
 #include "src/models/other_article.h"
 #include "src/models/customarticle.h"
+#include "src/components/dialogs/article/articleconfirmremovedialog.h"
+#include "src/utils/usermanager.h"
 #include <set>
 
 using namespace std;
@@ -127,5 +129,21 @@ void ArticleDetailsDialog::on_btnUpdate_clicked()
 void ArticleDetailsDialog::on_closeBtn_clicked()
 {
     reject();
+}
+
+
+void ArticleDetailsDialog::on_removeBtn_clicked()
+{
+    ArticleConfirmRemoveDialog removeDialog(repo, this);
+
+    // Get key manipulation from current user
+    std::string key = UserManager::getKeyManipulation(currentUsername);
+    removeDialog.setExpectedKey(key);
+
+    if (removeDialog.exec() == QDialog::Accepted) {
+        repo.getArticles().remove(currentArticle->getId());
+        repo.getArticles().save();
+        accept(); // Close details dialog
+    }
 }
 

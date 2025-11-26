@@ -19,11 +19,14 @@ public:
     ~ArticleDetailsDialog();
 
     void setArticleData(Article* article);
+    void setCurrentUsername(const std::string& username) { currentUsername = username; }
 
 private slots:
     void on_btnUpdate_clicked();
 
     void on_closeBtn_clicked();
+
+    void on_removeBtn_clicked();
 
 private:
     Ui::ArticleDetailsDialog *ui;
@@ -31,6 +34,7 @@ private:
     RepositoryManager& repo;
 
     Article* currentArticle = nullptr;
+    std::string currentUsername;
 
     QLabel *custom = nullptr;
 };

@@ -127,6 +127,8 @@ void ArticleUpdateDialog::on_saveBtn_clicked()
 
     case Type::OTHER:
         break;
+    case Type::CUSTOM:
+        break;
     }
 
     repo.getArticles().update(DataUtils::createArticle(currentArticle));

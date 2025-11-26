@@ -1,5 +1,6 @@
 release/main.o
 release/appnav.o
+release/articleconfirmremovedialog.o
 release/articledetailsdialog.o
 release/articleinputdialog.o
 release/articlestatistics.o
@@ -27,6 +28,7 @@ release/usermanager.o
 release/uuid_generator.o
 release/qrc_resources.o
 release/moc_appnav.o
+release/moc_articleconfirmremovedialog.o
 release/moc_articledetailsdialog.o
 release/moc_articleinputdialog.o
 release/moc_articlestatistics.o

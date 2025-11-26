@@ -1,5 +1,6 @@
 debug/main.o
 debug/appnav.o
+debug/articleconfirmremovedialog.o
 debug/articledetailsdialog.o
 debug/articleinputdialog.o
 debug/articlestatistics.o
@@ -27,6 +28,7 @@ debug/usermanager.o
 debug/uuid_generator.o
 debug/qrc_resources.o
 debug/moc_appnav.o
+debug/moc_articleconfirmremovedialog.o
 debug/moc_articledetailsdialog.o
 debug/moc_articleinputdialog.o
 debug/moc_articlestatistics.o

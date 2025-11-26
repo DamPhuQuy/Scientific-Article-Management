@@ -13,6 +13,7 @@ private:
         std::string fullname;
         std::string email;
         std::string phone;
+        std::string keyManipulation;
     };
 
     static std::vector<User> userList;
@@ -49,4 +50,8 @@ public:
     // Phone
     static std::string getPhone(const std::string& username);
     static QString getPhone(const QString& username);
+
+    // Key Manipulation
+    static std::string getKeyManipulation(const std::string& username);
+    static QString getKeyManipulation(const QString& username);
 };

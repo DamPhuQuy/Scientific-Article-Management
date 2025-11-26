@@ -114,8 +114,19 @@ void ArticleForm::on_articleListView_doubleClicked(const QModelIndex &index) {
     detailDlg.setArticleData(
         selectedArticle
     );
+    detailDlg.setCurrentUsername(currentUser.first.toStdString());
 
-    detailDlg.exec();
+    if (detailDlg.exec() == QDialog::Accepted) {
+        initData();
+
+        qDebug() << articleList.size();
+
+        loadArticlesToView();
+
+        updateTypeComboBox();
+
+        applyAllFilters();
+    }
 }
 
 void ArticleForm::on_searchLineEdit_textChanged(const QString &arg1)
