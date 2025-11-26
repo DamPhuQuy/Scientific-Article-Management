@@ -10,6 +10,10 @@ LoginForm::LoginForm(RepositoryManager& repo, QWidget *parent)
     , ui(new Ui::LoginForm)
 {
     ui->setupUi(this);
+    
+    // Setup Sign Up Link
+    ui->signUpLabel->setText("<a href=\"signup\" style=\"text-decoration:none; color:#20B2AA;\">Sign up</a>");
+    ui->signUpLabel->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
 }
 
 LoginForm::~LoginForm()

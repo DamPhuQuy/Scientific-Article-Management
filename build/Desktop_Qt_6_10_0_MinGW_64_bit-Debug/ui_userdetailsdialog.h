@@ -55,7 +55,7 @@ public:
     {
         if (UserDetailsDialog->objectName().isEmpty())
             UserDetailsDialog->setObjectName("UserDetailsDialog");
-        UserDetailsDialog->resize(500, 469);
+        UserDetailsDialog->resize(500, 503);
         UserDetailsDialog->setMinimumSize(QSize(500, 450));
         UserDetailsDialog->setStyleSheet(QString::fromUtf8("\n"
 "/* --- C\303\200I \304\220\341\272\266T CHUNG --- */\n"
