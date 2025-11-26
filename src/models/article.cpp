@@ -139,17 +139,19 @@ void Article::setStatus(const any& st) {
 
         // DRAFT = 11,
         //     SUBMITTED = 12,
-        //     UNDER_REVIEW = 713,le
+        //     UNDER_REVIEW = 13,
         //     REVISIONS = 14,
         //     ACCEPTED = 15,
         //     REJECTED = 16,
         //     PUBLISHED = 17
 
-        if (s >= 11 && s <= 1)
+        if (s >= 11 && s <= 17)
             this->status = static_cast<ArticleStatus>(s);
         else {
             throw ArticleException("Giá trị status không hợp lệ: " + std::to_string(s));
         }
+    } else if (st.type() == typeid(ArticleStatus)) {
+        this->status = any_cast<ArticleStatus>(st);
     } else {
         throw ArticleException("Giá trị status không hỗ trợ!");
     }

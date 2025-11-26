@@ -118,6 +118,7 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
 void ArticleDetailsDialog::on_btnUpdate_clicked()
 {
     ArticleUpdateDialog updateDialog(repo, this);
+    updateDialog.loadData(currentArticle);
 
     updateDialog.exec();
 }
