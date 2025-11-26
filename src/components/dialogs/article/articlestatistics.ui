@@ -7,164 +7,233 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>650</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Article Statistics</string>
+   <string>Statistics Dashboard</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #f5f5f5;</string>
+   <string notr="true">QDialog#ArticleStatistics{background-color:#f4f7f6;border:4px solid #FFC085;}QWidget{font-family:&quot;Segoe UI&quot;,Arial,sans-serif;font-size:14px;}QFrame#frameArticles,QFrame#frameAuthors,QFrame#chartContainer{background-color:#ffffff;border:1px solid #e0e0e0;border-radius:10px;}QLabel#lblTitleArticles,QLabel#lblTitleAuthors{color:#7f8c8d;font-size:13px;font-weight:bold;}QLabel#lblTotalArticles,QLabel#lblTotalAuthors{color:#00264d;font-size:36px;font-weight:bold;}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>20</number>
+    <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>30</number>
+    <number>0</number>
    </property>
    <property name="topMargin">
-    <number>30</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>30</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>30</number>
+    <number>20</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayoutStats">
-     <property name="spacing">
-      <number>40</number>
+    <widget class="QWidget" name="headerContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>70</height>
+      </size>
      </property>
-     <item>
-      <widget class="QFrame" name="frameArticles">
-       <property name="styleSheet">
-        <string notr="true">background-color: white; border-radius: 10px; padding: 15px;</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #7f8c8d;</string>
-          </property>
-          <property name="text">
-           <string>Total Articles</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="lblTotalArticles">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <pointsize>24</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #2c3e50;</string>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frameAuthors">
-       <property name="styleSheet">
-        <string notr="true">background-color: white; border-radius: 10px; padding: 15px;</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #7f8c8d;</string>
-          </property>
-          <property name="text">
-           <string>Total Authors</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="lblTotalAuthors">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <pointsize>24</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: #2c3e50;</string>
-          </property>
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
+     <property name="styleSheet">
+      <string notr="true">QWidget#headerContainer{background-color:#00264d;border-bottom:5px solid #4169E1;border-left:10px solid #FFD700;}</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Header">
+      <item>
+       <widget class="QLabel" name="lblHeader">
+        <property name="styleSheet">
+         <string notr="true">color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;</string>
+        </property>
+        <property name="text">
+         <string>THỐNG KÊ DỮ LIỆU</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
-    <widget class="QGraphicsView" name="chartView">
-     <property name="styleSheet">
-      <string notr="true">background: transparent; border: none;</string>
-     </property>
-     <property name="renderHints">
-      <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
-     </property>
+    <widget class="QWidget" name="bodyContainer" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_Body">
+      <property name="spacing">
+       <number>20</number>
+      </property>
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="topMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayoutStats">
+        <property name="spacing">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="frameArticles">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="vl_Articles">
+           <item>
+            <widget class="QLabel" name="lblTitleArticles">
+             <property name="text">
+              <string>TOTAL ARTICLES</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblTotalArticles">
+             <property name="text">
+              <string>0</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameAuthors">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="vl_Authors">
+           <item>
+            <widget class="QLabel" name="lblTitleAuthors">
+             <property name="text">
+              <string>TOTAL AUTHORS</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblTotalAuthors">
+             <property name="text">
+              <string>0</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QFrame" name="chartContainer">
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_Chart">
+         <item>
+          <widget class="QGraphicsView" name="chartView">
+           <property name="styleSheet">
+            <string notr="true">background:transparent;border:none;</string>
+           </property>
+           <property name="renderHints">
+            <set>QPainter::RenderHint::Antialiasing|QPainter::RenderHint::SmoothPixmapTransform|QPainter::RenderHint::TextAntialiasing</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="footerContainer" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_Footer">
+      <property name="rightMargin">
+       <number>30</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="closeBtn">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{background-color:#e74c3c;border:2px solid #e74c3c;border-radius:6px;color:white;font-weight:bold;}QPushButton:hover{background-color:#c0392b;}QPushButton:pressed{background-color:#922b21;}</string>
+        </property>
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>closeBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>ArticleStatistics</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>800</x>
+     <y>650</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>450</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -137,13 +137,13 @@ void ArticleForm::on_searchLineEdit_textChanged(const QString &arg1)
 
 void ArticleForm::on_yearFilterComboBox_currentTextChanged(const QString &arg1)
 {
-    this->filterYear = (arg1 == "All years") ? QString() : arg1;
+    this->filterYear = (arg1 == "All Years") ? QString() : arg1;
     applyYearSorting();
 }
 
 void ArticleForm::on_typeFilterComboBox_currentTextChanged(const QString &arg1)
 {
-    this->filterType = (arg1 == "All types") ? QString() : arg1;
+    this->filterType = (arg1 == "All Types") ? QString() : arg1;
     applyAllFilters();
 }
 
@@ -184,7 +184,7 @@ bool ArticleForm::passesAllFilters(int row) const { // check with each row (each
     }
 
     // field
-    if (!filterType.isEmpty() && filterType != "All types") {
+    if (!filterType.isEmpty() && filterType != "All Types") {
         if (foundArticle->getType() == Type::CUSTOM) {
              CUSTOM_Article* customArticle = dynamic_cast<CUSTOM_Article*>(foundArticle.get());
              if (customArticle) {
@@ -205,14 +205,14 @@ bool ArticleForm::passesAllFilters(int row) const { // check with each row (each
 }
 
 void ArticleForm::applyYearSorting() {
-    if (filterYear == "Newest first") {
+    if (filterYear == "Newest First") {
         // desc
         std::sort(articleList.begin(), articleList.end(),
                   [](const std::shared_ptr<Article>& a, const std::shared_ptr<Article>& b) {
                       return a->getYear() > b->getYear();
                   });
     }
-    else if (filterYear == "Oldest first") {
+    else if (filterYear == "Oldest First") {
         // asc
         std::sort(articleList.begin(), articleList.end(),
                   [](const std::shared_ptr<Article>& a, const std::shared_ptr<Article>& b) {
@@ -254,7 +254,7 @@ void ArticleForm::on_userLb_clicked()
 
 void ArticleForm::updateTypeComboBox() {
     ui->typeFilterComboBox->clear();
-    ui->typeFilterComboBox->addItem("All types");
+    ui->typeFilterComboBox->addItem("All Types");
     ui->typeFilterComboBox->addItem("SCIE");
     ui->typeFilterComboBox->addItem("SCOPUS");
     ui->typeFilterComboBox->addItem("CONFERENCE");

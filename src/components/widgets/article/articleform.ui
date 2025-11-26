@@ -6,269 +6,458 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>743</height>
+    <width>1100</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Article Menu</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0" colspan="2">
-    <widget class="QWidget" name="widget_5" native="true">
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QLabel" name="searchLabel">
-        <property name="text">
-         <string>Search</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QWidget" name="widget_2" native="true">
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="QLineEdit" name="searchLineEdit">
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="placeholderText">
-            <string>Search articles by title...</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QWidget" name="widget_4" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Filter</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="widget_3" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QComboBox" name="yearFilterComboBox">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <item>
-            <property name="text">
-             <string>All years</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Newest first</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Oldest first</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="typeFilterComboBox">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <item>
-            <property name="text">
-             <string>All types</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SCOPUS</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CONFERENCE</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>OTHER</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SCIE</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="3" colspan="2">
-    <spacer name="topBarSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Policy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>200</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="5">
-    <widget class="QWidget" name="widget_6" native="true">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Account</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="userLb">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>User</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Features</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="newArticleBtn">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>New Article</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="RemoveArticleBtn">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Remove Article</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="6">
-    <widget class="QListView" name="articleListView">
+  <property name="styleSheet">
+   <string notr="true">
+/* --- CÀI ĐẶT CHUNG --- */
+QWidget#ArticleForm {
+    background-color: #f4f7f6;
+    border: 4px solid #FFC085;
+}
+QWidget {
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* --- SIDEBAR --- */
+QWidget#sidebarContainer {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+}
+/* Nhãn tiêu đề trong sidebar */
+QLabel.sectionLabel {
+    color: #20B2AA;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+/* --- INPUTS &amp; COMBOBOX --- */
+QLineEdit, QComboBox {
+    background-color: #f9f9f9;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 8px;
+    padding-right: 30px; 
+    color: #333333;
+}
+QLineEdit:focus, QComboBox:focus {
+    background-color: #ffffff;
+    border: 2px solid #20B2AA;
+}
+
+/* Style cho ComboBox Dropdown */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left: 1px solid #cccccc;
+    background-color: #e0e0e0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    border: 2px solid #20B2AA;
+    selection-background-color: #e0f2f1;
+    selection-color: #004d40;
+    outline: 0;
+    padding: 5px;
+}
+
+/* --- BUTTONS --- */
+QPushButton {
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 10px;
+}
+/* Nút User */
+QPushButton#userLb {
+    background-color: #e0f2f1;
+    color: #00695c;
+    border: 1px solid #b2dfdb;
+    text-align: left;
+    padding-left: 15px;
+}
+/* Nút Hành động chính (Xanh Ngọc) */
+QPushButton#newArticleBtn, QPushButton#pushButton {
+    background-color: #20B2AA;
+    border: 2px solid #20B2AA;
+    color: white;
+}
+QPushButton#newArticleBtn:hover, QPushButton#pushButton:hover {
+    background-color: #17a098;
+}
+
+/* Nút Back (Xám) */
+QPushButton#backBtn {
+    background-color: #7f8c8d;
+    border: 2px solid #7f8c8d;
+    color: white;
+}
+QPushButton#backBtn:hover {
+    background-color: #636e72;
+}
+
+/* --- LIST VIEW --- */
+QListView {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 10px;
+    outline: 0;
+}
+QListView::item {
+    padding: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+QListView::item:selected {
+    background-color: #e0f2f1;
+    color: #004d40;
+    border-radius: 4px;
+}
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="headerContainer" native="true">
      <property name="minimumSize">
       <size>
-       <width>200</width>
-       <height>0</height>
+       <width>0</width>
+       <height>70</height>
       </size>
      </property>
-     <property name="flow">
-      <enum>QListView::Flow::LeftToRight</enum>
+     <property name="styleSheet">
+      <string notr="true">QWidget#headerContainer{background-color:#00264d;border-bottom:5px solid #4169E1;border-left:10px solid #FFD700;}</string>
      </property>
-     <property name="resizeMode">
-      <enum>QListView::ResizeMode::Adjust</enum>
-     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_Header">
+      <item>
+       <widget class="QLabel" name="lblHeader">
+        <property name="styleSheet">
+         <string notr="true">color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;margin-top:0px;</string>
+        </property>
+        <property name="text">
+         <string>DANH SÁCH BÀI BÁO KHOA HỌC</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="bodyLayout">
      <property name="spacing">
-      <number>16</number>
-     </property>
-     <property name="viewMode">
-      <enum>QListView::ViewMode::ListMode</enum>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" rowspan="2" colspan="3">
-    <widget class="QWidget" name="widget" native="true"/>
-   </item>
-   <item row="2" column="4" rowspan="2">
-    <widget class="QPushButton" name="backBtn">
-     <property name="text">
-      <string>Back</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5" rowspan="2">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Statistics</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" colspan="3">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>564</width>
-       <height>17</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="4" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="paginationLayout">
-     <property name="spacing">
-      <number>8</number>
-     </property>
-     <property name="leftMargin">
       <number>0</number>
      </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
+     <item>
+      <widget class="QWidget" name="sidebarContainer" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>280</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_Sidebar">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="lblAccount">
+          <property name="text">
+           <string>ACCOUNT</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="userLb">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Current User</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_1">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblSearch">
+          <property name="text">
+           <string>SEARCH</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="searchLineEdit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="placeholderText">
+           <string>Type title to search...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblFilters">
+          <property name="text">
+           <string>FILTERS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="yearFilterComboBox">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>All Years</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Newest First</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Oldest First</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="typeFilterComboBox">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>All Types</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SCIE</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>SCOPUS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CONFERENCE</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>OTHER</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblActions">
+          <property name="text">
+           <string>ACTIONS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="newArticleBtn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>+ New Article</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="RemoveArticleBtn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Remove Selected</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #e74c3c; border: 2px solid #e74c3c; color: white;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Statistics</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="backBtn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string>Back</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="contentContainer" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_Content">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+        <item>
+         <widget class="QListView" name="articleListView">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+          </property>
+          <property name="spacing">
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="paginationLayout"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>
