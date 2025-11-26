@@ -245,7 +245,8 @@ void ArticleForm::on_userLb_clicked()
         username,
         UserManager::getFullName(username),
         UserManager::getEmail(username),
-        UserManager::getPhone(username)
+        UserManager::getPhone(username),
+        UserManager::getKeyManipulation(username)
     );
 
     userdialog.exec();

@@ -9,6 +9,7 @@ release/authordetailsdialog.o
 release/listofauthorsdialog.o
 release/inform.o
 release/userdetailsdialog.o
+release/userupdateinfo.o
 release/mainwindow.o
 release/articleform.o
 release/authorform.o
@@ -36,6 +37,7 @@ release/moc_articleupdatedialog.o
 release/moc_authordetailsdialog.o
 release/moc_listofauthorsdialog.o
 release/moc_userdetailsdialog.o
+release/moc_userupdateinfo.o
 release/moc_mainwindow.o
 release/moc_articleform.o
 release/moc_authorform.o
