@@ -61,7 +61,7 @@ void ArticleUpdateDialog::loadData(Article* article) {
         break;
     }
 
-    ui->comboStatus->setCurrentIndex(static_cast<int>(article->getStatus()));
+    ui->comboStatus->setCurrentIndex(static_cast<int>(article->getStatus()) - 11);
 
     QString authorsText;
     for(const auto& auth : article->getAuthors()) {
@@ -78,6 +78,8 @@ void ArticleUpdateDialog::loadData(Article* article) {
 
 void ArticleUpdateDialog::on_saveBtn_clicked()
 {
+    if (!currentArticle) return;
+
     if (currentArticle) {
         currentArticle->setTitle(ui->editTitle->toPlainText().toStdString());
         currentArticle->setVenue(ui->editVenue->text().toStdString());
@@ -85,7 +87,7 @@ void ArticleUpdateDialog::on_saveBtn_clicked()
         currentArticle->setCitation(ui->spinCitation->value());
         currentArticle->setAbstract(ui->editAbstract->toPlainText().toStdString());
 
-        currentArticle->setStatus(static_cast<ArticleStatus>(ui->comboStatus->currentIndex()));
+        currentArticle->setStatus(static_cast<ArticleStatus>(ui->comboStatus->currentIndex() + 11));
     }
 
     auto parseListFromText = [](const QString& text) -> std::vector<std::string> {
