@@ -40,7 +40,7 @@ void ArticleForm::updateUIAfterLogin() {
     ui->userLb->setText(currentUser.first);
     qDebug() << "Set label to:" << currentUser.first << "| Actual label:" << ui->userLb->text();
 
-    ui->RemoveArticleBtn->setVisible(currentUser.second == "Admin");
+    ui->RemoveArticleBtn->setVisible(true);
 }
 
 void ArticleForm::setCurrentUser(const std::pair<QString, QString>& user) {
@@ -143,6 +143,9 @@ void ArticleForm::on_articleListView_doubleClicked(const QModelIndex &index) {
     );
 
     detailDlg.exec();
+    
+    // Refresh the list in case the article was updated
+    loadArticlesToView();
 }
 
 void ArticleForm::on_searchLineEdit_textChanged(const QString &arg1)

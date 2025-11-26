@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
+    <width>850</width>
     <height>850</height>
    </rect>
   </property>
@@ -14,7 +14,97 @@
    <string>Input Article</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog#ArticleInputDialog{background-color:#f4f7f6;border:4px solid #FFC085;}QWidget{font-family:&quot;Segoe UI&quot;,Arial,sans-serif;font-size:14px;}QScrollArea{border:none;background-color:transparent;}QGroupBox{background-color:#ffffff;border:1px solid #e0e0e0;border-radius:8px;margin-top:20px;padding-top:15px;}QGroupBox::title{subcontrol-origin:margin;subcontrol-position:top left;padding:0 5px;color:#20B2AA;font-weight:bold;left:10px;top:0px;}QLineEdit,QPlainTextEdit,QComboBox,QSpinBox,QDoubleSpinBox{background-color:#f9f9f9;border:1px solid #cccccc;border-radius:6px;padding:8px;color:#333333;}QLineEdit:focus,QPlainTextEdit:focus,QComboBox:focus,QSpinBox:focus,QDoubleSpinBox:focus{background-color:#ffffff;border:2px solid #20B2AA;}</string>
+   <string notr="true">
+/* --- CÀI ĐẶT CHUNG --- */
+QDialog#ArticleInputDialog {
+    background-color: #f4f7f6;
+    border: 4px solid #FFC085;
+}
+QWidget {
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 14px;
+}
+QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+QGroupBox {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px;
+    color: #20B2AA;
+    font-weight: bold;
+    left: 10px;
+    top: 0px;
+}
+QLineEdit, QPlainTextEdit, QComboBox {
+    background-color: #f9f9f9;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 8px;
+    color: #333333;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+    background-color: #ffffff;
+    border: 2px solid #20B2AA;
+}
+
+/* --- TÙY CHỈNH SPINBOX (Nút trái giảm, nút phải tăng) --- */
+QSpinBox, QDoubleSpinBox {
+    background-color: #f9f9f9;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    color: #333333;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* Chừa chỗ 2 bên cho nút bấm để không che số */
+    padding-left: 35px;  
+    padding-right: 35px;
+    /* Căn giữa số */
+    qproperty-alignment: AlignCenter; 
+}
+QSpinBox:focus, QDoubleSpinBox:focus {
+    background-color: #ffffff;
+    border: 2px solid #20B2AA;
+}
+
+/* Nút Tăng (Up-Button) -&gt; Đưa về bên PHẢI */
+QSpinBox::up-button, QDoubleSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: right;
+    width: 30px;
+    height: 100%; 
+    border-left: 1px solid #cccccc;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #e0e0e0; 
+}
+
+/* Nút Giảm (Down-Button) -&gt; Đưa về bên TRÁI */
+QSpinBox::down-button, QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: left;
+    width: 30px;
+    height: 100%;
+    border-right: 1px solid #cccccc;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: #e0e0e0;
+}
+
+/* Hiệu ứng khi di chuột vào nút tăng/giảm */
+QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
+    background-color: #20B2AA; 
+}
+   </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_Main">
    <property name="spacing">
@@ -70,8 +160,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>642</width>
-        <height>900</height>
+        <width>640</width>
+        <height>884</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_Content">
@@ -326,6 +416,12 @@
               </item>
               <item row="0" column="3">
                <widget class="QSpinBox" name="inputQRank">
+                <property name="minimumSize">
+                 <size>
+                  <width>110</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="minimum">
                  <number>1</number>
                 </property>
@@ -361,6 +457,12 @@
               </item>
               <item row="0" column="3">
                <widget class="QSpinBox" name="inputHIndex">
+                <property name="minimumSize">
+                 <size>
+                  <width>110</width>
+                  <height>0</height>
+                 </size>
+                </property>
                 <property name="maximum">
                  <number>2000</number>
                 </property>
@@ -388,7 +490,14 @@
                </widget>
               </item>
               <item row="0" column="3">
-               <widget class="QDoubleSpinBox" name="inputAcceptRate"/>
+               <widget class="QDoubleSpinBox" name="inputAcceptRate">
+                <property name="minimumSize">
+                 <size>
+                  <width>110</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
               </item>
               <item row="1" column="0">
                <widget class="QLabel" name="lblLoc">
@@ -406,14 +515,14 @@
              <layout class="QVBoxLayout" name="vl_Other">
               <item>
                <widget class="QLabel" name="lblOther">
+                <property name="styleSheet">
+                 <string notr="true">color: gray; font-style: italic;</string>
+                </property>
                 <property name="text">
                  <string>No additional fields required for OTHER type.</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: gray; font-style: italic;</string>
                 </property>
                </widget>
               </item>

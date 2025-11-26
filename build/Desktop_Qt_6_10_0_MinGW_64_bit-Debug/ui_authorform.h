@@ -117,7 +117,6 @@ public:
         horizontalLayout_Header->setObjectName("horizontalLayout_Header");
         lblHeader = new QLabel(headerContainer);
         lblHeader->setObjectName("lblHeader");
-        lblHeader->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
         lblHeader->setStyleSheet(QString::fromUtf8("\n"
 "          color: #ffffff;\n"
 "          font-weight: 900;\n"
@@ -125,6 +124,7 @@ public:
 "          background: transparent;\n"
 "          padding-left: 10px;\n"
 "         "));
+        lblHeader->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
 
         horizontalLayout_Header->addWidget(lblHeader);
 

@@ -2,6 +2,8 @@
 #include "UserManager.h"
 #include <fstream>
 #include <QDir>
+#include <QCoreApplication>
+#include <QFileInfo>
 #include "src/utils/nlohmann/json.hpp"
 #include "src/utils/constants.h"
 #include <QDebug>
@@ -13,9 +15,10 @@ vector<UserManager::User> UserManager::userList;
 HashMap<string, size_t> UserManager::usernameToIndex;
 
 bool UserManager::loadFromFile() {
-    ifstream file(Constants::accountsData());
+    QString path = QCoreApplication::applicationDirPath() + "/../../../data/accounts.json";
+    ifstream file(path.toStdString());
     if (!file.is_open()) {
-        qCritical() << "Cannot open file for loading: " << Constants::accountsData();
+        qCritical() << "Cannot open file for loading: " << path;
         return false;
     }
 
@@ -55,8 +58,13 @@ bool UserManager::saveToFile() {
         });
     }
 
-    QDir().mkpath("../../../data");
-    ofstream file(Constants::accountsData());
+    QString path = QCoreApplication::applicationDirPath() + "/../../../data/accounts.json";
+    QDir dir = QFileInfo(path).absoluteDir();
+    if (!dir.exists()) {
+        dir.mkpath(".");
+    }
+
+    ofstream file(path.toStdString());
     if (!file.is_open()) return false;
     file << j.dump(4);
     return true;

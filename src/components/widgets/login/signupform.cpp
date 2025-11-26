@@ -9,6 +9,11 @@ SignUpForm::SignUpForm(RepositoryManager& repo, QWidget *parent)
     , ui(new Ui::SignUpForm)
 {
     ui->setupUi(this);
+
+    // Configure Login label as a link
+    ui->loginLabel->setText("<a href=\"#\" style=\"color: #20B2AA; text-decoration: none; font-weight: bold;\">Login here</a>");
+    ui->loginLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui->loginLabel->setOpenExternalLinks(false);
 }
 
 SignUpForm::~SignUpForm()
@@ -51,7 +56,11 @@ void SignUpForm::on_signUpButton_clicked()
         return;
     }
 
-    UserManager::registerUser(username, password, fullname, email, phone);
-    emit signupSuccess();
+    if (UserManager::registerUser(username, password, fullname, email, phone)) {
+        Inform::showMessage(this, MessageType::Info, "Đăng ký thành công!", "Thành công");
+        emit signupSuccess();
+    } else {
+        Inform::showMessage(this, MessageType::Warning, "Đăng ký thất bại! Không thể lưu dữ liệu.", "Lỗi đăng kí");
+    }
 }
 

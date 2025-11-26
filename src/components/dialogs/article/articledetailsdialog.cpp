@@ -2,6 +2,7 @@
 #include "ui_articledetailsdialog.h"
 
 #include "src/components/dialogs/article/articleupdatedialog.h"
+#include "src/components/dialogs/author/authordetailsdialog.h"
 #include "src/repos/repomanager.h"
 #include "src/models/article.h"
 #include "src/models/scie_article.h"
@@ -9,6 +10,7 @@
 #include "src/models/scopus_article.h"
 #include "src/models/other_article.h"
 #include "src/models/customarticle.h"
+#include <QDebug>
 #include <set>
 
 using namespace std;
@@ -54,8 +56,22 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
     ui->txtAbstract->setText(QString::fromStdString(currentArticle->getAbstract()));
 
     ui->listAuthors->clear();
-    for (const auto& author : currentArticle->getAuthors()) {
-        ui->listAuthors->addItem(QString::fromStdString(author));
+    for (const auto& authorId : currentArticle->getAuthors()) {
+        // Look up the author by ID to get the name
+        Author authorObj = repo.getAuthors().findById(authorId);
+        
+        QString displayName;
+        if (!authorObj.getId().empty()) {
+            displayName = QString::fromStdString(authorObj.getFullName());
+        } else {
+            // Fallback to ID if author not found (though it should be)
+            displayName = QString::fromStdString(authorId);
+        }
+
+        QListWidgetItem* item = new QListWidgetItem(displayName);
+        // Store the ID in UserRole for easy retrieval
+        item->setData(Qt::UserRole, QString::fromStdString(authorId));
+        ui->listAuthors->addItem(item);
     }
 
     ui->listRefs->clear();
@@ -127,7 +143,37 @@ void ArticleDetailsDialog::on_btnUpdate_clicked()
     ArticleUpdateDialog updateDialog(repo, this);
     updateDialog.setCurrentArticle(articlePtr.get());
     updateDialog.loadData(articlePtr.get());
-    updateDialog.exec();
+    
+    if (updateDialog.exec() == QDialog::Accepted) {
+        setArticleData(currentArticle);
+    }
+}
+
+void ArticleDetailsDialog::on_listAuthors_itemDoubleClicked(QListWidgetItem *item)
+{
+    if (!item) return;
+    
+    // Retrieve the ID stored in UserRole
+    QString authorId = item->data(Qt::UserRole).toString();
+    
+    // Find author by ID
+    Author author = repo.getAuthors().findById(authorId.toStdString());
+    
+    if (!author.getId().empty()) {
+        AuthorDetailsDialog authorDlg(repo, this);
+        authorDlg.setAuthorInfo(
+            QString::fromStdString(author.getId()),
+            QString::fromStdString(author.getFullName()),
+            QString::fromStdString(author.getCountry()),
+            QString::fromStdString(author.getFieldOfStudy()),
+            author.getTotalPublications()
+        );
+        authorDlg.exec();
+    } else {
+        // Optional: Show a message if author not found in database
+        // Inform::showMessage(this, MessageType::Info, "Author details not found.", "Info");
+        qDebug() << "Author not found in database with ID: " << authorId;
+    }
 }
 
 

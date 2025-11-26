@@ -100,8 +100,100 @@ public:
     {
         if (ArticleInputDialog->objectName().isEmpty())
             ArticleInputDialog->setObjectName("ArticleInputDialog");
-        ArticleInputDialog->resize(650, 850);
-        ArticleInputDialog->setStyleSheet(QString::fromUtf8("QDialog#ArticleInputDialog{background-color:#f4f7f6;border:4px solid #FFC085;}QWidget{font-family:\"Segoe UI\",Arial,sans-serif;font-size:14px;}QScrollArea{border:none;background-color:transparent;}QGroupBox{background-color:#ffffff;border:1px solid #e0e0e0;border-radius:8px;margin-top:20px;padding-top:15px;}QGroupBox::title{subcontrol-origin:margin;subcontrol-position:top left;padding:0 5px;color:#20B2AA;font-weight:bold;left:10px;top:0px;}QLineEdit,QPlainTextEdit,QComboBox,QSpinBox,QDoubleSpinBox{background-color:#f9f9f9;border:1px solid #cccccc;border-radius:6px;padding:8px;color:#333333;}QLineEdit:focus,QPlainTextEdit:focus,QComboBox:focus,QSpinBox:focus,QDoubleSpinBox:focus{background-color:#ffffff;border:2px solid #20B2AA;}"));
+        ArticleInputDialog->resize(850, 850);
+        ArticleInputDialog->setStyleSheet(QString::fromUtf8("\n"
+"/* --- C\303\200I \304\220\341\272\266T CHUNG --- */\n"
+"QDialog#ArticleInputDialog {\n"
+"    background-color: #f4f7f6;\n"
+"    border: 4px solid #FFC085;\n"
+"}\n"
+"QWidget {\n"
+"    font-family: \"Segoe UI\", Arial, sans-serif;\n"
+"    font-size: 14px;\n"
+"}\n"
+"QScrollArea {\n"
+"    border: none;\n"
+"    background-color: transparent;\n"
+"}\n"
+"QGroupBox {\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #e0e0e0;\n"
+"    border-radius: 8px;\n"
+"    margin-top: 20px;\n"
+"    padding-top: 15px;\n"
+"}\n"
+"QGroupBox::title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top left;\n"
+"    padding: 0 5px;\n"
+"    color: #20B2AA;\n"
+"    font-weight: bold;\n"
+"    left: 10px;\n"
+"    top: 0px;\n"
+"}\n"
+"QLineEdit, QPlainTextEdit, QComboBox {\n"
+"    background-color: #f9f9f9;\n"
+"    border: 1px solid #cccccc;\n"
+"    border-radius: 6px;\n"
+"    padding: 8px;\n"
+"    color: #333333;\n"
+"}\n"
+"QLineEdit:focus, QPlainTextEdit:focus, QComboBox:focus {\n"
+"    background-color: #ffff"
+                        "ff;\n"
+"    border: 2px solid #20B2AA;\n"
+"}\n"
+"\n"
+"/* --- T\303\231Y CH\341\273\210NH SPINBOX (N\303\272t tr\303\241i gi\341\272\243m, n\303\272t ph\341\272\243i t\304\203ng) --- */\n"
+"QSpinBox, QDoubleSpinBox {\n"
+"    background-color: #f9f9f9;\n"
+"    border: 1px solid #cccccc;\n"
+"    border-radius: 6px;\n"
+"    color: #333333;\n"
+"    padding-top: 5px;\n"
+"    padding-bottom: 5px;\n"
+"    /* Ch\341\273\253a ch\341\273\227 2 b\303\252n cho n\303\272t b\341\272\245m \304\221\341\273\203 kh\303\264ng che s\341\273\221 */\n"
+"    padding-left: 35px;  \n"
+"    padding-right: 35px;\n"
+"    /* C\304\203n gi\341\273\257a s\341\273\221 */\n"
+"    qproperty-alignment: AlignCenter; \n"
+"}\n"
+"QSpinBox:focus, QDoubleSpinBox:focus {\n"
+"    background-color: #ffffff;\n"
+"    border: 2px solid #20B2AA;\n"
+"}\n"
+"\n"
+"/* N\303\272t T\304\203ng (Up-Button) -> \304\220\306\260a v\341\273\201 b\303\252n PH\341\272\242I */\n"
+"QSpinBox::up-button, QDoubleSpinBox::up-button {\n"
+"    subcontrol-origin: border;\n"
+"    su"
+                        "bcontrol-position: right;\n"
+"    width: 30px;\n"
+"    height: 100%; \n"
+"    border-left: 1px solid #cccccc;\n"
+"    border-top-right-radius: 6px;\n"
+"    border-bottom-right-radius: 6px;\n"
+"    background-color: #e0e0e0; \n"
+"}\n"
+"\n"
+"/* N\303\272t Gi\341\272\243m (Down-Button) -> \304\220\306\260a v\341\273\201 b\303\252n TR\303\201I */\n"
+"QSpinBox::down-button, QDoubleSpinBox::down-button {\n"
+"    subcontrol-origin: border;\n"
+"    subcontrol-position: left;\n"
+"    width: 30px;\n"
+"    height: 100%;\n"
+"    border-right: 1px solid #cccccc;\n"
+"    border-top-left-radius: 6px;\n"
+"    border-bottom-left-radius: 6px;\n"
+"    background-color: #e0e0e0;\n"
+"}\n"
+"\n"
+"/* Hi\341\273\207u \341\273\251ng khi di chu\341\273\231t v\303\240o n\303\272t t\304\203ng/gi\341\272\243m */\n"
+"QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,\n"
+"QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {\n"
+"    background-color: #20B2AA; \n"
+"}\n"
+"   "));
         verticalLayout_Main = new QVBoxLayout(ArticleInputDialog);
         verticalLayout_Main->setSpacing(0);
         verticalLayout_Main->setObjectName("verticalLayout_Main");
@@ -127,7 +219,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollContent = new QWidget();
         scrollContent->setObjectName("scrollContent");
-        scrollContent->setGeometry(QRect(0, 0, 642, 900));
+        scrollContent->setGeometry(QRect(0, 0, 640, 884));
         verticalLayout_Content = new QVBoxLayout(scrollContent);
         verticalLayout_Content->setSpacing(15);
         verticalLayout_Content->setObjectName("verticalLayout_Content");
@@ -269,6 +361,7 @@ public:
 
         inputQRank = new QSpinBox(pageScie);
         inputQRank->setObjectName("inputQRank");
+        inputQRank->setMinimumSize(QSize(110, 0));
         inputQRank->setMinimum(1);
         inputQRank->setMaximum(4);
 
@@ -297,6 +390,7 @@ public:
 
         inputHIndex = new QSpinBox(pageScopus);
         inputHIndex->setObjectName("inputHIndex");
+        inputHIndex->setMinimumSize(QSize(110, 0));
         inputHIndex->setMaximum(2000);
 
         gl_Scopus->addWidget(inputHIndex, 0, 3, 1, 1);
@@ -323,6 +417,7 @@ public:
 
         inputAcceptRate = new QDoubleSpinBox(pageConference);
         inputAcceptRate->setObjectName("inputAcceptRate");
+        inputAcceptRate->setMinimumSize(QSize(110, 0));
 
         gl_Conf->addWidget(inputAcceptRate, 0, 3, 1, 1);
 
@@ -343,8 +438,8 @@ public:
         vl_Other->setObjectName("vl_Other");
         lblOther = new QLabel(pageOther);
         lblOther->setObjectName("lblOther");
-        lblOther->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lblOther->setStyleSheet(QString::fromUtf8("color: gray; font-style: italic;"));
+        lblOther->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         vl_Other->addWidget(lblOther);
 
