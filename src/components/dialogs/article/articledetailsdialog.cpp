@@ -12,6 +12,7 @@
 #include "src/components/dialogs/article/articleconfirmremovedialog.h"
 #include "src/utils/usermanager.h"
 #include <set>
+#include <QListWidgetItem>
 
 using namespace std;
 
@@ -56,8 +57,11 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
     ui->txtAbstract->setText(QString::fromStdString(currentArticle->getAbstract()));
 
     ui->listAuthors->clear();
-    for (const auto& author : currentArticle->getAuthors()) {
-        ui->listAuthors->addItem(QString::fromStdString(author));
+    for (const auto& authorId : currentArticle->getAuthors()) {
+        Author author = repo.getAuthors().findById(authorId);
+        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(author.getFullName()));
+        item->setData(Qt::UserRole, QString::fromStdString(authorId));
+        ui->listAuthors->addItem(item);
     }
 
     ui->listRefs->clear();
@@ -122,13 +126,16 @@ void ArticleDetailsDialog::on_btnUpdate_clicked()
     ArticleUpdateDialog updateDialog(repo, this);
     updateDialog.loadData(currentArticle);
 
-    updateDialog.exec();
+    if (updateDialog.exec() == QDialog::Accepted) {
+        setArticleData(currentArticle);
+        dataChanged = true;
+    }
 }
 
 
 void ArticleDetailsDialog::on_closeBtn_clicked()
 {
-    reject();
+    done(dataChanged ? QDialog::Accepted : QDialog::Rejected);
 }
 
 

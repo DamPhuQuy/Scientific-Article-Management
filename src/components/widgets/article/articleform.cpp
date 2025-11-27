@@ -76,6 +76,7 @@ void ArticleForm::on_backBtn_clicked()
 }
 
 void ArticleForm::initData() {
+    articleList.clear();
     articleList.reserve(repo.getArticles().getContainer().size());
     repo.getArticles().getContainer().forEach([&](const shared_ptr<Article>& article) {
         articleList.push_back(article);

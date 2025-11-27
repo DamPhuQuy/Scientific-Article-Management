@@ -37,6 +37,7 @@ private:
     std::string currentUsername;
 
     QLabel *custom = nullptr;
+    bool dataChanged = false;
 };
 
 #endif // ARTICLEDETAILSDIALOG_H
