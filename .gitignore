@@ -45,6 +45,7 @@
 
 # folder
 cmake-build-debug/
+build/
 .cache
 .idea
 .qtcreator
