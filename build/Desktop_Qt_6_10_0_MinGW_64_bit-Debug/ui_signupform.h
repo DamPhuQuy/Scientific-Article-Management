@@ -16,6 +16,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -25,17 +26,19 @@ QT_BEGIN_NAMESPACE
 class Ui_SignUpForm
 {
 public:
-    QGridLayout *gridLayout;
-    QSpacerItem *verticalSpacer;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *horizontalSpacer_2;
-    QSpacerItem *verticalSpacer_2;
-    QWidget *widget;
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *mainLayout;
+    QWidget *headerContainer;
+    QHBoxLayout *horizontalLayout_Header;
+    QLabel *lblHeader;
+    QScrollArea *scrollArea;
+    QWidget *scrollContent;
+    QGridLayout *gridLayout_Body;
+    QSpacerItem *verticalSpacer_Top;
+    QSpacerItem *horizontalSpacer_Left;
+    QWidget *formContainer;
+    QVBoxLayout *verticalLayout_Form;
     QLabel *welcomeLabel;
-    QLabel *logoLabel;
     QLabel *subtitleLabel;
-    QSpacerItem *verticalSpacer_3;
     QLabel *usernameLabel;
     QLineEdit *usernameEdit;
     QLabel *fullnameLabel;
@@ -48,170 +51,280 @@ public:
     QLineEdit *passwordEdit;
     QLabel *confirmPassLabel;
     QLineEdit *confirmPassEdit;
-    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *verticalSpacer_Button;
     QPushButton *signUpButton;
-    QWidget *widget_2;
-    QHBoxLayout *horizontalLayout;
-    QHBoxLayout *signUpLayout;
-    QSpacerItem *horizontalSpacer_4;
+    QHBoxLayout *loginLinkLayout;
+    QSpacerItem *hs4;
     QLabel *signUpPromptLabel;
     QLabel *loginLabel;
-    QSpacerItem *horizontalSpacer_5;
+    QSpacerItem *hs5;
+    QSpacerItem *horizontalSpacer_Right;
+    QSpacerItem *verticalSpacer_Bottom;
 
     void setupUi(QWidget *SignUpForm)
     {
         if (SignUpForm->objectName().isEmpty())
             SignUpForm->setObjectName("SignUpForm");
-        SignUpForm->resize(634, 538);
-        gridLayout = new QGridLayout(SignUpForm);
-        gridLayout->setObjectName("gridLayout");
-        verticalSpacer = new QSpacerItem(20, 66, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+        SignUpForm->resize(550, 750);
+        SignUpForm->setStyleSheet(QString::fromUtf8("\n"
+"    /* --- MAIN FORM --- */\n"
+"    QWidget#SignUpForm {\n"
+"        background-color: #f4f7f6;\n"
+"        border: 4px solid #FFC085; /* Vi\341\273\201n cam nh\341\272\255n di\341\273\207n */\n"
+"    }\n"
+"\n"
+"    QWidget { font-family: \"Segoe UI\", Arial, sans-serif; font-size: 14px; }\n"
+"\n"
+"    /* --- FORM CONTAINER (H\341\273\230P TR\341\272\256NG) --- */\n"
+"    QWidget#formContainer {\n"
+"        background-color: #ffffff;\n"
+"        border: 1px solid #e0e0e0;\n"
+"        border-radius: 12px;\n"
+"    }\n"
+"\n"
+"    /* --- LABELS --- */\n"
+"    QLabel#welcomeLabel {\n"
+"        font-size: 24px;\n"
+"        font-weight: 900;\n"
+"        color: #00264d; /* Xanh \304\221\341\272\255m */\n"
+"        margin-bottom: 5px;\n"
+"    }\n"
+"    QLabel#subtitleLabel {\n"
+"        color: #777;\n"
+"        font-size: 13px;\n"
+"        margin-bottom: 15px;\n"
+"    }\n"
+"    \n"
+"    /* Nh\303\243n c\341\273\247a c\303\241c tr\306\260\341\273\235ng input */\n"
+"    QLabel {\n"
+"        font-weight: bold;\n"
+"  "
+                        "      color: #444;\n"
+"    }\n"
+"\n"
+"    QLabel#signUpPromptLabel {\n"
+"        color: #666;\n"
+"        font-weight: normal;\n"
+"        font-size: 13px;\n"
+"    }\n"
+"    \n"
+"    /* Link Login */\n"
+"    QLabel#loginLabel {\n"
+"        color: #20B2AA;\n"
+"        font-weight: bold;\n"
+"        font-size: 13px;\n"
+"    }\n"
+"    QLabel#loginLabel:hover {\n"
+"        color: #17a098;\n"
+"        text-decoration: underline;\n"
+"    }\n"
+"\n"
+"    /* --- INPUT FIELDS --- */\n"
+"    QLineEdit { \n"
+"      background-color: #f9f9f9; \n"
+"      border: 1px solid #cccccc; \n"
+"      border-radius: 6px; \n"
+"      padding: 8px; \n"
+"      color: #333; \n"
+"      font-size: 14px;\n"
+"    }\n"
+"    QLineEdit:focus { \n"
+"      background-color: #ffffff; \n"
+"      border: 2px solid #20B2AA; /* Vi\341\273\201n xanh ng\341\273\215c khi focus */\n"
+"    }\n"
+"   "));
+        mainLayout = new QVBoxLayout(SignUpForm);
+        mainLayout->setSpacing(0);
+        mainLayout->setObjectName("mainLayout");
+        mainLayout->setContentsMargins(0, 0, 0, 0);
+        headerContainer = new QWidget(SignUpForm);
+        headerContainer->setObjectName("headerContainer");
+        headerContainer->setMinimumSize(QSize(0, 70));
+        headerContainer->setStyleSheet(QString::fromUtf8("\n"
+"       QWidget#headerContainer {\n"
+"           background-color: #00264d;\n"
+"           border-bottom: 5px solid #4169E1;\n"
+"           border-left: 10px solid #FFD700; /* V\341\272\240CH V\303\200NG LOGO */\n"
+"       }\n"
+"      "));
+        horizontalLayout_Header = new QHBoxLayout(headerContainer);
+        horizontalLayout_Header->setObjectName("horizontalLayout_Header");
+        lblHeader = new QLabel(headerContainer);
+        lblHeader->setObjectName("lblHeader");
+        lblHeader->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        lblHeader->setStyleSheet(QString::fromUtf8("\n"
+"          color: #ffffff;\n"
+"          font-weight: 900;\n"
+"          font-size: 18px;\n"
+"          background: transparent;\n"
+"         "));
 
-        gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
+        horizontalLayout_Header->addWidget(lblHeader);
 
-        horizontalSpacer = new QSpacerItem(172, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        gridLayout->addItem(horizontalSpacer, 2, 0, 1, 1);
+        mainLayout->addWidget(headerContainer);
 
-        horizontalSpacer_2 = new QSpacerItem(172, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        scrollArea = new QScrollArea(SignUpForm);
+        scrollArea->setObjectName("scrollArea");
+        scrollArea->setWidgetResizable(true);
+        scrollArea->setFrameShape(QFrame::Shape::NoFrame);
+        scrollArea->setStyleSheet(QString::fromUtf8("background: transparent;"));
+        scrollContent = new QWidget();
+        scrollContent->setObjectName("scrollContent");
+        scrollContent->setGeometry(QRect(0, 0, 542, 750));
+        gridLayout_Body = new QGridLayout(scrollContent);
+        gridLayout_Body->setObjectName("gridLayout_Body");
+        verticalSpacer_Top = new QSpacerItem(20, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
-        gridLayout->addItem(horizontalSpacer_2, 2, 2, 1, 1);
+        gridLayout_Body->addItem(verticalSpacer_Top, 0, 1, 1, 1);
 
-        verticalSpacer_2 = new QSpacerItem(20, 66, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+        horizontalSpacer_Left = new QSpacerItem(30, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        gridLayout->addItem(verticalSpacer_2, 4, 1, 1, 1);
+        gridLayout_Body->addItem(horizontalSpacer_Left, 1, 0, 1, 1);
 
-        widget = new QWidget(SignUpForm);
-        widget->setObjectName("widget");
-        verticalLayout = new QVBoxLayout(widget);
-        verticalLayout->setObjectName("verticalLayout");
-        welcomeLabel = new QLabel(widget);
+        formContainer = new QWidget(scrollContent);
+        formContainer->setObjectName("formContainer");
+        formContainer->setMinimumSize(QSize(400, 0));
+        verticalLayout_Form = new QVBoxLayout(formContainer);
+        verticalLayout_Form->setSpacing(12);
+        verticalLayout_Form->setObjectName("verticalLayout_Form");
+        verticalLayout_Form->setContentsMargins(30, 30, 30, 40);
+        welcomeLabel = new QLabel(formContainer);
         welcomeLabel->setObjectName("welcomeLabel");
         welcomeLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        verticalLayout->addWidget(welcomeLabel);
+        verticalLayout_Form->addWidget(welcomeLabel);
 
-        logoLabel = new QLabel(widget);
-        logoLabel->setObjectName("logoLabel");
-        logoLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        verticalLayout->addWidget(logoLabel);
-
-        subtitleLabel = new QLabel(widget);
+        subtitleLabel = new QLabel(formContainer);
         subtitleLabel->setObjectName("subtitleLabel");
         subtitleLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        verticalLayout->addWidget(subtitleLabel);
+        verticalLayout_Form->addWidget(subtitleLabel);
 
-        verticalSpacer_3 = new QSpacerItem(20, 18, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_3);
-
-        usernameLabel = new QLabel(widget);
+        usernameLabel = new QLabel(formContainer);
         usernameLabel->setObjectName("usernameLabel");
 
-        verticalLayout->addWidget(usernameLabel);
+        verticalLayout_Form->addWidget(usernameLabel);
 
-        usernameEdit = new QLineEdit(widget);
+        usernameEdit = new QLineEdit(formContainer);
         usernameEdit->setObjectName("usernameEdit");
 
-        verticalLayout->addWidget(usernameEdit);
+        verticalLayout_Form->addWidget(usernameEdit);
 
-        fullnameLabel = new QLabel(widget);
+        fullnameLabel = new QLabel(formContainer);
         fullnameLabel->setObjectName("fullnameLabel");
 
-        verticalLayout->addWidget(fullnameLabel);
+        verticalLayout_Form->addWidget(fullnameLabel);
 
-        fullnameEdit = new QLineEdit(widget);
+        fullnameEdit = new QLineEdit(formContainer);
         fullnameEdit->setObjectName("fullnameEdit");
 
-        verticalLayout->addWidget(fullnameEdit);
+        verticalLayout_Form->addWidget(fullnameEdit);
 
-        emailLabel = new QLabel(widget);
+        emailLabel = new QLabel(formContainer);
         emailLabel->setObjectName("emailLabel");
 
-        verticalLayout->addWidget(emailLabel);
+        verticalLayout_Form->addWidget(emailLabel);
 
-        emailEdit = new QLineEdit(widget);
+        emailEdit = new QLineEdit(formContainer);
         emailEdit->setObjectName("emailEdit");
 
-        verticalLayout->addWidget(emailEdit);
+        verticalLayout_Form->addWidget(emailEdit);
 
-        phoneLabel = new QLabel(widget);
+        phoneLabel = new QLabel(formContainer);
         phoneLabel->setObjectName("phoneLabel");
 
-        verticalLayout->addWidget(phoneLabel);
+        verticalLayout_Form->addWidget(phoneLabel);
 
-        phoneEdit = new QLineEdit(widget);
+        phoneEdit = new QLineEdit(formContainer);
         phoneEdit->setObjectName("phoneEdit");
 
-        verticalLayout->addWidget(phoneEdit);
+        verticalLayout_Form->addWidget(phoneEdit);
 
-        passwordLabel = new QLabel(widget);
+        passwordLabel = new QLabel(formContainer);
         passwordLabel->setObjectName("passwordLabel");
 
-        verticalLayout->addWidget(passwordLabel);
+        verticalLayout_Form->addWidget(passwordLabel);
 
-        passwordEdit = new QLineEdit(widget);
+        passwordEdit = new QLineEdit(formContainer);
         passwordEdit->setObjectName("passwordEdit");
         passwordEdit->setEchoMode(QLineEdit::EchoMode::Password);
 
-        verticalLayout->addWidget(passwordEdit);
+        verticalLayout_Form->addWidget(passwordEdit);
 
-        confirmPassLabel = new QLabel(widget);
+        confirmPassLabel = new QLabel(formContainer);
         confirmPassLabel->setObjectName("confirmPassLabel");
 
-        verticalLayout->addWidget(confirmPassLabel);
+        verticalLayout_Form->addWidget(confirmPassLabel);
 
-        confirmPassEdit = new QLineEdit(widget);
+        confirmPassEdit = new QLineEdit(formContainer);
         confirmPassEdit->setObjectName("confirmPassEdit");
         confirmPassEdit->setEchoMode(QLineEdit::EchoMode::Password);
 
-        verticalLayout->addWidget(confirmPassEdit);
+        verticalLayout_Form->addWidget(confirmPassEdit);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        verticalSpacer_Button = new QSpacerItem(20, 10, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
-        verticalLayout->addItem(horizontalSpacer_3);
+        verticalLayout_Form->addItem(verticalSpacer_Button);
 
-        signUpButton = new QPushButton(widget);
+        signUpButton = new QPushButton(formContainer);
         signUpButton->setObjectName("signUpButton");
-        signUpButton->setMinimumSize(QSize(0, 40));
+        signUpButton->setMinimumSize(QSize(0, 45));
+        signUpButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        signUpButton->setStyleSheet(QString::fromUtf8("\n"
+"              QPushButton {\n"
+"               background-color: #20B2AA; \n"
+"               border: 2px solid #20B2AA; \n"
+"               border-radius: 6px; \n"
+"               color: white; \n"
+"               font-weight: bold;\n"
+"               font-size: 16px;\n"
+"              }\n"
+"              QPushButton:hover { background-color: #17a098; border-color: #17a098; }\n"
+"              QPushButton:pressed { background-color: #0e6b65; border-color: #0e6b65; }\n"
+"             "));
 
-        verticalLayout->addWidget(signUpButton);
+        verticalLayout_Form->addWidget(signUpButton);
 
-        widget_2 = new QWidget(widget);
-        widget_2->setObjectName("widget_2");
-        horizontalLayout = new QHBoxLayout(widget_2);
-        horizontalLayout->setObjectName("horizontalLayout");
-        signUpLayout = new QHBoxLayout();
-        signUpLayout->setObjectName("signUpLayout");
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        loginLinkLayout = new QHBoxLayout();
+        loginLinkLayout->setObjectName("loginLinkLayout");
+        loginLinkLayout->setContentsMargins(-1, 10, -1, -1);
+        hs4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        signUpLayout->addItem(horizontalSpacer_4);
+        loginLinkLayout->addItem(hs4);
 
-        signUpPromptLabel = new QLabel(widget_2);
+        signUpPromptLabel = new QLabel(formContainer);
         signUpPromptLabel->setObjectName("signUpPromptLabel");
 
-        signUpLayout->addWidget(signUpPromptLabel);
+        loginLinkLayout->addWidget(signUpPromptLabel);
 
-        loginLabel = new QLabel(widget_2);
+        loginLabel = new QLabel(formContainer);
         loginLabel->setObjectName("loginLabel");
-        loginLabel->setTextFormat(Qt::TextFormat::RichText);
+        loginLabel->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
 
-        signUpLayout->addWidget(loginLabel);
+        loginLinkLayout->addWidget(loginLabel);
 
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        hs5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        signUpLayout->addItem(horizontalSpacer_5);
-
-
-        horizontalLayout->addLayout(signUpLayout);
+        loginLinkLayout->addItem(hs5);
 
 
-        verticalLayout->addWidget(widget_2);
+        verticalLayout_Form->addLayout(loginLinkLayout);
 
 
-        gridLayout->addWidget(widget, 2, 1, 1, 1);
+        gridLayout_Body->addWidget(formContainer, 1, 1, 1, 1);
+
+        horizontalSpacer_Right = new QSpacerItem(30, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout_Body->addItem(horizontalSpacer_Right, 1, 2, 1, 1);
+
+        verticalSpacer_Bottom = new QSpacerItem(20, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout_Body->addItem(verticalSpacer_Bottom, 2, 1, 1, 1);
+
+        scrollArea->setWidget(scrollContent);
+
+        mainLayout->addWidget(scrollArea);
 
 
         retranslateUi(SignUpForm);
@@ -221,25 +334,25 @@ public:
 
     void retranslateUi(QWidget *SignUpForm)
     {
-        SignUpForm->setWindowTitle(QCoreApplication::translate("SignUpForm", "Form", nullptr));
-        welcomeLabel->setText(QCoreApplication::translate("SignUpForm", "Welcome!", nullptr));
-        logoLabel->setText(QCoreApplication::translate("SignUpForm", "(Logo here)", nullptr));
+        SignUpForm->setWindowTitle(QCoreApplication::translate("SignUpForm", "Register Account", nullptr));
+        lblHeader->setText(QCoreApplication::translate("SignUpForm", "\304\220\304\202NG K\303\235 T\303\200I KHO\341\272\242N M\341\273\232I", nullptr));
+        welcomeLabel->setText(QCoreApplication::translate("SignUpForm", "Create Account", nullptr));
         subtitleLabel->setText(QCoreApplication::translate("SignUpForm", "Please enter your detail to sign in", nullptr));
         usernameLabel->setText(QCoreApplication::translate("SignUpForm", "Username", nullptr));
         usernameEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your username...", nullptr));
         fullnameLabel->setText(QCoreApplication::translate("SignUpForm", "Full Name", nullptr));
-        fullnameEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your Full Name", nullptr));
+        fullnameEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your full name...", nullptr));
         emailLabel->setText(QCoreApplication::translate("SignUpForm", "Email", nullptr));
-        emailEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your email", nullptr));
+        emailEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your email address...", nullptr));
         phoneLabel->setText(QCoreApplication::translate("SignUpForm", "Phone", nullptr));
-        phoneEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your phone", nullptr));
+        phoneEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Enter your phone number...", nullptr));
         passwordLabel->setText(QCoreApplication::translate("SignUpForm", "Password", nullptr));
-        passwordEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Password@123", nullptr));
-        confirmPassLabel->setText(QCoreApplication::translate("SignUpForm", "Password again", nullptr));
-        confirmPassEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "Password@123", nullptr));
-        signUpButton->setText(QCoreApplication::translate("SignUpForm", "Sign up", nullptr));
+        passwordEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242", nullptr));
+        confirmPassLabel->setText(QCoreApplication::translate("SignUpForm", "Confirm Password", nullptr));
+        confirmPassEdit->setPlaceholderText(QCoreApplication::translate("SignUpForm", "\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242\342\200\242", nullptr));
+        signUpButton->setText(QCoreApplication::translate("SignUpForm", "Register", nullptr));
         signUpPromptLabel->setText(QCoreApplication::translate("SignUpForm", "Have an account?", nullptr));
-        loginLabel->setText(QCoreApplication::translate("SignUpForm", "<html><head/><body><p><a href=\"#\"><span style=\" text-decoration: underline; color:#27bf73;\">Login</span></a></p></body></html>", nullptr));
+        loginLabel->setText(QCoreApplication::translate("SignUpForm", "Login here", nullptr));
     } // retranslateUi
 
 };

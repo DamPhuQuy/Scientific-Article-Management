@@ -1,5 +1,6 @@
 #include "articleinputdialog.h"
 #include "ui_articleinputdialog.h"
+#include <QFormLayout>
 #include "src/components/dialogs/msg/inform.h"
 #include "src/utils/datautils.h"
 #include "src/components/dialogs/author/listofauthorsdialog.h"
@@ -34,19 +35,22 @@ ArticleInputDialog::~ArticleInputDialog()
 
 void ArticleInputDialog::on_btnSave_clicked()
 {
-    if (ui->inputTitle->toPlainText().trimmed().isEmpty()) {
+    if (ui->inputTitle->text().trimmed().isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập title", "Lỗi");
         return;
     }
-    if (ui->inputVenue->toPlainText().trimmed().isEmpty()) {
+    if (ui->inputVenue->text().trimmed().isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập venue", "Lỗi");
         return;
     }
 
-    QString title = ui->inputTitle->toPlainText();
+    QString title = ui->inputTitle->text();
     QString abstract = ui->inputAbstract->toPlainText();
-    QString venue = ui->inputVenue->toPlainText();
-    int year = ui->inputYear->value();
+    QString venue = ui->inputVenue->text();
+    
+    // inputYear is a QComboBox, so we get the text and convert to int
+    int year = ui->inputYear->currentText().toInt();
+    
     int n_citation = ui->inputCitations->value();
 
     ArticleStatus status;
@@ -186,4 +190,3 @@ void ArticleInputDialog::on_AuthorBtn_clicked()
         qDebug() << "Selected Authors Count:" << m_selectedAuthorIds.size();
     }
 }
-
