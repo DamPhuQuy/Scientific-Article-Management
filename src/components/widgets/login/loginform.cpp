@@ -10,10 +10,33 @@ LoginForm::LoginForm(RepositoryManager& repo, QWidget *parent)
     , ui(new Ui::LoginForm)
 {
     ui->setupUi(this);
-    
+
     // Setup Sign Up Link
-    ui->signUpLabel->setText("<a href=\"signup\" style=\"text-decoration:none; color:#20B2AA;\">Sign up</a>");
+    ui->signUpLabel->setText("<a href=\"signup\" style=\"text-decoration:none; color:#20B2AA;\">Đăng ký</a>");
     ui->signUpLabel->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+
+    // Setup toggle checkbox for password visibility
+    ui->showPasswordCheckBox->setCheckable(true);
+    ui->passwordEdit->setEchoMode(QLineEdit::Password);
+    connect(ui->showPasswordCheckBox, &QCheckBox::toggled, this, [=](bool checked){
+        ui->passwordEdit->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
+    });
+    ui->showPasswordCheckBox->setStyleSheet(
+    R"(
+    QCheckBox::indicator {
+        width: 20px;
+        height: 20px;
+    }
+    QCheckBox::indicator:unchecked {
+        border: 1px solid #777;
+        image: url(:/icons/public/resources/hide.png);
+    }
+    QCheckBox::indicator:checked {
+        border: 1px solid #777;
+        image: url(:/icons/public/resources/view.png);
+    }
+    )"
+    );
 }
 
 LoginForm::~LoginForm()

@@ -2,7 +2,7 @@
 
 #include <string>
 
-const std::string DATA_FOLDER = "../../data";
+const std::string DATA_FOLDER = "../data";
 
 class Constants {
 public:

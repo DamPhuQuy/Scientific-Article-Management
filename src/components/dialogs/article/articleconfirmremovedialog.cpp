@@ -25,12 +25,12 @@ void ArticleConfirmRemoveDialog::on_btnRemove_clicked()
     qDebug() << "Account key: " << expectedKey;
 
     if (confirmText != "i confirm") {
-        QMessageBox::warning(this, "Invalid Input", "Please type 'i confirm' correctly.");
+        QMessageBox::warning(this, "Đầu vào không hợp lệ", "Vui lòng nhập 'i confirm' chính xác.");
         return;
     }
 
     if (keyText.toStdString() != expectedKey) {
-        QMessageBox::warning(this, "Invalid Key", "The key provided does not match.");
+        QMessageBox::warning(this, "Khóa không hợp lệ", "Khóa được cung cấp không khớp.");
         return;
     }
 

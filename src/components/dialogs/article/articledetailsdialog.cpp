@@ -51,9 +51,9 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
 
     ui->lblTitle->setText(QString::fromStdString(currentArticle->getTitle()));
     ui->lblId->setText("ID: " + QString::fromStdString(currentArticle->getId()));
-    ui->lblVenue->setText(QString::fromStdString("Venue: " + currentArticle->getVenue()));
+    ui->lblVenue->setText(QString::fromStdString("Nơi xuất bản: " + currentArticle->getVenue()));
     ui->lblYear->setText(QString::number(currentArticle->getYear()));
-    ui->lblCitation->setText(QString::number(currentArticle->getCitation()) + " Citations");
+    ui->lblCitation->setText(QString::number(currentArticle->getCitation()) + " trích dẫn");
     ui->txtAbstract->setText(QString::fromStdString(currentArticle->getAbstract()));
 
     ui->listAuthors->clear();

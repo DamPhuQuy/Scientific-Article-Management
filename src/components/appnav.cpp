@@ -50,9 +50,6 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
                 articleform->updateUIAfterLogin();
 
                 goTo(Page::ArticleFormPage);
-
-                Inform::showMessage(this, MessageType::Info,
-                                    "Đăng nhập thành công!", "Thành công");
             });
 
     // request back (loginForm back to mainmenu)

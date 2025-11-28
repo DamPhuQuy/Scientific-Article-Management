@@ -7,13 +7,12 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>600</height>
+    <height>616</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Login System</string>
   </property>
-
   <property name="styleSheet">
    <string notr="true">
     /* --- MAIN FORM --- */
@@ -62,21 +61,20 @@
     }
 
     /* --- INPUT FIELDS --- */
-    QLineEdit { 
-      background-color: #f9f9f9; 
-      border: 1px solid #cccccc; 
-      border-radius: 6px; 
-      padding: 10px; 
-      color: #333; 
+    QLineEdit {
+      background-color: #f9f9f9;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      padding: 10px;
+      color: #333;
       font-size: 14px;
     }
-    QLineEdit:focus { 
-      background-color: #ffffff; 
+    QLineEdit:focus {
+      background-color: #ffffff;
       border: 2px solid #20B2AA; /* Viền xanh ngọc khi focus */
     }
    </string>
   </property>
-
   <layout class="QVBoxLayout" name="mainLayout">
    <property name="spacing">
     <number>0</number>
@@ -93,7 +91,6 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-
    <item>
     <widget class="QWidget" name="headerContainer" native="true">
      <property name="minimumSize">
@@ -114,12 +111,6 @@
      <layout class="QHBoxLayout" name="horizontalLayout_Header">
       <item>
        <widget class="QLabel" name="lblHeader">
-        <property name="text">
-         <string>ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
         <property name="styleSheet">
          <string notr="true">
           color: #ffffff;
@@ -128,12 +119,17 @@
           background: transparent;
          </string>
         </property>
+        <property name="text">
+         <string>ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-
    <item>
     <layout class="QGridLayout" name="gridLayout_Body">
      <item row="0" column="1">
@@ -149,7 +145,6 @@
        </property>
       </spacer>
      </item>
-     
      <item row="1" column="0">
       <spacer name="horizontalSpacer_Left">
        <property name="orientation">
@@ -163,7 +158,6 @@
        </property>
       </spacer>
      </item>
-     
      <item row="1" column="1">
       <widget class="QWidget" name="container" native="true">
        <property name="minimumSize">
@@ -188,11 +182,10 @@
         <property name="bottomMargin">
          <number>40</number>
         </property>
-        
         <item>
          <widget class="QLabel" name="welcomeLabel">
           <property name="text">
-           <string>Welcome Back!</string>
+           <string>Chào mừng trở lại!</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -202,14 +195,13 @@
         <item>
          <widget class="QLabel" name="subtitleLabel">
           <property name="text">
-           <string>Please enter your details to sign in</string>
+           <string>Vui lòng nhập thông tin để đăng nhập</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
         </item>
-        
         <item>
          <spacer name="verticalSpacer_Internal">
           <property name="orientation">
@@ -223,26 +215,24 @@
           </property>
          </spacer>
         </item>
-  
         <item>
          <widget class="QLabel" name="usernameLabel">
           <property name="text">
-           <string>Username</string>
+           <string>Tên đăng nhập</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="usernameEdit">
           <property name="placeholderText">
-           <string>Enter your username...</string>
+           <string>Nhập tên đăng nhập...</string>
           </property>
          </widget>
         </item>
-  
         <item>
          <widget class="QLabel" name="passwordLabel">
           <property name="text">
-           <string>Password</string>
+           <string>Mật khẩu</string>
           </property>
          </widget>
         </item>
@@ -256,7 +246,6 @@
           </property>
          </widget>
         </item>
-  
         <item>
          <spacer name="horizontalSpacer_Buttons">
           <property name="orientation">
@@ -270,7 +259,6 @@
           </property>
          </spacer>
         </item>
-  
         <item>
          <widget class="QPushButton" name="signInButton">
           <property name="minimumSize">
@@ -282,16 +270,13 @@
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text">
-           <string>Sign in</string>
-          </property>
           <property name="styleSheet">
            <string notr="true">
             QPushButton {
-             background-color: #20B2AA; 
-             border: 2px solid #20B2AA; 
-             border-radius: 6px; 
-             color: white; 
+             background-color: #20B2AA;
+             border: 2px solid #20B2AA;
+             border-radius: 6px;
+             color: white;
              font-weight: bold;
              font-size: 16px;
             }
@@ -299,9 +284,18 @@
             QPushButton:pressed { background-color: #0e6b65; border-color: #0e6b65; }
            </string>
           </property>
+          <property name="text">
+           <string>Đăng nhập</string>
+          </property>
          </widget>
         </item>
-  
+        <item>
+         <widget class="QCheckBox" name="showPasswordCheckBox">
+          <property name="text">
+           <string>Hiển thị mật khẩu</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <layout class="QHBoxLayout" name="signUpLayout">
           <property name="topMargin">
@@ -323,7 +317,7 @@
           <item>
            <widget class="QLabel" name="signUpPromptLabel">
             <property name="text">
-             <string>Don't have an account yet?</string>
+             <string>Chưa có tài khoản?</string>
             </property>
            </widget>
           </item>
@@ -333,7 +327,7 @@
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="text">
-             <string>Sign up</string>
+             <string>Đăng ký</string>
             </property>
            </widget>
           </item>
@@ -355,7 +349,6 @@
        </layout>
       </widget>
      </item>
-     
      <item row="1" column="2">
       <spacer name="horizontalSpacer_Right">
        <property name="orientation">
@@ -369,7 +362,6 @@
        </property>
       </spacer>
      </item>
-     
      <item row="2" column="1">
       <spacer name="verticalSpacer_Bottom">
        <property name="orientation">
