@@ -34,6 +34,8 @@ private:
     QStackedWidget* stack;
     std::vector<Page> history;
 
+    std::pair<QString, QString> currentUser;
+
     MainWindow* mainform;
     LoginForm* login;
     SignUpForm* signup;

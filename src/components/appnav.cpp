@@ -3,6 +3,8 @@
 #include "src/components/widgets/login/loginform.h"
 #include "src/components/widgets/login/signupform.h"
 #include "src/components/widgets/article/articleform.h"
+#include "src/components/dialogs/msg/inform.h"
+#include <QTimer>
 
 #include <QVBoxLayout>
 #include <QApplication>
@@ -11,8 +13,6 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
     : QWidget(parent), repo(repo)
 {
     this->stack = new QStackedWidget(this);
-
-    std::pair<QString, QString> currentUser;
 
     mainform = new MainWindow(this);
     login = new LoginForm(repo, this);
@@ -40,15 +40,21 @@ AppNav::AppNav(RepositoryManager& repo, QWidget* parent)
     // requestSignUp
     connect(login, &LoginForm::requestSignUp, this, [this]() -> void { goTo(Page::SignupPage); });
     // login success (loginForm success, go to ArticleForm)
-    connect(login, &LoginForm::loginSuccess, this, [this, &currentUser](const QString& username, const QString& role) -> void {
-        currentUser.first = username;
-        currentUser.second = role;
+    connect(login, &LoginForm::loginSuccess, this,
+            [this](const QString& username, const QString& role) {
+                currentUser.first = username;
+                currentUser.second = role;
 
-        qDebug() << currentUser.first << "-" << currentUser.second;
-        articleform->setCurrentUser(currentUser);
-        articleform->updateUIAfterLogin();
-        goTo(Page::ArticleFormPage);
-    });
+                if (!articleform) return;
+                articleform->setCurrentUser(currentUser);
+                articleform->updateUIAfterLogin();
+
+                goTo(Page::ArticleFormPage);
+
+                Inform::showMessage(this, MessageType::Info,
+                                    "Đăng nhập thành công!", "Thành công");
+            });
+
     // request back (loginForm back to mainmenu)
     connect(login, &LoginForm::requestBack, this, [this]() -> void { goTo(Page::MainPage); });
 
