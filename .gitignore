@@ -45,6 +45,7 @@
 
 # folder
 cmake-build-debug/
+cmake_build/
 build/
 .cache
 .idea
