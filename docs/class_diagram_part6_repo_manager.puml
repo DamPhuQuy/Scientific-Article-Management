@@ -1,0 +1,88 @@
+﻿@startuml Repository Layer - Repository Manager
+
+' ============= STYLING =============
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classFontName Arial
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #2C3E50
+skinparam classBorderThickness 1.5
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 2
+skinparam roundcorner 5
+
+' ============= SIMPLIFIED REPOS =============
+class ArticleRepo <<repository>> {
+    - articles_container: HashMap
+    __
+    + add(article): void
+    + remove(id): void
+    + update(article): void
+    + findById(id): Article
+    + load(): void
+    + save(): void
+}
+
+class AuthorRepo <<repository>> {
+    - authors_container: HashMap
+    __
+    + add(author): void
+    + remove(id): void
+    + findById(id): Author
+    + load(): void
+    + save(): void
+}
+
+' ============= REPOSITORY MANAGER =============
+class RepositoryManager <<manager>> {
+    - a_repo: ArticleRepo&
+    - au_repo: AuthorRepo&
+    __
+    **Constructor**
+    + RepositoryManager(a_repo&, au_repo&)
+    __
+    **Repository Access**
+    + getArticles(): ArticleRepo&
+    + getAuthors(): AuthorRepo&
+    __
+    **Data Management**
+    + load(): void
+    + save(): void
+    __
+    **High-level Operations**
+    + createArticle(): void
+    + clearAll(): void
+}
+
+' ============= RELATIONSHIPS =============
+RepositoryManager o-- "1" ArticleRepo : manages
+RepositoryManager o-- "1" AuthorRepo : manages
+
+' ============= NOTES =============
+note top of RepositoryManager
+  **Repository Manager (Facade Pattern)**
+
+  Cung cấp điểm truy cập thống nhất:
+  • Quản lý cả Article và Author repos
+  • Tổ chức load/save dữ liệu đồng bộ
+  • API đơn giản cho UI layer
+  • Đảm bảo tính nhất quán dữ liệu
+
+  Pattern: Facade Pattern
+  Giúp giảm coupling giữa UI và Data layer
+end note
+
+note bottom of ArticleRepo
+  Quản lý bài báo khoa học
+  với các loại: SCIE, SCOPUS,
+  CONFERENCE, OTHER, CUSTOM
+end note
+
+note bottom of AuthorRepo
+  Quản lý thông tin tác giả
+  và công bố khoa học
+end note
+
+@enduml

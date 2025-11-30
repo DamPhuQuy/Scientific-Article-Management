@@ -1,0 +1,96 @@
+﻿@startuml Repository Layer - Article Repository
+
+' ============= STYLING =============
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classFontName Arial
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #2C3E50
+skinparam classBorderThickness 1.5
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 2
+skinparam roundcorner 5
+
+' ============= SIMPLIFIED HASHMAP =============
+class "HashMap<K, V>" as HashMap <<template>> {
+    + put(key: K, value: V): void
+    + get(key: K): V&
+    + containsKey(key: K): bool
+    + remove(key: K): bool
+    + forEach(func): void
+}
+
+' ============= SIMPLIFIED ARTICLE =============
+class Article <<abstract>> {
+    # id: string
+    # title: string
+    # year: int
+    # type: Type
+    __
+    + getId(): string
+    + getTitle(): string
+    + getYear(): int
+    + {abstract} clone(): unique_ptr<Article>
+}
+
+' ============= ARTICLE REPO =============
+class ArticleRepo <<repository>> {
+    - articles_container: HashMap<string, shared_ptr<Article>>
+    __
+    **CRUD Operations**
+    + add(a: shared_ptr<Article>): void
+    + remove(articleId: string): void
+    + update(article: shared_ptr<Article>): void
+    __
+    **Data Access**
+    + getContainer(): HashMap&
+    + getCopyAsVector(): vector<shared_ptr<Article>>
+    __
+    **Persistence**
+    + load(): void
+    + save(): void
+    __
+    **Search**
+    + findById(id: string): shared_ptr<Article>
+    + findByTitle(title: string): vector
+    __
+    **Filter**
+    + filterByYear(year: int): vector
+    + filterByCitation(min: int): vector
+    __
+    **Sort**
+    + sortedByCitations(asc: bool): vector
+    + sortedByYear(asc: bool): vector
+    __
+    **Statistics**
+    + count(): unsigned int
+    + countByType(t: Type): int
+    + averageCitations(): double
+}
+
+' ============= RELATIONSHIPS =============
+ArticleRepo *-- "1" HashMap : uses
+ArticleRepo o-- "0..*" Article : manages
+
+' ============= NOTES =============
+note right of ArticleRepo
+  **Article Repository**
+
+  Quản lý tập hợp bài báo với:
+  • CRUD operations
+  • Search & Filter
+  • Sort & Statistics
+  • JSON persistence
+
+  Sử dụng HashMap để lưu trữ
+  cho truy xuất nhanh O(1)
+end note
+
+note bottom of HashMap
+  Key: Article ID (string)
+  Value: shared_ptr<Article>
+end note
+
+@enduml
