@@ -1,0 +1,97 @@
+﻿@startuml Repository Layer - Author Repository
+
+' ============= STYLING =============
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classFontName Arial
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #2C3E50
+skinparam classBorderThickness 1.5
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 2
+skinparam roundcorner 5
+
+' ============= SIMPLIFIED HASHMAP =============
+class "HashMap<K, V>" as HashMap <<template>> {
+    + put(key: K, value: V): void
+    + get(key: K): V&
+    + containsKey(key: K): bool
+    + remove(key: K): bool
+    + forEach(func): void
+}
+
+' ============= SIMPLIFIED AUTHOR =============
+class Author <<entity>> {
+    - id: string
+    - fullName: string
+    - country: string
+    - fieldOfStudy: string
+    - totalPublications: int
+    __
+    + getId(): string
+    + getFullName(): string
+}
+
+' ============= AUTHOR REPO =============
+class AuthorRepo <<repository>> {
+    - authors_container: HashMap<string, Author>
+    __
+    **CRUD Operations**
+    + add(au: Author): void
+    + remove(id: string): void
+    __
+    **Data Access**
+    + getAuthorContainer(): HashMap&
+    + getCopyAsVector(): vector<Author>
+    __
+    **Persistence**
+    + load(): void
+    + save(): void
+    __
+    **Search**
+    + findById(id: string): Author
+    + findByName(name: string): Author
+    __
+    **Filter**
+    + filterByField(field: string): vector
+    + filterByMinPublications(min: int): vector
+    __
+    **Sort**
+    + sortedByName(asc: bool): vector
+    + sortedByPublications(asc: bool): vector
+    __
+    **Update**
+    + updateName(id: string, name: string): void
+    + updateCountry(id: string, country: string): void
+    __
+    **Statistics**
+    + count(): unsigned int
+}
+
+' ============= RELATIONSHIPS =============
+AuthorRepo *-- "1" HashMap : uses
+AuthorRepo o-- "0..*" Author : manages
+
+' ============= NOTES =============
+note right of AuthorRepo
+  **Author Repository**
+
+  Quản lý tập hợp tác giả:
+  • CRUD operations
+  • Search by name/ID
+  • Filter by field/publications
+  • Sort capabilities
+  • JSON persistence
+
+  Sử dụng HashMap để lưu trữ
+  cho truy xuất nhanh O(1)
+end note
+
+note bottom of HashMap
+  Key: Author ID (string)
+  Value: Author object
+end note
+
+@enduml

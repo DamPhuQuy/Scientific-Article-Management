@@ -1,0 +1,336 @@
+﻿@startuml Scientific Article Management System - Class Diagram
+
+' ============= STYLING FOR PROFESSIONAL LOOK =============
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam classFontName Arial
+skinparam packageStyle rectangle
+skinparam packageFontSize 13
+skinparam packageFontStyle bold
+skinparam packageBackgroundColor #E8F4F8
+skinparam packageBorderColor #4A90E2
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #2C3E50
+skinparam classBorderThickness 1.5
+skinparam ArrowColor #34495E
+skinparam ArrowThickness 1.5
+skinparam noteBackgroundColor #FFF9E6
+skinparam noteBorderColor #E6B800
+skinparam stereotypeCBackgroundColor #B8E6B8
+skinparam classHeaderBackgroundColor #ECF0F1
+skinparam roundcorner 5
+skinparam linetype ortho
+
+' ============= ENUMS =============
+enum Type <<enumeration>> {
+    SCIE = 1
+    SCOPUS = 2
+    CONFERENCE = 3
+    OTHER = 4
+    CUSTOM = 5
+}
+
+enum ArticleStatus <<enumeration>> {
+    DRAFT = 11
+    SUBMITTED = 12
+    UNDER_REVIEW = 13
+    REVISIONS = 14
+    ACCEPTED = 15
+    REJECTED = 16
+    PUBLISHED = 17
+}
+
+' ============= MODELS PACKAGE =============
+package "Models Layer" <<Rectangle>> {
+
+    abstract class Article <<abstract>> {
+        # id: string
+        # abstract: string
+        # n_citation: int
+        # title: string
+        # venue: string
+        # year: int
+        # type: Type
+        # status: ArticleStatus
+        # refs: vector<string>
+        # authors: vector<string>
+        __
+        + «constructor» Article(...)
+        + «copy» Article(other: Article)
+        __
+        + getId(): string
+        + getTitle(): string
+        + getVenue(): string
+        + getAbstract(): string
+        + getCitation(): int
+        + getYear(): int
+        + getType(): Type
+        + getStatus(): ArticleStatus
+        + getReferences(): vector<string>
+        + getAuthors(): vector<string>
+        __
+        + setTitle(t: string): void
+        + setVenue(v: string): void
+        + setCitation(c: int): void
+        + setYear(y: int): void
+        __
+        + {abstract} clone(): unique_ptr<Article>
+        + {abstract} to_json(): json
+    }
+
+    class SCIE_Article <<SCIE>> {
+        - impactFactor: double
+        - qRank: int
+        __
+        + getImpactFactor(): double
+        + setImpactFactor(value: double): void
+        + getQRank(): int
+        + setQRank(q: int): void
+        __
+        + clone(): unique_ptr<Article>
+        + to_json(): json
+    }
+
+    class SCOPUS_Article <<SCOPUS>> {
+        - sjr: double
+        - hIndex: int
+        __
+        + getSJR(): double
+        + setSJR(s: double): void
+        + getHIndex(): int
+        + setHIndex(h: int): void
+        __
+        + clone(): unique_ptr<Article>
+        + to_json(): json
+    }
+
+    class CONFERENCE_Article <<Conference>> {
+        - conferenceRank: string
+        - location: string
+        - acceptanceRate: double
+        __
+        + getRank(): string
+        + setRank(r: string): void
+        + getLocation(): string
+        + setLocation(l: string): void
+        + getAcceptanceRate(): double
+        __
+        + clone(): unique_ptr<Article>
+        + to_json(): json
+    }
+
+    class OTHER_Article <<Other>> {
+        __
+        + clone(): unique_ptr<Article>
+        + to_json(): json
+    }
+
+    class CUSTOM_Article <<Custom>> {
+        - customTypeName: string
+        __
+        + getCustomTypeName(): string
+        + setCustomTypeName(name: string): void
+        __
+        + clone(): unique_ptr<Article>
+        + to_json(): json
+    }
+
+    class Author <<entity>> {
+        - id: string
+        - fullName: string
+        - country: string
+        - fieldOfStudy: string
+        - totalPublications: int
+        __
+        + getId(): string
+        + getFullName(): string
+        + getCountry(): string
+        + getFieldOfStudy(): string
+        + getTotalPublications(): int
+        __
+        + setFullName(name: string): void
+        + setCountry(country: string): void
+        + setFieldOfStudy(field: string): void
+        __
+        + to_json(): json
+        + {static} from_json(j: json): Author
+    }
+}
+
+' ============= DATA STRUCTURES =============
+package "Data Structures" <<Rectangle>> {
+
+    class "HashMap<K, V>" as HashMap <<template>> {
+        - containers: vector<unique_ptr<Node>>
+        - numElements: unsigned int
+        - capacity: unsigned int
+        - {static} MAX_LOAD_FACTOR = 0.75
+        __
+        - hashKey(key: K): unsigned int
+        - rehash(): void
+        __
+        + HashMap(initCap: unsigned int = 10)
+        __
+        + size(): unsigned int
+        + isEmpty(): bool
+        + clear(): void
+        __
+        + put(key: K, value: V): void
+        + get(key: K): V&
+        + containsKey(key: K): bool
+        + remove(key: K): bool
+        __
+        + keys(): vector<K>
+        + values(): vector<V>
+        + forEach(func): void
+    }
+
+    class Node <<inner>> {
+        + key: K
+        + value: V
+        + next: unique_ptr<Node>
+        __
+        + Node(k: K, v: V)
+    }
+
+    HashMap +-- Node : contains
+}
+
+' ============= REPOSITORY LAYER =============
+package "Repository Layer" <<Rectangle>> {
+
+    class ArticleRepo <<repository>> {
+        - articles_container: HashMap<string, shared_ptr<Article>>
+        __
+        + add(a: shared_ptr<Article>): void
+        + remove(articleId: string): void
+        + update(article: shared_ptr<Article>): void
+        __
+        + getContainer(): HashMap&
+        + getCopyAsVector(): vector<shared_ptr<Article>>
+        __
+        + load(): void
+        + save(): void
+        __
+        + findById(id: string): shared_ptr<Article>
+        + findByTitle(title: string): vector
+        __
+        + filterByYear(year: int): vector
+        + filterByCitation(min: int): vector
+        __
+        + sortedByCitations(asc: bool): vector
+        + sortedByYear(asc: bool): vector
+        __
+        + count(): unsigned int
+        + countByType(t: Type): int
+        + averageCitations(): double
+    }
+
+    class AuthorRepo <<repository>> {
+        - authors_container: HashMap<string, Author>
+        __
+        + add(au: Author): void
+        + remove(id: string): void
+        __
+        + getAuthorContainer(): HashMap&
+        + getCopyAsVector(): vector<Author>
+        __
+        + load(): void
+        + save(): void
+        __
+        + findById(id: string): Author
+        + findByName(name: string): Author
+        __
+        + filterByField(field: string): vector
+        + filterByMinPublications(min: int): vector
+        __
+        + sortedByName(asc: bool): vector
+        + sortedByPublications(asc: bool): vector
+        __
+        + updateName(id: string, name: string): void
+        + updateCountry(id: string, country: string): void
+        __
+        + count(): unsigned int
+    }
+
+    class RepositoryManager <<manager>> {
+        - a_repo: ArticleRepo&
+        - au_repo: AuthorRepo&
+        __
+        + RepositoryManager(a_repo&, au_repo&)
+        __
+        + getArticles(): ArticleRepo&
+        + getAuthors(): AuthorRepo&
+        __
+        + load(): void
+        + save(): void
+        __
+        + createArticle(): void
+        + clearAll(): void
+    }
+}
+
+' ============= RELATIONSHIPS =============
+
+' Inheritance (Generalization)
+Article <|-- SCIE_Article
+Article <|-- SCOPUS_Article
+Article <|-- CONFERENCE_Article
+Article <|-- OTHER_Article
+Article <|-- CUSTOM_Article
+
+' Enums usage
+Article --> Type : <<uses>>
+Article --> ArticleStatus : <<uses>>
+
+' Repository uses HashMap
+ArticleRepo *-- "1" HashMap : contains
+AuthorRepo *-- "1" HashMap : contains
+
+' Repository manages models
+ArticleRepo o-- "0..*" Article : manages
+AuthorRepo o-- "0..*" Author : manages
+
+' RepositoryManager aggregates repos
+RepositoryManager o-- "1" ArticleRepo : manages
+RepositoryManager o-- "1" AuthorRepo : manages
+
+' Article references Authors by ID
+Article ..> Author : <<references>>
+
+' ============= NOTES =============
+note right of HashMap
+  **Thư viện tự thiết kế**
+  • Chaining để xử lý collision
+  • Auto-rehash khi load > 0.75
+  • Template generic cho K-V pairs
+end note
+
+note top of Article
+  **Abstract Base Class**
+  Clone pattern cho polymorphic copy
+  JSON serialization cho persistence
+end note
+
+note bottom of RepositoryManager
+  **Facade Pattern**
+  Quản lý tổng thể các Repository
+  API thống nhất cho data access
+end note
+
+legend right
+  |= **Ký hiệu** |= **Ý nghĩa** |
+  | <<abstract>> | Lớp trừu tượng |
+  | <<entity>> | Thực thể dữ liệu |
+  | <<repository>> | Lớp Repository |
+  | <<manager>> | Lớp quản lý |
+  | <<template>> | Template class |
+  | ──▷ | Kế thừa (Inheritance) |
+  | ──◇ | Aggregation |
+  | ──◆ | Composition |
+  | ╌╌> | Dependency |
+endlegend
+
+@enduml

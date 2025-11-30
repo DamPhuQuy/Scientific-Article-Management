@@ -1,0 +1,87 @@
+﻿@startuml Complete System Overview
+
+' ============= STYLING =============
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam packageFontSize 13
+skinparam packageStyle rectangle
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #2C3E50
+skinparam packageBackgroundColor #E8F4F8
+skinparam packageBorderColor #4A90E2
+skinparam ArrowColor #34495E
+skinparam roundcorner 5
+
+' ============= PACKAGES =============
+package "Models Layer" {
+    abstract class Article <<abstract>>
+    class SCIE_Article
+    class SCOPUS_Article
+    class CONFERENCE_Article
+    class OTHER_Article
+    class CUSTOM_Article
+    class Author <<entity>>
+}
+
+package "🔧 Data Structures" {
+    class "HashMap<K, V>" as HashMap <<template>>
+}
+
+package "💾 Repository Layer" {
+    class ArticleRepo <<repository>>
+    class AuthorRepo <<repository>>
+    class RepositoryManager <<manager>>
+}
+
+' ============= RELATIONSHIPS =============
+
+' Inheritance
+Article <|-- SCIE_Article
+Article <|-- SCOPUS_Article
+Article <|-- CONFERENCE_Article
+Article <|-- OTHER_Article
+Article <|-- CUSTOM_Article
+
+' Repository uses HashMap
+ArticleRepo *-- HashMap : uses
+AuthorRepo *-- HashMap : uses
+
+' Repository manages models
+ArticleRepo o-- Article : manages
+AuthorRepo o-- Author : manages
+
+' Manager aggregates repositories
+RepositoryManager o-- ArticleRepo : manages
+RepositoryManager o-- AuthorRepo : manages
+
+' Association
+Article ..> Author : references
+
+' ============= LEGEND =============
+legend right
+  **Kiến trúc hệ thống**
+
+  |= Layer |= Trách nhiệm |
+  | Models | Domain entities |
+  | Data Structures | HashMap tự thiết kế |
+  | Repository | Data access & persistence |
+
+  |= Pattern |= Mục đích |
+  | Repository Pattern | Tách logic data access |
+  | Facade Pattern | API thống nhất |
+  | Template Method | Polymorphism |
+endlegend
+
+note as N1
+  **Luồng dữ liệu:**
+  UI → RepositoryManager → Repos → HashMap → Models
+
+  **Lợi ích:**
+  • Tách biệt concerns
+  • Dễ test và maintain
+  • Extensible architecture
+end note
+
+@enduml
