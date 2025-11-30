@@ -475,5 +475,14 @@
         "phone": "63624182804",
         "role": "User",
         "username": "acn"
+    },
+    {
+        "email": "phuquydam06@gmail.com ",
+        "fullname": "Đàm Phú Quý",
+        "keyManipulation": "ua6g5s",
+        "password": "pass1234",
+        "phone": "0356780244",
+        "role": "User",
+        "username": "phuquytest"
     }
 ]

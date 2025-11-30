@@ -91,6 +91,37 @@ void ArticleForm::loadArticlesToView() {
 
         item->setData(QString::fromStdString(article->getId()), Qt::UserRole);
 
+        const int year = article->getYear();
+        QString typeStr = QString::fromStdString(article->typeToString(article->getType()));
+        if (article->getType() == Type::CUSTOM) {
+            if (auto *custom = dynamic_cast<CUSTOM_Article*>(article.get())) {
+                typeStr = QString::fromStdString(custom->getCustomTypeName());
+            }
+        }
+
+        QString abstract = QString::fromStdString(article->getAbstract());
+        if (abstract.length() > 100) {
+            abstract = abstract.left(100) + "...";
+        }
+
+        item->setText(QString("%1 | Year: %2 | Type: %3")
+                  .arg(QString::fromStdString(article->getTitle()))
+                  .arg(year)
+                  .arg(typeStr));
+
+        QFont font = item->font();
+        font.setPointSize(font.pointSize() - 1);
+        item->setFont(font);
+        QColor grayColor(128, 128, 128);
+        item->setForeground(QBrush(grayColor));
+
+        item->setText(item->text() + "\n" + abstract);
+
+        item->setToolTip(QString("Title: %1\nYear: %2\nType: %3")
+                             .arg(QString::fromStdString(article->getTitle()))
+                             .arg(year)
+                             .arg(typeStr));
+
         model->appendRow(item);
     }
 }

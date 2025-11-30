@@ -2,6 +2,7 @@
 #include "ui_signupform.h"
 #include "src/utils/usermanager.h"
 #include "src/components/dialogs/msg/inform.h"
+#include <QRegularExpression>
 
 SignUpForm::SignUpForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -63,6 +64,50 @@ void SignUpForm::on_signUpButton_clicked()
     QString email = ui->emailEdit->text();
     QString phone = ui->phoneEdit->text();
 
+    // Extra input validation
+    if (fullname.trimmed().isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập họ tên!", "Lỗi đăng kí");
+        return;
+    }
+
+    if (email.trimmed().isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập email!", "Lỗi đăng kí");
+        return;
+    } else {
+        QRegularExpression emailRegex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
+        if (!emailRegex.match(email).hasMatch()) {
+            Inform::showMessage(this, MessageType::Warning, "Email không hợp lệ!", "Lỗi đăng kí");
+            return;
+        }
+    }
+
+    if (phone.trimmed().isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập số điện thoại!", "Lỗi đăng kí");
+        return;
+    } else {
+        QRegularExpression phoneRegex(R"(^\+?\d{9,15}$)");
+        if (!phoneRegex.match(phone).hasMatch()) {
+            Inform::showMessage(this, MessageType::Warning, "Số điện thoại không hợp lệ!", "Lỗi đăng kí");
+            return;
+        }
+    }
+
+    if (username.contains(' ') || username.length() < 3) {
+        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập phải >= 3 ký tự và không chứa khoảng trắng!", "Lỗi đăng kí");
+        return;
+    }
+
+    if (password.length() < 6) {
+        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải >= 6 ký tự!", "Lỗi đăng kí");
+        return;
+    } else {
+        QRegularExpression pwRegex(R"((?=.*[A-Za-z])(?=.*\d).{6,})");
+        if (!pwRegex.match(password).hasMatch()) {
+            Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải chứa cả chữ và số!", "Lỗi đăng kí");
+            return;
+        }
+    }
+
     if (username.isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập!", "Lỗi đăng kí");
         return;
@@ -84,6 +129,9 @@ void SignUpForm::on_signUpButton_clicked()
     }
 
     UserManager::registerUser(username, password, fullname, email, phone);
+
+    Inform::showMessage(this, MessageType::Info, "Đăng kí thành công! Vui lòng đăng nhập.", "Thành công");
+
     emit signupSuccess();
 }
 
