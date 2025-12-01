@@ -12,6 +12,8 @@ ArticleInputDialog::ArticleInputDialog(RepositoryManager& repo, QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->username = "";
+
     // Add CUSTOM type
     ui->inputType->addItem("CUSTOM");
 
@@ -47,10 +49,10 @@ void ArticleInputDialog::on_btnSave_clicked()
     QString title = ui->inputTitle->text();
     QString abstract = ui->inputAbstract->toPlainText();
     QString venue = ui->inputVenue->text();
-    
+
     // inputYear is a QComboBox, so we get the text and convert to int
     int year = ui->inputYear->currentText().toInt();
-    
+
     int n_citation = ui->inputCitations->value();
 
     ArticleStatus status;
@@ -169,16 +171,20 @@ void ArticleInputDialog::on_inputType_currentIndexChanged(int index)
     ui->stackType->setCurrentIndex(index);
 }
 
+void ArticleInputDialog::setCurrentUser(const QString& username)
+{
+    this->username = username;
+}
+
 void ArticleInputDialog::on_AuthorBtn_clicked()
 {
     ListOfAuthorsDialog authorDialog(repo, this);
+    authorDialog.setCurrentUser(username);
 
     if (authorDialog.exec() == QDialog::Accepted) {
 
-        // 3. Lấy dữ liệu về khi người dùng bấm "Close" hoặc "OK" (Accepted)
         m_selectedAuthorIds = authorDialog.getSelectedAuthorIds();
 
-        // 4. Cập nhật giao diện để người dùng biết đã chọn bao nhiêu người
         if (m_selectedAuthorIds.empty()) {
             ui->AuthorBtn->setText("Chọn tác giả (Chưa chọn ai)");
         } else {

@@ -477,21 +477,21 @@
         "username": "acn"
     },
     {
-        "email": "phuquydam06@gmail.com ",
-        "fullname": "Đàm Phú Quý",
-        "keyManipulation": "ua6g5s",
-        "password": "pass1234",
-        "phone": "0356780244",
-        "role": "User",
-        "username": "phuquytest"
-    },
-    {
         "email": "phuquydam06@gmail.com",
         "fullname": "Đàm Phú Quý",
-        "keyManipulation": "4i2MyI",
+        "keyManipulation": "Au0mtw",
         "password": "pass1234",
-        "phone": "0356780240",
+        "phone": "0356780243",
+        "role": "User",
+        "username": "phuquyuser"
+    },
+    {
+        "email": "phuquydam1605@gmail.com",
+        "fullname": "Đàm Phú Quý",
+        "keyManipulation": "ybxm9l",
+        "password": "pass1234",
+        "phone": "0356780233",
         "role": "Admin",
-        "username": "phuquytest2"
+        "username": "phuquyadmin"
     }
 ]

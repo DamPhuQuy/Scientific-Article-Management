@@ -19,6 +19,8 @@ public:
 
     vector<string> getSelectedAuthorIds() const;
     void setCheckedAuthorIds(const vector<Author> &authors);
+
+    void setCurrentUser(const QString& username);
 signals:
     void requestBack();
 
@@ -34,11 +36,14 @@ private slots:
     void on_comboCountry_currentTextChanged(const QString &text);
     void on_comboField_currentTextChanged(const QString &text);
     void on_btnApplyFilter_clicked();
+    void on_btnNewAuthor_clicked();
 
 private:
     Ui::ListOfAuthorsDialog *ui;
 
     RepositoryManager& repo;
+
+    QString username;
 
     vector<Author> authorList;
     unordered_set<string> preselectedIds;

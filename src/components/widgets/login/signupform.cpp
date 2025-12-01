@@ -27,8 +27,8 @@ SignUpForm::SignUpForm(RepositoryManager& repo, QWidget *parent)
         ui->confirmPassEdit->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
     });
 
-    QPixmap pix(":/icons/public/resources/view.png");
-    qDebug() << "Is pixmap null?" << pix.isNull();
+    // QPixmap pix(":/icons/public/resources/view.png");
+    // qDebug() << "Is pixmap null?" << pix.isNull();
     ui->showPasswordCheckBox->setStyleSheet(
     R"(
     QCheckBox::indicator {
@@ -60,7 +60,7 @@ void SignUpForm::on_loginLabel_linkActivated()
 
 void SignUpForm::on_signUpButton_clicked()
 {
-    // Reset tất cả style trước khi validate
+    // reset styles
     ui->usernameEdit->setStyleSheet("");
     ui->passwordEdit->setStyleSheet("");
     ui->confirmPassEdit->setStyleSheet("");
@@ -194,7 +194,7 @@ void SignUpForm::on_signUpButton_clicked()
     // get role
     QString role = ui->userRadioButton->isChecked() ? "User" : "Admin";
 
-    // role is Admin, ask for admin code
+    // admin code when role is admin
     if (role == "Admin") {
         bool ok;
         QString adminCode = QInputDialog::getText(this,
