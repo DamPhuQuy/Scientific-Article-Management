@@ -1,9 +1,11 @@
 #include "signupform.h"
 #include "ui_signupform.h"
 #include "src/utils/usermanager.h"
+#include "src/utils/constants.h"
 #include "src/components/dialogs/msg/inform.h"
 #include <QRegularExpression>
 #include <QTimer>
+#include <QInputDialog>
 
 SignUpForm::SignUpForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -189,7 +191,31 @@ void SignUpForm::on_signUpButton_clicked()
         return;
     }
 
-    UserManager::registerUser(username, password, fullname, email, phone);
+    // get role
+    QString role = ui->userRadioButton->isChecked() ? "User" : "Admin";
+
+    // role is Admin, ask for admin code
+    if (role == "Admin") {
+        bool ok;
+        QString adminCode = QInputDialog::getText(this,
+                                                   "Xác thực Admin",
+                                                   "Nhập mã admin để tạo tài khoản Admin:",
+                                                   QLineEdit::Password,
+                                                   QString(),
+                                                   &ok);
+
+        if (!ok) {
+            // cancel
+            return;
+        }
+
+        if (adminCode.trimmed() != QString::fromStdString(ADMIN_CODE)) {
+            Inform::showMessage(this, MessageType::Warning, "Mã admin không đúng!", "Lỗi xác thực");
+            return;
+        }
+    }
+
+    UserManager::registerUser(username, password, fullname, email, phone, role);
 
     Inform::showMessage(this, MessageType::Info, "Đăng kí thành công! Vui lòng đăng nhập.", "Thành công");
 

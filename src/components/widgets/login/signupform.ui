@@ -270,6 +270,93 @@
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="roleLabel">
+            <property name="text">
+             <string>Loại tài khoản</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="roleLayout">
+            <item>
+             <widget class="QRadioButton" name="userRadioButton">
+              <property name="text">
+               <string>User</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                QRadioButton {
+                 color: #444;
+                 font-size: 14px;
+                 spacing: 8px;
+                }
+                QRadioButton::indicator {
+                 width: 18px;
+                 height: 18px;
+                }
+                QRadioButton::indicator:checked {
+                 background-color: #20B2AA;
+                 border: 2px solid #20B2AA;
+                 border-radius: 9px;
+                }
+                QRadioButton::indicator:unchecked {
+                 background-color: #ffffff;
+                 border: 2px solid #cccccc;
+                 border-radius: 9px;
+                }
+               </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="adminRadioButton">
+              <property name="text">
+               <string>Admin</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+                QRadioButton {
+                 color: #444;
+                 font-size: 14px;
+                 spacing: 8px;
+                }
+                QRadioButton::indicator {
+                 width: 18px;
+                 height: 18px;
+                }
+                QRadioButton::indicator:checked {
+                 background-color: #20B2AA;
+                 border: 2px solid #20B2AA;
+                 border-radius: 9px;
+                }
+                QRadioButton::indicator:unchecked {
+                 background-color: #ffffff;
+                 border: 2px solid #cccccc;
+                 border-radius: 9px;
+                }
+               </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="roleHorizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
            <widget class="QLabel" name="phoneLabel">
             <property name="text">
              <string>Số điện thoại</string>

@@ -45,7 +45,7 @@ QLineEdit, QComboBox {
     border: 1px solid #cccccc;
     border-radius: 6px;
     padding: 8px;
-    padding-right: 30px; 
+    padding-right: 30px;
     color: #333333;
 }
 QLineEdit:focus, QComboBox:focus {
@@ -85,6 +85,11 @@ QPushButton#userLb {
     border: 1px solid #b2dfdb;
     text-align: left;
     padding-left: 15px;
+}
+QPushButton#userLb:hover {
+    background-color: #b2dfdb;
+    border: 2px solid #20B2AA;
+    color: #004d40;
 }
 /* Nút Hành động chính (Xanh Ngọc) */
 QPushButton#newArticleBtn, QPushButton#pushButton {
@@ -218,6 +223,9 @@ QListView::item:selected {
             <width>0</width>
             <height>40</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="text">
            <string>Current User</string>
@@ -359,11 +367,11 @@ QListView::item:selected {
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
-          <property name="text">
-           <string>Remove Selected</string>
-          </property>
           <property name="styleSheet">
            <string notr="true">background-color: #e74c3c; border: 2px solid #e74c3c; color: white;</string>
+          </property>
+          <property name="text">
+           <string>Remove Selected</string>
           </property>
          </widget>
         </item>
@@ -438,7 +446,7 @@ QListView::item:selected {
           <property name="font">
            <font>
             <family>Segoe UI</family>
-            <pointsize>11</pointsize>
+            <pointsize>-1</pointsize>
            </font>
           </property>
           <property name="alternatingRowColors">

@@ -278,6 +278,7 @@ void ArticleForm::on_userLb_clicked()
         UserManager::getFullName(username),
         UserManager::getEmail(username),
         UserManager::getPhone(username),
+        UserManager::getRole(username),
         UserManager::getKeyManipulation(username)
     );
 

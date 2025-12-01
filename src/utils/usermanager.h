@@ -69,6 +69,10 @@ public:
     static void setPhone(const std::string& username, const std::string& phone);
     static void setPhone(const QString& username, const QString& phone);
 
+    // Role
+    static std::string getRole(const std::string& username);
+    static QString getRole(const QString& username);
+
     // Key Manipulation
     static std::string getKeyManipulation(const std::string& username);
     static QString getKeyManipulation(const QString& username);

@@ -225,6 +225,19 @@ QString UserManager::getPhone(const QString& username) {
     return QString::fromStdString(getPhone(username.toStdString()));
 }
 
+// role
+std::string UserManager::getRole(const std::string& username) {
+    if (usernameToIndex.containsKey(username)) {
+        size_t index = usernameToIndex.get(username);
+        return userList[index].role;
+    }
+    return "User";
+}
+
+QString UserManager::getRole(const QString& username) {
+    return QString::fromStdString(getRole(username.toStdString()));
+}
+
 // keyManipulation
 std::string UserManager::getKeyManipulation(const std::string& username) {
     if (usernameToIndex.containsKey(username)) {
