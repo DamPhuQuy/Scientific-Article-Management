@@ -55,7 +55,7 @@ void LoginForm::on_signInButton_clicked()
     QString password = ui->passwordEdit->text();
 
     if (username.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập!", "Lỗi đăng nhập");
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập, email hoặc số điện thoại!", "Lỗi đăng nhập");
         ui->usernameEdit->setFocus();
         return;
     }
@@ -84,12 +84,11 @@ void LoginForm::on_signInButton_clicked()
 
         Inform::showMessage(this, MessageType::Info, "Đăng nhập thàng công!", "Thành công");
     } else {
-        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập hoặc mật khẩu không đúng!", "Đăng nhập thất bại");
+        Inform::showMessage(this, MessageType::Warning, "Thông tin đăng nhập hoặc mật khẩu không đúng!", "Đăng nhập thất bại");
 
         ui->usernameEdit->clear();
         ui->passwordEdit->clear();
         ui->usernameEdit->setFocus();
-        ui->passwordEdit->setFocus();
     }
 }
 

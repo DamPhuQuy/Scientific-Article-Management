@@ -3,6 +3,7 @@
 #include "src/utils/usermanager.h"
 #include "src/components/dialogs/msg/inform.h"
 #include <QRegularExpression>
+#include <QTimer>
 
 SignUpForm::SignUpForm(RepositoryManager& repo, QWidget *parent)
     : QWidget(parent)
@@ -57,74 +58,134 @@ void SignUpForm::on_loginLabel_linkActivated()
 
 void SignUpForm::on_signUpButton_clicked()
 {
+    // Reset tất cả style trước khi validate
+    ui->usernameEdit->setStyleSheet("");
+    ui->passwordEdit->setStyleSheet("");
+    ui->confirmPassEdit->setStyleSheet("");
+    ui->fullnameEdit->setStyleSheet("");
+    ui->emailEdit->setStyleSheet("");
+    ui->phoneEdit->setStyleSheet("");
+
     QString username = ui->usernameEdit->text().trimmed();
     QString password = ui->passwordEdit->text();
     QString confirmPass = ui->confirmPassEdit->text();
-    QString fullname = ui->fullnameEdit->text();
-    QString email = ui->emailEdit->text();
-    QString phone = ui->phoneEdit->text();
+    QString fullname = ui->fullnameEdit->text().trimmed();
+    QString email = ui->emailEdit->text().trimmed();
+    QString phone = ui->phoneEdit->text().trimmed();
 
-    // Extra input validation
-    if (fullname.trimmed().isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập họ tên!", "Lỗi đăng kí");
-        return;
-    }
-
-    if (email.trimmed().isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập email!", "Lỗi đăng kí");
-        return;
-    } else {
-        QRegularExpression emailRegex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
-        if (!emailRegex.match(email).hasMatch()) {
-            Inform::showMessage(this, MessageType::Warning, "Email không hợp lệ!", "Lỗi đăng kí");
-            return;
-        }
-    }
-
-    if (phone.trimmed().isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập số điện thoại!", "Lỗi đăng kí");
-        return;
-    } else {
-        QRegularExpression phoneRegex(R"(^\+?\d{9,15}$)");
-        if (!phoneRegex.match(phone).hasMatch()) {
-            Inform::showMessage(this, MessageType::Warning, "Số điện thoại không hợp lệ!", "Lỗi đăng kí");
-            return;
-        }
-    }
-
-    if (username.contains(' ') || username.length() < 3) {
-        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập phải >= 3 ký tự và không chứa khoảng trắng!", "Lỗi đăng kí");
-        return;
-    }
-
-    if (password.length() < 6) {
-        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải >= 6 ký tự!", "Lỗi đăng kí");
-        return;
-    } else {
-        QRegularExpression pwRegex(R"((?=.*[A-Za-z])(?=.*\d).{6,})");
-        if (!pwRegex.match(password).hasMatch()) {
-            Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải chứa cả chữ và số!", "Lỗi đăng kí");
-            return;
-        }
-    }
-
+    // empty fields validation
     if (username.isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập!", "Lỗi đăng kí");
+        ui->usernameEdit->setFocus();
         return;
     }
 
     if (password.isEmpty()) {
         Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập mật khẩu!", "Lỗi đăng kí");
+        ui->passwordEdit->setFocus();
         return;
     }
 
-    if (UserManager::userExists(username)) {
-        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập đã tồn tại!", "Lỗi đăng kí");
+    if (confirmPass.isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng xác nhận mật khẩu!", "Lỗi đăng kí");
+        ui->confirmPassEdit->setFocus();
+        return;
+    }
+
+    if (fullname.isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập họ tên!", "Lỗi đăng kí");
+        ui->fullnameEdit->setFocus();
+        return;
+    }
+
+    if (email.isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập email!", "Lỗi đăng kí");
+        ui->emailEdit->setFocus();
+        return;
+    }
+
+    if (phone.isEmpty()) {
+        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập số điện thoại!", "Lỗi đăng kí");
+        ui->phoneEdit->setFocus();
+        return;
+    }
+
+    // format validation
+    if (username.contains(' ') || username.length() < 3) {
+        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập phải >= 3 ký tự và không chứa khoảng trắng!", "Lỗi đăng kí");
+        ui->usernameEdit->setFocus();
+        ui->usernameEdit->selectAll();
+        return;
+    }
+
+    if (password.length() < 6) {
+        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải >= 6 ký tự!", "Lỗi đăng kí");
+        ui->passwordEdit->setFocus();
+        ui->passwordEdit->selectAll();
+        return;
+    }
+
+    QRegularExpression pwRegex(R"((?=.*[A-Za-z])(?=.*\d).{6,})");
+    if (!pwRegex.match(password).hasMatch()) {
+        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải chứa cả chữ và số!", "Lỗi đăng kí");
+        ui->passwordEdit->setFocus();
+        ui->passwordEdit->selectAll();
         return;
     }
 
     if (password != confirmPass) {
-        Inform::showMessage(this, MessageType::Warning, "Mật khẩu không trùng!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Mật khẩu không trùng khớp!", "Lỗi đăng kí");
+        ui->confirmPassEdit->setFocus();
+        ui->confirmPassEdit->selectAll();
+        return;
+    }
+
+    QRegularExpression emailRegex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
+    if (!emailRegex.match(email).hasMatch()) {
+        Inform::showMessage(this, MessageType::Warning, "Email không hợp lệ!", "Lỗi đăng kí");
+        ui->emailEdit->setFocus();
+        ui->emailEdit->selectAll();
+        return;
+    }
+
+    QRegularExpression phoneRegex(R"(^\+?\d{9,15}$)");
+    if (!phoneRegex.match(phone).hasMatch()) {
+        Inform::showMessage(this, MessageType::Warning, "Số điện thoại không hợp lệ (9-15 chữ số)!", "Lỗi đăng kí");
+        ui->phoneEdit->setFocus();
+        ui->phoneEdit->selectAll();
+        return;
+    }
+
+    // duplicates validation
+    QStringList duplicateErrors;
+    QList<QLineEdit*> errorFields;
+
+    if (UserManager::userExists(username)) {
+        duplicateErrors << "• Tên đăng nhập đã tồn tại";
+        errorFields << ui->usernameEdit;
+    }
+
+    if (UserManager::emailExists(email)) {
+        duplicateErrors << "• Email đã được sử dụng";
+        errorFields << ui->emailEdit;
+    }
+
+    if (UserManager::phoneExists(phone)) {
+        duplicateErrors << "• Số điện thoại đã được sử dụng";
+        errorFields << ui->phoneEdit;
+    }
+
+    if (!duplicateErrors.isEmpty()) {
+        QString errorMessage = "Thông tin bị trùng lặp:\n\n" + duplicateErrors.join("\n");
+
+        // highlight
+        for (QLineEdit* field : errorFields) {
+            field->setStyleSheet("QLineEdit { border: 2px solid #ff6b6b; background-color: #ffe0e0; }");
+            field->selectAll();
+        }
+
+        Inform::showMessage(this, MessageType::Warning, errorMessage, "Lỗi đăng kí");
+
         return;
     }
 

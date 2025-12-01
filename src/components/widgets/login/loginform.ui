@@ -218,14 +218,14 @@
         <item>
          <widget class="QLabel" name="usernameLabel">
           <property name="text">
-           <string>Tên đăng nhập</string>
+           <string>Tên đăng nhập / Email / SĐT</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="usernameEdit">
           <property name="placeholderText">
-           <string>Nhập tên đăng nhập...</string>
+           <string>Nhập username, email hoặc số điện thoại...</string>
           </property>
          </widget>
         </item>
