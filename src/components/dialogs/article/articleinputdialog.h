@@ -18,6 +18,8 @@ public:
     explicit ArticleInputDialog(RepositoryManager& repo, QWidget *parent = nullptr);
     ~ArticleInputDialog();
 
+    void setCurrentUser(const QString& username);
+
 private slots:
     void on_btnSave_clicked();
 
@@ -29,6 +31,8 @@ private slots:
 
 private:
     Ui::ArticleInputDialog *ui;
+
+    QString username;
 
     RepositoryManager& repo;
     std::vector<std::string> m_selectedAuthorIds;

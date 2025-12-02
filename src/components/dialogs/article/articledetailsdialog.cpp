@@ -56,6 +56,12 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
     ui->lblCitation->setText(QString::number(currentArticle->getCitation()) + " trích dẫn");
     ui->txtAbstract->setText(QString::fromStdString(currentArticle->getAbstract()));
 
+    // Hide update and remove buttons if user is not Admin
+    QString userRole = UserManager::getRole(QString::fromStdString(currentUsername));
+    bool isAdmin = (userRole == "Admin");
+    ui->btnUpdate->setVisible(isAdmin);
+    ui->removeBtn->setVisible(isAdmin);
+
     ui->listAuthors->clear();
     for (const auto& authorId : currentArticle->getAuthors()) {
         Author author = repo.getAuthors().findById(authorId);

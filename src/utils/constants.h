@@ -3,6 +3,7 @@
 #include <string>
 
 const std::string DATA_FOLDER = "../data";
+const std::string ADMIN_CODE = "admin123";
 
 class Constants {
 public:

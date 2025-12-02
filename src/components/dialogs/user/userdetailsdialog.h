@@ -16,7 +16,7 @@ public:
     explicit UserDetailsDialog(RepositoryManager& repo, QWidget *parent = nullptr);
     ~UserDetailsDialog();
 
-    void setUserInfo(QString username, QString fullname, QString email, QString phoneNumber, QString key);
+    void setUserInfo(QString username, QString fullname, QString email, QString phoneNumber, QString role, QString key);
 
 private slots:
     void on_okBtn_clicked();

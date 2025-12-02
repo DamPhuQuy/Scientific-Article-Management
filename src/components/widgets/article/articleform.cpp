@@ -48,6 +48,7 @@ void ArticleForm::setCurrentUser(const std::pair<QString, QString>& user) {
 void ArticleForm::on_newArticleBtn_clicked()
 {
     ArticleInputDialog inputDialog(repo, this);
+    inputDialog.setCurrentUser(currentUser.first);
 
     if (inputDialog.exec() == QDialog::Accepted) {
         articleList.clear();
@@ -104,10 +105,14 @@ void ArticleForm::loadArticlesToView() {
             abstract = abstract.left(100) + "...";
         }
 
+        QFont boldFont = item->font();
+        boldFont.setBold(true);
+        item->setFont(boldFont);
+
         item->setText(QString("%1 | Year: %2 | Type: %3")
-                  .arg(QString::fromStdString(article->getTitle()))
-                  .arg(year)
-                  .arg(typeStr));
+              .arg(QString::fromStdString(article->getTitle()))
+              .arg(year)
+              .arg(typeStr));
 
         QFont font = item->font();
         font.setPointSize(font.pointSize() - 1);
@@ -179,7 +184,7 @@ void ArticleForm::on_typeFilterComboBox_currentTextChanged(const QString &arg1)
     applyAllFilters();
 }
 
-bool ArticleForm::passesAllFilters(int row) const { // check with each row (each elements)
+bool ArticleForm::passesAllFilters(int row) const { // check with each elements
     // fetch item
     QStandardItem *item = model->item(row, 0);
     if (item == nullptr) {
@@ -278,6 +283,7 @@ void ArticleForm::on_userLb_clicked()
         UserManager::getFullName(username),
         UserManager::getEmail(username),
         UserManager::getPhone(username),
+        UserManager::getRole(username),
         UserManager::getKeyManipulation(username)
     );
 

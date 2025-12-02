@@ -107,10 +107,23 @@ bool UserManager::updateUserInfo(const QString& username, const QString& fullnam
     return updateUserInfo(username.toStdString(), fullname.toStdString(), email.toStdString(), phone.toStdString());
 }
 
-bool UserManager::login(const string& username, const string& password) {
+bool UserManager::login(const string& identifier, const string& password) {
     loadFromFile();
 
-    size_t index = usernameToIndex.getOrDefault(username, SIZE_MAX);
+    // find username first
+    size_t index = usernameToIndex.getOrDefault(identifier, SIZE_MAX);
+
+    // find email or phone if username not found
+    if (index == SIZE_MAX) {
+        for (size_t i = 0; i < userList.size(); i++) {
+            if (userList[i].email == identifier || userList[i].phone == identifier) {
+                index = i;
+                break;
+            }
+        }
+    }
+
+    // still not found
     if (index == SIZE_MAX) return false;
 
     return userList[index].password == password;
@@ -127,6 +140,34 @@ bool UserManager::userExists(const string& username) {
 
 bool UserManager::userExists(const QString& u) { // overload
     return userExists(u.toStdString());
+}
+
+bool UserManager::emailExists(const std::string& email) {
+    loadFromFile();
+    for (const auto& user : userList) {
+        if (user.email == email) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool UserManager::emailExists(const QString& e) {
+    return emailExists(e.toStdString());
+}
+
+bool UserManager::phoneExists(const std::string& phone) {
+    loadFromFile();
+    for (const auto& user : userList) {
+        if (user.phone == phone) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool UserManager::phoneExists(const QString& p) {
+    return phoneExists(p.toStdString());
 }
 
 bool UserManager::changePassword(const string& username, const string& newPass) {
@@ -182,6 +223,19 @@ std::string UserManager::getPhone(const std::string& username) {
 
 QString UserManager::getPhone(const QString& username) {
     return QString::fromStdString(getPhone(username.toStdString()));
+}
+
+// role
+std::string UserManager::getRole(const std::string& username) {
+    if (usernameToIndex.containsKey(username)) {
+        size_t index = usernameToIndex.get(username);
+        return userList[index].role;
+    }
+    return "User";
+}
+
+QString UserManager::getRole(const QString& username) {
+    return QString::fromStdString(getRole(username.toStdString()));
 }
 
 // keyManipulation

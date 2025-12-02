@@ -17,6 +17,7 @@ SOURCES += \
     src/components/dialogs/article/articlestatistics.cpp \
     src/components/dialogs/article/articleupdatedialog.cpp \
     src/components/dialogs/author/authordetailsdialog.cpp \
+    src/components/dialogs/author/authorinputdialog.cpp \
     src/components/dialogs/author/listofauthorsdialog.cpp \
     src/components/dialogs/msg/inform.cpp \
     src/components/dialogs/user/userdetailsdialog.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     src/components/dialogs/article/articlestatistics.h \
     src/components/dialogs/article/articleupdatedialog.h \
     src/components/dialogs/author/authordetailsdialog.h \
+    src/components/dialogs/author/authorinputdialog.h \
     src/components/dialogs/author/listofauthorsdialog.h \
     src/components/dialogs/msg/inform.h \
     src/components/dialogs/user/userdetailsdialog.h \
@@ -81,6 +83,7 @@ FORMS += \
     src/components/dialogs/article/articlestatistics.ui \
     src/components/dialogs/article/articleupdatedialog.ui \
     src/components/dialogs/author/authordetailsdialog.ui \
+    src/components/dialogs/author/authorinputdialog.ui \
     src/components/dialogs/author/listofauthorsdialog.ui \
     src/components/dialogs/user/userdetailsdialog.ui \
     src/components/dialogs/user/userupdateinfo.ui \

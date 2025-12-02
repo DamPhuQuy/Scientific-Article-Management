@@ -1,6 +1,9 @@
 #include "listofauthorsdialog.h"
 #include "ui_listofauthorsdialog.h"
 #include "src/components/dialogs/author/authordetailsdialog.h"
+#include "src/components/dialogs/author/authorinputdialog.h"
+#include "src/utils/usermanager.h"
+#include "src/components/dialogs/msg/inform.h"
 
 ListOfAuthorsDialog::ListOfAuthorsDialog(RepositoryManager& repo, QWidget *parent)
     : QDialog(parent)
@@ -8,6 +11,8 @@ ListOfAuthorsDialog::ListOfAuthorsDialog(RepositoryManager& repo, QWidget *paren
     , repo(repo)
 {
     ui->setupUi(this);
+
+    this->username = "";
 
     // init model
     model = new QStandardItemModel(this);
@@ -155,6 +160,16 @@ void ListOfAuthorsDialog::setCheckedAuthorIds(const vector<Author> &authors)
     }
 }
 
+void ListOfAuthorsDialog::setCurrentUser(const QString &username)
+{
+    this->username = username;
+
+    // Show New Author button only if user is Admin
+    QString userRole = UserManager::getRole(username);
+    bool isAdmin = (userRole == "Admin");
+    ui->btnNewAuthor->setVisible(isAdmin);
+}
+
 void ListOfAuthorsDialog::on_lineEditSearch_textChanged(const QString &text)
 {
     filterText = text.trimmed();
@@ -242,5 +257,29 @@ void ListOfAuthorsDialog::applyAllFilters()
 void ListOfAuthorsDialog::on_btnApplyFilter_clicked()
 {
     applyAllFilters();
+}
+
+void ListOfAuthorsDialog::on_btnNewAuthor_clicked()
+{
+    // Open custom author input dialog
+    AuthorInputDialog inputDialog(this);
+
+    if (inputDialog.exec() == QDialog::Accepted) {
+        // Get the new author from dialog
+        Author newAuthor = inputDialog.getAuthor();
+
+        // Add to repository
+        repo.getAuthors().add(newAuthor);
+        repo.getAuthors().save();
+
+        // Reload data and refresh view
+        initData();
+        loadAuthorsToView();
+        loadCountriesToChoose();
+        loadFieldsToChoose();
+
+        Inform::showMessage(this, MessageType::Info,
+                           "Author added successfully!", "Success");
+    }
 }
 

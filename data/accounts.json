@@ -450,7 +450,7 @@
         "username": "dat_tran"
     },
     {
-        "email": "phuquy@gmail.com",
+        "email": "phuquy9@gmail.com",
         "fullname": "Dam Phu Quy",
         "keyManipulation": "InwXmo",
         "password": "pass1234",
@@ -477,12 +477,21 @@
         "username": "acn"
     },
     {
-        "email": "phuquydam06@gmail.com ",
+        "email": "phuquydam06@gmail.com",
         "fullname": "Đàm Phú Quý",
-        "keyManipulation": "ua6g5s",
+        "keyManipulation": "Au0mtw",
         "password": "pass1234",
-        "phone": "0356780244",
+        "phone": "0356780243",
         "role": "User",
-        "username": "phuquytest"
+        "username": "phuquyuser"
+    },
+    {
+        "email": "phuquydam1605@gmail.com",
+        "fullname": "Đàm Phú Quý",
+        "keyManipulation": "ybxm9l",
+        "password": "pass1234",
+        "phone": "0356780233",
+        "role": "Admin",
+        "username": "phuquyadmin"
     }
 ]

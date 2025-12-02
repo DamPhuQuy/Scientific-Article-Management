@@ -38,6 +38,12 @@ public:
     static bool userExists(const std::string& username);
     static bool userExists(const QString& username);
 
+    static bool emailExists(const std::string& email);
+    static bool emailExists(const QString& email);
+
+    static bool phoneExists(const std::string& phone);
+    static bool phoneExists(const QString& phone);
+
     static bool changePassword(const std::string& username, const std::string& newPassword);
 
     static int getUserCount();
@@ -62,6 +68,10 @@ public:
 
     static void setPhone(const std::string& username, const std::string& phone);
     static void setPhone(const QString& username, const QString& phone);
+
+    // Role
+    static std::string getRole(const std::string& username);
+    static QString getRole(const QString& username);
 
     // Key Manipulation
     static std::string getKeyManipulation(const std::string& username);

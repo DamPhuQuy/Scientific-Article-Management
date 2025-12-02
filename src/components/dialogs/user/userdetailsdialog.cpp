@@ -16,12 +16,13 @@ UserDetailsDialog::~UserDetailsDialog()
     delete ui;
 }
 
-void UserDetailsDialog::setUserInfo(QString username, QString fullname, QString email, QString phoneNumber, QString key)
+void UserDetailsDialog::setUserInfo(QString username, QString fullname, QString email, QString phoneNumber, QString role, QString key)
 {
     ui->labelDetailUsername->setText(username);
     ui->labelDetailFullname->setText(fullname);
     ui->labelDetailEmail->setText(email);
     ui->labelDetailPhoneNumber->setText(phoneNumber);
+    ui->labelDetailRole->setText(role);
     ui->labelDetailKey->setText(key);
 }
 
@@ -46,6 +47,7 @@ void UserDetailsDialog::on_btnUpdate_clicked()
             UserManager::getFullName(username),
             UserManager::getEmail(username),
             UserManager::getPhone(username),
+            UserManager::getRole(username),
             UserManager::getKeyManipulation(username)
         );
     }
