@@ -71,63 +71,63 @@
   },
   {
     "id": "7e7d59ce-b735-4bde-accf-db5c682af1cf",
-    "fullName": "New Author 405",
+    "fullName": "Emily Thompson",
     "country": "Canada",
     "fieldOfStudy": "Cloud Computing",
     "totalPublications": 1
   },
   {
     "id": "6ec56653-9e6f-4522-a7af-ffeebf346f61",
-    "fullName": "New Author 466",
+    "fullName": "Michael Chen",
     "country": "Canada",
     "fieldOfStudy": "IoT",
     "totalPublications": 4
   },
   {
     "id": "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
-    "fullName": "New Author 495",
+    "fullName": "Sarah Martinez",
     "country": "Canada",
     "fieldOfStudy": "Machine Learning",
     "totalPublications": 3
   },
   {
     "id": "06407807-b267-439b-938e-9d8db5a152b3",
-    "fullName": "New Author 637",
+    "fullName": "Hans Mueller",
     "country": "Germany",
     "fieldOfStudy": "IoT",
     "totalPublications": 5
   },
   {
     "id": "a95890c4-1022-4da6-9334-76bc68f1f9a2",
-    "fullName": "New Author 188",
+    "fullName": "Anna Schmidt",
     "country": "Germany",
     "fieldOfStudy": "IoT",
     "totalPublications": 2
   },
   {
     "id": "b5d3466c-ca54-461b-b03d-d86c0468c0ad",
-    "fullName": "New Author 453",
+    "fullName": "Takeshi Yamamoto",
     "country": "Japan",
     "fieldOfStudy": "IoT",
     "totalPublications": 1
   },
   {
     "id": "a0cf6f02-3f43-4552-81fc-bfed5768b7f3",
-    "fullName": "New Author 973",
+    "fullName": "Pierre Dubois",
     "country": "France",
     "fieldOfStudy": "Cloud Computing",
     "totalPublications": 1
   },
   {
     "id": "406e480c-07b5-4882-8339-19f80e072efb",
-    "fullName": "New Author 223",
+    "fullName": "Nguyen Van Minh",
     "country": "Vietnam",
     "fieldOfStudy": "Cloud Computing",
     "totalPublications": 1
   },
   {
     "id": "415e2446-d5f7-46fd-88f4-3037ff2f77c2",
-    "fullName": "New Author 752",
+    "fullName": "Yuki Tanaka",
     "country": "Japan",
     "fieldOfStudy": "Cybersecurity",
     "totalPublications": 1

@@ -109,7 +109,7 @@ void ArticleForm::loadArticlesToView() {
         boldFont.setBold(true);
         item->setFont(boldFont);
 
-        item->setText(QString("%1 | Year: %2 | Type: %3")
+        item->setText(QString("Title: %1 | Year: %2 | Type: %3")
               .arg(QString::fromStdString(article->getTitle()))
               .arg(year)
               .arg(typeStr));
@@ -120,7 +120,7 @@ void ArticleForm::loadArticlesToView() {
         QColor grayColor(128, 128, 128);
         item->setForeground(QBrush(grayColor));
 
-        item->setText(item->text() + "\n" + abstract);
+        item->setText(item->text() + "\n" + "Abstract: " + abstract);
 
         item->setToolTip(QString("Title: %1\nYear: %2\nType: %3")
                              .arg(QString::fromStdString(article->getTitle()))
