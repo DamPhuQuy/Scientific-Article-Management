@@ -4,120 +4,69 @@
     "fullName": "S. Ben Jabra",
     "country": "Tunisia",
     "fieldOfStudy": "Computer Graphics",
-    "totalPublications": 4,
-    "articleId": [
-      "4ab3735c-80f1-472d-b953-fa0557fed28b",
-      "6d941f48-3f08-48ac-bcd1-4868b6acbdf4",
-      "d72df6ac-587c-4a6f-a01f-0a9315236925",
-      "be8d8aa7-92c9-4274-a99d-cd7c43b9594f"
-    ]
+    "totalPublications": 4
   },
   {
     "id": "eff2ad8f-b5e1-4339-867b-e7e87d3e7651",
     "fullName": "Ezzeddine Zagrouba",
     "country": "Tunisia",
     "fieldOfStudy": "Computer Vision",
-    "totalPublications": 2,
-    "articleId": [
-      "4ab3735c-80f1-472d-b953-fa0557fed28b",
-      "c4fbbb79-8ba6-427b-8696-1480533e8e4b"
-    ]
+    "totalPublications": 2
   },
   {
     "id": "3195b257-0ab1-45be-91e2-e88ba6c62827",
     "fullName": "Joaquin J. Torres",
     "country": "Spain",
     "fieldOfStudy": "Computational Neuroscience",
-    "totalPublications": 4,
-    "articleId": [
-      "68932f33-728b-4580-af19-8b58853c9ad9",
-      "6dde2a54-e499-463f-92bd-5c91e232279f",
-      "eae4c163-13fa-41c3-a940-af666285327c",
-      "c4fbbb79-8ba6-427b-8696-1480533e8e4b"
-    ]
+    "totalPublications": 4
   },
   {
     "id": "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
     "fullName": "Jesus M. Cortes",
     "country": "Spain",
     "fieldOfStudy": "Neural Networks",
-    "totalPublications": 5,
-    "articleId": [
-      "68932f33-728b-4580-af19-8b58853c9ad9",
-      "df0da247-7783-4784-a24f-18324c8a5838",
-      "b72b3013-9aed-46b3-8380-4693f3825b10",
-      "cbafcb6a-3e0c-43f1-bd27-e07bd95e4ab0",
-      "97f6b34f-5459-4af1-9463-ac96034e2443"
-    ]
+    "totalPublications": 5
   },
   {
     "id": "82844d84-2425-4017-8670-0f1e354e517a",
     "fullName": "Joaquin Marro",
     "country": "Spain",
     "fieldOfStudy": "Statistical Physics",
-    "totalPublications": 2,
-    "articleId": [
-      "68932f33-728b-4580-af19-8b58853c9ad9",
-      "daa965dd-2840-4bb1-ba64-0d3535a3dad7"
-    ]
+    "totalPublications": 2
   },
   {
     "id": "2b94573f-5146-4b66-9016-310494fe9170",
     "fullName": "Hilbert J. Kappen",
     "country": "Netherlands",
     "fieldOfStudy": "Machine Learning",
-    "totalPublications": 89,
-    "articleId": [
-      "68932f33-728b-4580-af19-8b58853c9ad9"
-    ]
+    "totalPublications": 89
   },
   {
     "id": "836a5c98-1418-4c1c-a580-c42d7bc51420",
     "fullName": "Bo Tan",
     "country": "China",
     "fieldOfStudy": "Theoretical Computer Science",
-    "totalPublications": 4,
-    "articleId": [
-      "e40e52c8-c3da-46fe-9cdd-1c2815222c99",
-      "6dde2a54-e499-463f-92bd-5c91e232279f",
-      "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
-      "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c"
-    ]
+    "totalPublications": 4
   },
   {
     "id": "b3585b46-d22b-4b2c-9317-dec3b72a3159",
     "fullName": "Xiaojing Zheng",
     "country": "China",
     "fieldOfStudy": "Algorithms and Complexity",
-    "totalPublications": 34,
-    "articleId": [
-      "e40e52c8-c3da-46fe-9cdd-1c2815222c99"
-    ]
+    "totalPublications": 34
   },
   {
     "id": "8e907521-6e0d-4472-bb75-8968e541d262",
     "fullName": "Maxime Crochemore",
     "country": "France",
     "fieldOfStudy": "Word Combinatorics",
-    "totalPublications": 3,
-    "articleId": [
-      "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
-      "c4fbbb79-8ba6-427b-8696-1480533e8e4b",
-      "382f4a22-e247-4c35-af10-fe9ac057b5e5"
-    ]
+    "totalPublications": 3
   },
   {
     "id": "c9fa938b-48a3-4841-996f-3a01697ee222",
     "fullName": "Lucian Ilie",
     "country": "Canada",
     "fieldOfStudy": "String Algorithms",
-    "totalPublicPublications": 74,
-    "articleId": [
-      "cd85b889-63c9-4bab-9294-8fc8daccb7fc",
-      "eae4c163-13fa-41c3-a940-af666285327c",
-      "b5937956-cf2e-4421-b650-6027374dffc6",
-      "1cbb488a-80a5-4eb7-88a8-f4915acbd348"
-    ],
     "totalPublications": 4
   },
   {
@@ -125,99 +74,160 @@
     "fullName": "New Author 405",
     "country": "Canada",
     "fieldOfStudy": "Cloud Computing",
-    "totalPublications": 1,
-    "articleId": [
-      "df0da247-7783-4784-a24f-18324c8a5838"
-    ]
+    "totalPublications": 1
   },
   {
     "id": "6ec56653-9e6f-4522-a7af-ffeebf346f61",
     "fullName": "New Author 466",
     "country": "Canada",
     "fieldOfStudy": "IoT",
-    "totalPublications": 4,
-    "articleId": [
-      "df0da247-7783-4784-a24f-18324c8a5838",
-      "634523ca-072e-476c-a0b9-accde2af6066",
-      "382f4a22-e247-4c35-af10-fe9ac057b5e5",
-      "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c"
-    ]
+    "totalPublications": 4
   },
   {
     "id": "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
     "fullName": "New Author 495",
     "country": "Canada",
     "fieldOfStudy": "Machine Learning",
-    "totalPublications": 3,
-    "articleId": [
-      "b5937956-cf2e-4421-b650-6027374dffc6",
-      "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
-      "daa965dd-2840-4bb1-ba64-0d3535a3dad7"
-    ]
+    "totalPublications": 3
   },
   {
     "id": "06407807-b267-439b-938e-9d8db5a152b3",
     "fullName": "New Author 637",
     "country": "Germany",
     "fieldOfStudy": "IoT",
-    "totalPublications": 5,
-    "articleId": [
-      "1cbb488a-80a5-4eb7-88a8-f4915acbd348",
-      "cd5425d1-6d3f-45b7-b596-3b2931bf079e",
-      "7b36d782-4117-473b-9a76-bacd5be7fa55",
-      "0a30b967-4028-4900-bd8f-8140e02edf87",
-      "d72df6ac-587c-4a6f-a01f-0a9315236925"
-    ]
+    "totalPublications": 5
   },
   {
     "id": "a95890c4-1022-4da6-9334-76bc68f1f9a2",
     "fullName": "New Author 188",
     "country": "Germany",
     "fieldOfStudy": "IoT",
-    "totalPublications": 2,
-    "articleId": [
-      "cbafcb6a-3e0c-43f1-bd27-e07bd95e4ab0",
-      "fc86d8f1-d1c3-4580-9913-619d1485f82d"
-    ]
+    "totalPublications": 2
   },
   {
     "id": "b5d3466c-ca54-461b-b03d-d86c0468c0ad",
     "fullName": "New Author 453",
     "country": "Japan",
     "fieldOfStudy": "IoT",
-    "totalPublications": 1,
-    "articleId": [
-      "fc86d8f1-d1c3-4580-9913-619d1485f82d"
-    ]
+    "totalPublications": 1
   },
   {
     "id": "a0cf6f02-3f43-4552-81fc-bfed5768b7f3",
     "fullName": "New Author 973",
     "country": "France",
     "fieldOfStudy": "Cloud Computing",
-    "totalPublications": 1,
-    "articleId": [
-      "0a30b967-4028-4900-bd8f-8140e02edf87"
-    ]
+    "totalPublications": 1
   },
   {
     "id": "406e480c-07b5-4882-8339-19f80e072efb",
     "fullName": "New Author 223",
     "country": "Vietnam",
     "fieldOfStudy": "Cloud Computing",
-    "totalPublications": 1,
-    "articleId": [
-      "0a30b967-4028-4900-bd8f-8140e02edf87"
-    ]
+    "totalPublications": 1
   },
   {
     "id": "415e2446-d5f7-46fd-88f4-3037ff2f77c2",
     "fullName": "New Author 752",
     "country": "Japan",
     "fieldOfStudy": "Cybersecurity",
-    "totalPublications": 1,
-    "articleId": [
-      "ec8f06a2-45c6-41ac-b8b8-1111496c3c6c"
-    ]
+    "totalPublications": 1
+  },
+  {
+    "id": "f1a2b3c4-d5e6-7890-abcd-ef1234567890",
+    "fullName": "Dr. Sarah Chen",
+    "country": "USA",
+    "fieldOfStudy": "Quantum Computing",
+    "totalPublications": 1
+  },
+  {
+    "id": "g2h3i4j5-k6l7-8901-mnop-qr2345678901",
+    "fullName": "Dr. Michael Rodriguez",
+    "country": "Spain",
+    "fieldOfStudy": "Medical AI",
+    "totalPublications": 1
+  },
+  {
+    "id": "h3i4j5k6-l7m8-9012-nopq-rs3456789012",
+    "fullName": "Dr. Yuki Tanaka",
+    "country": "Japan",
+    "fieldOfStudy": "Privacy-Preserving ML",
+    "totalPublications": 1
+  },
+  {
+    "id": "i4j5k6l7-m8n9-0123-pqrs-tu4567890123",
+    "fullName": "Emily Watson",
+    "country": "UK",
+    "fieldOfStudy": "Blockchain",
+    "totalPublications": 1
+  },
+  {
+    "id": "j5k6l7m8-n9o0-1234-qrst-uv5678901234",
+    "fullName": "Alex Kumar",
+    "country": "India",
+    "fieldOfStudy": "Explainable AI",
+    "totalPublications": 1
+  },
+  {
+    "id": "k6l7m8n9-o0p1-2345-rstu-vw6789012345",
+    "fullName": "Dr. Lisa Andersson",
+    "country": "Sweden",
+    "fieldOfStudy": "Edge Computing",
+    "totalPublications": 1
+  },
+  {
+    "id": "l7m8n9o0-p1q2-3456-stuv-wx7890123456",
+    "fullName": "Prof. David Miller",
+    "country": "USA",
+    "fieldOfStudy": "Natural Language Processing",
+    "totalPublications": 1
+  },
+  {
+    "id": "m8n9o0p1-q2r3-4567-uvwx-yz8901234567",
+    "fullName": "Dr. Sophie Martin",
+    "country": "France",
+    "fieldOfStudy": "Autonomous Systems",
+    "totalPublications": 1
+  },
+  {
+    "id": "n9o0p1q2-r3s4-5678-vwxy-za9012345678",
+    "fullName": "Prof. Hans Schmidt",
+    "country": "Germany",
+    "fieldOfStudy": "Neuromorphic Computing",
+    "totalPublications": 1
+  },
+  {
+    "id": "o0p1q2r3-s4t5-6789-wxyz-ab0123456789",
+    "fullName": "Dr. Maria Garcia",
+    "country": "Spain",
+    "fieldOfStudy": "Graph Neural Networks",
+    "totalPublications": 1
+  },
+  {
+    "id": "p1q2r3s4-t5u6-7890-yzab-cd1234567890",
+    "fullName": "Dr. James Wilson",
+    "country": "Australia",
+    "fieldOfStudy": "Quantum ML",
+    "totalPublications": 1
+  },
+  {
+    "id": "q2r3s4t5-u6v7-8901-zabc-de2345678901",
+    "fullName": "Dr. Anna Kowalski",
+    "country": "Poland",
+    "fieldOfStudy": "Multimodal Learning",
+    "totalPublications": 1
+  },
+  {
+    "id": "r3s4t5u6-v7w8-9012-abcd-ef3456789012",
+    "fullName": "Prof. Thomas Brown",
+    "country": "Canada",
+    "fieldOfStudy": "Continual Learning",
+    "totalPublications": 1
+  },
+  {
+    "id": "s4t5u6v7-w8x9-0123-bcde-fg4567890123",
+    "fullName": "Dr. Jennifer Lee",
+    "country": "South Korea",
+    "fieldOfStudy": "Healthcare AI",
+    "totalPublications": 1
   }
 ]
