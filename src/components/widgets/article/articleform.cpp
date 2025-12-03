@@ -148,10 +148,10 @@ void ArticleForm::on_articleListView_doubleClicked(const QModelIndex &index) {
 
     ArticleDetailsDialog detailDlg(repo, this);
 
+    detailDlg.setCurrentUsername(currentUser.first.toStdString());
     detailDlg.setArticleData(
         selectedArticle
     );
-    detailDlg.setCurrentUsername(currentUser.first.toStdString());
 
     if (detailDlg.exec() == QDialog::Accepted) {
         initData();

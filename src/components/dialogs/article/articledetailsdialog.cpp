@@ -2,6 +2,7 @@
 #include "ui_articledetailsdialog.h"
 
 #include "src/components/dialogs/article/articleupdatedialog.h"
+#include "src/components/dialogs/author/authordetailsdialog.h"
 #include "src/repos/repomanager.h"
 #include "src/models/article.h"
 #include "src/models/scie_article.h"
@@ -59,6 +60,11 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
     // Hide update and remove buttons if user is not Admin
     QString userRole = UserManager::getRole(QString::fromStdString(currentUsername));
     bool isAdmin = (userRole == "Admin");
+
+    qDebug() << "Current username:" << QString::fromStdString(currentUsername);
+    qDebug() << "User role:" << userRole;
+    qDebug() << "Is admin:" << isAdmin;
+
     ui->btnUpdate->setVisible(isAdmin);
     ui->removeBtn->setVisible(isAdmin);
 
@@ -160,3 +166,29 @@ void ArticleDetailsDialog::on_removeBtn_clicked()
     }
 }
 
+void ArticleDetailsDialog::on_listAuthors_itemDoubleClicked(QListWidgetItem *item)
+{
+    if (!item) return;
+
+    // Get author ID from item data
+    QString authorId = item->data(Qt::UserRole).toString();
+
+    // Find author in repository
+    Author author = repo.getAuthors().findById(authorId.toStdString());
+
+    if (author.getId().empty()) {
+        return; // Author not found
+    }
+
+    // Open author details dialog
+    AuthorDetailsDialog authorDialog(repo, this);
+    authorDialog.setAuthorInfo(
+        QString::fromStdString(author.getId()),
+        QString::fromStdString(author.getFullName()),
+        QString::fromStdString(author.getCountry()),
+        QString::fromStdString(author.getFieldOfStudy()),
+        author.getTotalPublications()
+    );
+
+    authorDialog.exec();
+}

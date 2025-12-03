@@ -2,6 +2,7 @@
 #define ARTICLEDETAILSDIALOG_H
 
 #include <QDialog>
+#include <QListWidgetItem>
 #include "qlabel.h"
 #include "src/models/article.h"
 #include "src/repos/repomanager.h"
@@ -27,6 +28,8 @@ private slots:
     void on_closeBtn_clicked();
 
     void on_removeBtn_clicked();
+
+    void on_listAuthors_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::ArticleDetailsDialog *ui;

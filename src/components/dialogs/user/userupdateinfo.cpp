@@ -38,6 +38,15 @@ void userUpdateInfo::on_btnSave_clicked()
     QString email = ui->txtEmail->text();
     QString phone = ui->txtPhone->text();
 
+    // check data exists
+    if (UserManager::emailExists(email)) {
+        Inform::showMessage(this, MessageType::Warning, "Email already exists!", "Update Error");
+        return;
+    } else if (UserManager::phoneExists(phone)) {
+        Inform::showMessage(this, MessageType::Warning, "Phone number already exists!", "Update Error");
+        return;
+    }
+
     // Update basic info
     UserManager::updateUserInfo(m_username, fullname, email, phone);
 
