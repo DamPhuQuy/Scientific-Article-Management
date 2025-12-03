@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Qt Project",
+      "type": "shell",
+      "command": "qmake && mingw32-make",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Run Qt EXE",
+      "type": "shell",
+      "command": "& \"${workspaceFolder}/release/ArticleManage.exe\"",
+      "options": {
+        "cwd": "${workspaceFolder}/release"
+      },
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false
+      }
+    },
+    {
+      "label": "Deploy Qt EXE",
+      "type": "shell",
+      "command": "& \"C:/Qt/6.10.1/mingw_64/bin/windeployqt.exe\" \"${workspaceFolder}/release/ArticleManage.exe\"",
+      "options": {
+        "cwd": "${workspaceFolder}/release"
+      },
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always"
+      }
+    }
+  ]
+}
