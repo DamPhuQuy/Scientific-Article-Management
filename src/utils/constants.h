@@ -4,6 +4,7 @@
 
 const std::string DATA_FOLDER = "../data";
 const std::string ADMIN_CODE = "admin123";
+const std::string EXPORT_FOLDER = "../exported";
 
 class Constants {
 public:

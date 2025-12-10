@@ -120,14 +120,14 @@ void SignUpForm::on_signUpButton_clicked()
         return;
     }
 
-    if (password.length() < 6) {
-        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải >= 6 ký tự!", "Lỗi đăng kí");
+    if (password.length() < 8) {
+        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải >= 8 ký tự!", "Lỗi đăng kí");
         ui->passwordEdit->setFocus();
         ui->passwordEdit->selectAll();
         return;
     }
 
-    QRegularExpression pwRegex(R"((?=.*[A-Za-z])(?=.*\d).{6,})");
+    QRegularExpression pwRegex(R"((?=.*[A-Za-z])(?=.*\d).{8,})");
     if (!pwRegex.match(password).hasMatch()) {
         Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải chứa cả chữ và số!", "Lỗi đăng kí");
         ui->passwordEdit->setFocus();

@@ -19,7 +19,6 @@ public:
     ~ArticleInputDialog();
 
     void setCurrentUser(const QString& username);
-
 private slots:
     void on_btnSave_clicked();
 

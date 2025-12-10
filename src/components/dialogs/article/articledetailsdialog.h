@@ -22,12 +22,16 @@ public:
     void setArticleData(Article* article);
     void setCurrentUsername(const std::string& username) { currentUsername = username; }
 
+    void exportToCSV();
+    void exportToJSON();
 private slots:
     void on_btnUpdate_clicked();
 
     void on_closeBtn_clicked();
 
     void on_removeBtn_clicked();
+
+    void on_btnExport_clicked();
 
     void on_listAuthors_itemDoubleClicked(QListWidgetItem *item);
 
