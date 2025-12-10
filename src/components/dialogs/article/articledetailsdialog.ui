@@ -108,12 +108,12 @@ QWidget#footerContainer {
 /* --- BUTTONS --- */
 /* QUAN TRONG: Set border: none de kich hoat custom background */
 QPushButton {
-    border: none; 
+    border: none;
     border-radius: 6px;
     font-weight: bold;
     padding: 10px;
     min-width: 100px;
-    color: white; 
+    color: white;
 }
 QPushButton:pressed {
     padding-top: 12px; /* Hieu ung nhan nut */
@@ -145,6 +145,15 @@ QPushButton#closeBtn {
 }
 QPushButton#closeBtn:hover {
     background-color: #636e72;
+}
+
+/* Nút Export (Cam) */
+QPushButton#btnExport {
+    background-color: #f39c12;
+    border: 2px solid #f39c12;
+}
+QPushButton#btnExport:hover {
+    background-color: #d68910;
 }
    </string>
   </property>
@@ -695,6 +704,16 @@ QPushButton#closeBtn:hover {
         </property>
         <property name="text">
          <string>Remove Article</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnExport">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Export</string>
         </property>
        </widget>
       </item>

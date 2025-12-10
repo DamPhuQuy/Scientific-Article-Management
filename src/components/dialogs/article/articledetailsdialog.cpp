@@ -12,10 +12,21 @@
 #include "src/models/customarticle.h"
 #include "src/components/dialogs/article/articleconfirmremovedialog.h"
 #include "src/utils/usermanager.h"
+#include "src/utils/constants.h"
 #include <set>
+#include <fstream>
 #include <QListWidgetItem>
+#include <QFile>
+#include <QMessageBox>
+#include <QDir>
+#include <QTextStream>
+#include <QStringList>
+#include <QStringConverter>
+#include <QDateTime>
+#include "src/utils/nlohmann/json.hpp"
 
 using namespace std;
+using json = nlohmann::json;
 
 ArticleDetailsDialog::ArticleDetailsDialog(RepositoryManager& repo, QWidget *parent)
     : QDialog(parent)
@@ -191,4 +202,167 @@ void ArticleDetailsDialog::on_listAuthors_itemDoubleClicked(QListWidgetItem *ite
     );
 
     authorDialog.exec();
+}
+
+void ArticleDetailsDialog::exportToCSV() {
+    if (!currentArticle) {
+        QMessageBox::warning(this, "Thiếu dữ liệu", "Không có bài báo để export.");
+        return;
+    }
+
+    QString baseDir = QString::fromStdString(EXPORT_FOLDER);
+    if (baseDir.isEmpty()) {
+        baseDir = "exported";
+    }
+
+    QDir rootDir(baseDir);
+    if (!rootDir.exists() && !rootDir.mkpath(".")) {
+        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export gốc.");
+        return;
+    }
+
+    QString userFolderName = QString::fromStdString(currentUsername);
+    QDir userDir(rootDir.filePath(userFolderName));
+    if (!userDir.exists() && !userDir.mkpath(".")) {
+        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export cho tài khoản.");
+        return;
+    }
+
+    QString filePath = userDir.filePath(QString::fromStdString(currentArticle->getId()) + ".csv");
+
+    if (QFile::exists(filePath)) {
+        QMessageBox::information(this, "Đã export", "Bài báo này đã được export trước đó tại:\n" + filePath);
+        return;
+    }
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Lỗi", "Không thể mở file để ghi: " + filePath);
+        return;
+    }
+
+    QTextStream out(&file);
+    out.setEncoding(QStringConverter::Utf8);
+
+    auto quote = [](const QString& value) {
+        QString escaped = value;
+        escaped.replace("\"", "\"\"");
+        return "\"" + escaped + "\"";
+    };
+
+    QStringList authorsList;
+    for (const auto& authorId : currentArticle->getAuthors()) {
+        Author author = repo.getAuthors().findById(authorId);
+        if (!author.getFullName().empty()) {
+            authorsList << QString::fromStdString(author.getFullName());
+        }
+    }
+
+    QStringList refsList;
+    for (const auto& ref : currentArticle->getReferences()) {
+        refsList << QString::fromStdString(ref);
+    }
+
+    out << "Field,Value\n";
+    out << "ID," << quote(QString::fromStdString(currentArticle->getId())) << "\n";
+    out << "Title," << quote(QString::fromStdString(currentArticle->getTitle())) << "\n";
+    out << "Venue," << quote(QString::fromStdString(currentArticle->getVenue())) << "\n";
+    out << "Year," << currentArticle->getYear() << "\n";
+    out << "Citations," << currentArticle->getCitation() << "\n";
+    out << "Type," << quote(QString::fromStdString(currentArticle->typeToString(currentArticle->getType()))) << "\n";
+    out << "Status," << quote(QString::fromStdString(currentArticle->getStatusInString())) << "\n";
+    out << "Abstract," << quote(QString::fromStdString(currentArticle->getAbstract())) << "\n";
+    out << "Authors," << quote(authorsList.join("; ")) << "\n";
+    out << "References," << quote(refsList.join("; ")) << "\n";
+
+    if (auto scie = dynamic_cast<SCIE_Article*>(currentArticle)) {
+        out << "Impact Factor," << scie->getImpactFactor() << "\n";
+        out << "Q Rank," << scie->getQRank() << "\n";
+    } else if (auto scopus = dynamic_cast<SCOPUS_Article*>(currentArticle)) {
+        out << "SJR," << scopus->getSJR() << "\n";
+        out << "H-Index," << scopus->getHIndex() << "\n";
+    } else if (auto conf = dynamic_cast<CONFERENCE_Article*>(currentArticle)) {
+        out << "Conference Rank," << quote(QString::fromStdString(conf->getRank())) << "\n";
+        out << "Location," << quote(QString::fromStdString(conf->getLocation())) << "\n";
+        out << "Acceptance Rate," << conf->getAcceptanceRate() << "\n";
+    } else if (auto custom = dynamic_cast<CUSTOM_Article*>(currentArticle)) {
+        out << "Custom Type," << quote(QString::fromStdString(custom->getCustomTypeName())) << "\n";
+    }
+
+    file.close();
+
+    QMessageBox::information(this, "Thành công", "Đã export CSV vào:\n" + filePath);
+}
+
+void ArticleDetailsDialog::exportToJSON() {
+    if (!currentArticle) {
+        QMessageBox::warning(this, "Thiếu dữ liệu", "Không có bài báo để export.");
+        return;
+    }
+
+    QString baseDir = QString::fromStdString(EXPORT_FOLDER);
+    if (baseDir.isEmpty()) {
+        baseDir = "exported";
+    }
+
+    QDir rootDir(baseDir);
+    if (!rootDir.exists() && !rootDir.mkpath(".")) {
+        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export gốc.");
+        return;
+    }
+
+    QString userFolderName = QString::fromStdString(currentUsername.empty() ? "guest" : currentUsername);
+    QDir userDir(rootDir.filePath(userFolderName));
+    if (!userDir.exists() && !userDir.mkpath(".")) {
+        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export cho tài khoản.");
+        return;
+    }
+
+    QString filePath = userDir.filePath(QString::fromStdString(currentArticle->getId()) + ".json");
+
+    if (QFile::exists(filePath)) {
+        QMessageBox::information(this, "Đã export", "Bài báo này đã được export trước đó tại:\n" + filePath);
+        return;
+    }
+
+    nlohmann::json doc = currentArticle->to_json();
+    doc["exported_by"] = currentUsername;
+    doc["exported_at"] = QDateTime::currentDateTime().toString(Qt::ISODate).toStdString();
+
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Lỗi", "Không thể mở file để ghi: " + filePath);
+        return;
+    }
+
+    QTextStream out(&file);
+    out.setEncoding(QStringConverter::Utf8);
+    out << QString::fromStdString(doc.dump(4));
+
+    file.close();
+
+    QMessageBox::information(this, "Thành công", "Đã export JSON vào:\n" + filePath);
+}
+
+void ArticleDetailsDialog::on_btnExport_clicked()
+{
+    if (!currentArticle) {
+        QMessageBox::warning(this, "Thiếu dữ liệu", "Không có bài báo để export.");
+        return;
+    }
+
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("Xuất bài báo");
+    msgBox.setText("Chọn định dạng export cho bài báo.");
+    auto csvBtn = msgBox.addButton("CSV", QMessageBox::AcceptRole);
+    auto jsonBtn = msgBox.addButton("JSON", QMessageBox::AcceptRole);
+    msgBox.addButton(QMessageBox::Cancel);
+
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == csvBtn) {
+        exportToCSV();
+    } else if (msgBox.clickedButton() == jsonBtn) {
+        exportToJSON();
+    }
 }

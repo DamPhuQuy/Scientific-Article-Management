@@ -18,7 +18,7 @@ ArticleStatistics::~ArticleStatistics()
 
 void ArticleStatistics::initStatistics()
 {
-    // 1. Fetch Data
+    // fetch data
     int scieCount = repo.getArticles().countByType(Type::SCIE);
     int scopusCount = repo.getArticles().countByType(Type::SCOPUS);
     int conferenceCount = repo.getArticles().countByType(Type::CONFERENCE);
@@ -28,28 +28,29 @@ void ArticleStatistics::initStatistics()
     int totalArticles = scieCount + scopusCount + conferenceCount + customCount + otherCount;
     unsigned int totalAuthors = repo.getAuthors().count();
 
-    // 2. Update Summary Labels
+    // update summary labels
     ui->lblTotalArticles->setText(QString::number(totalArticles));
     ui->lblTotalAuthors->setText(QString::number(totalAuthors));
 
-    // 3. Create Pie Chart
+    // create pie chart
     QPieSeries *series = new QPieSeries();
 
-    // Only add slices if they have data to avoid clutter
+    
+    // check valid data
     if (scieCount > 0) series->append("SCIE", scieCount);
     if (scopusCount > 0) series->append("SCOPUS", scopusCount);
     if (conferenceCount > 0) series->append("Conference", conferenceCount);
     if (customCount > 0) series->append("Custom", customCount);
     if (otherCount > 0) series->append("Other", otherCount);
 
-    // Customize Slices
+    // customize slices
     for (QPieSlice *slice : series->slices()) {
         slice->setLabelVisible(true);
         slice->setLabel(QString("%1: %2").arg(slice->label()).arg(slice->value()));
         slice->setPen(QPen(Qt::white, 2)); // White border for separation
     }
 
-    // Explode the largest slice for effect
+    // explode the largest slice for effect
     if (!series->slices().isEmpty()) {
         QPieSlice *largestSlice = nullptr;
         double maxVal = -1;
@@ -66,18 +67,18 @@ void ArticleStatistics::initStatistics()
         }
     }
 
-    // Create Chart
+    // create chart
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("Article Types Distribution");
     chart->setTitleFont(QFont("Segoe UI", 14, QFont::Bold));
     chart->setAnimationOptions(QChart::AllAnimations);
-    chart->setTheme(QChart::ChartThemeBlueCerulean); // Professional Theme
+    chart->setTheme(QChart::ChartThemeBlueCerulean);
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignRight);
     chart->legend()->setFont(QFont("Segoe UI", 10));
 
-    // 4. Set Chart to View
+    // set chart to view
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
