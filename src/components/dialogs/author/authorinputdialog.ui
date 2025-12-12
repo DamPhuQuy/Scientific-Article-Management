@@ -24,7 +24,7 @@
 /* --- DIALOG --- */
 QDialog#AuthorInputDialog {
     background-color: #f4f7f6;
-    border: 4px solid #3498db;
+    border: 4px solid #FFC085;
 }
 QWidget {
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
@@ -46,14 +46,14 @@ QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top left;
     padding: 0 5px;
-    color: #3498db;
+    color: #20B2AA;
     font-weight: bold;
     left: 10px;
 }
 
 /* --- LABELS --- */
 QLabel {
-    color: #555555;
+    color: #333333;
     font-weight: bold;
 }
 
@@ -63,12 +63,12 @@ QLineEdit, QSpinBox {
     border: 1px solid #cccccc;
     border-radius: 6px;
     padding: 8px;
-    color: #333;
+    color: #333333;
     font-size: 14px;
 }
 QLineEdit:focus, QSpinBox:focus {
     background-color: #ffffff;
-    border: 2px solid #3498db;
+    border: 2px solid #20B2AA;
 }
 
 /* --- BUTTONS --- */
@@ -80,11 +80,14 @@ QPushButton {
     color: white;
 }
 QPushButton#btnSave {
-    background-color: #27ae60;
-    border: 2px solid #27ae60;
+    background-color: #20B2AA;
+    border: 2px solid #20B2AA;
 }
 QPushButton#btnSave:hover {
-    background-color: #229954;
+    background-color: #17a098;
+}
+QPushButton#btnSave:pressed {
+    background-color: #0e6b65;
 }
 QPushButton#btnCancel {
     background-color: #e74c3c;
@@ -92,6 +95,9 @@ QPushButton#btnCancel {
 }
 QPushButton#btnCancel:hover {
     background-color: #c0392b;
+}
+QPushButton#btnCancel:pressed {
+    background-color: #922b21;
 }
    </string>
   </property>
@@ -123,7 +129,7 @@ QPushButton#btnCancel:hover {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">QWidget#headerContainer{background-color:#3498db;border-bottom:5px solid #2980b9;}</string>
+      <string notr="true">QWidget#headerContainer{background-color:#00264d;border-bottom:5px solid #4169E1;border-left:10px solid #FFD700;}</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_Header">
       <item>
