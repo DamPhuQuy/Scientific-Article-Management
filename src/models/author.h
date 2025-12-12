@@ -63,5 +63,4 @@ public:
 
     // convert
     json to_json() const;
-    void inputFromUser();
 };

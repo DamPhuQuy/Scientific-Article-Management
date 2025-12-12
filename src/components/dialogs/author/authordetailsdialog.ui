@@ -19,9 +19,6 @@
   <property name="windowTitle">
    <string>Author Details</string>
   </property>
-  <property name="modal">
-   <bool>true</bool>
-  </property>
   <property name="styleSheet">
    <string notr="true">
 /* --- CÀI ĐẶT CHUNG --- */
@@ -86,6 +83,9 @@ QPushButton:pressed {
 }
    </string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -120,7 +120,7 @@ QPushButton:pressed {
          <string notr="true">color:#ffffff;font-weight:900;font-size:18px;background:transparent;padding-left:10px;</string>
         </property>
         <property name="text">
-         <string>THÔNG TIN TÁC GIẢ</string>
+         <string>Author Information</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
