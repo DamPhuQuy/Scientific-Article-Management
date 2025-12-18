@@ -130,16 +130,16 @@ QPushButton#btnCancel:pressed {
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>4</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>4</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>4</number>
    </property>
    <property name="bottomMargin">
-    <number>20</number>
+    <number>4</number>
    </property>
    <item>
     <widget class="QWidget" name="headerContainer" native="true">
@@ -156,7 +156,7 @@ QPushButton#btnCancel:pressed {
          <string notr="true">color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;</string>
         </property>
         <property name="text">
-         <string>CẬP NHẬT THÔNG TIN</string>
+         <string>UPDATE INFORMATION</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>

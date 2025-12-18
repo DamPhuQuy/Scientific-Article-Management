@@ -1,0 +1,46 @@
+﻿@startuml Article Base Class
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Base Article Class (Abstract)
+abstract class Article <<abstract>> {
+    #id: string
+    #abstract: string
+    #citationNr: int
+    #title: string
+    #venue: string
+    #year: int
+    #type: Type
+    #status: ArticleStatus
+    #refs: vector<string>
+    #authors: vector<string>
+    __
+    +getId(): string
+    +getTitle(): string
+    +getVenue(): string
+    +getAbstract(): string
+    +getYear(): int
+    +getType(): Type
+    +getStatus(): ArticleStatus
+    __
+    +setTitle(t: string): void
+    +setVenue(v: string): void
+    +setCitationNr(int): void
+    +setYear(y: int): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+note top of Article
+  Lớp trừu tượng Article cho
+  polymorphic copy và JSON
+  serialization
+end note
+
+@enduml

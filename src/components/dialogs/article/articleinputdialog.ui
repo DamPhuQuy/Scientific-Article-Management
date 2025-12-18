@@ -65,10 +65,10 @@ QSpinBox, QDoubleSpinBox {
     padding-top: 5px;
     padding-bottom: 5px;
     /* Chừa chỗ 2 bên cho nút bấm để không che số */
-    padding-left: 35px;  
+    padding-left: 35px;
     padding-right: 35px;
     /* Căn giữa số */
-    qproperty-alignment: AlignCenter; 
+    qproperty-alignment: AlignCenter;
 }
 QSpinBox:focus, QDoubleSpinBox:focus {
     background-color: #ffffff;
@@ -80,11 +80,11 @@ QSpinBox::up-button, QDoubleSpinBox::up-button {
     subcontrol-origin: border;
     subcontrol-position: right;
     width: 30px;
-    height: 100%; 
+    height: 100%;
     border-left: 1px solid #cccccc;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
 }
 
 /* Nút Giảm (Down-Button) -&gt; Đưa về bên TRÁI */
@@ -102,7 +102,7 @@ QSpinBox::down-button, QDoubleSpinBox::down-button {
 /* Hiệu ứng khi di chuột vào nút tăng/giảm */
 QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
 QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
-    background-color: #20B2AA; 
+    background-color: #20B2AA;
 }
    </string>
   </property>
@@ -111,16 +111,16 @@ QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>4</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>4</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>4</number>
    </property>
    <property name="bottomMargin">
-    <number>20</number>
+    <number>4</number>
    </property>
    <item>
     <widget class="QWidget" name="headerContainer" native="true">
@@ -140,7 +140,7 @@ QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
          <string notr="true">color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;</string>
         </property>
         <property name="text">
-         <string>NHẬP THÔNG TIN BÀI BÁO MỚI</string>
+         <string>INPUT NEW ARTICLE INFORMATION</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>

@@ -1,0 +1,41 @@
+﻿@startuml Conference Article Class
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BackgroundColor LightSalmon
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Base Article Class (simplified reference)
+abstract class Article <<abstract>> {
+    ...
+}
+
+' Conference Article
+class CONFERENCE_Article {
+    -conferenceRank: string
+    -location: string
+    -acceptanceRate: double
+    __
+    +getRank(t: string
+    +setRank(r: string): void
+    +getLocation(): string
+    +setLocation(l: string): void
+    +getAcceptanceRate(): double
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+Article <|-- CONFERENCE_Article
+
+note bottom of CONFERENCE_Article
+  Conference Article
+  • Conference rank
+  • Location
+  • Acceptance rate
+end note
+
+@enduml

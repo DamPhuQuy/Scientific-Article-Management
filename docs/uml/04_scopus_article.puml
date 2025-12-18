@@ -1,0 +1,38 @@
+﻿@startuml SCOPUS Article Class
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BackgroundColor LightCyan
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Base Article Class (simplified reference)
+abstract class Article <<abstract>> {
+    ...
+}
+
+' SCOPUS Article
+class SCOPUS_Article {
+    -sjr: double
+    -hIndex: int
+    __
+    +getSJR(): double
+    +setSJR(s: double): void
+    +getHIndex(): int
+    +setHIndex(h: int): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+Article <|-- SCOPUS_Article
+
+note bottom of SCOPUS_Article
+  SCOPUS Article
+  • SJR ranking
+  • H-index
+end note
+
+@enduml

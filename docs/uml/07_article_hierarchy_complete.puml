@@ -1,0 +1,168 @@
+﻿@startuml Article Class Hierarchy - Complete
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BackgroundColor<<enumeration>> LightBlue
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Enumerations
+enum ArticleStatus <<enumeration>> {
+    DRAFT = 11
+    SUBMITTED = 12
+    UNDER_REVIEW = 13
+    REVISIONS = 14
+    ACCEPTED = 15
+    REJECTED = 16
+    PUBLISHED = 17
+}
+
+enum Type <<enumeration>> {
+    SCIE = 1
+    SCOPUS = 2
+    CONFERENCE = 3
+    OTHER = 4
+    CUSTOM = 5
+}
+
+' Base Article Class
+abstract class Article <<abstract>> {
+    #id: string
+    #abstract: string
+    #citationNr: int
+    #title: string
+    #venue: string
+    #year: int
+    #type: Type
+    #status: ArticleStatus
+    #refs: vector<string>
+    #authors: vector<string>
+    __
+    +getId(): string
+    +getTitle(): string
+    +getVenue(): string
+    +getAbstract(): string
+    +getYear(): int
+    +getType(): Type
+    +getStatus(): ArticleStatus
+    __
+    +setTitle(t: string): void
+    +setVenue(v: string): void
+    +setCitationNr(int): void
+    +setYear(y: int): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+' SCIE Article
+class SCIE_Article {
+    -impactFactor: double
+    -qRank: int
+    __
+    +getImpactFactor(): double
+    +setImpactFactor(value: double): void
+    +getQRank(): int
+    +setQRank(q: int): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+' SCOPUS Article
+class SCOPUS_Article {
+    -sjr: double
+    -hIndex: int
+    __
+    +getSJR(): double
+    +setSJR(s: double): void
+    +getHIndex(): int
+    +setHIndex(h: int): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+' Conference Article
+class CONFERENCE_Article {
+    -conferenceRank: string
+    -location: string
+    -acceptanceRate: double
+    __
+    +getRank(t: string
+    +setRank(r: string): void
+    +getLocation(): string
+    +setLocation(l: string): void
+    +getAcceptanceRate(): double
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+' OTHER Article
+class OTHER_Article {
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+' Custom Article
+class CUSTOM_Article {
+    -customTypeName: string
+    __
+    +getCustomTypeName(): string
+    +setCustomTypeName(name: string): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+' Relationships
+Article <|-- SCIE_Article
+Article <|-- SCOPUS_Article
+Article <|-- CONFERENCE_Article
+Article <|-- OTHER_Article
+Article <|-- CUSTOM_Article
+
+Article "uses" --> ArticleStatus
+Article "uses" --> Type
+
+note top of Article
+  Lớp trừu tượng Article cho
+  polymorphic copy và JSON
+  serialization
+end note
+
+note bottom of SCIE_Article
+  SCIE Article
+  • Impact Factor (IF)
+  • Q-rank (Q1-Q4)
+end note
+
+note bottom of SCOPUS_Article
+  SCOPUS Article
+  • SJR ranking
+  • H-index
+end note
+
+note bottom of CONFERENCE_Article
+  Conference Article
+  • Conference rank
+  • Location
+  • Acceptance rate
+end note
+
+note bottom of OTHER_Article
+  OTHER Article
+  Loại bài báo chung
+  không thuộc các danh mục khác
+end note
+
+note bottom of CUSTOM_Article
+  CUSTOM Article
+  Loại bài báo tùy chỉnh
+end note
+
+@enduml

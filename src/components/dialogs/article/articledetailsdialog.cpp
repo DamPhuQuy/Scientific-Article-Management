@@ -63,9 +63,9 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
 
     ui->lblTitle->setText(QString::fromStdString(currentArticle->getTitle()));
     ui->lblId->setText("ID: " + QString::fromStdString(currentArticle->getId()));
-    ui->lblVenue->setText(QString::fromStdString("Nơi xuất bản: " + currentArticle->getVenue()));
+    ui->lblVenue->setText(QString::fromStdString("Publication Venue: " + currentArticle->getVenue()));
     ui->lblYear->setText(QString::number(currentArticle->getYear()));
-    ui->lblCitation->setText(QString::number(currentArticle->getCitation()) + " trích dẫn");
+    ui->lblCitation->setText(QString::number(currentArticle->getCitation()) + " citations");
     ui->txtAbstract->setText(QString::fromStdString(currentArticle->getAbstract()));
 
     // Hide update and remove buttons if user is not Admin
@@ -217,27 +217,27 @@ void ArticleDetailsDialog::exportToCSV() {
 
     QDir rootDir(baseDir);
     if (!rootDir.exists() && !rootDir.mkpath(".")) {
-        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export gốc.");
+        QMessageBox::warning(this, "Error", "Cannot create root export folder.");
         return;
     }
 
     QString userFolderName = QString::fromStdString(currentUsername);
     QDir userDir(rootDir.filePath(userFolderName));
     if (!userDir.exists() && !userDir.mkpath(".")) {
-        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export cho tài khoản.");
+        QMessageBox::warning(this, "Error", "Cannot create export folder for account.");
         return;
     }
 
     QString filePath = userDir.filePath(QString::fromStdString(currentArticle->getId()) + ".csv");
 
     if (QFile::exists(filePath)) {
-        QMessageBox::information(this, "Đã export", "Bài báo này đã được export trước đó tại:\n" + filePath);
+        QMessageBox::information(this, "Already Exported", "This article has been exported before at:\n" + filePath);
         return;
     }
 
     QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Lỗi", "Không thể mở file để ghi: " + filePath);
+        QMessageBox::warning(this, "Error", "Cannot open file for writing: " + filePath);
         return;
     }
 
@@ -291,7 +291,7 @@ void ArticleDetailsDialog::exportToCSV() {
 
     file.close();
 
-    QMessageBox::information(this, "Thành công", "Đã export CSV vào:\n" + filePath);
+    QMessageBox::information(this, "Success", "CSV exported to:\n" + filePath);
 }
 
 void ArticleDetailsDialog::exportToJSON() {
@@ -307,21 +307,21 @@ void ArticleDetailsDialog::exportToJSON() {
 
     QDir rootDir(baseDir);
     if (!rootDir.exists() && !rootDir.mkpath(".")) {
-        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export gốc.");
+        QMessageBox::warning(this, "Error", "Cannot create root export folder.");
         return;
     }
 
     QString userFolderName = QString::fromStdString(currentUsername.empty() ? "guest" : currentUsername);
     QDir userDir(rootDir.filePath(userFolderName));
     if (!userDir.exists() && !userDir.mkpath(".")) {
-        QMessageBox::warning(this, "Lỗi", "Không thể tạo thư mục export cho tài khoản.");
+        QMessageBox::warning(this, "Error", "Cannot create export folder for account.");
         return;
     }
 
     QString filePath = userDir.filePath(QString::fromStdString(currentArticle->getId()) + ".json");
 
     if (QFile::exists(filePath)) {
-        QMessageBox::information(this, "Đã export", "Bài báo này đã được export trước đó tại:\n" + filePath);
+        QMessageBox::information(this, "Already Exported", "This article has been exported before at:\n" + filePath);
         return;
     }
 
@@ -331,7 +331,7 @@ void ArticleDetailsDialog::exportToJSON() {
 
     QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Lỗi", "Không thể mở file để ghi: " + filePath);
+        QMessageBox::warning(this, "Error", "Cannot open file for writing: " + filePath);
         return;
     }
 
@@ -341,19 +341,19 @@ void ArticleDetailsDialog::exportToJSON() {
 
     file.close();
 
-    QMessageBox::information(this, "Thành công", "Đã export JSON vào:\n" + filePath);
+    QMessageBox::information(this, "Success", "JSON exported to:\n" + filePath);
 }
 
 void ArticleDetailsDialog::on_btnExport_clicked()
 {
     if (!currentArticle) {
-        QMessageBox::warning(this, "Thiếu dữ liệu", "Không có bài báo để export.");
+        QMessageBox::warning(this, "Missing Data", "No article to export.");
         return;
     }
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle("Xuất bài báo");
-    msgBox.setText("Chọn định dạng export cho bài báo.");
+    msgBox.setWindowTitle("Export Article");
+    msgBox.setText("Select export format for the article.");
     auto csvBtn = msgBox.addButton("CSV", QMessageBox::AcceptRole);
     auto jsonBtn = msgBox.addButton("JSON", QMessageBox::AcceptRole);
     msgBox.addButton(QMessageBox::Cancel);
