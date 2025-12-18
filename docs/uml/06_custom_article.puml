@@ -1,0 +1,34 @@
+﻿@startuml CUSTOM Article Class
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BackgroundColor Lavender
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Base Article Class (simplified reference)
+abstract class Article <<abstract>> {
+    ...
+}
+
+' Custom Article
+class CUSTOM_Article {
+    -customTypeName: string
+    __
+    +getCustomTypeName(): string
+    +setCustomTypeName(name: string): void
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+Article <|-- CUSTOM_Article
+
+note bottom of CUSTOM_Article
+  Other_Article
+  Loại bài báo tùy chỉnh
+end note
+
+@enduml

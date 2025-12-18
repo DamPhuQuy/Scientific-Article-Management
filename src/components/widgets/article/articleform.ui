@@ -164,7 +164,7 @@ QListView::item:selected {
          <string notr="true">color:#ffffff;font-weight:900;font-size:20px;background:transparent;padding-left:10px;margin-top:0px;</string>
         </property>
         <property name="text">
-         <string>DANH SÁCH BÀI BÁO KHOA HỌC</string>
+         <string>SCIENTIFIC ARTICLES LIST</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>

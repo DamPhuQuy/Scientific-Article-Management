@@ -12,7 +12,7 @@ LoginForm::LoginForm(RepositoryManager& repo, QWidget *parent)
     ui->setupUi(this);
 
     // Setup Sign Up Link
-    ui->signUpLabel->setText("<a href=\"signup\" style=\"text-decoration:none; color:#20B2AA;\">Đăng ký</a>");
+    ui->signUpLabel->setText("<a href=\"signup\" style=\"text-decoration:none; color:#20B2AA;\">Sign Up</a>");
     ui->signUpLabel->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
 
     // Setup toggle checkbox for password visibility
@@ -55,19 +55,19 @@ void LoginForm::on_signInButton_clicked()
     QString password = ui->passwordEdit->text();
 
     if (username.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập, email hoặc số điện thoại!", "Lỗi đăng nhập");
+        Inform::showMessage(this, MessageType::Warning, "Please enter username, email or phone number!", "Login Error");
         ui->usernameEdit->setFocus();
         return;
     }
 
     if (password.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập mật khẩu!", "Lỗi đăng nhập");
+        Inform::showMessage(this, MessageType::Warning, "Please enter password!", "Login Error");
         ui->passwordEdit->setFocus();
         return;
     }
 
     if (username.isEmpty() && password.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng điền thông tin đầy đủ", "Lỗi đăng nhập");
+        Inform::showMessage(this, MessageType::Warning, "Please fill in all information", "Login Error");
         ui->usernameEdit->setFocus();
         ui->passwordEdit->setFocus();
         return;
@@ -82,9 +82,9 @@ void LoginForm::on_signInButton_clicked()
 
         ui->passwordEdit->clear();
 
-        Inform::showMessage(this, MessageType::Info, "Đăng nhập thàng công!", "Thành công");
+        Inform::showMessage(this, MessageType::Info, "Login successful!", "Success");
     } else {
-        Inform::showMessage(this, MessageType::Warning, "Thông tin đăng nhập hoặc mật khẩu không đúng!", "Đăng nhập thất bại");
+        Inform::showMessage(this, MessageType::Warning, "Incorrect username or password!", "Login Failed");
 
         ui->usernameEdit->clear();
         ui->passwordEdit->clear();

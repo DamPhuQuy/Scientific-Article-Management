@@ -1,0 +1,31 @@
+﻿@startuml OTHER Article Class
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BackgroundColor LightGray
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Base Article Class (simplified reference)
+abstract class Article <<abstract>> {
+    ...
+}
+
+' OTHER Article
+class OTHER_Article {
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+Article <|-- OTHER_Article
+
+note bottom of OTHER_Article
+  OTHER Article
+  Loại bài báo chung
+  không thuộc các danh mục khác
+end note
+
+@enduml

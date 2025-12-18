@@ -1,0 +1,25 @@
+﻿@startuml SCIE Article Class
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FEFEFE
+skinparam class {
+    BackgroundColor<<abstract>> LightYellow
+    BackgroundColor LightGreen
+    BorderColor Black
+    ArrowColor Black
+}
+
+' Base Article Class (simplified reference)
+abstract class Article <<abstract>> {
+    ...
+}
+
+' SCIE Article
+class OTHER_Article {
+    __
+    +clone(): unique_ptr<Article>
+    +to_json(): json
+}
+
+Article <|-- OTHER_Article
+
+@enduml

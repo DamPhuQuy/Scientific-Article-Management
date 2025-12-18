@@ -493,5 +493,14 @@
         "phone": "0356780234",
         "role": "Admin",
         "username": "phuquyadmin"
+    },
+    {
+        "email": "phuquydam@gmail.com",
+        "fullname": "Dam Phu Quy",
+        "keyManipulation": "SjR96J",
+        "password": "test123456",
+        "phone": "0356780244",
+        "role": "User",
+        "username": "phuquyadmin2"
     }
 ]

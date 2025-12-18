@@ -15,7 +15,7 @@ SignUpForm::SignUpForm(RepositoryManager& repo, QWidget *parent)
     ui->setupUi(this);
 
     // Setup Login Link
-    ui->loginLabel->setText("<a href=\"login\" style=\"text-decoration:none; color:#20B2AA;\">Đăng nhập</a>");
+    ui->loginLabel->setText("<a href=\"login\" style=\"text-decoration:none; color:#20B2AA;\">Login</a>");
     ui->loginLabel->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
 
     // Setup toogle checkbox for password fields
@@ -77,51 +77,51 @@ void SignUpForm::on_signUpButton_clicked()
 
     // empty fields validation
     if (username.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên đăng nhập!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Please enter username!", "Registration Error");
         ui->usernameEdit->setFocus();
         return;
     }
 
     if (password.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập mật khẩu!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Please enter password!", "Registration Error");
         ui->passwordEdit->setFocus();
         return;
     }
 
     if (confirmPass.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng xác nhận mật khẩu!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Please confirm password!", "Registration Error");
         ui->confirmPassEdit->setFocus();
         return;
     }
 
     if (fullname.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập họ tên!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Please enter full name!", "Registration Error");
         ui->fullnameEdit->setFocus();
         return;
     }
 
     if (email.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập email!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Please enter email!", "Registration Error");
         ui->emailEdit->setFocus();
         return;
     }
 
     if (phone.isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập số điện thoại!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Please enter phone number!", "Registration Error");
         ui->phoneEdit->setFocus();
         return;
     }
 
     // format validation
     if (username.contains(' ') || username.length() < 3) {
-        Inform::showMessage(this, MessageType::Warning, "Tên đăng nhập phải >= 3 ký tự và không chứa khoảng trắng!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Username must be >= 3 characters and contain no spaces!", "Registration Error");
         ui->usernameEdit->setFocus();
         ui->usernameEdit->selectAll();
         return;
     }
 
     if (password.length() < 8) {
-        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải >= 8 ký tự!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Password must be >= 8 characters!", "Registration Error");
         ui->passwordEdit->setFocus();
         ui->passwordEdit->selectAll();
         return;
@@ -129,14 +129,14 @@ void SignUpForm::on_signUpButton_clicked()
 
     QRegularExpression pwRegex(R"((?=.*[A-Za-z])(?=.*\d).{8,})");
     if (!pwRegex.match(password).hasMatch()) {
-        Inform::showMessage(this, MessageType::Warning, "Mật khẩu phải chứa cả chữ và số!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Password must contain both letters and numbers!", "Registration Error");
         ui->passwordEdit->setFocus();
         ui->passwordEdit->selectAll();
         return;
     }
 
     if (password != confirmPass) {
-        Inform::showMessage(this, MessageType::Warning, "Mật khẩu không trùng khớp!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Passwords do not match!", "Registration Error");
         ui->confirmPassEdit->setFocus();
         ui->confirmPassEdit->selectAll();
         return;
@@ -144,7 +144,7 @@ void SignUpForm::on_signUpButton_clicked()
 
     QRegularExpression emailRegex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
     if (!emailRegex.match(email).hasMatch()) {
-        Inform::showMessage(this, MessageType::Warning, "Email không hợp lệ!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Invalid email!", "Registration Error");
         ui->emailEdit->setFocus();
         ui->emailEdit->selectAll();
         return;
@@ -152,7 +152,7 @@ void SignUpForm::on_signUpButton_clicked()
 
     QRegularExpression phoneRegex(R"(^\+?\d{9,15}$)");
     if (!phoneRegex.match(phone).hasMatch()) {
-        Inform::showMessage(this, MessageType::Warning, "Số điện thoại không hợp lệ (9-15 chữ số)!", "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, "Invalid phone number (9-15 digits)!", "Registration Error");
         ui->phoneEdit->setFocus();
         ui->phoneEdit->selectAll();
         return;
@@ -163,22 +163,22 @@ void SignUpForm::on_signUpButton_clicked()
     QList<QLineEdit*> errorFields;
 
     if (UserManager::userExists(username)) {
-        duplicateErrors << "• Tên đăng nhập đã tồn tại";
+        duplicateErrors << "• Username already exists";
         errorFields << ui->usernameEdit;
     }
 
     if (UserManager::emailExists(email)) {
-        duplicateErrors << "• Email đã được sử dụng";
+        duplicateErrors << "• Email already in use";
         errorFields << ui->emailEdit;
     }
 
     if (UserManager::phoneExists(phone)) {
-        duplicateErrors << "• Số điện thoại đã được sử dụng";
+        duplicateErrors << "• Phone number already in use";
         errorFields << ui->phoneEdit;
     }
 
     if (!duplicateErrors.isEmpty()) {
-        QString errorMessage = "Thông tin bị trùng lặp:\n\n" + duplicateErrors.join("\n");
+        QString errorMessage = "The information is duplicated:\n\n" + duplicateErrors.join("\n");
 
         // highlight
         for (QLineEdit* field : errorFields) {
@@ -186,7 +186,7 @@ void SignUpForm::on_signUpButton_clicked()
             field->selectAll();
         }
 
-        Inform::showMessage(this, MessageType::Warning, errorMessage, "Lỗi đăng kí");
+        Inform::showMessage(this, MessageType::Warning, errorMessage, "Registration Error");
 
         return;
     }
@@ -210,14 +210,14 @@ void SignUpForm::on_signUpButton_clicked()
         }
 
         if (adminCode.trimmed() != QString::fromStdString(ADMIN_CODE)) {
-            Inform::showMessage(this, MessageType::Warning, "Mã admin không đúng!", "Lỗi xác thực");
+            Inform::showMessage(this, MessageType::Warning, "Incorrect admin code!", "Authentication Error");
             return;
         }
     }
 
     UserManager::registerUser(username, password, fullname, email, phone, role);
 
-    Inform::showMessage(this, MessageType::Info, "Đăng kí thành công! Vui lòng đăng nhập.", "Thành công");
+    Inform::showMessage(this, MessageType::Info, "Registration successful! Please login.", "Success");
 
     emit signupSuccess();
 }

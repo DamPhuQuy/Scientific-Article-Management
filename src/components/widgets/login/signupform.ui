@@ -126,7 +126,7 @@
          </string>
         </property>
         <property name="text">
-         <string>ĐĂNG KÝ TÀI KHOẢN MỚI</string>
+         <string>REGISTER NEW ACCOUNT</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -210,7 +210,7 @@
           <item>
            <widget class="QLabel" name="welcomeLabel">
             <property name="text">
-             <string>Tạo tài khoản</string>
+             <string>Create Account</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -220,7 +220,7 @@
           <item>
            <widget class="QLabel" name="subtitleLabel">
             <property name="text">
-             <string>Vui lòng nhập thông tin để đăng ký</string>
+             <string>Please enter your information to register</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -230,28 +230,28 @@
           <item>
            <widget class="QLabel" name="usernameLabel">
             <property name="text">
-             <string>Tên đăng nhập</string>
+             <string>Username</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="usernameEdit">
             <property name="placeholderText">
-             <string>Nhập tên đăng nhập...</string>
+             <string>Enter username...</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="fullnameLabel">
             <property name="text">
-             <string>Họ và tên</string>
+             <string>Full Name</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="fullnameEdit">
             <property name="placeholderText">
-             <string>Nhập họ và tên...</string>
+             <string>Enter full name...</string>
             </property>
            </widget>
           </item>
@@ -265,14 +265,14 @@
           <item>
            <widget class="QLineEdit" name="emailEdit">
             <property name="placeholderText">
-             <string>Nhập địa chỉ email...</string>
+             <string>Enter email address...</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="roleLabel">
             <property name="text">
-             <string>Loại tài khoản</string>
+             <string>Account Type</string>
             </property>
            </widget>
           </item>
@@ -359,21 +359,21 @@
           <item>
            <widget class="QLabel" name="phoneLabel">
             <property name="text">
-             <string>Số điện thoại</string>
+             <string>Phone Number</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLineEdit" name="phoneEdit">
             <property name="placeholderText">
-             <string>Nhập số điện thoại...</string>
+             <string>Enter phone number...</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="passwordLabel">
             <property name="text">
-             <string>Mật khẩu</string>
+             <string>Password</string>
             </property>
            </widget>
           </item>
@@ -390,7 +390,7 @@
           <item>
            <widget class="QLabel" name="confirmPassLabel">
             <property name="text">
-             <string>Xác nhận mật khẩu</string>
+             <string>Confirm Password</string>
             </property>
            </widget>
           </item>
@@ -407,7 +407,7 @@
           <item>
            <widget class="QCheckBox" name="showPasswordCheckBox">
             <property name="text">
-             <string>Hiển thị mật khẩu</string>
+             <string>Show password</string>
             </property>
            </widget>
           </item>
@@ -450,7 +450,7 @@
              </string>
             </property>
             <property name="text">
-             <string>Đăng ký</string>
+             <string>Sign Up</string>
             </property>
            </widget>
           </item>
@@ -475,7 +475,7 @@
             <item>
              <widget class="QLabel" name="signUpPromptLabel">
               <property name="text">
-               <string>Đã có tài khoản?</string>
+               <string>Already have an account?</string>
               </property>
              </widget>
             </item>
@@ -485,7 +485,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="text">
-               <string>Đăng nhập</string>
+               <string>Login</string>
               </property>
              </widget>
             </item>

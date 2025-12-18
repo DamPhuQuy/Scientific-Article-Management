@@ -38,11 +38,11 @@ ArticleInputDialog::~ArticleInputDialog()
 void ArticleInputDialog::on_btnSave_clicked()
 {
     if (ui->inputTitle->text().trimmed().isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập title", "Lỗi");
+        Inform::showMessage(this, MessageType::Warning, "Please enter title", "Error");
         return;
     }
     if (ui->inputVenue->text().trimmed().isEmpty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập venue", "Lỗi");
+        Inform::showMessage(this, MessageType::Warning, "Please enter venue", "Error");
         return;
     }
 
@@ -120,7 +120,7 @@ void ArticleInputDialog::on_btnSave_clicked()
         type = Type::CUSTOM;
         customTypeName = inputCustomTypeName->text().trimmed();
         if (customTypeName.isEmpty()) {
-            Inform::showMessage(this, MessageType::Warning, "Vui lòng nhập tên loại bài báo tùy chỉnh", "Lỗi");
+            Inform::showMessage(this, MessageType::Warning, "Please enter custom article type name", "Error");
             return;
         }
         qDebug() << "Type: CUSTOM | Name:" << customTypeName;
@@ -128,7 +128,7 @@ void ArticleInputDialog::on_btnSave_clicked()
     }
 
     if (m_selectedAuthorIds.empty()) {
-        Inform::showMessage(this, MessageType::Warning, "Vui lòng chọn ít nhất một tác giả!", "Thiếu thông tin");
+        Inform::showMessage(this, MessageType::Warning, "Please select at least one author!", "Missing Information");
         return;
     }
 
@@ -186,7 +186,7 @@ void ArticleInputDialog::on_AuthorBtn_clicked()
         m_selectedAuthorIds = authorDialog.getSelectedAuthorIds();
 
         if (m_selectedAuthorIds.empty()) {
-            ui->AuthorBtn->setText("Chọn tác giả (Chưa chọn ai)");
+            ui->AuthorBtn->setText("Select Authors (None selected)");
         } else {
             QString label = QString("Đã chọn %1 tác giả").arg(m_selectedAuthorIds.size());
             ui->AuthorBtn->setText(label);
