@@ -280,11 +280,11 @@ void ArticleForm::on_userLb_clicked()
 
     userdialog.setUserInfo(
         username,
-        UserManager::getFullName(username),
-        UserManager::getEmail(username),
-        UserManager::getPhone(username),
-        UserManager::getRole(username),
-        UserManager::getKeyManipulation(username)
+        repo.getUsers().getFullName(username),
+        repo.getUsers().getEmail(username),
+        repo.getUsers().getPhone(username),
+        repo.getUsers().getRole(username),
+        repo.getUsers().getKeyManipulation(username)
     );
 
     userdialog.exec();

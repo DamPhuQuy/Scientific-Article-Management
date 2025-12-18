@@ -69,7 +69,7 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
     ui->txtAbstract->setText(QString::fromStdString(currentArticle->getAbstract()));
 
     // Hide update and remove buttons if user is not Admin
-    QString userRole = UserManager::getRole(QString::fromStdString(currentUsername));
+    QString userRole = repo.getUsers().getRole(QString::fromStdString(currentUsername));
     bool isAdmin = (userRole == "Admin");
 
     qDebug() << "Current username:" << QString::fromStdString(currentUsername);
@@ -167,7 +167,7 @@ void ArticleDetailsDialog::on_removeBtn_clicked()
     ArticleConfirmRemoveDialog removeDialog(repo, this);
 
     // Get key manipulation from current user
-    std::string key = UserManager::getKeyManipulation(currentUsername);
+    std::string key = repo.getUsers().getKeyManipulation(currentUsername);
     removeDialog.setExpectedKey(key);
 
     if (removeDialog.exec() == QDialog::Accepted) {

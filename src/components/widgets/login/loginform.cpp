@@ -75,7 +75,7 @@ void LoginForm::on_signInButton_clicked()
 
     qDebug() << "Username: " << username << " - " << "Password: " << password;
 
-    bool isValid = UserManager::login(username, password);
+    bool isValid = repo.getUsers().login(username, password);
 
     if (isValid) {
         emit loginSuccess(username);

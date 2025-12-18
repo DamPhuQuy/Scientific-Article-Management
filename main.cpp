@@ -1,5 +1,6 @@
 #include "src/components/appnav.h"
 #include "src/repos/repomanager.h"
+#include "src/utils/usermanager.h"
 #include <QApplication>
 #include <QDebug>
 
@@ -9,7 +10,8 @@ int main(int argc, char *argv[])
 
     ArticleRepo a_repo;
     AuthorRepo au_repo;
-    RepositoryManager repo(a_repo, au_repo);
+    UserManager u_manager;
+    RepositoryManager repo(a_repo, au_repo, u_manager);
     repo.load();
 
     // Apply Global Stylesheet
