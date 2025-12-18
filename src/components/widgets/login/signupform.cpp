@@ -162,17 +162,17 @@ void SignUpForm::on_signUpButton_clicked()
     QStringList duplicateErrors;
     QList<QLineEdit*> errorFields;
 
-    if (UserManager::userExists(username)) {
+    if (repo.getUsers().userExists(username)) {
         duplicateErrors << "• Username already exists";
         errorFields << ui->usernameEdit;
     }
 
-    if (UserManager::emailExists(email)) {
+    if (repo.getUsers().emailExists(email)) {
         duplicateErrors << "• Email already in use";
         errorFields << ui->emailEdit;
     }
 
-    if (UserManager::phoneExists(phone)) {
+    if (repo.getUsers().phoneExists(phone)) {
         duplicateErrors << "• Phone number already in use";
         errorFields << ui->phoneEdit;
     }
@@ -215,7 +215,7 @@ void SignUpForm::on_signUpButton_clicked()
         }
     }
 
-    UserManager::registerUser(username, password, fullname, email, phone, role);
+    repo.getUsers().registerUser(username, password, fullname, email, phone, role);
 
     Inform::showMessage(this, MessageType::Info, "Registration successful! Please login.", "Success");
 

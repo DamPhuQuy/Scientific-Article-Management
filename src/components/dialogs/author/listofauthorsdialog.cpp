@@ -165,7 +165,7 @@ void ListOfAuthorsDialog::setCurrentUser(const QString &username)
     this->username = username;
 
     // Show New Author button only if user is Admin
-    QString userRole = UserManager::getRole(username);
+    QString userRole = repo.getUsers().getRole(username);
     bool isAdmin = (userRole == "Admin");
     ui->btnNewAuthor->setVisible(isAdmin);
 }

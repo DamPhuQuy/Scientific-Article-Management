@@ -9,8 +9,17 @@
 using namespace std;
 using json = nlohmann::json;
 
-vector<User> UserManager::userList;
-HashMap<string, size_t> UserManager::usernameToIndex;
+UserManager::UserManager() {
+    loadFromFile();
+}
+
+void UserManager::load() {
+    loadFromFile();
+}
+
+void UserManager::save() {
+    saveToFile();
+}
 
 bool UserManager::loadFromFile() {
     ifstream file(Constants::accountsData());

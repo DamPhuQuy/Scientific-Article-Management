@@ -39,16 +39,16 @@ void userUpdateInfo::on_btnSave_clicked()
     QString phone = ui->txtPhone->text();
 
     // check data exists
-    if (UserManager::emailExists(email)) {
+    if (repo.getUsers().emailExists(email)) {
         Inform::showMessage(this, MessageType::Warning, "Email already exists!", "Update Error");
         return;
-    } else if (UserManager::phoneExists(phone)) {
+    } else if (repo.getUsers().phoneExists(phone)) {
         Inform::showMessage(this, MessageType::Warning, "Phone number already exists!", "Update Error");
         return;
     }
 
     // Update basic info
-    UserManager::updateUserInfo(m_username, fullname, email, phone);
+    repo.getUsers().updateUserInfo(m_username, fullname, email, phone);
 
     QString old = ui->txtOldPass->text();
     QString newP = ui->txtNewPass->text();
@@ -61,7 +61,7 @@ void userUpdateInfo::on_btnSave_clicked()
             return;
         }
 
-        UserManager::changePassword(m_username.toStdString(), newP.toStdString());
+        repo.getUsers().changePassword(m_username.toStdString(), newP.toStdString());
         Inform::showMessage(this, MessageType::Info, "Update successfully!", "Update information");
     }
 

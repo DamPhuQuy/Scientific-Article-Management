@@ -44,11 +44,11 @@ void UserDetailsDialog::on_btnUpdate_clicked()
         // Reload user info
         setUserInfo(
             username,
-            UserManager::getFullName(username),
-            UserManager::getEmail(username),
-            UserManager::getPhone(username),
-            UserManager::getRole(username),
-            UserManager::getKeyManipulation(username)
+            repo.getUsers().getFullName(username),
+            repo.getUsers().getEmail(username),
+            repo.getUsers().getPhone(username),
+            repo.getUsers().getRole(username),
+            repo.getUsers().getKeyManipulation(username)
         );
     }
 }

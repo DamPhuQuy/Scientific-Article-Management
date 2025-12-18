@@ -7,9 +7,10 @@ using namespace std;
 
 RepositoryManager::RepositoryManager(
     ArticleRepo &a_repo,
-    AuthorRepo &au_repo
+    AuthorRepo &au_repo,
+    UserManager &u_manager
     )
-    : a_repo(a_repo), au_repo(au_repo)
+    : a_repo(a_repo), au_repo(au_repo), u_manager(u_manager)
 {
 }
 
@@ -17,10 +18,13 @@ ArticleRepo &RepositoryManager::getArticles()
 { return a_repo; }
 AuthorRepo &RepositoryManager::getAuthors()
 { return au_repo; }
+UserManager &RepositoryManager::getUsers()
+{ return u_manager; }
 
 void RepositoryManager::load() {
     a_repo.load();
     au_repo.load();
+    u_manager.load();
 }
 
 // bool RepositoryManager::validateDataConsistency() const {
