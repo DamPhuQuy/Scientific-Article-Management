@@ -90,11 +90,16 @@ void ArticleUpdateDialog::on_saveBtn_clicked()
         currentArticle->setStatus(static_cast<ArticleStatus>(ui->comboStatus->currentIndex() + 11));
     }
 
-    auto parseListFromText = [](const QString& text) -> std::vector<std::string> {
-        std::vector<std::string> list;
+    auto parseListFromText = [](const QString& text) -> vector<string> {
+        vector<string> list;
+        unordered_set<string> seen;
         QStringList lines = text.split('\n', Qt::SkipEmptyParts);
         for (const QString& line : lines) {
+            if (seen.find(line.trimmed().toStdString()) != seen.end()) {
+                continue;
+            }
             list.push_back(line.trimmed().toStdString());
+            seen.insert(line.trimmed().toStdString());
         }
         return list;
     };
