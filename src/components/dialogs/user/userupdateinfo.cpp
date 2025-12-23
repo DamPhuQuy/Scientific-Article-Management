@@ -2,6 +2,7 @@
 #include "ui_userupdateinfo.h"
 #include "src/components/dialogs/msg/inform.h"
 #include "src/utils/usermanager.h"
+#include <QRegularExpression>
 
 userUpdateInfo::userUpdateInfo(RepositoryManager& repo, QWidget *parent)
     : QDialog(parent)
@@ -37,6 +38,20 @@ void userUpdateInfo::on_btnSave_clicked()
     QString fullname = ui->txtFullname->text();
     QString email = ui->txtEmail->text();
     QString phone = ui->txtPhone->text();
+
+    QRegularExpression emailRegex(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
+    if (!emailRegex.match(email).hasMatch()) {
+        Inform::showMessage(this, MessageType::Warning, "Invalid email!", "Registration Error");
+        ui->txtEmail->setFocus();
+        return;
+    }
+
+    QRegularExpression phoneRegex(R"(^\+?\d{9,15}$)");
+    if (!phoneRegex.match(phone).hasMatch()) {
+        Inform::showMessage(this, MessageType::Warning, "Invalid phone number (9-15 digits)!", "Registration Error");
+        ui->txtPhone->setFocus();
+        return;
+    }
 
     // check data exists
     if (repo.getUsers().emailExists(email)) {
