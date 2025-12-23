@@ -119,7 +119,7 @@ bool UserManager::updateUserInfo(const QString& username, const QString& fullnam
 bool UserManager::login(const string& identifier, const string& password) {
     loadFromFile();
 
-    // find username first
+    // find username
     size_t index = usernameToIndex.getOrDefault(identifier, SIZE_MAX);
 
     // find email or phone if username not found
@@ -194,8 +194,35 @@ int UserManager::getUserCount() {
     return userList.size();
 }
 
+// email, phone, or username
+std::string UserManager::getUsernameFromIdentifier(const std::string& identifier) {
+    loadFromFile();
+
+    size_t index = usernameToIndex.getOrDefault(identifier, SIZE_MAX);
+
+    if (index == SIZE_MAX) {
+        for (size_t i = 0; i < userList.size(); i++) {
+            if (userList[i].email == identifier || userList[i].phone == identifier) {
+                index = i;
+                break;
+            }
+        }
+    }
+
+    if (index != SIZE_MAX) {
+        return userList[index].username;
+    }
+
+    return "";
+}
+
+QString UserManager::getUsernameFromIdentifier(const QString& identifier) {
+    return QString::fromStdString(getUsernameFromIdentifier(identifier.toStdString()));
+}
+
 // fullname
 std::string UserManager::getFullName(const std::string& username) {
+    loadFromFile();
     // Kiểm tra user có tồn tại trong Hashmap không
     if (usernameToIndex.containsKey(username)) {
         size_t index = usernameToIndex.get(username); // Lấy index từ map
@@ -210,6 +237,7 @@ QString UserManager::getFullName(const QString& username) {
 
 // email
 std::string UserManager::getEmail(const std::string& username) {
+    loadFromFile();
     if (usernameToIndex.containsKey(username)) {
         size_t index = usernameToIndex.get(username);
         return userList[index].email;
@@ -223,6 +251,7 @@ QString UserManager::getEmail(const QString& username) {
 
 // phone
 std::string UserManager::getPhone(const std::string& username) {
+    loadFromFile();
     if (usernameToIndex.containsKey(username)) {
         size_t index = usernameToIndex.get(username);
         return userList[index].phone;
@@ -236,6 +265,7 @@ QString UserManager::getPhone(const QString& username) {
 
 // role
 std::string UserManager::getRole(const std::string& username) {
+    loadFromFile();
     if (usernameToIndex.containsKey(username)) {
         size_t index = usernameToIndex.get(username);
         return userList[index].role;
@@ -249,6 +279,7 @@ QString UserManager::getRole(const QString& username) {
 
 // keyManipulation
 std::string UserManager::getKeyManipulation(const std::string& username) {
+    loadFromFile();
     if (usernameToIndex.containsKey(username)) {
         size_t index = usernameToIndex.get(username);
         return userList[index].keyManipulation;
