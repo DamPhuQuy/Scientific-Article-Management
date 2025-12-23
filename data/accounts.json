@@ -502,5 +502,14 @@
         "phone": "0356780244",
         "role": "User",
         "username": "phuquyadmin2"
+    },
+    {
+        "email": "phuquydam160506@gmail.com",
+        "fullname": "Đàm Phú Quý",
+        "keyManipulation": "TeiGjW",
+        "password": "test123456",
+        "phone": "0356780246",
+        "role": "Admin",
+        "username": "damphuquy"
     }
 ]

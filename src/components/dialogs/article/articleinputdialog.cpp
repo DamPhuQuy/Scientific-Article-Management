@@ -50,7 +50,7 @@ void ArticleInputDialog::on_btnSave_clicked()
     QString abstract = ui->inputAbstract->toPlainText();
     QString venue = ui->inputVenue->text();
 
-    // inputYear is a QComboBox, so we get the text and convert to int
+    // get the text, convert to int
     int year = ui->inputYear->currentText().toInt();
 
     int n_citation = ui->inputCitations->value();
@@ -188,7 +188,7 @@ void ArticleInputDialog::on_AuthorBtn_clicked()
         if (m_selectedAuthorIds.empty()) {
             ui->AuthorBtn->setText("Select Authors (None selected)");
         } else {
-            QString label = QString("Đã chọn %1 tác giả").arg(m_selectedAuthorIds.size());
+            QString label = QString("Have chosen %1 authors").arg(m_selectedAuthorIds.size());
             ui->AuthorBtn->setText(label);
         }
 

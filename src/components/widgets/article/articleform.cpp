@@ -56,9 +56,9 @@ void ArticleForm::on_newArticleBtn_clicked()
         // reload data and show the view again
         initData();
 
-        loadArticlesToView();
-
         updateTypeComboBox();
+
+        loadArticlesToView();
 
         applyAllFilters();
     }

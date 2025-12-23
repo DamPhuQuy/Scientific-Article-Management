@@ -96,7 +96,21 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
         case Type::SCIE: ui->typeBox->setCurrentIndex(0); break;
         case Type::SCOPUS: ui->typeBox->setCurrentIndex(1); break;
         case Type::CONFERENCE: ui->typeBox->setCurrentIndex(2); break;
-        case Type::CUSTOM: ui->typeBox->setCurrentIndex(4); break;
+        case Type::OTHER: ui->typeBox->setCurrentIndex(3); break;
+        case Type::CUSTOM: {
+            // Tìm index của custom type trong combobox
+            CUSTOM_Article* customArticle = dynamic_cast<CUSTOM_Article*>(currentArticle);
+            if (customArticle) {
+                QString customTypeName = QString::fromStdString(customArticle->getCustomTypeName());
+                int index = ui->typeBox->findText(customTypeName);
+                if (index != -1) {
+                    ui->typeBox->setCurrentIndex(index);
+                } else {
+                    ui->typeBox->setCurrentIndex(4); // fallback
+                }
+            }
+            break;
+        }
         default: ui->typeBox->setCurrentIndex(3); break;
     }
 
@@ -138,6 +152,10 @@ void ArticleDetailsDialog::setArticleData(Article* article) {
         ui->valConfRank->setText(QString::fromStdString(conf->getRank()));
         ui->valLocation->setText(QString::fromStdString(conf->getLocation()));
         ui->valAcceptRate->setText(QString::number(conf->getAcceptanceRate()) + "%");
+    } else if (auto* custom = dynamic_cast<CUSTOM_Article*>(currentArticle)) {
+        qDebug() << "Run-time type: CUSTOM -" << custom->getCustomTypeName();
+        ui->stackedSpecificInfo->setCurrentWidget(ui->pageCUSTOM);
+        ui->valCustomTypeName->setText(QString::fromStdString(custom->getCustomTypeName()));
     }
     else {
         ui->stackedSpecificInfo->setCurrentWidget(ui->pageOTHER);
