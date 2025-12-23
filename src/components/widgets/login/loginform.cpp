@@ -78,7 +78,8 @@ void LoginForm::on_signInButton_clicked()
     bool isValid = repo.getUsers().login(username, password);
 
     if (isValid) {
-        emit loginSuccess(username);
+        QString actualUsername = repo.getUsers().getUsernameFromIdentifier(username);
+        emit loginSuccess(actualUsername);
 
         ui->passwordEdit->clear();
 

@@ -19,7 +19,7 @@ private:
     unsigned int numElements;
     unsigned int capacity;
 
-    static constexpr double MAX_LOAD_FACTOR = 0.75; // neu bang bam da day 75% -> mo rong kich thuoc
+    static constexpr double MAX_LOAD_FACTOR = 0.75;
 
 private:
     unsigned int hashKey(const K& key) const {

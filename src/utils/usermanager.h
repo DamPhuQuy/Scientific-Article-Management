@@ -17,7 +17,7 @@ struct User {
 class UserManager {
 private:
     std::vector<User> userList;
-    HashMap<std::string, size_t> usernameToIndex;  // username → index trong vector
+    HashMap<std::string, size_t> usernameToIndex;  // username → index
 
     bool loadFromFile();
     bool saveToFile();
@@ -51,6 +51,9 @@ public:
     bool changePassword(const std::string& username, const std::string& newPassword);
 
     int getUserCount();
+
+    std::string getUsernameFromIdentifier(const std::string& identifier);
+    QString getUsernameFromIdentifier(const QString& identifier);
 
     // Fullname
     std::string getFullName(const std::string& username);
