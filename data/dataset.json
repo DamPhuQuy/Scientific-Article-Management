@@ -25,7 +25,9 @@
   },
   {
     "abstract": "This paper proposes a distributed model for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": ["db4ec36e-324a-477b-87f2-0dd4aabb048d"],
+    "authors": [
+      "db4ec36e-324a-477b-87f2-0dd4aabb048d"
+    ],
     "id": "6d941f48-3f08-48ac-bcd1-4868b6acbdf4",
     "impact_factor": 2.35,
     "n_citation": 117,
@@ -65,6 +67,27 @@
     "year": 2024
   },
   {
+    "abstract": "This paper introduces a novel approach to multimodal learning combining vision, language, and audio. The unified architecture outperforms specialized models on cross-modal tasks.",
+    "acceptance_rate": 24.8,
+    "authors": [
+      "b3585b46-d22b-4b2c-9317-dec3b72a3159",
+      "q2r3s4t5-u6v7-8901-zabc-de2345678901"
+    ],
+    "conference_rank": "",
+    "id": "55667788-99aa-bbcc-ddee-ff0011223344",
+    "location": "",
+    "n_citation": 203,
+    "references": [
+      "Multimodal Deep Learning",
+      "Vision and Language"
+    ],
+    "status": "PUBLISHED",
+    "title": "Unified Multimodal Learning Framework",
+    "type": 3,
+    "venue": "CVPR",
+    "year": 2024
+  },
+  {
     "abstract": "This paper proposes a distributed framework for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
     "authors": [
       "a95890c4-1022-4da6-9334-76bc68f1f9a2",
@@ -87,6 +110,81 @@
     "year": 2023
   },
   {
+    "abstract": "Master's thesis investigating explainable AI techniques for financial fraud detection. The research proposes interpretable models that balance accuracy with transparency requirements in banking systems.",
+    "authors": [
+      "j5k6l7m8-n9o0-1234-qrst-uv5678901234",
+      "bcffbb4c-b5f1-4b64-bef3-686f3a016e93"
+    ],
+    "customTypeName": "Master Thesis",
+    "id": "ee55ff66-7788-99aa-bbcc-ddee00112233",
+    "n_citation": 5,
+    "references": [
+      "Explainable AI in Finance",
+      "Fraud Detection Systems"
+    ],
+    "status": "PUBLISHED",
+    "title": "Explainable AI for Financial Fraud Detection",
+    "type": 5,
+    "venue": "MIT",
+    "year": 2023
+  },
+  {
+    "abstract": "This paper proposes a novel framework for distributed edge computing optimization. We demonstrate its effectiveness through extensive experiments across heterogeneous IoT networks.",
+    "authors": [
+      "06407807-b267-439b-938e-9d8db5a152b3",
+      "k6l7m8n9-o0p1-2345-rstu-vw6789012345"
+    ],
+    "hIndex": 34,
+    "id": "ff6677889900-aabb-ccdd-eeff-001122334455",
+    "n_citation": 221,
+    "references": [
+      "Edge Computing Survey",
+      "IoT Network Optimization"
+    ],
+    "sjr": 0.42,
+    "status": "PUBLISHED",
+    "title": "Distributed Edge Computing Framework for IoT",
+    "type": 2,
+    "venue": "INFOCOM",
+    "year": 2023
+  },
+  {
+    "abstract": "This doctoral dissertation explores advanced deep learning techniques for medical image segmentation. The research contributes novel architectures for real-time diagnosis support systems.",
+    "authors": [
+      "g2h3i4j5-k6l7-8901-mnop-qr2345678901"
+    ],
+    "customTypeName": "PhD Thesis",
+    "id": "bb22cc33-dd44-ee55-ff66-778899aabbcc",
+    "n_citation": 12,
+    "references": [
+      "Deep Learning for Medical Imaging",
+      "Neural Networks in Healthcare"
+    ],
+    "status": "PUBLISHED",
+    "title": "Advanced Deep Learning for Medical Image Segmentation",
+    "type": 5,
+    "venue": "University of Oxford",
+    "year": 2024
+  },
+  {
+    "abstract": "This paper explores continual learning strategies for neural networks to mitigate catastrophic forgetting. We propose memory-efficient rehearsal mechanisms.",
+    "authors": [
+      "82844d84-2425-4017-8670-0f1e354e517a",
+      "r3s4t5u6-v7w8-9012-abcd-ef3456789012"
+    ],
+    "id": "66778899-aabb-ccdd-eeff-001122334455",
+    "n_citation": 156,
+    "references": [
+      "Continual Learning Survey",
+      "Memory Systems in Neural Networks"
+    ],
+    "status": "PUBLISHED",
+    "title": "Memory-Efficient Continual Learning",
+    "type": 4,
+    "venue": "ICLR",
+    "year": 2023
+  },
+  {
     "abstract": "This paper proposes a advanced network for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
     "authors": [
       "bcffbb4c-b5f1-4b64-bef3-686f3a016e93",
@@ -95,13 +193,52 @@
     "hIndex": 6,
     "id": "b5937956-cf2e-4421-b650-6027374dffc6",
     "n_citation": 235,
-    "references": ["Dynamic Methodology for Machine Learning"],
+    "references": [
+      "Dynamic Methodology for Machine Learning"
+    ],
     "sjr": 0.82,
     "status": "PUBLISHED",
     "title": "Advanced Network for Machine Learning",
     "type": 2,
     "venue": "SIGMOD",
     "year": 2016
+  },
+  {
+    "abstract": "Early-stage research on federated learning with differential privacy. This preprint presents preliminary results on privacy-preserving collaborative machine learning across distributed edge devices.",
+    "authors": [
+      "836a5c98-1418-4c1c-a580-c42d7bc51420",
+      "h3i4j5k6-l7m8-9012-nopq-rs3456789012"
+    ],
+    "customTypeName": "Preprint",
+    "id": "cc33dd44-ee55-ff66-7788-99aabbccddee",
+    "n_citation": 8,
+    "references": [
+      "Federated Learning Survey",
+      "Differential Privacy Mechanisms"
+    ],
+    "status": "PUBLISHED",
+    "title": "Federated Learning with Enhanced Privacy Guarantees",
+    "type": 5,
+    "venue": "arXiv",
+    "year": 2024
+  },
+  {
+    "abstract": "Industry analysis report examining the adoption of blockchain technologies in supply chain management. The report provides case studies and ROI analysis for major logistics companies.",
+    "authors": [
+      "i4j5k6l7-m8n9-0123-pqrs-tu4567890123"
+    ],
+    "customTypeName": "Industry Report",
+    "id": "dd44ee55-ff66-7788-99aa-bbccddee0011",
+    "n_citation": 67,
+    "references": [
+      "Blockchain in Supply Chain",
+      "Logistics Optimization Systems"
+    ],
+    "status": "PUBLISHED",
+    "title": "Blockchain Adoption in Global Supply Chains: 2024 Analysis",
+    "type": 5,
+    "venue": "Industry Insights",
+    "year": 2024
   },
   {
     "abstract": "This paper proposes a dynamic model for cybersecurity. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
@@ -113,7 +250,9 @@
     "hIndex": 34,
     "id": "c4fbbb79-8ba6-427b-8696-1480533e8e4b",
     "n_citation": 302,
-    "references": ["Intelligent Approach for Machine Learning"],
+    "references": [
+      "Intelligent Approach for Machine Learning"
+    ],
     "sjr": 0.96,
     "status": "PUBLISHED",
     "title": "Dynamic Model for Cybersecurity",
@@ -123,7 +262,9 @@
   },
   {
     "abstract": "This paper proposes a robust protocol for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": ["d585bf29-31ef-40e0-a81c-e9ddf81bcdff"],
+    "authors": [
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff"
+    ],
     "hIndex": 5,
     "id": "b72b3013-9aed-46b3-8380-4693f3825b10",
     "n_citation": 113,
@@ -141,15 +282,37 @@
   },
   {
     "abstract": "This paper proposes a distributed system for cloud computing. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": ["06407807-b267-439b-938e-9d8db5a152b3"],
+    "authors": [
+      "06407807-b267-439b-938e-9d8db5a152b3"
+    ],
     "id": "7b36d782-4117-473b-9a76-bacd5be7fa55",
     "n_citation": 306,
-    "references": ["Distributed Approach for Blockchain"],
+    "references": [
+      "Distributed Approach for Blockchain"
+    ],
     "status": "PUBLISHED",
     "title": "Distributed System for Cloud Computing",
     "type": 4,
     "venue": "ICML",
     "year": 2021
+  },
+  {
+    "abstract": "This paper investigates neuromorphic computing architectures for energy-efficient AI inference. We demonstrate significant power savings compared to traditional GPU-based systems.",
+    "authors": [
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
+      "n9o0p1q2-r3s4-5678-vwxy-za9012345678"
+    ],
+    "id": "22334455-6677-8899-aabb-ccddeeff0011",
+    "n_citation": 134,
+    "references": [
+      "Neuromorphic Engineering",
+      "Energy-Efficient Computing"
+    ],
+    "status": "PUBLISHED",
+    "title": "Neuromorphic Architectures for Edge AI",
+    "type": 4,
+    "venue": "DATE",
+    "year": 2024
   },
   {
     "abstract": "In this paper, a robust 3D triangular mesh watermarking algorithm based on 3D segmentation is proposed. In this algorithm three classes of watermarking are combined. First, we segment the original image to many different regions. Then we mark every type of region with the corresponding algorithm based on their curvature value. The experiments show that our watermarking is robust against numerous attacks including RST transformations, smoothing, additive random noise, cropping, simplification and remeshing.",
@@ -233,6 +396,25 @@
     "year": 2024
   },
   {
+    "abstract": "A comprehensive technical report on quantum computing architectures for enterprise applications. This white paper analyzes the current state of quantum technologies and their practical implementations in cloud infrastructure.",
+    "authors": [
+      "f1a2b3c4-d5e6-7890-abcd-ef1234567890",
+      "2b94573f-5146-4b66-9016-310494fe9170"
+    ],
+    "customTypeName": "White Paper",
+    "id": "aa11bb22-cc33-dd44-ee55-ff6677889900",
+    "n_citation": 45,
+    "references": [
+      "Quantum Computing Fundamentals",
+      "Enterprise Cloud Solutions"
+    ],
+    "status": "PUBLISHED",
+    "title": "Quantum Computing Architecture for Enterprise Systems",
+    "type": 5,
+    "venue": "Tech Report Series",
+    "year": 2023
+  },
+  {
     "abstract": "We present an efficient algorithm for constructing balanced sequences over 3 letters using continued fraction expansions. The method runs in O(n log n) and generates sequences with minimal imbalance.",
     "authors": [
       "836a5c98-1418-4c1c-a580-c42d7bc51420",
@@ -294,6 +476,27 @@
     "type": 1,
     "venue": "ICML",
     "year": 2019
+  },
+  {
+    "abstract": "This paper explores reinforcement learning techniques for autonomous vehicle navigation in urban environments. The proposed approach combines deep Q-learning with safety constraints.",
+    "acceptance_rate": 21.3,
+    "authors": [
+      "3195b257-0ab1-45be-91e2-e88ba6c62827",
+      "m8n9o0p1-q2r3-4567-uvwx-yz8901234567"
+    ],
+    "conference_rank": "",
+    "id": "11223344-5566-7788-99aa-bbccddeeff00",
+    "location": "",
+    "n_citation": 89,
+    "references": [
+      "Deep Reinforcement Learning",
+      "Autonomous Driving Systems"
+    ],
+    "status": "PUBLISHED",
+    "title": "Safe Reinforcement Learning for Autonomous Navigation",
+    "type": 3,
+    "venue": "IROS",
+    "year": 2023
   },
   {
     "abstract": "This paper proposes a distributed framework for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
@@ -385,7 +588,9 @@
   },
   {
     "abstract": "This paper proposes a novel system for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": ["db4ec36e-324a-477b-87f2-0dd4aabb048d"],
+    "authors": [
+      "db4ec36e-324a-477b-87f2-0dd4aabb048d"
+    ],
     "id": "be8d8aa7-92c9-4274-a99d-cd7c43b9594f",
     "n_citation": 276,
     "references": [
@@ -402,21 +607,44 @@
     "year": 2015
   },
   {
-    "abstract": "hrthrtjjrjj",
+    "abstract": "This paper presents a scalable approach to graph neural networks for large-scale social network analysis. The method achieves linear time complexity through novel sampling strategies.",
     "authors": [
-      "82844d84-2425-4017-8670-0f1e354e517a",
-      "836a5c98-1418-4c1c-a580-c42d7bc51420"
+      "c9fa938b-48a3-4841-996f-3a01697ee222",
+      "o0p1q2r3-s4t5-6789-wxyz-ab0123456789"
     ],
-    "id": "cdce73ec-9283-4c3f-89bb-02a3e1dee833",
-    "impact_factor": 3.0,
-    "n_citation": 8,
-    "q_rank": 2,
-    "references": ["dbndfntntrnr"],
-    "status": "REVISIONS",
-    "title": "dev game trum the gioi ",
-    "type": 1,
-    "venue": "fewwgwwrgr",
-    "year": 2020
+    "hIndex": 29,
+    "id": "33445566-7788-99aa-bbcc-ddeeff001122",
+    "n_citation": 178,
+    "references": [
+      "Graph Neural Networks",
+      "Social Network Analysis"
+    ],
+    "sjr": 0.38,
+    "status": "PUBLISHED",
+    "title": "Scalable Graph Neural Networks for Social Networks",
+    "type": 2,
+    "venue": "WWW",
+    "year": 2024
+  },
+  {
+    "abstract": "This paper investigates privacy-preserving techniques for federated analytics in healthcare. We combine secure multiparty computation with differential privacy.",
+    "authors": [
+      "6ec56653-9e6f-4522-a7af-ffeebf346f61",
+      "s4t5u6v7-w8x9-0123-bcde-fg4567890123"
+    ],
+    "hIndex": 31,
+    "id": "778899aa-bbcc-ddee-ff00-112233445566",
+    "n_citation": 188,
+    "references": [
+      "Federated Learning in Healthcare",
+      "Privacy-Preserving Analytics"
+    ],
+    "sjr": 0.45,
+    "status": "PUBLISHED",
+    "title": "Privacy-Preserving Federated Analytics for Healthcare",
+    "type": 2,
+    "venue": "IEEE TDSC",
+    "year": 2024
   },
   {
     "abstract": "This paper proposes a advanced framework for machine learning. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
@@ -443,6 +671,45 @@
     "year": 2016
   },
   {
+    "abstract": "This paper analyzes quantum machine learning algorithms for optimization problems. We provide theoretical guarantees and empirical evaluations on benchmark datasets.",
+    "authors": [
+      "p1q2r3s4-t5u6-7890-yzab-cd1234567890"
+    ],
+    "id": "44556677-8899-aabb-ccdd-eeff00112233",
+    "impact_factor": 2.95,
+    "n_citation": 97,
+    "q_rank": 2,
+    "references": [
+      "Quantum Computing",
+      "Optimization Algorithms"
+    ],
+    "status": "PUBLISHED",
+    "title": "Quantum Machine Learning for Optimization",
+    "type": 1,
+    "venue": "Nature Quantum Information",
+    "year": 2024
+  },
+  {
+    "abstract": "This paper presents a comprehensive study on transformer architectures for natural language understanding. We introduce several improvements that achieve state-of-the-art performance on multiple benchmarks.",
+    "authors": [
+      "8e907521-6e0d-4472-bb75-8968e541d262",
+      "l7m8n9o0-p1q2-3456-stuv-wx7890123456"
+    ],
+    "id": "00112233-4455-6677-8899-aabbccddeeff",
+    "impact_factor": 3.87,
+    "n_citation": 342,
+    "q_rank": 1,
+    "references": [
+      "Attention Mechanisms in NLP",
+      "BERT and Beyond"
+    ],
+    "status": "PUBLISHED",
+    "title": "Enhanced Transformer Architectures for NLU",
+    "type": 1,
+    "venue": "ACL",
+    "year": 2024
+  },
+  {
     "abstract": "This technical report surveys recent results on balanced sequences over non-integer alphabets and their applications in data compression.",
     "authors": [
       "8e907521-6e0d-4472-bb75-8968e541d262",
@@ -463,250 +730,18 @@
   },
   {
     "abstract": "This paper proposes a dynamic architecture for computer vision. We demonstrate its effectiveness through extensive experiments. The results show significant improvements over state-of-the-art methods.",
-    "authors": ["d585bf29-31ef-40e0-a81c-e9ddf81bcdff"],
+    "authors": [
+      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff"
+    ],
     "id": "97f6b34f-5459-4af1-9463-ac96034e2443",
     "n_citation": 156,
-    "references": ["Intelligent Approach for Machine Learning"],
+    "references": [
+      "Intelligent Approach for Machine Learning"
+    ],
     "status": "PUBLISHED",
     "title": "Dynamic Architecture for Computer Vision",
     "type": 4,
     "venue": "ICML",
     "year": 2021
-  },
-  {
-    "abstract": "A comprehensive technical report on quantum computing architectures for enterprise applications. This white paper analyzes the current state of quantum technologies and their practical implementations in cloud infrastructure.",
-    "authors": [
-      "f1a2b3c4-d5e6-7890-abcd-ef1234567890",
-      "2b94573f-5146-4b66-9016-310494fe9170"
-    ],
-    "customTypeName": "White Paper",
-    "id": "aa11bb22-cc33-dd44-ee55-ff6677889900",
-    "n_citation": 45,
-    "references": [
-      "Quantum Computing Fundamentals",
-      "Enterprise Cloud Solutions"
-    ],
-    "status": "PUBLISHED",
-    "title": "Quantum Computing Architecture for Enterprise Systems",
-    "type": 5,
-    "venue": "Tech Report Series",
-    "year": 2023
-  },
-  {
-    "abstract": "This doctoral dissertation explores advanced deep learning techniques for medical image segmentation. The research contributes novel architectures for real-time diagnosis support systems.",
-    "authors": ["g2h3i4j5-k6l7-8901-mnop-qr2345678901"],
-    "customTypeName": "PhD Thesis",
-    "id": "bb22cc33-dd44-ee55-ff66-778899aabbcc",
-    "n_citation": 12,
-    "references": [
-      "Deep Learning for Medical Imaging",
-      "Neural Networks in Healthcare"
-    ],
-    "status": "PUBLISHED",
-    "title": "Advanced Deep Learning for Medical Image Segmentation",
-    "type": 5,
-    "venue": "University of Oxford",
-    "year": 2024
-  },
-  {
-    "abstract": "Early-stage research on federated learning with differential privacy. This preprint presents preliminary results on privacy-preserving collaborative machine learning across distributed edge devices.",
-    "authors": [
-      "836a5c98-1418-4c1c-a580-c42d7bc51420",
-      "h3i4j5k6-l7m8-9012-nopq-rs3456789012"
-    ],
-    "customTypeName": "Preprint",
-    "id": "cc33dd44-ee55-ff66-7788-99aabbccddee",
-    "n_citation": 8,
-    "references": [
-      "Federated Learning Survey",
-      "Differential Privacy Mechanisms"
-    ],
-    "status": "DRAFT",
-    "title": "Federated Learning with Enhanced Privacy Guarantees",
-    "type": 5,
-    "venue": "arXiv",
-    "year": 2024
-  },
-  {
-    "abstract": "Industry analysis report examining the adoption of blockchain technologies in supply chain management. The report provides case studies and ROI analysis for major logistics companies.",
-    "authors": ["i4j5k6l7-m8n9-0123-pqrs-tu4567890123"],
-    "customTypeName": "Industry Report",
-    "id": "dd44ee55-ff66-7788-99aa-bbccddee0011",
-    "n_citation": 67,
-    "references": [
-      "Blockchain in Supply Chain",
-      "Logistics Optimization Systems"
-    ],
-    "status": "PUBLISHED",
-    "title": "Blockchain Adoption in Global Supply Chains: 2024 Analysis",
-    "type": 5,
-    "venue": "Industry Insights",
-    "year": 2024
-  },
-  {
-    "abstract": "Master's thesis investigating explainable AI techniques for financial fraud detection. The research proposes interpretable models that balance accuracy with transparency requirements in banking systems.",
-    "authors": [
-      "j5k6l7m8-n9o0-1234-qrst-uv5678901234",
-      "bcffbb4c-b5f1-4b64-bef3-686f3a016e93"
-    ],
-    "customTypeName": "Master Thesis",
-    "id": "ee55ff66-7788-99aa-bbcc-ddee00112233",
-    "n_citation": 5,
-    "references": ["Explainable AI in Finance", "Fraud Detection Systems"],
-    "status": "PUBLISHED",
-    "title": "Explainable AI for Financial Fraud Detection",
-    "type": 5,
-    "venue": "MIT",
-    "year": 2023
-  },
-  {
-    "abstract": "This paper proposes a novel framework for distributed edge computing optimization. We demonstrate its effectiveness through extensive experiments across heterogeneous IoT networks.",
-    "authors": [
-      "06407807-b267-439b-938e-9d8db5a152b3",
-      "k6l7m8n9-o0p1-2345-rstu-vw6789012345"
-    ],
-    "hIndex": 34,
-    "id": "ff6677889900-aabb-ccdd-eeff-001122334455",
-    "n_citation": 221,
-    "references": ["Edge Computing Survey", "IoT Network Optimization"],
-    "sjr": 0.42,
-    "status": "PUBLISHED",
-    "title": "Distributed Edge Computing Framework for IoT",
-    "type": 2,
-    "venue": "INFOCOM",
-    "year": 2023
-  },
-  {
-    "abstract": "This paper presents a comprehensive study on transformer architectures for natural language understanding. We introduce several improvements that achieve state-of-the-art performance on multiple benchmarks.",
-    "authors": [
-      "8e907521-6e0d-4472-bb75-8968e541d262",
-      "l7m8n9o0-p1q2-3456-stuv-wx7890123456"
-    ],
-    "id": "00112233-4455-6677-8899-aabbccddeeff",
-    "impact_factor": 3.87,
-    "n_citation": 342,
-    "q_rank": 1,
-    "references": ["Attention Mechanisms in NLP", "BERT and Beyond"],
-    "status": "PUBLISHED",
-    "title": "Enhanced Transformer Architectures for NLU",
-    "type": 1,
-    "venue": "ACL",
-    "year": 2024
-  },
-  {
-    "abstract": "This paper explores reinforcement learning techniques for autonomous vehicle navigation in urban environments. The proposed approach combines deep Q-learning with safety constraints.",
-    "acceptance_rate": 21.3,
-    "authors": [
-      "3195b257-0ab1-45be-91e2-e88ba6c62827",
-      "m8n9o0p1-q2r3-4567-uvwx-yz8901234567"
-    ],
-    "id": "11223344-5566-7788-99aa-bbccddeeff00",
-    "n_citation": 89,
-    "references": ["Deep Reinforcement Learning", "Autonomous Driving Systems"],
-    "status": "PUBLISHED",
-    "title": "Safe Reinforcement Learning for Autonomous Navigation",
-    "type": 3,
-    "venue": "IROS",
-    "year": 2023
-  },
-  {
-    "abstract": "This paper investigates neuromorphic computing architectures for energy-efficient AI inference. We demonstrate significant power savings compared to traditional GPU-based systems.",
-    "authors": [
-      "d585bf29-31ef-40e0-a81c-e9ddf81bcdff",
-      "n9o0p1q2-r3s4-5678-vwxy-za9012345678"
-    ],
-    "id": "22334455-6677-8899-aabb-ccddeeff0011",
-    "n_citation": 134,
-    "references": ["Neuromorphic Engineering", "Energy-Efficient Computing"],
-    "status": "PUBLISHED",
-    "title": "Neuromorphic Architectures for Edge AI",
-    "type": 4,
-    "venue": "DATE",
-    "year": 2024
-  },
-  {
-    "abstract": "This paper presents a scalable approach to graph neural networks for large-scale social network analysis. The method achieves linear time complexity through novel sampling strategies.",
-    "hIndex": 29,
-    "authors": [
-      "c9fa938b-48a3-4841-996f-3a01697ee222",
-      "o0p1q2r3-s4t5-6789-wxyz-ab0123456789"
-    ],
-    "id": "33445566-7788-99aa-bbcc-ddeeff001122",
-    "n_citation": 178,
-    "references": ["Graph Neural Networks", "Social Network Analysis"],
-    "sjr": 0.38,
-    "status": "PUBLISHED",
-    "title": "Scalable Graph Neural Networks for Social Networks",
-    "type": 2,
-    "venue": "WWW",
-    "year": 2024
-  },
-  {
-    "abstract": "This paper analyzes quantum machine learning algorithms for optimization problems. We provide theoretical guarantees and empirical evaluations on benchmark datasets.",
-    "authors": ["p1q2r3s4-t5u6-7890-yzab-cd1234567890"],
-    "id": "44556677-8899-aabb-ccdd-eeff00112233",
-    "impact_factor": 2.95,
-    "n_citation": 97,
-    "q_rank": 2,
-    "references": ["Quantum Computing", "Optimization Algorithms"],
-    "status": "PUBLISHED",
-    "title": "Quantum Machine Learning for Optimization",
-    "type": 1,
-    "venue": "Nature Quantum Information",
-    "year": 2024
-  },
-  {
-    "abstract": "This paper introduces a novel approach to multimodal learning combining vision, language, and audio. The unified architecture outperforms specialized models on cross-modal tasks.",
-    "acceptance_rate": 24.8,
-    "authors": [
-      "b3585b46-d22b-4b2c-9317-dec3b72a3159",
-      "q2r3s4t5-u6v7-8901-zabc-de2345678901"
-    ],
-    "id": "55667788-99aa-bbcc-ddee-ff0011223344",
-    "n_citation": 203,
-    "references": ["Multimodal Deep Learning", "Vision and Language"],
-    "status": "PUBLISHED",
-    "title": "Unified Multimodal Learning Framework",
-    "type": 3,
-    "venue": "CVPR",
-    "year": 2024
-  },
-  {
-    "abstract": "This paper explores continual learning strategies for neural networks to mitigate catastrophic forgetting. We propose memory-efficient rehearsal mechanisms.",
-    "authors": [
-      "82844d84-2425-4017-8670-0f1e354e517a",
-      "r3s4t5u6-v7w8-9012-abcd-ef3456789012"
-    ],
-    "id": "66778899-aabb-ccdd-eeff-001122334455",
-    "n_citation": 156,
-    "references": [
-      "Continual Learning Survey",
-      "Memory Systems in Neural Networks"
-    ],
-    "status": "PUBLISHED",
-    "title": "Memory-Efficient Continual Learning",
-    "type": 4,
-    "venue": "ICLR",
-    "year": 2023
-  },
-  {
-    "abstract": "This paper investigates privacy-preserving techniques for federated analytics in healthcare. We combine secure multiparty computation with differential privacy.",
-    "hIndex": 31,
-    "authors": [
-      "6ec56653-9e6f-4522-a7af-ffeebf346f61",
-      "s4t5u6v7-w8x9-0123-bcde-fg4567890123"
-    ],
-    "id": "778899aa-bbcc-ddee-ff00-112233445566",
-    "n_citation": 188,
-    "references": [
-      "Federated Learning in Healthcare",
-      "Privacy-Preserving Analytics"
-    ],
-    "sjr": 0.45,
-    "status": "PUBLISHED",
-    "title": "Privacy-Preserving Federated Analytics for Healthcare",
-    "type": 2,
-    "venue": "IEEE TDSC",
-    "year": 2024
   }
 ]
