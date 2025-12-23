@@ -10,7 +10,7 @@ cd build
 # Setup
 
 ```
-cmake -G "MinGW Makefiles"  `  -DCMAKE_PREFIX_PATH="C:/Qt/6.10.1/mingw_64"`  -DCMAKE_CXX_COMPILER="C:/Qt/Tools/mingw1310_64/bin/g++.exe"`  -DCMAKE_C_COMPILER="C:/Qt/Tools/mingw1310_64/bin/gcc.exe"
+cmake -G "MinGW Makefiles" -DCMAKE_PREFIX_PATH="C:/Qt/<your_version>/mingw_64" -DCMAKE_CXX_COMPILER="C:/Qt/Tools/mingw1310_64/bin/g++.exe" -DCMAKE_C_COMPILER="C:/Qt/Tools/mingw1310_64/bin/gcc.exe"
 ```
 
 # Build project
@@ -22,5 +22,5 @@ cmake --build .
 # Install dependencies
 
 ```
-"C:/Qt/6.10.1/mingw_64/bin/windeployqt.exe" .\ArticleManage.exe
+"C:/Qt/<your_version>/mingw_64/bin/windeployqt.exe" .\ArticleManage.exe
 ```
