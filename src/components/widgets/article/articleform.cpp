@@ -263,7 +263,7 @@ void ArticleForm::applyYearSorting() {
     applyAllFilters();
 }
 
-void ArticleForm::applyAllFilters() { // apply to all rows of element
+void ArticleForm::applyAllFilters() { // apply to all rows
     if (!model) return;
     for (int row = 0; row < model->rowCount(); ++row) {
         bool isVisible = passesAllFilters(row);

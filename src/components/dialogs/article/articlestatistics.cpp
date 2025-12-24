@@ -32,10 +32,8 @@ void ArticleStatistics::initStatistics()
     ui->lblTotalArticles->setText(QString::number(totalArticles));
     ui->lblTotalAuthors->setText(QString::number(totalAuthors));
 
-    // create pie chart
     QPieSeries *series = new QPieSeries();
 
-    
     // check valid data
     if (scieCount > 0) series->append("SCIE", scieCount);
     if (scopusCount > 0) series->append("SCOPUS", scopusCount);
@@ -47,10 +45,9 @@ void ArticleStatistics::initStatistics()
     for (QPieSlice *slice : series->slices()) {
         slice->setLabelVisible(true);
         slice->setLabel(QString("%1: %2").arg(slice->label()).arg(slice->value()));
-        slice->setPen(QPen(Qt::white, 2)); // White border for separation
+        slice->setPen(QPen(Qt::white, 2));
     }
 
-    // explode the largest slice for effect
     if (!series->slices().isEmpty()) {
         QPieSlice *largestSlice = nullptr;
         double maxVal = -1;
@@ -67,7 +64,6 @@ void ArticleStatistics::initStatistics()
         }
     }
 
-    // create chart
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("Article Types Distribution");
@@ -82,7 +78,6 @@ void ArticleStatistics::initStatistics()
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    // Replace the placeholder from UI
     if (ui->chartView->parentWidget()->layout()) {
         ui->chartView->parentWidget()->layout()->replaceWidget(ui->chartView, chartView);
         delete ui->chartView;
