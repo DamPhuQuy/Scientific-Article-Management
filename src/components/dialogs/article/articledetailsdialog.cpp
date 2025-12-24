@@ -168,6 +168,8 @@ void ArticleDetailsDialog::on_btnUpdate_clicked()
     updateDialog.loadData(currentArticle);
 
     if (updateDialog.exec() == QDialog::Accepted) {
+        std::string articleId = currentArticle->getId();
+        currentArticle = repo.getArticles().findById(articleId).get();
         setArticleData(currentArticle);
         dataChanged = true;
     }
