@@ -4,6 +4,7 @@
 #include "src/components/dialogs/msg/inform.h"
 #include "src/utils/datautils.h"
 #include "src/components/dialogs/author/listofauthorsdialog.h"
+#include <QDate>
 
 ArticleInputDialog::ArticleInputDialog(RepositoryManager& repo, QWidget *parent)
     : QDialog(parent)
@@ -52,6 +53,14 @@ void ArticleInputDialog::on_btnSave_clicked()
 
     // get the text, convert to int
     int year = ui->inputYear->currentText().toInt();
+
+    // check year input
+    int currentYear = QDate::currentDate().year();
+    if (year >= currentYear) {
+        Inform::showMessage(this, MessageType::Warning,
+            QString("Year must be less than current year (%1)").arg(currentYear), "Error");
+        return;
+    }
 
     int n_citation = ui->inputCitations->value();
 

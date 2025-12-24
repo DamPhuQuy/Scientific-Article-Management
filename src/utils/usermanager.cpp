@@ -223,12 +223,11 @@ QString UserManager::getUsernameFromIdentifier(const QString& identifier) {
 // fullname
 std::string UserManager::getFullName(const std::string& username) {
     loadFromFile();
-    // Kiểm tra user có tồn tại trong Hashmap không
     if (usernameToIndex.containsKey(username)) {
-        size_t index = usernameToIndex.get(username); // Lấy index từ map
-        return userList[index].fullname;              // Trả về dữ liệu từ vector
+        size_t index = usernameToIndex.get(username);
+        return userList[index].fullname;
     }
-    return ""; // Trả về rỗng nếu không tìm thấy
+    return ""; 
 }
 
 QString UserManager::getFullName(const QString& username) {

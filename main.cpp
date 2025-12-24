@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 
     // Apply Global Stylesheet
     QString styleSheet = R"(
-        /* General */
         * {
             font-family: "Segoe UI";
             color: #2c3e50;
@@ -28,7 +27,6 @@ int main(int argc, char *argv[])
             outline: none;
         }
 
-        /* Inputs */
         QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox, QComboBox, QDateEdit {
             background-color: white;
             border: 1px solid #bdc3c7;
@@ -41,7 +39,6 @@ int main(int argc, char *argv[])
             border: 1px solid #3498db;
         }
 
-        /* Buttons */
         QPushButton {
             background-color: #3498db;
             color: white;
@@ -60,7 +57,6 @@ int main(int argc, char *argv[])
             background-color: #bdc3c7;
         }
 
-        /* Tab Widget */
         QTabWidget::pane {
             border: 1px solid #bdc3c7;
             background: white;
@@ -80,7 +76,6 @@ int main(int argc, char *argv[])
             font-weight: bold;
         }
 
-        /* Tables and Lists */
         QTableWidget, QListWidget, QTreeWidget {
             background-color: white;
             border: 1px solid #bdc3c7;
@@ -103,7 +98,6 @@ int main(int argc, char *argv[])
             color: white;
         }
 
-        /* Scrollbars */
         QScrollBar:vertical {
             border: none;
             background: #f5f5f5;
@@ -122,11 +116,9 @@ int main(int argc, char *argv[])
             height: 0px;
         }
 
-        /* Labels */
         QLabel {
             color: #2c3e50;
         }
-        /* Specific for Titles (if they use objectName or just bold) - can't target easily without classes */
     )";
     a.setStyleSheet(styleSheet);
 
