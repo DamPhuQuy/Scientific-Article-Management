@@ -137,6 +137,7 @@ void ArticleUpdateDialog::on_saveBtn_clicked()
     }
 
     repo.getArticles().update(DataUtils::createArticle(currentArticle));
+    repo.getArticles().save();
     accept();
 }
 
