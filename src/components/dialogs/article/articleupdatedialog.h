@@ -24,6 +24,8 @@ private slots:
 
     void on_closeBtn_clicked();
 
+    void on_comboType_currentIndexChanged(int index);
+
 private:
     Ui::ArticleUpdateDialog *ui;
 

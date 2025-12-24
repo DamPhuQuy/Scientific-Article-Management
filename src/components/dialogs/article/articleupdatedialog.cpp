@@ -47,7 +47,7 @@ void ArticleUpdateDialog::loadData(Article* article) {
         break;
     case Type::CONFERENCE:
         ui->comboType->setCurrentIndex(2);
-        ui->stackInputs->setCurrentWidget(ui->pageInputSCOPUS);
+        ui->stackInputs->setCurrentWidget(ui->pageInputCONF);
         if (auto* s = dynamic_cast<CONFERENCE_Article*>(article)) {
             ui->editConfRank->setText(QString::fromStdString(s->getRank()));
             ui->editLocation->setText(QString::fromStdString((s->getLocation())));
@@ -144,5 +144,25 @@ void ArticleUpdateDialog::on_saveBtn_clicked()
 void ArticleUpdateDialog::on_closeBtn_clicked()
 {
     reject();
+}
+
+void ArticleUpdateDialog::on_comboType_currentIndexChanged(int index)
+{
+    // Switch stacked widget page based on selected type
+    switch(index) {
+    case 0: // SCIE
+        ui->stackInputs->setCurrentWidget(ui->pageInputSCIE);
+        break;
+    case 1: // SCOPUS
+        ui->stackInputs->setCurrentWidget(ui->pageInputSCOPUS);
+        break;
+    case 2: // CONFERENCE
+        ui->stackInputs->setCurrentWidget(ui->pageInputCONF);
+        break;
+    case 3: // OTHER
+    default:
+        ui->stackInputs->setCurrentWidget(ui->pageInputOTHER);
+        break;
+    }
 }
 
